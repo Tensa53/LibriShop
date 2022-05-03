@@ -1,0 +1,1 @@
+-- In questo file inseriremo tutte le istruzioni relative alla creazione del database e delle relative tabelle

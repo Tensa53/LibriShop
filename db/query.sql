@@ -1,0 +1,1 @@
+-- In questo file inseriremo tutte le interrogazioni al database che ci saranno poi utili nei relativi model
