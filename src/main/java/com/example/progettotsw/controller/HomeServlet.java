@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet {
 
         LibroDAO libroDAO = new LibroDAO();
 
-        List<Libro> libri = libroDAO.doRetrieveAll();
+        List<Libro> libri = libroDAO.doRetrieveAll(3);
 
         request.setAttribute("libri",libri);
 
@@ -30,7 +30,6 @@ public class HomeServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher(address);
 
         rd.forward(request,response);
-
 
     }
 }

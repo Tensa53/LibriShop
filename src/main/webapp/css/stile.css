@@ -1,0 +1,113 @@
+/*qui metteremo tutte le direttive relative al css delle pagine*/
+
+div.catalogo{
+    border : 3px solid red;
+    margin : 25px;
+    width : 30%;
+    float : left;
+    text-align: center;
+}
+
+div.benvenuti h2 {
+    color : #00627D;
+    text-align: center;
+}
+
+div.ricerca {
+    text-align: center;
+}
+
+div.content-catalogo {
+    border: 3px solid black;
+}
+
+a.right {
+    float: right;
+}
+
+div.ricerca input[type=text] {
+    width: 50%;
+}
+
+h1 {
+    color: #00627D;
+}
+
+div.header img {
+    width: 30px;
+    float: right;
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #00627D;
+}
+
+ul.topnav li {
+    float: left;
+}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li.active{
+    background-color: forestgreen; /*il link attivo viene colorato di verde*/
+    text-transform: uppercase;
+}
+
+ul.topnav li a:hover {
+    background-color: #111;
+}
+
+div.content{
+    width: 500px;
+}
+
+div.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #00627D;
+    color: white;
+    text-align: center;
+}
+
+/*
+ul.topnav li:hover:not(.active) {
+    background-color: #000000; passando su un link non attivo, viene evidenziato in nero
+}
+
+ul.topnav li {
+    float: left; allineando gli elementi della lista a sinistra, si allineano sulla riga
+    background-color: #00627D;
+}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li.active{
+    background-color: forestgreen; il link attivo viene colorato di verde
+    text-transform: uppercase;
+}
+
+ul.topnav {
+    list-style-type: none; rimuove i bullets della lista
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+*/

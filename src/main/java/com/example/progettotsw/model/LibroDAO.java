@@ -11,8 +11,13 @@ import java.util.List;
 
 public class LibroDAO {
 
-    public List<Libro> doRetrieveAll(){
-        String sql = "SELECT * FROM Libro LIMIT 3;";
+    public List<Libro> doRetrieveAll(int limit){
+        String sql;
+
+        if(limit != 0)
+            sql = "SELECT * FROM Libro LIMIT " + limit + ";";
+        else
+            sql = "SELECT * FROM Libro;";
 
         List<Libro> libri = new ArrayList<>();
 
