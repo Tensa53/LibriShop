@@ -9,19 +9,10 @@
 </head>
 <body>
 
-<div class="header">
-    <h1><%= "LOGO e uno SLOGAN" %>
-    <img src="./img/utente.png">
-    <img src="./img/carrello.png">
-</div>
 
-<ul class="topnav">
-    <li class="active"><a href="http://www.google.com">Home</a></li>
-    <li><a href="http://www.google.com">Chi Siamo</a></li>
-    <li><a href="http://www.google.com">Dove Siamo</a></li>
-    <li><a href="http://www.google.com">Contattaci</a></li>
-</ul>
+<jsp:include page="header.jsp"></jsp:include>
 
+<jsp:include page="nav.jsp"></jsp:include>
 
 <div class="benvenuti">
     <h2>Benvenuti sul nostro sito di vendita libri <br> Usa la barra per cercare uno specifico libro</h2>
@@ -48,9 +39,7 @@
 
 <a class="right" href="http://www.google.com">Visualizza altro</a>
 
-<div class="footer">
-    <p> FOOTER </p>
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
