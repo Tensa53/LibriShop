@@ -1,113 +1,113 @@
 /*qui metteremo tutte le direttive relative al css delle pagine*/
 
-div.catalogo{
-    border : 3px solid red;
-    margin : 25px;
-    width : 30%;
-    float : left;
+/*classi css*/
+.left{
+    float: left; /*fissa l'elemento a sinistra*/
+}
+
+.right{
+    float: right; /*fissa l'elemento a destra*/
+}
+
+/*css per l'header bar*/
+header img {
+    width: 20px;
+    height: 20px;
+}
+
+header span {
+    font-size: 20px;
+}
+
+/*css per la nav bar*/
+nav ul {
+    list-style-type: none; /*disattiva i bullets della lista*/
+    background-color: #00627D;
+    margin : 0;
+    padding: 0;
+}
+
+nav li a{
+    display: block;
+}
+
+nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il passaggio sull'elemento della navbar, facendogli cambiare colore ed esclude l'elemento attivo da questa regola*/
+    background-color: #555;
+}
+
+.active { /*cambia il colore di sfondo dell'elemento quando è attivo*/
+    background-color: #fdc330;
+    text-transform: uppercase;
+}
+
+nav a {
+    padding: 5px;
+    color: white;
+    text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/
+}
+
+/*css per la search bar ed il benvenuto*/
+#benvenuti{
     text-align: center;
 }
 
-div.benvenuti h2 {
-    color : #00627D;
+#ricerca {
     text-align: center;
 }
 
-div.ricerca {
-    text-align: center;
-}
-
-div.content-catalogo {
-    border: 3px solid black;
-}
-
-a.right {
-    float: right;
-}
-
-div.ricerca input[type=text] {
+#ricerca input[type=text] {
     width: 50%;
 }
 
-h1 {
-    color: #00627D;
-}
-
-div.header img {
-    width: 30px;
-    float: right;
-}
-
-ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #00627D;
-}
-
-ul.topnav li {
-    float: left;
-}
-
-ul.topnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-ul.topnav li.active{
-    background-color: forestgreen; /*il link attivo viene colorato di verde*/
-    text-transform: uppercase;
-}
-
-ul.topnav li a:hover {
-    background-color: #111;
-}
-
-div.content{
-    width: 500px;
-}
-
-div.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #00627D;
-    color: white;
-    text-align: center;
-}
+/*css per il catalogo*/
 
 /*
-ul.topnav li:hover:not(.active) {
-    background-color: #000000; passando su un link non attivo, viene evidenziato in nero
-}
-
-ul.topnav li {
-    float: left; allineando gli elementi della lista a sinistra, si allineano sulla riga
-    background-color: #00627D;
-}
-
-ul.topnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-ul.topnav li.active{
-    background-color: forestgreen; il link attivo viene colorato di verde
-    text-transform: uppercase;
-}
-
-ul.topnav {
-    list-style-type: none; rimuove i bullets della lista
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+#container-catalogo {
+    max-width: 300px;
+    margin : auto;
 }
 */
+
+#container-catalogo img {
+    width: 300px;
+    height: 500px;
+}
+
+figure {
+    border: 1px #cccccc solid;
+    display: inline-block;
+    text-align: center;
+    padding: 4px;
+    margin: 5px;
+}
+
+figcaption {
+    border: 1px #cccccc solid;
+    color: black;
+    padding: 2px;
+    text-align: center;
+}
+
+/*css per il footer*/
+
+footer {
+    background-color: #00627D;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer p {
+    color: white;
+}
+
+/*media query 1*/
+@media screen and (min-width: 660px) {
+    #container-catalogo {
+        max-width: 660px;
+        margin : auto;
+    }
+}
+
+/*possibili breakpint : 660px,984px,1310px*/
