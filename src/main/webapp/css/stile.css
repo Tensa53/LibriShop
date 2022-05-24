@@ -61,12 +61,10 @@ nav a {
 
 /*css per il catalogo*/
 
-/*
 #container-catalogo {
     max-width: 300px;
     margin : auto;
 }
-*/
 
 #container-catalogo img {
     width: 300px;
@@ -102,7 +100,8 @@ footer p {
     color: white;
 }
 
-/*media query 1*/
+/*media query*/
+
 @media screen and (min-width: 660px) {
     #container-catalogo {
         max-width: 660px;
@@ -110,4 +109,28 @@ footer p {
     }
 }
 
-/*possibili breakpint : 660px,984px,1310px*/
+@media screen and (min-width: 984px) {
+    #container-catalogo {
+        max-width: 984px;
+        margin : auto;
+    }
+    ul{
+        overflow:hidden;
+    }
+    li{
+        display:inline-block;
+    }
+}
+
+@media screen and (min-width: 1310px) {
+    #container-catalogo {
+        max-width: 1310px;
+        margin : auto;
+    }
+    ul{
+        overflow:hidden;
+    }
+    li{
+        display:inline-block;
+    }
+}
