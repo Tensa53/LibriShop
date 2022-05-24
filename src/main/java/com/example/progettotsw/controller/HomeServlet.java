@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet {
 
         LibroDAO libroDAO = new LibroDAO();
 
-        List<Libro> libri = libroDAO.doRetrieveAll(6);
+        List<Libro> libri = libroDAO.doRetrieveAll();
 
         request.setAttribute("libri",libri);
 

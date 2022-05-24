@@ -11,13 +11,8 @@ import java.util.List;
 
 public class LibroDAO {
 
-    public List<Libro> doRetrieveAll(int limit){
-        String sql;
-
-        if(limit != 0)
-            sql = "SELECT * FROM Libro LIMIT " + limit + ";";
-        else
-            sql = "SELECT * FROM Libro;";
+    public List<Libro> doRetrieveAll(){
+        String sql = "SELECT * FROM Libro;";
 
         List<Libro> libri = new ArrayList<>();
 
@@ -28,10 +23,12 @@ public class LibroDAO {
                 String Descrizione = rs.getString("Descrizione");
                 float Prezzo = rs.getFloat("Prezzo");
                 String Editore = rs.getString("Editore");
+                String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
                 int Sconto = rs.getInt("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,new GregorianCalendar(),Editore,Sconto,Disponibilita,Foto);
+                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
                 libri.add(l);
             }
         } catch (SQLException e) {

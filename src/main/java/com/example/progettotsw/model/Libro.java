@@ -1,19 +1,20 @@
 package com.example.progettotsw.model;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Libro {
 
     public Libro(String ISBN, String titolo, String descrizione, float prezzo, GregorianCalendar dataPubblicazione, String editore, int sconto, int disponibilita, String foto) {
         this.ISBN = ISBN;
-        Titolo = titolo;
-        Descrizione = descrizione;
-        Prezzo = prezzo;
-        DataPubblicazione = dataPubblicazione;
-        Editore = editore;
-        Sconto = sconto;
-        Disponibilita = disponibilita;
-        Foto = foto;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+        this.dataPubblicazione = dataPubblicazione;
+        this.editore = editore;
+        this.sconto = sconto;
+        this.disponibilita = disponibilita;
+        this.foto = foto;
     }
 
 
@@ -29,76 +30,80 @@ public class Libro {
     }
 
     public String getTitolo() {
-        return Titolo;
+        return titolo;
     }
 
     public void setTitolo(String titolo) {
-        Titolo = titolo;
+        this.titolo = titolo;
     }
 
     public String getDescrizione() {
-        return Descrizione;
+        return descrizione;
     }
 
     public void setDescrizione(String descrizione) {
-        Descrizione = descrizione;
+        this.descrizione = descrizione;
     }
 
     public float getPrezzo() {
-        return Prezzo;
+        return prezzo;
     }
 
     public void setPrezzo(float prezzo) {
-        Prezzo = prezzo;
-    }
-
-    public GregorianCalendar getDataPubblicazione() {
-        return DataPubblicazione;
+        this.prezzo = prezzo;
     }
 
     public void setDataPubblicazione(GregorianCalendar dataPubblicazione) {
-        DataPubblicazione = dataPubblicazione;
+        this.dataPubblicazione = dataPubblicazione;
     }
 
     public String getEditore() {
-        return Editore;
+        return editore;
     }
 
     public void setEditore(String editore) {
-        Editore = editore;
+        this.editore = editore;
     }
 
     public int getSconto() {
-        return Sconto;
+        return sconto;
     }
 
     public void setSconto(int sconto) {
-        Sconto = sconto;
+        this.sconto = sconto;
     }
 
     public int getDisponibilita() {
-        return Disponibilita;
+        return disponibilita;
     }
 
     public void setDisponibilita(int disponibilita) {
-        Disponibilita = disponibilita;
+        this.disponibilita = disponibilita;
+    }
+
+    public GregorianCalendar getDataPubblicazione() {
+        return dataPubblicazione;
+    }
+
+    public String getDataPubblicazioneString() {
+        return dataPubblicazione.get(Calendar.DAY_OF_MONTH) + "-" + (dataPubblicazione.get(Calendar.MONTH) + 1) + "-" + dataPubblicazione.get(Calendar.YEAR);
     }
 
     public String getFoto() {
-        return Foto;
+        return foto;
     }
 
     public void setFoto(String foto) {
-        Foto = foto;
+        this.foto = foto;
     }
 
     private String ISBN;
-    private String Titolo;
-    private String Descrizione;
-    private float Prezzo;
-    private GregorianCalendar DataPubblicazione;
-    private String Editore;
-    private int Sconto;
-    private int Disponibilita;
-    private String Foto;
+    private String titolo;
+    private String descrizione;
+    private float prezzo;
+    private GregorianCalendar dataPubblicazione;
+    private String editore;
+    private int sconto;
+    private int disponibilita;
+    private String foto;
 }
