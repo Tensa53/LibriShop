@@ -1,6 +1,7 @@
 /*qui metteremo tutte le direttive relative al css delle pagine*/
 
 /*classi css*/
+
 .left{
     float: left; /*fissa l'elemento a sinistra*/
 }
@@ -9,17 +10,23 @@
     float: right; /*fissa l'elemento a destra*/
 }
 
+.center {
+    text-align: center; /*fissa l'elemento al centro*/
+}
+
+body {
+    background-color: ghostwhite;
+}
+
 /*css per l'header bar*/
+
 header img {
     width: 20px;
     height: 20px;
 }
 
-header span {
-    font-size: 20px;
-}
-
 /*css per la nav bar*/
+
 nav ul {
     list-style-type: none; /*disattiva i bullets della lista*/
     background-color: #00627D;
@@ -47,16 +54,19 @@ nav a {
 }
 
 /*css per la search bar ed il benvenuto*/
-#benvenuti{
-    text-align: center;
-}
 
-#ricerca {
-    text-align: center;
+.titoli{
+    font-family: Georgia;
+    color: black;
 }
 
 #ricerca input[type=text] {
     width: 50%;
+}
+
+#slogan {
+    font-family: "Sitka Display";
+    text-align: center;
 }
 
 /*css per il catalogo*/

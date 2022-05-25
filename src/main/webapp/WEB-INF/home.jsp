@@ -17,15 +17,19 @@
 <jsp:include page="nav.jsp"></jsp:include>
 
 
-<div id="benvenuti">
+<div id="benvenuti" class="titoli center">
     <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
 </div>
 
-<div id="ricerca">
+<div id="ricerca" class="center">
     <form>
         <input type="text">
         <input type="submit" value="cerca">
     </form>
+</div>
+
+<div class="titoli center">
+    <h3>I nostri consigli:</h3>
 </div>
 
 <div id="container-catalogo">
