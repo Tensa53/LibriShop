@@ -114,10 +114,12 @@ footer p {
         max-width: 984px;
         margin : auto;
     }
-    ul{
+
+    /*navbar orizzontale*/
+    nav ul{
         overflow:hidden;
     }
-    li{
+    nav li{
         display:inline-block;
     }
 }
@@ -127,10 +129,12 @@ footer p {
         max-width: 1310px;
         margin : auto;
     }
-    ul{
+
+    /*navbar orizzontale*/
+    nav ul{
         overflow:hidden;
     }
-    li{
+    nav li{
         display:inline-block;
     }
 }

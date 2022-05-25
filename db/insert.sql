@@ -59,11 +59,11 @@ INSERT INTO Scrittura VALUES
                           ('9788845921841','JCKSRL80A41F839E');
 
 INSERT INTO Utente VALUES
-                       ('mariorossi@gmail.com','mariorossi','Mario','Rossi','7C4A8D09CA3762AF61E59520943DC26494F8941B'),
-                       ('lindabianchi@libero.it','lindabianchi','Linda','Bianchi','1F6CCD2BE75F1CC94A22A773EEA8F8AEB5C68217'),
-                       ('lucaruocco@hotmail.it','lucaruocco','Luca','Ruocco','431ACC6DBC62501D4D0A67A9515A2D4C4B909E64'),
-                       ('rosagiudice@gmail.com','rosagiudice','Rosa','Giudice','6F47C44AD9FF9D642008B84406E95D2E70D324F1'),
-                       ('danielefabiano@hotmail.it','danielefabiano','Daniele','Fabiano','9C943C55A3D140756BB1AB6088629908C2FB21E5');
+                       ('mariorossi@gmail.com','mariorossi','Mario','Rossi','7C4A8D09CA3762AF61E59520943DC26494F8941B',false),
+                       ('lindabianchi@libero.it','lindabianchi','Linda','Bianchi','1F6CCD2BE75F1CC94A22A773EEA8F8AEB5C68217',false),
+                       ('lucaruocco@hotmail.it','lucaruocco','Luca','Ruocco','431ACC6DBC62501D4D0A67A9515A2D4C4B909E64',false),
+                       ('rosagiudice@gmail.com','rosagiudice','Rosa','Giudice','6F47C44AD9FF9D642008B84406E95D2E70D324F1',false),
+                       ('danielefabiano@hotmail.it','danielefabiano','Daniele','Fabiano','9C943C55A3D140756BB1AB6088629908C2FB21E5',false);
 
 INSERT INTO Indirizzo VALUES
                           ("Roma","23","84028","Serre","SA","Italia"),
