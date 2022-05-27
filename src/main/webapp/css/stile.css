@@ -25,6 +25,14 @@ header img {
     height: 20px;
 }
 
+header span {
+    font-size: 20px;
+}
+
+header {
+    margin : 10px;
+}
+
 /*css per la nav bar*/
 
 nav ul {
@@ -76,6 +84,10 @@ nav a {
     margin : auto;
 }
 
+#container-todo p {
+    height: 800px;
+}
+
 #container-catalogo img {
     width: 300px;
     height: 500px;
@@ -101,6 +113,7 @@ figcaption {
 footer {
     background-color: #00627D;
     text-align: center;
+    margin-bottom: 0;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -108,6 +121,7 @@ footer {
 
 footer p {
     color: white;
+    font-size: 20px;
 }
 
 /*media query*/
@@ -125,12 +139,30 @@ footer p {
         margin : auto;
     }
 
+    header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    header span {
+        font-size: 40px;
+    }
+
     /*navbar orizzontale*/
     nav ul{
         overflow:hidden;
     }
     nav li{
         display:inline-block;
+    }
+
+    nav a {
+        font-size: 30px;
+    }
+
+    footer p {
+        color: white;
+        font-size: 40px;
     }
 }
 
@@ -140,11 +172,29 @@ footer p {
         margin : auto;
     }
 
+    header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    header span {
+        font-size: 40px;
+    }
+
     /*navbar orizzontale*/
     nav ul{
         overflow:hidden;
     }
     nav li{
         display:inline-block;
+    }
+
+    nav a {
+        font-size: 30px;
+    }
+
+    footer p {
+        color: white;
+        font-size: 40px;
     }
 }

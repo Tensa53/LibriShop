@@ -7,6 +7,7 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <script src="${pageContext.request.contextPath}/script/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale = 1">
 </head>
 <body>
