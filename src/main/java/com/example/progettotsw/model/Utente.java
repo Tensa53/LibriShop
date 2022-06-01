@@ -1,13 +1,18 @@
 package com.example.progettotsw.model;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Utente {
 
-    public Utente(String mail, String username, String nome, String cognome, String passwordhash) {
+    public Utente(String mail, String username, String nome, String cognome, boolean amministratore) {
         this.mail = mail;
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
-        this.passwordhash = passwordhash;
+        this.amministratore = amministratore;
     }
 
     public Utente() {
@@ -49,8 +54,17 @@ public class Utente {
         return passwordhash;
     }
 
-    public void setPasswordhash(String passwordhash) {
-        this.passwordhash = passwordhash;
+    public void setPasswordhash(String passwordhash) { this.passwordhash = passwordhash; }
+
+    public void setPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+            digest.update(password.getBytes(StandardCharsets.UTF_8));
+            this.passwordhash = String.format("%040x", new BigInteger(1, digest.digest()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean isAmministratore() {
