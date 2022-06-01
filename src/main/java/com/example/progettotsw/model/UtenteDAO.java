@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UtenteDAO {
 
     public Utente doRetrieveByMailPassword(String mail,String password){
-        String sql = "SELECT * FROM Utente WHERE mail=? AND passwordhash=SHA1(?);";
+        String sql = "SELECT * FROM Utente WHERE Email=? AND Passwordhash=SHA1(?);";
 
         Utente u = null;
 
@@ -22,11 +22,11 @@ public class UtenteDAO {
 
             while (rs.next()){
                 u = new Utente();
-                u.setMail(rs.getString("mail"));
-                u.setUsername(rs.getString("username"));
+                u.setMail(rs.getString("Email"));
+                u.setUsername(rs.getString("Username"));
                 u.setNome(rs.getString("Nome"));
                 u.setCognome(rs.getString("Cognome"));
-                u.setPasswordhash(rs.getString("passwordhash"));
+                u.setPasswordhash(rs.getString("Passwordhash"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -18,27 +18,11 @@
 
 <jsp:include page="nav.jsp"></jsp:include>
 
-
-<div id="benvenuti" class="titoli center">
-    <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
-</div>
-
-<div id="ricerca" class="center">
+<div id="ricercal" class="center">
     <form action="ricerca">
-        <input type="text" name="ricerca">
+        <input type="text">
         <input type="submit" value="cerca">
     </form>
-</div>
-
-<div class="titoli center">
-    <%
-        Utente utente = (Utente) session.getAttribute("utente");
-        if(utente != null){
-    %>
-            <h3>Benvenuto <%=utente.getUsername()%>. I nostri consigli : </h3>
-    <%}else{%>
-            <h3>Benvenuto guest. I nostri consigli : </h3>
-    <%}%>
 </div>
 
 <div id="container-catalogo">
