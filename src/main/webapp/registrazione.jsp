@@ -9,10 +9,32 @@
 <html>
 <head>
     <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
+
+<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+
+<jsp:include page="WEB-INF/nav.jsp"></jsp:include>
+
 <body>
 <div id="container-todo">
-  <p>TODO</p>
+    <form action="register">
+        <label for = "nome">Nome : </label> <br>
+        <input type="text" name="nomer" id="nome" required><br>
+        <label for = "cognome">Cognome : </label> <br>
+        <input type="text" name="cognomer" id="cognome" required><br>
+        <label for = "mail">Mail : </label> <br>
+        <input type="email" name="mailr" id="mail" required><br>
+        <label for = "username">Username : </label> <br>
+        <input type="text" name="usernamer" id="username" required><br>
+        <label for = "password">Password : </label><br>
+        <input type="password" name="passwordr" id="password" required><br>
+        <input type="hidden" name="amminstratorer" id="amministratore" value="false">
+        <input type="submit" value="Registrati">
+    </form>
 </div>
+
+<jsp:include page="WEB-INF/footer.jsp"></jsp:include>
+
 </body>
 </html>

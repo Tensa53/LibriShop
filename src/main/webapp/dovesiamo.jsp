@@ -3,7 +3,6 @@
 <head>
     <title>Dove siamo</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
-    <script src="${pageContext.request.contextPath}/script/script.js"></script>
 </head>
 <body>
 <jsp:include page="WEB-INF/header.jsp"></jsp:include>
