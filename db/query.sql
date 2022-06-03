@@ -14,3 +14,7 @@ SELECT L.Disponibilita,L.Nome,D.Quantita,D.Prezzo,sum(D.Prezzo)
 FROM Libro L,Dettaglio D,Carrello C
 WHERE Dettaglio.ISBNLibro = L.ISBN AND D.Carrello = C.ID
 GROUP BY (L.Disponibilita,L.Nome,D.Quantita,D.Prezzo,sum(D.Prezzo),C.ID);
+
+-- Ricerca un libro che contiene la seguente stringa
+SELECT * FROM Libro
+WHERE Titolo LIKE 'UnaQualunqueStringa%' OR Titolo LIKE '%UnaQualunqueStringa' OR Titolo LIKE '%UnaQualunqueStringa%'

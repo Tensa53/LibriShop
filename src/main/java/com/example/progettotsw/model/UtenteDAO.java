@@ -28,6 +28,7 @@ public class UtenteDAO {
                 u.setCognome(rs.getString("Cognome"));
                 u.setPasswordhash(rs.getString("Passwordhash"));
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +36,7 @@ public class UtenteDAO {
         return u;
     }
 
-    public void doSave(Utente utente) {
+    public int doSave(Utente utente) {
         String sql = "INSERT INTO Utente VALUES (?,?,?,?,?,?)";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -46,7 +47,7 @@ public class UtenteDAO {
             pstmt.setString(5,utente.getPasswordhash());
             pstmt.setBoolean(6,utente.isAmministratore());
 
-            pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }

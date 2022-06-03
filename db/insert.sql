@@ -63,7 +63,8 @@ INSERT INTO Utente VALUES
                        ('lindabianchi@libero.it','lindabianchi','Linda','Bianchi','1F6CCD2BE75F1CC94A22A773EEA8F8AEB5C68217',false),
                        ('lucaruocco@hotmail.it','lucaruocco','Luca','Ruocco','431ACC6DBC62501D4D0A67A9515A2D4C4B909E64',false),
                        ('rosagiudice@gmail.com','rosagiudice','Rosa','Giudice','6F47C44AD9FF9D642008B84406E95D2E70D324F1',false),
-                       ('danielefabiano@hotmail.it','danielefabiano','Daniele','Fabiano','9C943C55A3D140756BB1AB6088629908C2FB21E5',false);
+                       ('danielefabiano@hotmail.it','danielefabiano','Daniele','Fabiano','9C943C55A3D140756BB1AB6088629908C2FB21E5',false),
+                       ('marymaselli@libero.it','marymaselli','Mariantonietta','Maselli','7BEF225F10720B39E2645C72B96CEA9ED83CB8C4',false);
 
 INSERT INTO Indirizzo VALUES
                           ("Roma","23","84028","Serre","SA","Italia"),

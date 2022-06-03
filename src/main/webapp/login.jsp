@@ -16,8 +16,6 @@
 
 <jsp:include page="WEB-INF/nav.jsp"></jsp:include>
 
-
-<legend>Effettua il login</legend>
 <form action="login">
     <label for = "mail">Mail : </label> <br>
     <input type="email" name="mail" id="mail" required><br>
@@ -27,13 +25,20 @@
 </form>
 
 <%
-    String msg = request.getParameter("msg");
+    String msg = (String) request.getAttribute("msg");
+    System.out.println(msg);
     if (msg != null){
 %>
 
-<p>${msg}</p>
+<p class="error"><%=msg%></p>
+
+<%}else {%>
+
+<p>jdksdjsdjsdk</p>
 
 <%}%>
+
+
 
 <p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
 

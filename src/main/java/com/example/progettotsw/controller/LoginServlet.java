@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -25,23 +26,30 @@ public class LoginServlet extends HttpServlet {
 
         Utente utente =  utenteDAO.doRetrieveByMailPassword(mail,password);
 
-        log(utente.getUsername());
-
-        if(utente == null) {
+        if(Objects.isNull(utente)) {
             String msg = "Mail o password errati !!";
 
-            request.setAttribute("messaggio",msg);
+            log("utente nullo");
 
-            String address = "/login.jsp";
+            request.removeAttribute("mail");
+            request.removeAttribute("password");
+
+            request.setAttribute("msg",msg);
+
+            String address = "./login.jsp";
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
         }
 
-        request.getSession().setAttribute("utente",utente);
+        else {
+            log(utente.getUsername());
 
-        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
+            request.getSession().setAttribute("utente",utente);
 
-        response.sendRedirect(address);
+            String address = "http://localhost:8080/progettoTSW_war_exploded/home";
+
+            response.sendRedirect(address);
+        }
     }
 }

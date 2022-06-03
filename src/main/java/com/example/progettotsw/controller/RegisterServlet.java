@@ -26,11 +26,11 @@ public class RegisterServlet extends HttpServlet {
 
         UtenteDAO utenteDAO = new UtenteDAO();
 
-        utenteDAO.doSave(utente);
+        log("righe :" + utenteDAO.doSave(utente));
 
         request.getSession().setAttribute("utente",utente);
 
-        String address = "http://localhost:8080/initCat_war_exploded/Home";
+        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
 
         response.sendRedirect(address);
     }
