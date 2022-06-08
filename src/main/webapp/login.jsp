@@ -34,8 +34,6 @@
 
 <%}else {%>
 
-<p>jdksdjsdjsdk</p>
-
 <%}%>
 
 

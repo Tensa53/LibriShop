@@ -10,7 +10,7 @@
 <jsp:include page="WEB-INF/nav.jsp"></jsp:include>
 
 <div id="container-todo">
-    <p>TODO</p>
+    <p>CONTATTACI</p>
 </div>
 
 <jsp:include page="WEB-INF/footer.jsp"></jsp:include>

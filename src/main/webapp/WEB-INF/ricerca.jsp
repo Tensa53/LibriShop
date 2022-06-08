@@ -17,7 +17,7 @@
 
 <jsp:include page="nav.jsp"></jsp:include>
 
-<div id="ricercal" class="center">
+<div id="container-ricerca" class="center">
     <form action="ricerca">
         <input type="text" name="ricerca" required>
         <input type="submit" value="cerca">
@@ -29,11 +29,14 @@
     <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");
 
         for (Libro l:libri) { %>
-    <figure class = "catalogo-item">
-        <img src="<%=l.getFoto()%>"/>
-        <figcaption><a href="https://www.google.com/search?q=regulators"><%=l.getTitolo()%></a></figcaption>
-        <figcaption><%=l.getPrezzo()%>€</figcaption>
-    </figure>
+        <figure class = "catalogo-item">
+            <form action="page-libro">
+            <input type="image" src="<%=l.getFoto()%>">
+            <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+            <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
+            <figcaption><%=l.getPrezzo()%>€</figcaption>
+            </form>
+        </figure>
     <% } %>
 </div>
 

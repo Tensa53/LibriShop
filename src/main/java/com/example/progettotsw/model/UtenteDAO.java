@@ -27,6 +27,7 @@ public class UtenteDAO {
                 u.setNome(rs.getString("Nome"));
                 u.setCognome(rs.getString("Cognome"));
                 u.setPasswordhash(rs.getString("Passwordhash"));
+                u.setAmministratore(rs.getBoolean("Amministratore"));
             }
 
         } catch (SQLException e) {

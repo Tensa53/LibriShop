@@ -31,6 +31,7 @@ public class LibroDAO {
                 libro.setDataPubblicazione(dataPubblicazione);
                 libro.setSconto(rs.getInt("Sconto"));
                 libro.setFoto(rs.getString("Foto"));
+                libro.setPrezzo(rs.getFloat("Prezzo"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

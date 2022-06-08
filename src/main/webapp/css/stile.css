@@ -80,7 +80,7 @@ nav a {
     color: black;
 }
 
-#ricercal input[type=text] {
+#container-ricerca input[type=text] {
     width: 50%;
 }
 
@@ -100,7 +100,12 @@ nav a {
     height: 800px;
 }
 
-#container-catalogo img {
+figure input[type=image] {
+    width: 300px;
+    height: 500px;
+}
+
+figure img {
     width: 300px;
     height: 500px;
 }
@@ -257,7 +262,7 @@ footer p {
     padding: 3px;
 }
 
-.dropdown-content a:hover {background-color: #555;}
+.dropdown-content a:hover:not(#counter-carrello) {background-color: #555;}
 .dropdown:hover .dropdown-content {display: block;}
 
 

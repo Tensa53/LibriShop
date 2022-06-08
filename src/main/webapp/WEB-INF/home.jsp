@@ -8,7 +8,6 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
-    <meta name="viewport" content="width=device-width, initial-scale = 1">
 </head>
 <body>
 
@@ -22,7 +21,7 @@
     <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
 </div>
 
-<div id="ricercal" class="center">
+<div id="container-ricerca" class="center">
     <form action="ricerca">
         <input type="text" name="ricerca" required>
         <input type="submit" value="cerca">
@@ -46,9 +45,12 @@
 
         for (Libro l:libri) { %>
     <figure class = "catalogo-item">
-        <img src="<%=l.getFoto()%>"/>
-        <figcaption><a href="https://www.google.com/search?q=regulators"><%=l.getTitolo()%></a></figcaption>
+        <form action="page-libro">
+        <input type="image" src="<%=l.getFoto()%>">
+        <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+        <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
         <figcaption><%=l.getPrezzo()%>€</figcaption>
+        </form>
     </figure>
     <% } %>
 </div>
