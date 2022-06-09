@@ -1,7 +1,7 @@
 <%@ page import="com.example.progettotsw.model.Utente" %>
 <%@ page import="com.example.progettotsw.model.Carrello" %>
 <header>
-    <script src="${pageContext.request.contextPath}/script/script.js"></script>
+    <script src="${pageContext.request.contextPath}/script/navbar.js"></script>
 
     <a href="http://localhost:8080/progettoTSW_war_exploded/home"><img src="./img/book-icon.png" alt="Icona home"></a>
 

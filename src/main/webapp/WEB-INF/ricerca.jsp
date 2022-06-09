@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<script>
+    <jsp:include page="/script/suggerimenti.js"></jsp:include>
+</script>
 
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -19,7 +22,9 @@
 
 <div id="container-ricerca" class="center">
     <form action="ricerca">
-        <input type="text" name="ricerca" required>
+        <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
+        <datalist id="titoli">
+        </datalist>
         <input type="submit" value="cerca">
     </form>
 </div>

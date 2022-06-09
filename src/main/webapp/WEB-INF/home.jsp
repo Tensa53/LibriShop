@@ -11,11 +11,13 @@
 </head>
 <body>
 
+<script>
+    <jsp:include page="/script/suggerimenti.js"></jsp:include>
+</script>
 
 <jsp:include page="header.jsp"></jsp:include>
 
 <jsp:include page="nav.jsp"></jsp:include>
-
 
 <div id="benvenuti" class="titoli center">
     <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
@@ -23,7 +25,9 @@
 
 <div id="container-ricerca" class="center">
     <form action="ricerca">
-        <input type="text" name="ricerca" required>
+        <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
+        <datalist id="titoli">
+        </datalist>
         <input type="submit" value="cerca">
     </form>
 </div>
