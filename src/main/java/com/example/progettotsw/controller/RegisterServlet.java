@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller;
 
+import com.example.progettotsw.model.CarrelloDAO;
 import com.example.progettotsw.model.Utente;
 import com.example.progettotsw.model.UtenteDAO;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,6 +28,10 @@ public class RegisterServlet extends HttpServlet {
         UtenteDAO utenteDAO = new UtenteDAO();
 
         log("righe :" + utenteDAO.doSave(utente));
+
+        CarrelloDAO carrelloDAO = new CarrelloDAO();
+
+        carrelloDAO.doCreate(mail);
 
         request.getSession().setAttribute("utente",utente);
 

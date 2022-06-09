@@ -38,7 +38,7 @@ public class UtenteDAO {
     }
 
     public int doSave(Utente utente) {
-        String sql = "INSERT INTO Utente VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO Utente VALUES (?,?,?,?,?,?);";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1,utente.getMail());

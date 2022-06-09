@@ -1,7 +1,6 @@
 package com.example.progettotsw.controller;
 
-import com.example.progettotsw.model.Utente;
-import com.example.progettotsw.model.UtenteDAO;
+import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,11 +44,54 @@ public class LoginServlet extends HttpServlet {
         else {
             log(utente.getUsername());
 
+            CarrelloDAO carrelloDAO = new CarrelloDAO();
+
+            Carrello carrelloDB = carrelloDAO.doRetrievebyUtente(utente.getMail());
+
+            log(String.valueOf(Objects.isNull(carrelloDB)));
+
+            Carrello carrelloSession = (Carrello) request.getSession().getAttribute("carrello");
+
+            log(String.valueOf(Objects.isNull(carrelloSession)));
+
+            if(carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() > 0.0f) { //nel caso sia il carrello di db che quello di sessione siano pieni
+                mergeCarrelli(carrelloDB,carrelloSession);//avviene il merge
+                request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
+                request.getSession().setAttribute("carrello",carrelloSession);//aggiungiamo il carrello risultato della merge
+            }else if (carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() == 0.0f){//nel caso in cui il carrello di sessione sia vuoto
+                request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
+                request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
+            }
+
             request.getSession().setAttribute("utente",utente);
 
             String address = "http://localhost:8080/progettoTSW_war_exploded/home";
 
             response.sendRedirect(address);
+        }
+    }
+
+    private void merge(Carrello carrelloA, Carrello carrelloB){
+        for (Dettaglio dettaglioB : carrelloB.getDettagli()){
+            Dettaglio dettaglioA = null;
+
+            if((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) {
+                dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());
+                dettaglioA.setPrezzo(dettaglioA.getQuantita() * dettaglioA.getLibro().getPrezzo());
+                carrelloA.setTotale(carrelloA.getTotale()+dettaglioA.getPrezzo());
+            }else {
+                carrelloA.addDettaglio(dettaglioB);
+                carrelloA.setTotale(carrelloA.getTotale()+dettaglioB.getPrezzo());
+            }
+        }
+    }
+
+    private void mergeCarrelli(Carrello carrelloDB,Carrello carrelloSession) {
+        if(carrelloDB.getDettagli().size() > carrelloSession.getDettagli().size()){ //appendo al carrello più grande
+            merge(carrelloDB,carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
+            carrelloSession = carrelloDB;
+        } else {
+            merge(carrelloSession,carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
         }
     }
 }

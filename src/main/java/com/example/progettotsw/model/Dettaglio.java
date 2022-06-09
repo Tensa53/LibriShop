@@ -6,22 +6,13 @@ public class Dettaglio {
      Il carrello sarà invece modellato come un ArrayList di Dettagli
      */
 
-    public Dettaglio(int ID, int quantita, float prezzo, Libro libro) {
-        this.ID = ID;
+    public Dettaglio( int quantita, float prezzo, Libro libro) {
         this.quantita = quantita;
         this.prezzo = prezzo;
         this.libro = libro;
     }
 
     public Dettaglio() {
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public int getQuantita() {
@@ -48,7 +39,15 @@ public class Dettaglio {
         this.libro = libro;
     }
 
-    private int ID;
+    @Override
+    public String toString() {
+        return "Dettaglio{" +
+                "quantita=" + quantita +
+                ", prezzo=" + prezzo +
+                ", libro=" + libro +
+                '}';
+    }
+
     private int quantita;
     private float prezzo;
     private Libro libro;

@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller;
 
+import com.example.progettotsw.model.Carrello;
 import com.example.progettotsw.model.Libro;
 import com.example.progettotsw.model.LibroDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -25,7 +26,11 @@ public class HomeServlet extends HttpServlet {
 
         String address = "/WEB-INF/home.jsp";
 
-        log("length lista : " + libri.size());
+        //la home può essere oggetto di redirect, risulta fondamentale controllare il carrello affinchè non vada perso
+        if (request.getSession().getAttribute("carrello") == null) {
+            Carrello carrelloSession = new Carrello();
+            request.getSession().setAttribute("carrello", carrelloSession);
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher(address);
 
