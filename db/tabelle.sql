@@ -89,9 +89,9 @@ CREATE TABLE Ordine(
 );
 
 CREATE TABLE Carrello (
-                          ID int primary key auto_increment,
                           Utente varchar(30) not null,
                           Totale float not null,
+                          primary key (Utente),
                           foreign key(Utente) references Utente(Email)
 );
 
@@ -99,10 +99,10 @@ CREATE TABLE Dettaglio (
                            ID int primary key auto_increment,
                            Quantita int not null,
                            Prezzo float not null,
-                           Carrello int,
+                           Carrello varchar(30),
                            Ordine int,
                            ISBNLibro varchar(13),
-                           foreign key (Carrello) references Carrello(ID),
+                           foreign key (Carrello) references Carrello(Utente),
                            foreign key (Ordine) references Ordine(ID)
 );
 
@@ -123,7 +123,3 @@ CREATE TABLE Definizione (
                              foreign key(Utente) references Utente(Email),
                              foreign key(Pagamento) references Pagamento(NumeroCarta)
 );
-
-
-
-
