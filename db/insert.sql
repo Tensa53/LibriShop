@@ -99,3 +99,10 @@ INSERT INTO Definizione VALUES
                             ('lucaruocco@hotmail.it','4929409682314169'),
                             ('rosagiudice@gmail.com','4410923939558010'),
                             ('danielefabiano@hotmail.it','4556005537679432');
+
+
+INSERT INTO Carrello VALUES
+                         ('mariorossi@gmail.com',0.0),
+                         ('lindabianchi@libero.it',0.0),
+                         ('lucaruocco@hotmail.it',0.0),
+                         ('rosagiudice@gmail.com',0.0);
