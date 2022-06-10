@@ -41,12 +41,20 @@ public class LibroDAO {
     }
 
     public List<Libro> doRetrievebyString(String ricerca){
-        String sql = "SELECT * FROM Libro WHERE Titolo LIKE ' " + ricerca + "%' OR Titolo LIKE '%" + ricerca + "' OR Titolo LIKE '%" + ricerca + "%'";
+        //String sql = "SELECT * FROM Libro WHERE Titolo LIKE ' " + ricerca + "%' OR Titolo LIKE '%" + ricerca + "' OR Titolo LIKE '%" + ricerca + "%'";
+        String sql = "SELECT * FROM Libro WHERE Titolo LIKE ? OR Titolo LIKE ? OR Titolo LIKE ?";
 
 
         List<Libro> libri = new ArrayList<>();
 
-        try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
+        try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement();PreparedStatement ps = conn.prepareStatement(sql);){
+
+
+            ps.setString(1,ricerca + "%");
+            ps.setString(2,"%" + ricerca);
+            ps.setString(3,"%" + ricerca + "%");
+            ResultSet rs = ps.executeQuery();
+
             while(rs.next()) {
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");

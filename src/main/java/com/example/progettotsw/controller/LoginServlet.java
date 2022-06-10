@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
 
-        else {
+        else if(!utente.isAmministratore()) {
             log(utente.getUsername());
 
             CarrelloDAO carrelloDAO = new CarrelloDAO();
@@ -55,23 +55,22 @@ public class LoginServlet extends HttpServlet {
             log(String.valueOf(Objects.isNull(carrelloSession)));
 
             if(carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() > 0.0f) { //nel caso sia il carrello di db che quello di sessione siano pieni
-                mergeCarrelli(carrelloDB,carrelloSession);//avviene il merge
                 request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
-                request.getSession().setAttribute("carrello",carrelloSession);//aggiungiamo il carrello risultato della merge
+                request.getSession().setAttribute("carrello",mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
             }else if (carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() == 0.0f){//nel caso in cui il carrello di sessione sia vuoto
                 request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
                 request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
             }
-
-            request.getSession().setAttribute("utente",utente);
-
-            String address = "http://localhost:8080/progettoTSW_war_exploded/home";
-
-            response.sendRedirect(address);
         }
+
+        request.getSession().setAttribute("utente",utente);
+
+        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
+
+        response.sendRedirect(address);
     }
 
-    private void merge(Carrello carrelloA, Carrello carrelloB){
+    private Carrello merge(Carrello carrelloA, Carrello carrelloB){
         for (Dettaglio dettaglioB : carrelloB.getDettagli()){
             Dettaglio dettaglioA = null;
 
@@ -84,14 +83,15 @@ public class LoginServlet extends HttpServlet {
                 carrelloA.setTotale(carrelloA.getTotale()+dettaglioB.getPrezzo());
             }
         }
+
+        return carrelloA;
     }
 
-    private void mergeCarrelli(Carrello carrelloDB,Carrello carrelloSession) {
+    private Carrello mergeCarrelli(Carrello carrelloDB,Carrello carrelloSession) {
         if(carrelloDB.getDettagli().size() > carrelloSession.getDettagli().size()){ //appendo al carrello più grande
-            merge(carrelloDB,carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
-            carrelloSession = carrelloDB;
+            return merge(carrelloDB,carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
         } else {
-            merge(carrelloSession,carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
+            return merge(carrelloSession,carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
         }
     }
 }

@@ -1,4 +1,5 @@
-<%@ page import="com.example.progettotsw.model.Libro" %><%--
+<%@ page import="com.example.progettotsw.model.Libro" %>
+<%@ page import="com.example.progettotsw.model.Utente" %><%--
   Created by IntelliJ IDEA.
   User: daniele
   Date: 08/06/22
@@ -17,8 +18,19 @@
 
 <jsp:include page="WEB-INF/nav.jsp"></jsp:include>
 
+
+<script>
+    function checkUtente(admin) {
+
+        if (admin == true) {
+            alert("Gli utenti amministratori non sono abilitati all'acquisto");
+        }
+
+    }
+</script>
+
 <figure class = "catalogo-item">
-    <form action="aggiungi-al-carrello">
+    <form action="aggiungi-al-carrello" onsubmit="return checkUtente()">
         <img src="<%=l.getFoto()%>">
         <figcaption>Prezzo : <%=l.getPrezzo()%>€
             Quantità : <select name="quantita">
@@ -28,7 +40,14 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-        <input type="submit" value="Aggiungi al carrello">
+        <%
+            Utente utente = (Utente) request.getSession().getAttribute("utente");
+            if(utente != null){
+        %>
+                <input type="submit" value="Aggiungi al carrello" onclick="checkUtente(<%=utente.isAmministratore()%>)">
+        <%}else{%>
+                <input type="submit" value="Aggiungi al carrello">
+        <%}%>
         </figcaption>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
         <figcaption><%=l.getDescrizione()%></figcaption>

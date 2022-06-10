@@ -41,7 +41,7 @@
     <div class="dropdown right">
         <img src="./img/carrello.png" alt="Icona carrello"></a>
         <div class="dropdown-content">
-                <%if(carrello.getNumeroProdotti() > 0){
+                <%if(carrello != null){
                     if(carrello.getNumeroProdotti() == 1){%>
                         <a id="counter-carrello"><%=carrello.getNumeroProdotti()%> libro nel carrello</a>
                     <%}else{%>

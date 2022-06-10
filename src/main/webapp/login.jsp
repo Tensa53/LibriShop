@@ -30,7 +30,7 @@
     if (msg != null){
 %>
 
-<p class="error"><%=msg%></p>
+<p class="error">${msg}</p>
 
 <%}else {%>
 
