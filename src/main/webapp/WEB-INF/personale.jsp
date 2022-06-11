@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
 <body>
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 
-<jsp:include page="WEB-INF/nav.jsp"></jsp:include>
+<jsp:include page="nav.jsp"></jsp:include>
 
 <%Utente utente = (Utente) session.getAttribute("utente");
 if (utente != null && utente.isAmministratore() == false){%>
@@ -24,6 +24,6 @@ if (utente != null && utente.isAmministratore() == false){%>
 <%}else{%>
 <p>Non sei autorizzato ad accedere a questa pagina</p>
 <%}%>
-<jsp:include page="WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
