@@ -15,11 +15,7 @@
     <div class="dropdown right">
         <img src="./img/utente.png" alt="Icona utente"></a>
         <div class="dropdown-content">
-            <%if(utente.isAmministratore()){%>
-                <a href="/progettoTSW_war_exploded/admin.jsp">Area Admin</a>
-            <%}else{%>
-                <a href="/progettoTSW_war_exploded/personale.jsp">Area Personale</a>
-            <%}%>
+            <a href="http://localhost:8080/progettoTSW_war_exploded/area-riservata">Area Riservata</a>
                 <form action="logout">
                     <a> Logout <input class="right inline-block" type="image" src="./img/logout.png" alt="logout"> </a>
                 </form>

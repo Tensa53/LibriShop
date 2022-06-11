@@ -30,7 +30,7 @@
 </script>
 
 <figure class = "catalogo-item">
-    <form action="aggiungi-al-carrello" onsubmit="return checkUtente()">
+    <form action="aggiungi-al-carrello">
         <img src="<%=l.getFoto()%>">
         <figcaption>Prezzo : <%=l.getPrezzo()%>€
             Quantità : <select name="quantita">

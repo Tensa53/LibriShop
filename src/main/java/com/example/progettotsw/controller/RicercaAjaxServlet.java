@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/ricerca-ajax")
-public class ricercaAjax extends HttpServlet {
+public class RicercaAjaxServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

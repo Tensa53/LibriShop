@@ -2,7 +2,7 @@
 
 -- Seleziona tutti i libri
 SELECT *
-FROM Libro; --usare LIMIT per restringere le righe di output
+FROM Libro; -- usare LIMIT per restringere le righe di output
 
 -- Seleziona il libro per genere
 SELECT *

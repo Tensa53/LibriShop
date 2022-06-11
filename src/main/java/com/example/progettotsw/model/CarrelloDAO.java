@@ -1,12 +1,9 @@
 package com.example.progettotsw.model;
 
-import com.example.progettotsw.controller.ConPool;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.GregorianCalendar;
 
 public class CarrelloDAO {
 
