@@ -9,15 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%Libro l = (Libro) request.getAttribute("libro");%>
-    <title><%=l.getTitolo()%></title>
+    <%Libro l = (Libro) request.getAttribute("libro");
+      if(l == null){
+    %>
+        <title>Non in vendita</title>
+    <%}else{%>
+        <title><%=l.getTitolo()%></title>
+    <%}%>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
 <body>
 <jsp:include page="WEB-INF/header.jsp"></jsp:include>
 
 <jsp:include page="WEB-INF/nav.jsp"></jsp:include>
-
 
 <script>
     function checkUtente(admin) {
@@ -28,6 +32,12 @@
 
     }
 </script>
+
+<%
+    if(l ==  null){
+%>
+        <p>Il libro non è più in vendita</p>
+<%}else{%>
 
 <figure class = "catalogo-item">
     <form action="aggiungi-al-carrello">
@@ -53,6 +63,8 @@
         <figcaption><%=l.getDescrizione()%></figcaption>
     </form>
 </figure>
+
+<%}%>
 
 <jsp:include page="WEB-INF/footer.jsp"></jsp:include>
 </body>

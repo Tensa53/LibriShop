@@ -23,9 +23,16 @@ public class DettaglioDAO {
                 int quantita = rs.getInt("Quantita");
                 float prezzo = rs.getFloat("Prezzo");
                 String ISBN = rs.getString("ISBNLibro");
+                String TitoloLibro = rs.getString("TitoloLibro");
+                int id = rs.getInt("ID");
+
                 LibroDAO libroDAO = new LibroDAO();
                 Libro libro = libroDAO.doRetrieveById(ISBN);
-                Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro);
+
+                if(libro == null)
+                    libro = new Libro(ISBN,TitoloLibro);
+
+                Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
             }
         } catch (SQLException e) {
@@ -37,7 +44,7 @@ public class DettaglioDAO {
 
 
     public void doSaveAllbyCarrelloUtente(List<Dettaglio> dettagli,String mail) {
-        String sql = "INSERT INTO Dettaglio(Quantita,Prezzo,Carrello,ISBNLibro) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO Dettaglio(Quantita,Prezzo,Carrello,ISBNLibro,TitoloLibro) VALUES (?,?,?,?,?);";
 
         for(Dettaglio d : dettagli){
             try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -45,7 +52,7 @@ public class DettaglioDAO {
                 pstmt.setFloat(2,d.getPrezzo());
                 pstmt.setString(3,mail);
                 pstmt.setString(4,d.getLibro().getISBN());
-
+                pstmt.setString(5,d.getLibro().getTitolo());
                 pstmt.executeUpdate();
             }catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -77,9 +84,17 @@ public class DettaglioDAO {
                 int quantita = rs.getInt("Quantita");
                 float prezzo = rs.getFloat("Prezzo");
                 String ISBN = rs.getString("ISBNLibro");
+                String TitoloLibro = rs.getString("TitoloLibro");
+                int id = rs.getInt("id");
+
                 LibroDAO libroDAO = new LibroDAO();
                 Libro libro = libroDAO.doRetrieveById(ISBN);
-                Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro);
+
+                if(libro == null)
+                    libro = new Libro(ISBN,TitoloLibro);
+
+                Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
+                dettagli.add(dettaglio);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

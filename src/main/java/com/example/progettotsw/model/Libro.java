@@ -17,6 +17,11 @@ public class Libro {
         this.foto = foto;
     }
 
+    public Libro(String ISBN,String titolo) {
+        this.ISBN = ISBN;
+        this.titolo = titolo;
+    }
+
 
     public Libro() {
     }

@@ -27,7 +27,6 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
         carrello.setTotale(carrello.getTotale()-d.getPrezzo());
         log(String.valueOf(carrello.getNumeroProdotti()));
 
-
         String address = "http://localhost:8080/progettoTSW_war_exploded/carrello.jsp";
 
         response.sendRedirect(address);

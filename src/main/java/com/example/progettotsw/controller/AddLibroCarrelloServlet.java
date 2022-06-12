@@ -35,7 +35,7 @@ public class AddLibroCarrelloServlet extends HttpServlet {
                 d.setPrezzo(d.getQuantita() * d.getLibro().getPrezzo());//aggiorniamo il prezzo del dettaglio
                 carrello.setTotale(carrello.getTotale() + d.getPrezzo());//aggiorniamo il prezzo del carrello
             } else if (carrello.getTotale() > 0.0f || carrello.getTotale() == 0.0f) { //nel caso invece il carrello sia vuoto oppure non vuoto ma quel libro non è stato già aggiunto
-                d = new Dettaglio(quantita, libro.getPrezzo() * quantita, libro);//creo un nuovo dettaglio
+                d = new Dettaglio(quantita, libro.getPrezzo() * quantita, libro,0);//creo un nuovo dettaglio
                 carrello.addDettaglio(d);//aggiungo il nuovo dettaglio al carrello
                 carrello.setTotale(carrello.getTotale() + d.getPrezzo());//aggiorno il totale del carrello
             }

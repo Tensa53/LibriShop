@@ -23,15 +23,15 @@ public class LogoutServlet extends HttpServlet {
 
             Carrello carrelloDB = carrelloDAO.doRetrievebyUtente(utente.getMail());
 
-            if (carrelloDB.getTotale() > 0.0f && carrelloSession != null && carrelloSession.getTotale() > 0.0f) { //al momento del logout
+            if (carrelloDB.getTotale() > 0.0f) { //al momento del logout
                 carrelloDAO.doRemoveAllbyUtente(utente.getMail());//rimuovo tutto quello che c'è nel carrello di db
                 carrelloDAO.doSaveAllbyUtente(carrelloSession, utente.getMail());//inserisco l'ultima istanza utile da sessione del carrello
             } else
-                carrelloDAO.doSaveAllbyUtente(carrelloSession, utente.getMail());//se il carrelloo del db è già vuoto, inserisco direttamente quello di sessione
+                carrelloDAO.doSaveAllbyUtente(carrelloSession, utente.getMail());//se il carrello del db è già vuoto, inserisco direttamente quello di sessione
 
             request.getSession().removeAttribute("carrello");
 
-            request.getSession().setAttribute("carrello",new Carrello());
+            request.getSession().setAttribute("carrello",new Carrello());//creo un nuovo carrello di sessione così che anche i guest possano
         }
 
         request.getSession().removeAttribute("utente");

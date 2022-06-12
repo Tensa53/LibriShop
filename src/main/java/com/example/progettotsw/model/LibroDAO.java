@@ -11,14 +11,14 @@ import java.util.List;
 public class LibroDAO {
 
     public Libro doRetrieveById(String ISBN) {
-        Libro libro = new Libro();
+        Libro libro = null;
 
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps =
-                    con.prepareStatement("SELECT * FROM Libro WHERE ISBN = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Libro WHERE ISBN = ?");
             ps.setString(1,ISBN);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                libro = new Libro();
                 libro.setISBN(ISBN);
                 libro.setTitolo(rs.getString("Titolo"));
                 libro.setDescrizione(rs.getString("Descrizione"));
@@ -39,7 +39,6 @@ public class LibroDAO {
     }
 
     public List<Libro> doRetrievebyString(String ricerca){
-        //String sql = "SELECT * FROM Libro WHERE Titolo LIKE ' " + ricerca + "%' OR Titolo LIKE '%" + ricerca + "' OR Titolo LIKE '%" + ricerca + "%'";
         String sql = "SELECT * FROM Libro WHERE Titolo LIKE ? OR Titolo LIKE ? OR Titolo LIKE ?";
 
 
