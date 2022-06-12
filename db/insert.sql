@@ -71,7 +71,6 @@ INSERT INTO Indirizzo VALUES
                           ("Giuseppe Ungaretti","112","20066","Melzo","MI","Italia"),
                           ("Altabella","2","40126","Bologna","BO","Italia"),
                           ("Borgo dell’Oro","56","10094","Torino","TO","Italia"),
-                          ("Mandria","76","84121","Salerno","SA","Italia"),
                           ("Miramonte","32","50014","Fiesole","FI","Italia"),
                           ("Savonella","24","70011","Alberobello","BA","Italia");
 
@@ -82,23 +81,20 @@ INSERT INTO Dichiarazione VALUES
                               ('lucaruocco@hotmail.it','Savonella','24','70011'),
                               ('rosagiudice@gmail.com','Borgo dell’Oro','56','10094'),
                               ('rosagiudice@gmail.com','Miramonte','32','50014'),
-                              ('danielefabiano@hotmail.it','Mandria','76','84121');
 
 INSERT INTO Pagamento VALUES
                           ('4716019594082932', '2025-12-01', '176'),
                           ('4532010684511437', '2028-12-01', '335'),
                           ('4716933961025409', '2026-12-01', '874'),
                           ('4929409682314169', '2030-12-01', '216'),
-                          ('4410923939558010', '2030-12-01', '479'),
-                          ('4556005537679432', '2029-12-01', '893');
+                          ('4410923939558010', '2030-12-01', '479');
 
 INSERT INTO Definizione VALUES
                             ('mariorossi@gmail.com','4716019594082932'),
                             ('lindabianchi@libero.it','4532010684511437'),
                             ('lucaruocco@hotmail.it','4716933961025409'),
                             ('lucaruocco@hotmail.it','4929409682314169'),
-                            ('rosagiudice@gmail.com','4410923939558010'),
-                            ('danielefabiano@hotmail.it','4556005537679432');
+                            ('rosagiudice@gmail.com','4410923939558010');
 
 
 INSERT INTO Carrello VALUES

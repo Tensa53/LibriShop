@@ -14,7 +14,7 @@ function updateQuantita(i){
             var xmlLibro = xmlDoc.getElementsByTagName("libro");
             var totalexml = xmlLibro[0].getElementsByTagName("prezzoTotale")[0].childNodes[0].nodeValue
             var dettaglioxml = xmlLibro[0].getElementsByTagName("prezzoDettaglio")[0].childNodes[0].nodeValue
-            document.getElementById("totale").innerHTML = totalexml;
+            document.getElementById("totale").innerHTML = "Totale : " + totalexml;
             document.getElementById(prezzo).innerHTML = dettaglioxml;
         }
     }
