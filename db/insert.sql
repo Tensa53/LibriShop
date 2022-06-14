@@ -80,7 +80,7 @@ INSERT INTO Dichiarazione VALUES
                               ('lucaruocco@hotmail.it','Altabella','2','40126'),
                               ('lucaruocco@hotmail.it','Savonella','24','70011'),
                               ('rosagiudice@gmail.com','Borgo dell’Oro','56','10094'),
-                              ('rosagiudice@gmail.com','Miramonte','32','50014'),
+                              ('rosagiudice@gmail.com','Miramonte','32','50014');
 
 INSERT INTO Pagamento VALUES
                           ('4716019594082932', '2025-12-01', '176'),
