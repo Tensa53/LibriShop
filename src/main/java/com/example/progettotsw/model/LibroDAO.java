@@ -100,4 +100,53 @@ public class LibroDAO {
         return libri;
     }
 
+    public int doSave(Libro libro,String autore,String [] genere){
+        String sql = "INSERT INTO Libro VALUES (?,?,?,?,?,?,?,?,?);";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,libro.getISBN());
+            pstmt.setString(2,libro.getTitolo());
+            pstmt.setString(3,libro.getDescrizione());
+            pstmt.setFloat(4,libro.getPrezzo());
+            pstmt.setString(5,libro.getDataPubblicazioneReversedString());
+            pstmt.setString(6,libro.getEditore());
+            pstmt.setInt(7,libro.getSconto());
+            pstmt.setInt(8,libro.getDisponibilita());
+            pstmt.setString(9,libro.getFoto());
+            int row = pstmt.executeUpdate();
+            doSaveAutoreLibro(libro,autore);
+            doSaveGenereLibro(libro,genere);
+            return row;
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doSaveGenereLibro(Libro libro,String[] generi){
+        String sql = "INSERT INTO Appartenenza VALUES (?,?);";
+        String isbn = libro.getISBN();
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            for (String g : generi){
+                ps.setString(1,isbn);
+                ps.setString(2,g);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doSaveAutoreLibro(Libro libro,String CF){
+        String sql = "INSERT INTO Scrittura VALUES (?,?);";
+        String isbn = libro.getISBN();
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1,isbn);
+            ps.setString(2,CF);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -2,10 +2,9 @@ package com.example.progettotsw.model;
 
 public class Autore {
 
-    public Autore(String CF, String nome, String cognome) {
+    public Autore(String CF, String nome) {
         this.CF = CF;
         Nome = nome;
-        Cognome = cognome;
     }
 
     public Autore() {
@@ -27,16 +26,7 @@ public class Autore {
         Nome = nome;
     }
 
-    public String getCognome() {
-        return Cognome;
-    }
-
-    public void setCognome(String cognome) {
-        Cognome = cognome;
-    }
-
     private String CF;
     private String Nome;
-    private String Cognome;
 
 }

@@ -1,6 +1,7 @@
 package com.example.progettotsw.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,8 +18,7 @@ public class AutoreDAO {
             while(rs.next()) {
                 String CF = rs.getString("CF");
                 String Nome = rs.getString("Nome");
-                String Cognome = rs.getString("Cognome");
-                Autore autore = new Autore(CF,Nome,Cognome);
+                Autore autore = new Autore(CF,Nome);
                 autori.add(autore);
             }
         } catch (SQLException e) {
@@ -26,5 +26,25 @@ public class AutoreDAO {
         }
 
         return autori;
+    }
+
+    public Autore doRetrievebyName(String nome){
+        String sql = "SELECT * FROM Autore WHERE Nome = ?;";
+
+        Autore autore = null;
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);){
+            ps.setString(1,nome);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                autore = new Autore(rs.getString("CF"),rs.getString("Nome"));
+                return autore;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return autore;
     }
 }

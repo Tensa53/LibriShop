@@ -94,6 +94,10 @@ public class Libro {
         return dataPubblicazione.get(Calendar.DAY_OF_MONTH) + "-" + (dataPubblicazione.get(Calendar.MONTH) + 1) + "-" + dataPubblicazione.get(Calendar.YEAR);
     }
 
+    public String getDataPubblicazioneReversedString() {
+        return dataPubblicazione.get(Calendar.YEAR) + "-" + (dataPubblicazione.get(Calendar.MONTH) + 1) + "-" + dataPubblicazione.get(Calendar.DAY_OF_MONTH);
+    }
+
     public String getFoto() {
         return foto;
     }

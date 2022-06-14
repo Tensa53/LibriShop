@@ -33,7 +33,7 @@
 
     if(carrello.getTotale() > 0.0f){
         for(Dettaglio d : carrello.getDettagli()){%>
-            <br>
+            <div>
             <form action="rimuovi-dal-carrello">
                 <a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
                 <p><a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><%=d.getLibro().getTitolo()%></a></p>
@@ -43,9 +43,13 @@
                 <p id="<%=prezzo+i%>" name="<%=prezzo+i%>"><%=d.getPrezzo()%></p>
                 <input type="submit" value="Rimuovi dal carrello">
             </form>
+            </div>
         <%  i++;
         }%>
             <p id="totale">Totale : <%=carrello.getTotale()%></p>
+            <form action="conferma-ordine">
+                <input type="submit" value="Conferma Ordine">
+            </form>
     <%}else{%>
             <p>vuoto</p>
     <%}%>
