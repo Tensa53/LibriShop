@@ -43,7 +43,7 @@
     <%}%>
 </div>
 
-<div id="container-catalogo">
+<div id="container-catalogo center">
 
     <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");
 

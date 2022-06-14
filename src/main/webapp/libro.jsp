@@ -39,10 +39,13 @@
         <p>Il libro non è più in vendita</p>
 <%}else{%>
 
+<h1 class="center"><%=l.getTitolo()%></h1>
+
 <figure class = "catalogo-item">
     <form action="aggiungi-al-carrello">
-        <img src="<%=l.getFoto()%>">
-        <figcaption>Prezzo : <%=l.getPrezzo()%>€
+        <img class="left" src="<%=l.getFoto()%>">
+        <figcaption class="catalogo-item">Prezzo : <%=l.getPrezzo()%> €
+            <br>
             Quantità : <select name="quantita">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -60,7 +63,7 @@
         <%}%>
         </figcaption>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-        <figcaption><%=l.getDescrizione()%></figcaption>
+        <figcaption class="catalogo-item descrizione"><%=l.getDescrizione()%></figcaption>
     </form>
 </figure>
 
