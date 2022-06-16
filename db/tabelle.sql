@@ -13,7 +13,7 @@ CREATE TABLE Libro (
                        Prezzo decimal(5,2) not null,
                        DataPubblicazione date not null,
                        Editore varchar(20) not null,
-                       Sconto int not null,
+                       Sconto decimal(2,0) not null,
                        Disponibilita int not null,
                        Foto varchar(50) not null
 );
@@ -88,21 +88,19 @@ CREATE TABLE Ordine(
 );
 
 CREATE TABLE Carrello (
-                          ID int auto_increment,
                           Utente varchar(30) not null,
-                          Totale float not null,
-                          primary key(ID,Utente),
+                          Totale decimal(6,2) not null,
                           foreign key(Utente) references Utente(Email)
 );
 
 CREATE TABLE Dettaglio (
                            ID int primary key auto_increment,
                            Quantita int not null,
-                           Prezzo float not null,
-                           Carrello varchar(30),
+                           Prezzo decimal(6,2) not null,
+                           Carrello varchar(20),
                            Ordine int,
-                           ISBNLibro varchar(13),
-                           TitoloLibro varchar(30),
+                           ISBNLibro varchar(13) not null,
+                           TitoloLibro varchar(30) not null,
                            foreign key (ISBNLibro) references Libro(ISBN),
                            foreign key (Carrello) references Carrello(Utente),
                            foreign key (Ordine) references Ordine(ID)
