@@ -1,5 +1,6 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +28,9 @@ public class LibroDAO {
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
                 GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
                 libro.setDataPubblicazione(dataPubblicazione);
-                libro.setSconto(rs.getInt("Sconto"));
+                libro.setSconto(rs.getBigDecimal("Sconto"));
                 libro.setFoto(rs.getString("Foto"));
-                libro.setPrezzo(rs.getFloat("Prezzo"));
+                libro.setPrezzo(rs.getBigDecimal("Prezzo"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,11 +57,11 @@ public class LibroDAO {
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");
                 String Descrizione = rs.getString("Descrizione");
-                float Prezzo = rs.getFloat("Prezzo");
+                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
                 GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                int Sconto = rs.getInt("Sconto");
+                BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
                 Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
@@ -83,11 +84,11 @@ public class LibroDAO {
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");
                 String Descrizione = rs.getString("Descrizione");
-                float Prezzo = rs.getFloat("Prezzo");
+                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
                 GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                int Sconto = rs.getInt("Sconto");
+                BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
                 Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
@@ -107,10 +108,10 @@ public class LibroDAO {
             pstmt.setString(1,libro.getISBN());
             pstmt.setString(2,libro.getTitolo());
             pstmt.setString(3,libro.getDescrizione());
-            pstmt.setFloat(4,libro.getPrezzo());
+            pstmt.setBigDecimal(4,libro.getPrezzo());
             pstmt.setString(5,libro.getDataPubblicazioneReversedString());
             pstmt.setString(6,libro.getEditore());
-            pstmt.setInt(7,libro.getSconto());
+            pstmt.setBigDecimal(7,libro.getSconto());
             pstmt.setInt(8,libro.getDisponibilita());
             pstmt.setString(9,libro.getFoto());
             int row = pstmt.executeUpdate();

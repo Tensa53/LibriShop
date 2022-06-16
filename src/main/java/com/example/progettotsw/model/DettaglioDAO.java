@@ -1,5 +1,6 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class DettaglioDAO {
 
             while(rs.next()) {
                 int quantita = rs.getInt("Quantita");
-                float prezzo = rs.getFloat("Prezzo");
+                BigDecimal prezzo = rs.getBigDecimal("Prezzo");
                 String ISBN = rs.getString("ISBNLibro");
                 String TitoloLibro = rs.getString("TitoloLibro");
                 int id = rs.getInt("ID");
@@ -49,7 +50,7 @@ public class DettaglioDAO {
         for(Dettaglio d : dettagli){
             try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
                 pstmt.setInt(1,d.getQuantita());
-                pstmt.setFloat(2,d.getPrezzo());
+                pstmt.setBigDecimal(2,d.getPrezzo());
                 pstmt.setString(3,mail);
                 pstmt.setString(4,d.getLibro().getISBN());
                 pstmt.setString(5,d.getLibro().getTitolo());
@@ -82,7 +83,7 @@ public class DettaglioDAO {
         try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while(rs.next()) {
                 int quantita = rs.getInt("Quantita");
-                float prezzo = rs.getFloat("Prezzo");
+                BigDecimal prezzo = rs.getBigDecimal("Prezzo");
                 String ISBN = rs.getString("ISBNLibro");
                 String TitoloLibro = rs.getString("TitoloLibro");
                 int id = rs.getInt("id");

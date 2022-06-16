@@ -1,5 +1,6 @@
 <%@ page import="com.example.progettotsw.model.Libro" %>
-<%@ page import="com.example.progettotsw.model.Utente" %><%--
+<%@ page import="com.example.progettotsw.model.Utente" %>
+<%@ page import="java.math.BigDecimal" %><%--
   Created by IntelliJ IDEA.
   User: daniele
   Date: 08/06/22
@@ -44,8 +45,11 @@
 <figure class = "catalogo-item">
     <form action="aggiungi-al-carrello">
         <img class="left" src="<%=l.getFoto()%>">
-        <figcaption class="catalogo-item">Prezzo : <%=l.getPrezzo()%> €
-            <br>
+        <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
+        <figcaption class="catalogo-item"><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
+        <%}else{%>
+            <figcaption class="catalogo-item">Prezzo : <%=l.getPrezzo().toString()%> € <br>
+        <%}%>
             Quantità : <input type="number" name="quantita" value="1" min="1" max="5">
         <%
             Utente utente = (Utente) request.getSession().getAttribute("utente");

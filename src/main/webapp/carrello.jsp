@@ -1,5 +1,6 @@
 <%@ page import="com.example.progettotsw.model.Carrello" %>
-<%@ page import="com.example.progettotsw.model.Dettaglio" %><%--
+<%@ page import="com.example.progettotsw.model.Dettaglio" %>
+<%@ page import="java.math.BigDecimal" %><%--
   Created by IntelliJ IDEA.
   User: daniele
   Date: 08/06/22
@@ -30,8 +31,11 @@
     String isbn = "isbn";
     String prezzo = "prezzo";
     Carrello carrello = (Carrello) session.getAttribute("carrello");
+    BigDecimal totaleCarrello = carrello.getTotale();
 
-    if(carrello.getTotale() > 0.0f){
+    int c = totaleCarrello.compareTo(new BigDecimal(0.00));
+
+    if(c > 0){
         for(Dettaglio d : carrello.getDettagli()){%>
             <div>
             <form action="rimuovi-dal-carrello">
@@ -40,14 +44,14 @@
                 <input type="number" min="1" max="5" value="<%=d.getQuantita()%>" id="<%=quantita+i%>" name="<%=quantita+i%>" oninput="updateQuantita(<%=i%>)">
                 <input type="hidden" id="<%=isbn+i%>" name="<%=isbn+i%>" value="<%=d.getLibro().getISBN()%>">
                 <input type="hidden" id="i" name="i" value="<%=i%>">
-                <p id="<%=prezzo+i%>" name="<%=prezzo+i%>"><%=d.getPrezzo()%></p>
+                <p id="<%=prezzo+i%>" name="<%=prezzo+i%>"><%=d.getPrezzo().toString()%>€</p>
                 <input type="submit" value="Rimuovi dal carrello">
             </form>
             </div>
         <%  i++;
         }%>
-            <p id="totale">Totale : <%=carrello.getTotale()%></p>
-            <form action="conferma-ordine">
+            <p id="totale">Totale : <%=carrello.getTotale().toString()%>€</p>
+            <form action="conferma-ordine"  method="post">
                 <input type="submit" value="Conferma Ordine">
             </form>
     <%}else{%>

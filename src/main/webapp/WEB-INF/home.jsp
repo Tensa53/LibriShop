@@ -1,6 +1,7 @@
 <%@ page import="com.example.progettotsw.model.Libro" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.progettotsw.model.Utente" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -53,7 +54,11 @@
         <input type="image" src="<%=l.getFoto()%>">
         <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-        <figcaption><%=l.getPrezzo()%>€</figcaption>
+            <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
+                <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
+            <%}else {%>
+                <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
+            <%}%>
         </form>
     </figure>
     <% } %>

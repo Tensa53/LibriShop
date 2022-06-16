@@ -10,7 +10,7 @@ CREATE TABLE Libro (
                        ISBN char(13) primary key,
                        Titolo varchar(30) not null, /*nel titolo viene eventualmente specificata l'edizione*/
                        Descrizione varchar(500) not null,
-                       Prezzo float not null,
+                       Prezzo decimal(5,2) not null,
                        DataPubblicazione date not null,
                        Editore varchar(20) not null,
                        Sconto int not null,
@@ -24,8 +24,7 @@ CREATE TABLE Genere (
 
 CREATE TABLE Autore (
                         CF char(16) primary key,
-                        Nome varchar(20) not null,
-                        Cognome varchar(20) not null
+                        Nome varchar(40) not null
 );
 
 CREATE TABLE Utente (
@@ -89,9 +88,10 @@ CREATE TABLE Ordine(
 );
 
 CREATE TABLE Carrello (
+                          ID int auto_increment,
                           Utente varchar(30) not null,
                           Totale float not null,
-                          primary key (Utente),
+                          primary key(ID,Utente),
                           foreign key(Utente) references Utente(Email)
 );
 
@@ -102,6 +102,8 @@ CREATE TABLE Dettaglio (
                            Carrello varchar(30),
                            Ordine int,
                            ISBNLibro varchar(13),
+                           TitoloLibro varchar(30),
+                           foreign key (ISBNLibro) references Libro(ISBN),
                            foreign key (Carrello) references Carrello(Utente),
                            foreign key (Ordine) references Ordine(ID)
 );

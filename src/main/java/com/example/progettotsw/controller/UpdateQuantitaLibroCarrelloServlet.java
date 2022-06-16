@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 
 @WebServlet("/modifica-quantita")
@@ -16,22 +17,39 @@ public class UpdateQuantitaLibroCarrelloServlet extends HttpServlet {
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         String isbn = request.getParameter("isbn");
 
-        log(isbn + " " + quantita);
+//        log(isbn + " " + quantita);
 
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
         Dettaglio d = carrello.getDettagliobyISBN(isbn);
 
-        carrello.setTotale(carrello.getTotale()-d.getPrezzo());
+        BigDecimal carrelloTotale = carrello.getTotale();
+
+        carrelloTotale = carrelloTotale.subtract(d.getPrezzo());
+
+        log(carrelloTotale.toString());
 
         d.setQuantita(quantita);
-        d.setPrezzo(quantita*d.getLibro().getPrezzo());
 
-        carrello.setTotale(carrello.getTotale()+d.getPrezzo());
+        BigDecimal prezzoDettaglio = d.getPrezzo();
 
-        log("sono nella servlet");
+        log(prezzoDettaglio.toString());
 
-        log("dettaglio prezzo : " + d.getPrezzo() + "dettaglio quantità : " + d.getQuantita() + "totale carrello : " + carrello.getTotale());
+        BigDecimal prezzoLibro = d.getLibro().getPrezzoScontato();
+
+        prezzoDettaglio = prezzoLibro.multiply(new BigDecimal(quantita));
+
+        d.setPrezzo(prezzoDettaglio);
+
+        carrelloTotale = carrelloTotale.add(prezzoDettaglio);
+
+        carrello.setTotale(carrelloTotale);
+
+        log(carrelloTotale.toString());
+
+//        log("sono nella servlet");
+
+//        log("dettaglio prezzo : " + d.getPrezzo() + " dettaglio quantità : " + d.getQuantita() + " totale carrello : " + carrello.getTotale());
 
         response.setContentType("text/xml;charset=UTF-8");
         response.getWriter().append("<carrello>");

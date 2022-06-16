@@ -1,11 +1,14 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.function.BiFunction;
 
 public class Libro {
 
-    public Libro(String ISBN, String titolo, String descrizione, float prezzo, GregorianCalendar dataPubblicazione, String editore, int sconto, int disponibilita, String foto) {
+    public Libro(String ISBN, String titolo, String descrizione, BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita, String foto) {
         this.ISBN = ISBN;
         this.titolo = titolo;
         this.descrizione = descrizione;
@@ -50,12 +53,28 @@ public class Libro {
         this.descrizione = descrizione;
     }
 
-    public float getPrezzo() {
+    public BigDecimal getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(BigDecimal prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public BigDecimal getPrezzoScontato(){
+        BigDecimal percento = new BigDecimal(100);
+
+        MathContext precisione = new MathContext(2);
+
+        BigDecimal prezzoScontato = new BigDecimal(prezzo.toString());
+
+        BigDecimal scontoMonetario = new BigDecimal(prezzo.toString());
+
+        scontoMonetario = scontoMonetario.multiply(sconto.divide(percento)).round(precisione);
+
+        prezzoScontato = prezzoScontato.subtract(scontoMonetario);
+
+        return prezzoScontato;
     }
 
     public void setDataPubblicazione(GregorianCalendar dataPubblicazione) {
@@ -70,11 +89,11 @@ public class Libro {
         this.editore = editore;
     }
 
-    public int getSconto() {
+    public BigDecimal getSconto() {
         return sconto;
     }
 
-    public void setSconto(int sconto) {
+    public void setSconto(BigDecimal sconto) {
         this.sconto = sconto;
     }
 
@@ -109,10 +128,10 @@ public class Libro {
     private String ISBN;
     private String titolo;
     private String descrizione;
-    private float prezzo;
+    private BigDecimal prezzo;
     private GregorianCalendar dataPubblicazione;
     private String editore;
-    private int sconto;
+    private BigDecimal sconto;
     private int disponibilita;
     private String foto;
 }

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @WebServlet("/login")
@@ -54,10 +55,12 @@ public class LoginServlet extends HttpServlet {
 
             log(String.valueOf(Objects.isNull(carrelloSession)));
 
-            if(carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() > 0.0f) { //nel caso sia il carrello di db che quello di sessione siano pieni
+            BigDecimal zero = new BigDecimal(0.00);
+
+            if(carrelloDB.getTotale().compareTo(zero) == 1 && carrelloSession.getTotale().compareTo(zero) == 1) { //nel caso sia il carrello di db che quello di sessione siano pieni
                 request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
                 request.getSession().setAttribute("carrello",mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
-            }else if (carrelloDB.getTotale() > 0.0f && carrelloSession.getTotale() == 0.0f){//nel caso in cui il carrello di sessione sia vuoto
+            }else if (carrelloDB.getTotale().compareTo(zero) == 1 && carrelloSession.getTotale().compareTo(zero) == 0){//nel caso in cui il carrello di sessione sia vuoto
                 request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
                 request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
             }
@@ -76,11 +79,17 @@ public class LoginServlet extends HttpServlet {
 
             if((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) {
                 dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());
-                dettaglioA.setPrezzo(dettaglioA.getQuantita() * dettaglioA.getLibro().getPrezzo());
-                carrelloA.setTotale(carrelloA.getTotale()+dettaglioA.getPrezzo());
+                BigDecimal prezzoDettaglioA = dettaglioA.getPrezzo();
+                prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));
+                dettaglioA.setPrezzo(prezzoDettaglioA);
+                BigDecimal totaleCarrelloA = carrelloA.getTotale();
+                totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo());
+                carrelloA.setTotale(totaleCarrelloA);
             }else {
                 carrelloA.addDettaglio(dettaglioB);
-                carrelloA.setTotale(carrelloA.getTotale()+dettaglioB.getPrezzo());
+                BigDecimal totaleCarrelloA = carrelloA.getTotale();
+                totaleCarrelloA = totaleCarrelloA.add(dettaglioB.getPrezzo());
+                carrelloA.setTotale(totaleCarrelloA);
             }
         }
 

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet("/rimuovi-dal-carrello")
 public class RimuoviLibroCarrelloServlet extends HttpServlet {
@@ -24,7 +25,12 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
 
         carrello.getDettagli().remove(d);
 
-        carrello.setTotale(carrello.getTotale()-d.getPrezzo());
+        BigDecimal totaleCarrello = carrello.getTotale();
+
+        totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
+
+        carrello.setTotale(totaleCarrello);
+
         log(String.valueOf(carrello.getNumeroProdotti()));
 
         String address = "http://localhost:8080/progettoTSW_war_exploded/carrello.jsp";

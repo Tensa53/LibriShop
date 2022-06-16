@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
@@ -23,7 +24,11 @@ public class LogoutServlet extends HttpServlet {
 
             Carrello carrelloDB = carrelloDAO.doRetrievebyUtente(utente.getMail());
 
-            if (carrelloDB.getTotale() > 0.0f) { //al momento del logout
+            BigDecimal zero = new BigDecimal(0.00);
+
+            BigDecimal totaleCarrelloDB = carrelloDB.getTotale();
+
+            if (totaleCarrelloDB.compareTo(zero) > 0) { //al momento del logout
                 carrelloDAO.doRemoveAllbyUtente(utente.getMail());//rimuovo tutto quello che c'è nel carrello di db
                 carrelloDAO.doSaveAllbyUtente(carrelloSession, utente.getMail());//inserisco l'ultima istanza utile da sessione del carrello
             } else

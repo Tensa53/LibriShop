@@ -8,11 +8,11 @@ INSERT INTO Libro VALUES
                       ('9788883379529', 'Le notti bianche', 'Le notti bianche è un racconto giovanile di Dostoevskij, pubblicato nel 1848 sulla rivista Annali patrii. Il titolo prende spunto dal periodo estivo in cui, nella Russia del nord, il sole tramonta dopo le dieci.', 4.90, '2021-04-30', 'Crescere', 5, 40, './img/LeNottiBianche.jpg'),
                       ('9788868361297', 'L’acchiappasogni', 'Tempo fa, a Derry, quattro ragazzini coraggiosi compirono una buona azione. Che li trasformò per sempre. Da grandi, Henry, Jonesy, Beav e Pete hanno preso strade diverse, ma due cose hanno mantenuto un richiamo irresistibile: una è il legame con il bambino molto, molto particolare che aiutarono quel giorno lontano e l’altra è la fantastica battuta di caccia al cervo che ogni anno li riunisce nel Maine, là nella baita dove ondeggia quel curioso oggetto indiano chiamato acchiappasogni.', 12.90, '2013-11-04', 'Sperling & Kufer', 5, 35, './img/LAcchiappasogni.jpg'),
                       ('9788868362041', 'Cujo', 'A Castle Rock, una sonnolenta cittadina del Maine, la vita scorre sui soliti binari. Cujo, il docile San Bernardo del meccanico, scorrazza libero per la campagna, finché una notte il suo padroncino, aprendo la porta del ripostiglio, non vede emergere dalle tenebre due occhi infuocati. Chi è la creatura diabolica che da quel momento comincia a seminare ovunque terrore e desolazione? È forse Cujo che, diventato idrofobo, si è trasformato nell’incarnazione stessa del male?.', 10.90, '2014-05-10', 'Sperling & Kufer', 0, 20, './img/Cujo.jpg'),
-                      ('9788834009086', 'Scrivere zen', 'Con intelligenza, umorismo e affettuoso senso pratico, Natalie Goldberg esorta tutti coloro che non scrivono, e anche quelli che già lo fanno, a prendere in mano la matita o il pennarello, la biro o la stilografica, la macchina da scrivere o, perché no, il ‘personal’, e a scrivere.', 16, '1987-12-15', 'Astrolabio Ubaldini', 5, 15, './img/ScrivereZen.jpg'),
-                      ('9788804735144', 'La casa sul mare celeste', 'Linus Baker è un assistente sociale impiegato al Dipartimento della Magia Minorile. Il compito che esegue con scrupolosa professionalità è assicurarsi che i bambini dotati di poteri magici, cresciuti in appositi istituti in modo da proteggere quelli "normali", siano ben accuditi. Tutto cambia quando, inaspettatamente, viene convocato nell’ufficio della Suprema Dirigenza.', 18, '2021-07-13', 'Mondadori', 10, 30, './img/LaCasa.jpg'),
-                      ('9788804750185', 'Ancora una fermata', 'August Landry ha ventitré anni e ha trascorso gli ultimi cinque spostandosi da una città – e università – a un’altra. Cinica e disincantata, non si fida di nessuno e porta sempre con sé un coltellino svizzero perché, come le ha insegnato sua madre, “è meglio non farsi cogliere impreparate”. Quando decide di trasferirsi a New York, non ha grandi aspettative.', 19, '2022-06-07', 'Mondadori', 20, 50, './img/AncoraUnaFermata.jpg'),
-                      ('9788845930959', 'L’incubo di Hill House', 'Chiunque abbia visto qualche film del terrore con al centro una costruzione abitata da sinistre presenze si sarà trovato a chiedersi almeno una volta perché le vittime di turno non optino, prima che sia troppo tardi, per la soluzione più semplice - e cioè non escano dalla stessa porta dalla quale sono entrati, allontanandosi senza voltarsi indietro. A tale domanda, meno oziosa di quanto potrebbe parere, questo romanzo fornisce una risposta.', 12, '2016-07-03', 'Adelphi', 0, 20, './img/HillHouse.jpg'),
-                      ('9788845921841', 'La lotteria', 'La storia si presenta in tutta innocenza quale pura e semplice descrizione della lotteria che si svolge nell’atmosfera pastorale, quasi idilliaca, di un villaggio del New England in un luminoso mattino di giugno, come ogni anno da tempo immemore.', 10, '2007-05-16', 'Adelphi', 10, 15, './img/Lotteria.jpg');
+                      ('9788834009086', 'Scrivere zen', 'Con intelligenza, umorismo e affettuoso senso pratico, Natalie Goldberg esorta tutti coloro che non scrivono, e anche quelli che già lo fanno, a prendere in mano la matita o il pennarello, la biro o la stilografica, la macchina da scrivere o, perché no, il ‘personal’, e a scrivere.', 16.00, '1987-12-15', 'Astrolabio Ubaldini', 5, 15, './img/ScrivereZen.jpg'),
+                      ('9788804735144', 'La casa sul mare celeste', 'Linus Baker è un assistente sociale impiegato al Dipartimento della Magia Minorile. Il compito che esegue con scrupolosa professionalità è assicurarsi che i bambini dotati di poteri magici, cresciuti in appositi istituti in modo da proteggere quelli "normali", siano ben accuditi. Tutto cambia quando, inaspettatamente, viene convocato nell’ufficio della Suprema Dirigenza.', 18.00, '2021-07-13', 'Mondadori', 10, 30, './img/LaCasa.jpg'),
+                      ('9788804750185', 'Ancora una fermata', 'August Landry ha ventitré anni e ha trascorso gli ultimi cinque spostandosi da una città – e università – a un’altra. Cinica e disincantata, non si fida di nessuno e porta sempre con sé un coltellino svizzero perché, come le ha insegnato sua madre, “è meglio non farsi cogliere impreparate”. Quando decide di trasferirsi a New York, non ha grandi aspettative.', 19.00, '2022-06-07', 'Mondadori', 20, 50, './img/AncoraUnaFermata.jpg'),
+                      ('9788845930959', 'L’incubo di Hill House', 'Chiunque abbia visto qualche film del terrore con al centro una costruzione abitata da sinistre presenze si sarà trovato a chiedersi almeno una volta perché le vittime di turno non optino, prima che sia troppo tardi, per la soluzione più semplice - e cioè non escano dalla stessa porta dalla quale sono entrati, allontanandosi senza voltarsi indietro. A tale domanda, meno oziosa di quanto potrebbe parere, questo romanzo fornisce una risposta.', 12.00, '2016-07-03', 'Adelphi', 0, 20, './img/HillHouse.jpg'),
+                      ('9788845921841', 'La lotteria', 'La storia si presenta in tutta innocenza quale pura e semplice descrizione della lotteria che si svolge nell’atmosfera pastorale, quasi idilliaca, di un villaggio del New England in un luminoso mattino di giugno, come ogni anno da tempo immemore.', 10.00, '2007-05-16', 'Adelphi', 10, 15, './img/Lotteria.jpg');
 
 INSERT INTO Genere VALUES
                        ('Narrativa'),
@@ -40,12 +40,12 @@ INSERT INTO Appartenenza VALUES
                              ('9788845930959','Narrativa');
 
 INSERT INTO Autore VALUES
-                       ('DSTFDR80A01F839G','Fëdor','Dostoevskij'),
-                       ('STPKNG80A01F839I','Stephen','King'),
-                       ('GLDNTL80A41F839N','Natalie', 'Goldberg'),
-                       ('KLNTLR80A01F839L','TJ', 'Klune'),
-                       ('MCQCSY80A41F839G','Casey', 'McQuiston'),
-                       ('JCKSRL80A41F839E','Shirley', 'Jackson');
+                       ('DSTFDR80A01F839G','Fëdor Dostoevskij'),
+                       ('STPKNG80A01F839I','Stephen King'),
+                       ('GLDNTL80A41F839N','Natalie Goldberg'),
+                       ('KLNTLR80A01F839L','TJ Klune'),
+                       ('MCQCSY80A41F839G','Casey McQuiston'),
+                       ('JCKSRL80A41F839E','Shirley Jackson');
 
 
 INSERT INTO Scrittura VALUES
@@ -97,8 +97,8 @@ INSERT INTO Definizione VALUES
                             ('rosagiudice@gmail.com','4410923939558010');
 
 
-INSERT INTO Carrello VALUES
-                         ('mariorossi@gmail.com',0.0),
-                         ('lindabianchi@libero.it',0.0),
-                         ('lucaruocco@hotmail.it',0.0),
-                         ('rosagiudice@gmail.com',0.0);
+INSERT INTO Carrello (Utente,Totale) VALUES
+                                         ('mariorossi@gmail.com',0.0),
+                                         ('lindabianchi@libero.it',0.0),
+                                         ('lucaruocco@hotmail.it',0.0),
+                                         ('rosagiudice@gmail.com',0.0);

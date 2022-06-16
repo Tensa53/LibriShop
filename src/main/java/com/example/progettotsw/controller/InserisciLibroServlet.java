@@ -13,6 +13,7 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 @WebServlet("/inserisci-libro")
@@ -29,10 +30,10 @@ public class InserisciLibroServlet extends HttpServlet {
         String altro = request.getParameter("altro");
         log(genere.toString());
         String descrizione = request.getParameter("descrizione");
-        float prezzo = Float.parseFloat(request.getParameter("prezzo"));
+        BigDecimal prezzo = new BigDecimal(request.getParameter("prezzo"));
         String data = request.getParameter("dataPubblicazione");
         String editore = request.getParameter("editore");
-        int sconto = Integer.parseInt(request.getParameter("sconto"));
+        BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
         int disponibilita = Integer.parseInt(request.getParameter("disponibilita"));
         Part foto = request.getPart("foto");
 

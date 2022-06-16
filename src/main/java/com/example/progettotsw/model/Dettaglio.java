@@ -1,12 +1,14 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
+
 public class Dettaglio {
     /*nel dettaglio al livello di bean, non è necessario memorizzare i riferimenti alle entità carrello e/o ordine
      in quanto i dettagli saranno intrinsecamente legati ad uno dei due rispetto alla sessione o al db.
      Il carrello sarà invece modellato come un ArrayList di Dettagli
      */
 
-    public Dettaglio(int quantita, float prezzo, Libro libro, int id) {
+    public Dettaglio(int quantita, BigDecimal prezzo, Libro libro, int id) {
         this.quantita = quantita;
         this.prezzo = prezzo;
         this.libro = libro;
@@ -24,11 +26,11 @@ public class Dettaglio {
         this.quantita = quantita;
     }
 
-    public float getPrezzo() {
+    public BigDecimal getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(BigDecimal prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -56,6 +58,6 @@ public class Dettaglio {
 
     private int id;
     private int quantita;
-    private float prezzo;
+    private BigDecimal prezzo;
     private Libro libro;
 }

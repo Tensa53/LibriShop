@@ -1,18 +1,19 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Carrello {
 
-    public Carrello(List<Dettaglio> dettagli, float totale) {
+    public Carrello(List<Dettaglio> dettagli, BigDecimal totale) {
         this.dettagli = dettagli;
         this.totale = totale;
     }
 
     public Carrello() {
         this.dettagli = new ArrayList<>();
-        this.totale = 0.0f;
+        this.totale = new BigDecimal(0.00);
     }
 
     public List<Dettaglio> getDettagli() {
@@ -23,11 +24,11 @@ public class Carrello {
         this.dettagli = dettagli;
     }
 
-    public float getTotale() {
+    public BigDecimal getTotale() {
         return totale;
     }
 
-    public void setTotale(float totale) {
+    public void setTotale(BigDecimal totale) {
         this.totale = totale;
     }
 
@@ -65,5 +66,5 @@ public class Carrello {
     }
 
     private List<Dettaglio> dettagli;
-    private float totale;
+    private BigDecimal totale;
 }

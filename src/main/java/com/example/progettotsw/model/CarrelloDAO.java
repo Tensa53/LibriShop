@@ -18,7 +18,7 @@ public class CarrelloDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 carrello = new Carrello();
-                carrello.setTotale(rs.getFloat("Totale"));
+                carrello.setTotale(rs.getBigDecimal("Totale"));
                 DettaglioDAO dettaglioDAO = new DettaglioDAO();
                 carrello.setDettagli(dettaglioDAO.doRetrieveByCarrelloUtente(mail));
             }
@@ -49,7 +49,7 @@ public class CarrelloDAO {
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setFloat(1,carrello.getTotale());
+            ps.setBigDecimal(1,carrello.getTotale());
             ps.setString(2,mail);
             ps.executeUpdate();
         } catch (SQLException e) {

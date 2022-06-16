@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet("/aggiungi-al-carrello")
 public class AddLibroCarrelloServlet extends HttpServlet {
@@ -27,17 +28,29 @@ public class AddLibroCarrelloServlet extends HttpServlet {
 
             Dettaglio d;
 
+            BigDecimal zero = new BigDecimal(0.00);
+
             if (carrello == null)//nel caso un utente guest acceda direttamente alla pagina del libro da un link, non avremo nessun carrello istanziato
                 carrello = new Carrello();//inizializzazione del carrello
 
-            if (carrello.getTotale() > 0.0f && (d = carrello.getDettagliobyISBN(isbn)) != null) { //carrello non vuoto e libro già esistente
+            if (carrello.getTotale().compareTo(zero) == 1 && (d = carrello.getDettagliobyISBN(isbn)) != null) { //carrello non vuoto e libro già esistente
+                BigDecimal totaleCarrello = carrello.getTotale();
+                totaleCarrello = totaleCarrello.subtract(d.getLibro().getPrezzoScontato());
                 d.setQuantita(d.getQuantita() + quantita);//sommiamo la quantità già esistente e la quantità aggiuntiva
-                d.setPrezzo(d.getQuantita() * d.getLibro().getPrezzo());//aggiorniamo il prezzo del dettaglio
-                carrello.setTotale(carrello.getTotale() + d.getPrezzo());//aggiorniamo il prezzo del carrello
-            } else if (carrello.getTotale() > 0.0f || carrello.getTotale() == 0.0f) { //nel caso invece il carrello sia vuoto oppure non vuoto ma quel libro non è stato già aggiunto
-                d = new Dettaglio(quantita, libro.getPrezzo() * quantita, libro,0);//creo un nuovo dettaglio
+                BigDecimal prezzoDettaglio = d.getLibro().getPrezzoScontato();//se sconto è uguale a 0,prezzo e prezzoScontato saranno uguali
+                prezzoDettaglio.multiply(new BigDecimal(d.getQuantita()));
+                d.setPrezzo(prezzoDettaglio);
+                totaleCarrello = totaleCarrello.add(prezzoDettaglio);
+                carrello.setTotale(totaleCarrello);
+            } else if (carrello.getTotale().compareTo(zero) == 1 || carrello.getTotale().compareTo(zero) == 0) { //nel caso invece il carrello sia vuoto oppure non vuoto ma quel libro non è stato già aggiunto
+                BigDecimal prezzoDettaglio = new BigDecimal(0.00);
+                prezzoDettaglio = prezzoDettaglio.add(libro.getPrezzoScontato());
+                prezzoDettaglio = prezzoDettaglio.multiply(new BigDecimal(quantita));
+                d = new Dettaglio(quantita, prezzoDettaglio, libro,0);//creo un nuovo dettaglio
                 carrello.addDettaglio(d);//aggiungo il nuovo dettaglio al carrello
-                carrello.setTotale(carrello.getTotale() + d.getPrezzo());//aggiorno il totale del carrello
+                BigDecimal totaleCarrello = carrello.getTotale();
+                totaleCarrello = totaleCarrello.add(d.getPrezzo());
+                carrello.setTotale(totaleCarrello);//aggiorno il totale del carrello
             }
 
             request.getSession().removeAttribute("carrello");
