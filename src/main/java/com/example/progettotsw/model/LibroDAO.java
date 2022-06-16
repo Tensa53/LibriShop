@@ -123,6 +123,20 @@ public class LibroDAO {
         }
     }
 
+    public void doUpdateDisponibilitaAllFromList(List<Libro> libri){
+        String sql = "UPDATE Libro SET Disponibilita = ? WHERE ISBN = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            for (Libro l : libri){
+                ps.setInt(1,l.getDisponibilita());
+                ps.setString(2,l.getISBN());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void doSaveGenereLibro(Libro libro,String[] generi){
         String sql = "INSERT INTO Appartenenza VALUES (?,?);";
         String isbn = libro.getISBN();

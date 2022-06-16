@@ -28,6 +28,9 @@ public class Pagamento {
     public String getScadenzaString() {
         return scadenza.get(Calendar.DAY_OF_MONTH) + "-" + (scadenza.get(Calendar.MONTH) + 1) + "-" + scadenza.get(Calendar.YEAR);
     }
+    public String getScadenzaReversedString() {
+        return scadenza.get(Calendar.YEAR) + "-" + scadenza.get(Calendar.DAY_OF_MONTH) + "-" + (scadenza.get(Calendar.MONTH) + 1);
+    }
 
     public void setScadenza(GregorianCalendar scadenza) {
         this.scadenza = scadenza;

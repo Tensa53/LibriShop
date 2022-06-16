@@ -18,7 +18,34 @@ public class UtenteDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
-            while (rs.next()){
+            if (rs.next()){
+                u = new Utente();
+                u.setMail(rs.getString("Email"));
+                u.setUsername(rs.getString("Username"));
+                u.setNome(rs.getString("Nome"));
+                u.setCognome(rs.getString("Cognome"));
+                u.setPasswordhash(rs.getString("Passwordhash"));
+                u.setAmministratore(rs.getBoolean("Amministratore"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return u;
+    }
+
+    public Utente doRetrieveByMail(String mail) {
+        String sql = "SELECT * FROM Utente WHERE Email=?;";
+
+        Utente u = null;
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,mail);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()){
                 u = new Utente();
                 u.setMail(rs.getString("Email"));
                 u.setUsername(rs.getString("Username"));

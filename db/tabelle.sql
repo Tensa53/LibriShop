@@ -82,7 +82,7 @@ CREATE TABLE Ordine(
                        NumeroCarta varchar(16) not null,
                        Scadenza date not null,
                        CCV char(3) not null,
-                       Totale float not null,
+                       Totale decimal(6,2) not null,
                        Utente varchar(30) not null,
                        foreign key(Utente) references Utente(Email)
 );

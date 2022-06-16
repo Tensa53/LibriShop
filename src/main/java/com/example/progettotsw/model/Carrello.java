@@ -41,6 +41,16 @@ public class Carrello {
         return num;
     }
 
+    public List<Libro> getLibri () {
+        ArrayList<Libro> libri = new ArrayList<>();
+
+        for (Dettaglio d : dettagli) {
+            libri.add(d.getLibro());
+        }
+
+        return libri;
+    }
+
     public void addDettaglio (Dettaglio d) {
         dettagli.add(d);
     }

@@ -30,8 +30,13 @@
     color: green;
 }
 
+.barrato {
+    text-decoration: line-through;
+}
+
 body {
     background-color: ghostwhite;
+    margin: 0px;
 }
 
 /*css per l'header bar*/
@@ -120,9 +125,6 @@ nav a {
 #container-carrello img {
     width: 100px;
     height: 150px;
-}
-
-.catalogo-item {
 }
 
 figure.catalogo-item {
@@ -215,17 +217,17 @@ footer p {
 /*media query*/
 
 @media screen and (min-width: 660px) {
-    #container-catalogo {
-        max-width: 660px;
-        margin : auto;
-    }
+    /*#container-catalogo {*/
+    /*    max-width: 660px;*/
+    /*    margin : auto;*/
+    /*}*/
 }
 
 @media screen and (min-width: 984px) {
-    #container-catalogo {
-        max-width: 984px;
-        margin : auto;
-    }
+    /*#container-catalogo {*/
+    /*    max-width: 984px;*/
+    /*    margin : auto;*/
+    /*}*/
 
     header img {
         width: 40px;
@@ -267,10 +269,10 @@ footer p {
 }
 
 @media screen and (min-width: 1310px) {
-    #container-catalogo {
-        max-width: 1310px;
-        margin : auto;
-    }
+    /*#container-catalogo {*/
+    /*    max-width: 1310px;*/
+    /*    margin : auto;*/
+    /*}*/
 
     header img {
         width: 40px;

@@ -63,6 +63,22 @@ public class DettaglioDAO {
         return;
     }
 
+    public void doSaveAllfromCarrellotoOrdineUtente(String idOrdine,String mail){
+        String sql = "UPDATE Dettaglio SET Dettaglio.Ordine = ? WHERE Dettaglio.Carrello = ?";
+        String sql2 = "UPDATE Dettaglio SET Dettaglio.Carrello = null WHERE Dettaglio.Ordine = ?";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2)){
+            ps.setString(1,idOrdine);
+            ps.setString(2,mail);
+            ps.executeUpdate();
+
+            pst.setString(1,idOrdine);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void doDeleteALLByCarrelloUtente(String mail){
         String sql = "DELETE FROM Dettaglio WHERE Carrello = ?;";
 

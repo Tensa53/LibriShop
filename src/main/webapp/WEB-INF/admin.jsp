@@ -23,9 +23,16 @@
         <input name="insLibro" type="submit" value="Inserisci Libro">
         <input name="modLibro" type="submit" value="Modifica Libro">
         <input name="delLibro" type="submit" value="Rimuovi Libro">
-        <input name="delUtente" type="submit" value="Rimuovi Utente">
-        <input name="modUtente" type="submit" value="Modifica Utente">
         <input name="insUtente" type="submit" value="Inserisci Utente">
+        <input name="modUtente" type="submit" value="Modifica Utente">
+        <input name="delUtente" type="submit" value="Rimuovi Utente">
+        <input name="viewOrdini" type="submit" value="Visualizza Ordini">
+        <input name="insAutore" type="submit" value="Inserisci Autore">
+        <input name="modAutore" type="submit" value="Modifica Autore">
+        <input name="delAutore" type="submit" value="Rimuovi Autore">
+        <input name="insGenere" type="submit" value="Inserisci Genere">
+        <input name="modGenere" type="submit" value="Modifica Genere">
+        <input name="delGenere" type="submit" value="Rimuovi Genere">
     </form>
 <%}else{%>
 <p>Non sei autorizzato ad accedere a questa pagina</p>

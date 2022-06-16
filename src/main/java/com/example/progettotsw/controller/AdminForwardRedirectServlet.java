@@ -19,9 +19,16 @@ public class AdminForwardRedirectServlet extends HttpServlet {
         String insLibro = request.getParameter("insLibro");
         String modLibro = request.getParameter("modLibro");
         String delLibro = request.getParameter("delLibro");
-        String delUtente = request.getParameter("delUtente");
-        String modUtente = request.getParameter("modUtente");
         String insUtente = request.getParameter("insUtente");
+        String modUtente = request.getParameter("modUtente");
+        String delUtente = request.getParameter("delUtente");
+        String viewOrdini = request.getParameter("viewOrdini");
+        String insAutore = request.getParameter("insAutore");
+        String modAutore = request.getParameter("modAutore");
+        String delAutore = request.getParameter("delAutore");
+        String insGenere = request.getParameter("insGenere");
+        String modGenere = request.getParameter("modGenere");
+        String delGenere = request.getParameter("delGenere");
 
         if (insLibro != null) {
             GenereDAO genereDAO = new GenereDAO();
@@ -49,7 +56,7 @@ public class AdminForwardRedirectServlet extends HttpServlet {
             response.sendRedirect(address);
         }
 
-        if(delUtente != null) {
+        if(insUtente != null) {
             String address = "https://www.google.com/";
 
             response.sendRedirect(address);
@@ -61,7 +68,49 @@ public class AdminForwardRedirectServlet extends HttpServlet {
             response.sendRedirect(address);
         }
 
-        if(insUtente != null) {
+        if(delUtente != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(viewOrdini != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(insAutore != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(modAutore != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(delAutore != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(insGenere != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(modGenere != null) {
+            String address = "https://www.google.com/";
+
+            response.sendRedirect(address);
+        }
+
+        if(delGenere != null) {
             String address = "https://www.google.com/";
 
             response.sendRedirect(address);

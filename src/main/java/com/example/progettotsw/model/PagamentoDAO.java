@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class PagamentoDAO {
 
@@ -45,6 +47,32 @@ public class PagamentoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Pagamento> doRetrievebyUserMail(String mail) {
+        String sql = "SELECT * FROM Pagamento P,Definizione D WHERE (P.NumeroCarta = D.Pagamento) AND D.Utente = ?";
+
+        List<Pagamento> pagamenti = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,mail);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                String numeroCarta = rs.getString("NumeroCarta");
+                String scadenzaString = rs.getString("Scadenza");
+                String ccv = rs.getString("CCV");
+
+                GregorianCalendar dataScadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), Integer.parseInt(scadenzaString.split("-")[1]), Integer.parseInt(scadenzaString.split("-")[2]));
+                Pagamento pagamento = new Pagamento(numeroCarta,dataScadenza,ccv);
+
+                pagamenti.add(pagamento);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return pagamenti;
     }
 
 }
