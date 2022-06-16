@@ -9,7 +9,7 @@
 
 <jsp:include page="WEB-INF/nav.jsp"></jsp:include>
 
-<div id="container-chisiamo">
+<div id="container-cdc">
     <h1>Perché scegliere il nostro sito?</h1>
     <p>La nostra realtà è ormai inserita da anni nel territorio italiano. Ci siamo sin da subito impegnati per offrire un
         servizio ottimale e preciso. Forniamo un ampio assortimento di prodotti fisici tra i quali scegliere,

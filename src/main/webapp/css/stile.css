@@ -95,18 +95,18 @@ nav a {
 
 /* css chi siamo, dove siamo, contattaci */
 
-#container-chisiamo {
+#container-cdc {
     text-align: center;
 }
 
-#container-chisiamo p {
+#container-cdc p {
     font-size: 20px;
     margin-left: 45px;
     margin-right: 45px;
 }
 
-#container-chisiamo img {
-    width: 50%;
+#container-cdc img {
+    width: 45%;
     height: auto;
 }
 
