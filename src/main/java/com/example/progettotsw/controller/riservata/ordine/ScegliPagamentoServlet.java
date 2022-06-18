@@ -1,4 +1,4 @@
-package com.example.progettotsw.controller;
+package com.example.progettotsw.controller.riservata.ordine;
 
 import com.example.progettotsw.model.Pagamento;
 import com.example.progettotsw.model.PagamentoDAO;
@@ -18,17 +18,22 @@ public class ScegliPagamentoServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        PagamentoDAO pagamentoDAO = new PagamentoDAO();
+        if (utente != null) {
+            if (!utente.isAmministratore()) {
+                PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-        List<Pagamento> pagamenti = pagamentoDAO.doRetrievebyUserMail(utente.getMail());
+                List<Pagamento> pagamenti = pagamentoDAO.doRetrievebyUserMail(utente.getMail());
 
-        request.setAttribute("pagamenti",pagamenti);
+                request.setAttribute("pagamenti",pagamenti);
 
-        String address = "/WEB-INF/pagamenti.jsp";
+                String address = "/WEB-INF/ORDINE/pagamenti.jsp";
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
+                RequestDispatcher rd = request.getRequestDispatcher(address);
 
-        rd.forward(request,response);
-
+                rd.forward(request,response);
+            } else
+                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+        } else
+            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
     }
 }

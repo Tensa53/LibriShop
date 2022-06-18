@@ -17,13 +17,17 @@ public class RicercaAjaxServlet extends HttpServlet {
 
         String stringa = request.getParameter("titolo");
 
-        LibroDAO libroDAO = new LibroDAO();
+        if (stringa != null) {
+            synchronized (stringa) {
+                LibroDAO libroDAO = new LibroDAO();
 
-        List<Libro> libri = libroDAO.doRetrievebyString(stringa);
+                List<Libro> libri = libroDAO.doRetrievebyString(stringa);
 
-        for (Libro l : libri){
-            response.getWriter().append("<option>"+ l.getTitolo() +"</option>");
+                for (Libro l : libri) {
+                    response.getWriter().append("<option>" + l.getTitolo() + "</option>");
+                }
+
+            }
         }
-
     }
 }

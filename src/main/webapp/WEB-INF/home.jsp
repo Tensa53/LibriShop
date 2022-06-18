@@ -16,9 +16,9 @@
     <jsp:include page="/script/suggerimenti.js"></jsp:include>
 </script>
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
 <div id="benvenuti" class="titoli center">
     <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
@@ -66,7 +66,7 @@
 
 <!-- <a href="http://www.google.com">Visualizza altro</a> --->
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="INCLUDE/footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
 <body>
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="WEB-INF/nav.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
 <form action="login">
     <label for = "mail">Mail : </label> <br>
@@ -40,6 +40,6 @@
 
 <p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
 
-<jsp:include page="WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
 </body>
 </html>

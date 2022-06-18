@@ -1,4 +1,4 @@
-package com.example.progettotsw.controller;
+package com.example.progettotsw.controller.carrello;
 
 import com.example.progettotsw.model.Carrello;
 import com.example.progettotsw.model.Dettaglio;

@@ -24,7 +24,7 @@ public class PagamentoDAO {
                 String scadenzaString = rs.getString("Scadenza");
                 GregorianCalendar scadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), Integer.parseInt(scadenzaString.split("-")[1]), Integer.parseInt(scadenzaString.split("-")[2]));
                 p.setScadenza(scadenza);
-                p.setCCV("CCV");
+                p.setCCV(rs.getString("CCV"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

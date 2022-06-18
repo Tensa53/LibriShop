@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
 
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="WEB-INF/nav.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
 <body>
 <div id="container-todo">
@@ -34,7 +34,7 @@
     </form>
 </div>
 
-<jsp:include page="WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
 
 </body>
 </html>

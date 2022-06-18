@@ -1,4 +1,4 @@
-package com.example.progettotsw.controller;
+package com.example.progettotsw.controller.riservata;
 
 import com.example.progettotsw.model.Utente;
 import jakarta.servlet.RequestDispatcher;
@@ -17,13 +17,17 @@ public class AreaRiservataServlet extends HttpServlet {
 
         String address = "";
 
-        if(utente.isAmministratore())
-            address="/WEB-INF/admin.jsp";
-        else
-            address="/WEB-INF/personale.jsp";
+        if(utente != null) {
+            if(utente.isAmministratore())
+                address="/WEB-INF/ADMIN/admin.jsp";
+            else
+                address="/WEB-INF/UTENTE/personale.jsp";
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
 
-        rd.forward(request,response);
+            RequestDispatcher rd = request.getRequestDispatcher(address);
+
+            rd.forward(request,response);
+        } else
+            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
     }
 }

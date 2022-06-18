@@ -1,4 +1,4 @@
-package com.example.progettotsw.controller;
+package com.example.progettotsw.controller.carrello;
 
 import com.example.progettotsw.model.*;
 import jakarta.servlet.annotation.WebServlet;
@@ -53,8 +53,6 @@ public class AddLibroCarrelloServlet extends HttpServlet {
                 carrello.setTotale(totaleCarrello);//aggiorno il totale del carrello
             }
 
-            request.getSession().removeAttribute("carrello");
-            request.getSession().setAttribute("carrello",carrello);
         }
 
         String address = "http://localhost:8080/progettoTSW_war_exploded/home";

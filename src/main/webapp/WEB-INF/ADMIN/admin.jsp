@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 <%
     Utente utente = (Utente) session.getAttribute("utente");
@@ -38,6 +38,6 @@
 <p>Non sei autorizzato ad accedere a questa pagina</p>
 <%}%>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 </body>
 </html>
