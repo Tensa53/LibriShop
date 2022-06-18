@@ -180,6 +180,16 @@ footer p {
     font-size: 20px;
 }
 
+/* css per il form di registrazione */
+#container-registrazione{
+    font-size: 20px;
+}
+
+#container-registrazione p{
+    font-size: 18px;
+    font-style: italic;
+}
+
 /*css per il dropdown menu*/
 
 .dropdown {
