@@ -17,9 +17,9 @@
     <jsp:include page="/script/suggerimenti.js"></jsp:include>
 </script>
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
 <div id="container-ricerca" class="center">
     <form action="ricerca">
@@ -50,7 +50,7 @@
     <% } %>
 </div>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="INCLUDE/footer.jsp"></jsp:include>
 
 </body>
 </html>

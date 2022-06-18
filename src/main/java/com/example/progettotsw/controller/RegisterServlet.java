@@ -22,18 +22,20 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("passwordr");
         boolean amministratore = Boolean.parseBoolean(request.getParameter("amministratorer"));
 
-        Utente utente = new Utente(mail,username,nome,cognome,amministratore);
-        utente.setPassword(password);
+        if(mail != null && username != null && nome != null && cognome != null && password != null && !amministratore) {
+            Utente utente = new Utente(mail,username,nome,cognome,amministratore);
+            utente.setPassword(password);
 
-        UtenteDAO utenteDAO = new UtenteDAO();
+            UtenteDAO utenteDAO = new UtenteDAO();
 
-        log("righe :" + utenteDAO.doSave(utente));
+            log("righe :" + utenteDAO.doSave(utente));
 
-        CarrelloDAO carrelloDAO = new CarrelloDAO();
+            CarrelloDAO carrelloDAO = new CarrelloDAO();
 
-        carrelloDAO.doCreate(mail);
+            carrelloDAO.doCreate(mail);
 
-        request.getSession().setAttribute("utente",utente);
+            request.getSession().setAttribute("utente",utente);
+        }
 
         String address = "http://localhost:8080/progettoTSW_war_exploded/home";
 

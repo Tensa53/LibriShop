@@ -14,9 +14,9 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="nav.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 <form action="inserisci-libro" method="post" enctype="multipart/form-data">
     <label for = "isbn">ISBN : </label> <br>
@@ -57,7 +57,7 @@
         <p class="green">${msg}</p>
 <%}%>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 
 </body>
 </html>

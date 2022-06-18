@@ -17,18 +17,20 @@ public class PageLibroServlet extends HttpServlet {
 
         String isbn = (String) request.getParameter("isbn");
 
-        log(isbn);
+        if (isbn != null) {
+            LibroDAO libroDAO = new LibroDAO();
 
-        LibroDAO libroDAO = new LibroDAO();
+            Libro libro = libroDAO.doRetrieveById(isbn);
 
-        Libro libro = libroDAO.doRetrieveById(isbn);
+            String address = "/libro.jsp";
 
-        String address = "/libro.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(address);
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
+            request.setAttribute("libro",libro);
 
-        request.setAttribute("libro",libro);
+            rd.forward(request,response);
+        } else
+            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
 
-        rd.forward(request,response);
     }
 }

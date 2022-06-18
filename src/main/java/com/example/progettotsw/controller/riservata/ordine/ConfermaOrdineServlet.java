@@ -1,4 +1,4 @@
-package com.example.progettotsw.controller;
+package com.example.progettotsw.controller.riservata.ordine;
 
 import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
@@ -18,13 +18,17 @@ public class ConfermaOrdineServlet extends HttpServlet {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
-        String address,msg;
+        String address = "";
+        String msg = "";
 
         if (utente != null) {
-            address = "/WEB-INF/ordine.jsp";
-             CarrelloDAO carrelloDAO = new CarrelloDAO();
-             carrelloDAO.doRemoveAllbyUtente(utente.getMail());//quando l'utente conferma l'ordine,preserviamo il carrello
-             carrelloDAO.doSaveAllbyUtente(carrello,utente.getMail());//lo salviamo già nel db così da poterlo preservare da chiusure involontarie della pagina
+            if (!utente.isAmministratore()) {
+                address = "/WEB-INF/ORDINE/ordine.jsp";
+                CarrelloDAO carrelloDAO = new CarrelloDAO();
+                carrelloDAO.doRemoveAllbyUtente(utente.getMail());//quando l'utente conferma l'ordine,preserviamo il carrello
+                carrelloDAO.doSaveAllbyUtente(carrello,utente.getMail());//lo salviamo già nel db così da poterlo preservare da chiusure involontarie della pagina
+            } else
+                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
         }
         else {
             address = "login.jsp";

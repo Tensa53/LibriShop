@@ -19,9 +19,9 @@
     <jsp:include page="/script/quantita.js"></jsp:include>
 </script>
 
-<jsp:include page="WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="WEB-INF/nav.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
 <div id="container-carrello">
 
@@ -35,8 +35,9 @@
 
     int c = totaleCarrello.compareTo(new BigDecimal(0.00));
 
-    if(c > 0){
-        for(Dettaglio d : carrello.getDettagli()){%>
+    if(c > 0){ %>
+    <p class="error">Non puoi selezionare più di 5 copie di un libro</p>
+        <% for(Dettaglio d : carrello.getDettagli()){%>
             <div>
             <form action="rimuovi-dal-carrello">
                 <a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
@@ -60,6 +61,6 @@
 
 </div>
 
-<jsp:include page="WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
 </body>
 </html>

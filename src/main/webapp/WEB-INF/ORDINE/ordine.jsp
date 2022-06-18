@@ -9,12 +9,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" type="text/css" href="./css/stile.css">
 <html>
 <head>
     <title>Ordine</title>
     <%Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");%>
 </head>
 <body>
+
+<%String msg = (String) request.getAttribute("msg");
+    if (msg != null) {
+%>
+
+<p class="error">${msg}</p>
+
+<%}%>
 
 <form action="completa-ordine" method="post">
 <div>

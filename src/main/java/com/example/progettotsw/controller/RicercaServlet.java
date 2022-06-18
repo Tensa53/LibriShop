@@ -20,20 +20,21 @@ public class RicercaServlet extends HttpServlet {
 
         String ricerca = request.getParameter("ricerca");
 
-        log(ricerca);
+        if(ricerca != null || !ricerca.isEmpty() || ricerca.length() > 0) {
+            LibroDAO libroDAO = new LibroDAO();
 
-        LibroDAO libroDAO = new LibroDAO();
+            List<Libro> libri = libroDAO.doRetrievebyString(ricerca);
 
-        List<Libro> libri = libroDAO.doRetrievebyString(ricerca);
+            request.setAttribute("libri",libri);
 
-        request.setAttribute("libri",libri);
+            String address = "/WEB-INF/ricerca.jsp";
 
-        String address = "/WEB-INF/ricerca.jsp";
+            log("length lista : " + libri.size());
 
-        log("length lista : " + libri.size());
+            RequestDispatcher rd = request.getRequestDispatcher(address);
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
+            rd.forward(request,response);
+        }
 
-        rd.forward(request,response);
     }
 }
