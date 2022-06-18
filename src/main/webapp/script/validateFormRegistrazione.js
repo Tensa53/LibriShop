@@ -8,21 +8,21 @@ function validateFormRegistrazione(){
 
     // nome
     //lunghezza
-    if (nome > 20){
+    if (nome.length > 20){
         alert("Il campo nome non può superare i 20 caratteri.")
         return false;
     }
 
     // cognome
     //lunghezza
-    if (cognome > 20){
+    if (cognome.length > 20){
         alert("Il campo cognome non può superare i 20 caratteri.")
         return false;
     }
 
     // mail
     //lunghezza
-    if (mail > 30){
+    if (mail.length > 30){
         alert("Il campo mail non può superare i 30 caratteri.")
         return false;
     }
@@ -34,7 +34,7 @@ function validateFormRegistrazione(){
 
     // password
     //lunghezza
-    if (password > 40){
+    if (password.length > 40){
         alert("Il campo password non può superare i 40 caratteri.")
         return false;
     }
