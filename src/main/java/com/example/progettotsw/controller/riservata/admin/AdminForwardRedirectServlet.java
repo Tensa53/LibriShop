@@ -1,8 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
-import com.example.progettotsw.model.Genere;
-import com.example.progettotsw.model.GenereDAO;
-import com.example.progettotsw.model.Utente;
+import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -52,9 +50,23 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 }
 
                 if(modLibro != null) {
-                    String address = "https://www.google.com/";
+                    LibroDAO libroDAO = new LibroDAO();
 
-                    response.sendRedirect(address);
+                    List<Libro> libri = libroDAO.doRetrieveAll();
+
+                    GenereDAO genereDAO = new GenereDAO();
+
+                    List<Genere> generi = genereDAO.doRetrieveAll();
+
+                    request.getSession().setAttribute("libri",libri);
+
+                    request.getSession().setAttribute("generi",generi);
+
+                    String address = "/WEB-INF/ADMIN/modLibro.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
                 }
 
                 if(delLibro != null) {

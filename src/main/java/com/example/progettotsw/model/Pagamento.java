@@ -1,5 +1,6 @@
 package com.example.progettotsw.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -26,10 +27,14 @@ public class Pagamento {
     }
 
     public String getScadenzaString() {
-        return scadenza.get(Calendar.DAY_OF_MONTH) + "-" + (scadenza.get(Calendar.MONTH) + 1) + "-" + scadenza.get(Calendar.YEAR);
+        return scadenza.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (scadenza.get(GregorianCalendar.MONTH) + 1) + "-" + scadenza.get(GregorianCalendar.YEAR);
     }
     public String getScadenzaReversedString() {
-        return scadenza.get(Calendar.YEAR) + "-" + scadenza.get(Calendar.DAY_OF_MONTH) + "-" + (scadenza.get(Calendar.MONTH) + 1);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setCalendar(this.scadenza);
+        String result = format.format(this.scadenza.getTime());
+
+        return result;
     }
 
     public void setScadenza(GregorianCalendar scadenza) {

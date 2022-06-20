@@ -2,6 +2,7 @@ package com.example.progettotsw.model;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.function.BiFunction;
@@ -18,6 +19,17 @@ public class Libro {
         this.sconto = sconto;
         this.disponibilita = disponibilita;
         this.foto = foto;
+    }
+
+    public Libro(String ISBN, String titolo, String descrizione, BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita) {
+        this.ISBN = ISBN;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+        this.dataPubblicazione = dataPubblicazione;
+        this.editore = editore;
+        this.sconto = sconto;
+        this.disponibilita = disponibilita;
     }
 
     public Libro(String ISBN,String titolo) {
@@ -110,11 +122,15 @@ public class Libro {
     }
 
     public String getDataPubblicazioneString() {
-        return dataPubblicazione.get(Calendar.DAY_OF_MONTH) + "-" + (dataPubblicazione.get(Calendar.MONTH) + 1) + "-" + dataPubblicazione.get(Calendar.YEAR);
+        return dataPubblicazione.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (dataPubblicazione.get(GregorianCalendar.MONTH) + 1) + "-" + dataPubblicazione.get(GregorianCalendar.YEAR);
     }
 
     public String getDataPubblicazioneReversedString() {
-        return dataPubblicazione.get(Calendar.YEAR) + "-" + (dataPubblicazione.get(Calendar.MONTH) + 1) + "-" + dataPubblicazione.get(Calendar.DAY_OF_MONTH);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setCalendar(this.dataPubblicazione);
+        String result = format.format(this.dataPubblicazione.getTime());
+
+        return result;
     }
 
     public String getFoto() {

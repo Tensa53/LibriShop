@@ -3,6 +3,7 @@ package com.example.progettotsw.model;
 import jakarta.servlet.http.HttpServlet;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -25,11 +26,15 @@ public class Ordine extends HttpServlet {
     }
 
     public String getDataOrdineString() {
-        return dataOrdine.get(Calendar.DAY_OF_MONTH) + "-" + (dataOrdine.get(Calendar.MONTH) + 1) + "-" + dataOrdine.get(Calendar.YEAR);
+        return dataOrdine.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (dataOrdine.get(GregorianCalendar.MONTH) + 1) + "-" + dataOrdine.get(GregorianCalendar.YEAR);
     }
 
     public String getDataOrdineReversedString() {
-        return dataOrdine.get(Calendar.YEAR) + "-" + (dataOrdine.get(Calendar.MONTH) + 1) + "-" + dataOrdine.get(Calendar.DAY_OF_MONTH);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setCalendar(this.dataOrdine);
+        String result = format.format(this.dataOrdine.getTime());
+
+        return result;
     }
 
     public void setDataOrdine(GregorianCalendar dataOrdine) {

@@ -32,8 +32,7 @@ public class InserisciLibroServlet extends HttpServlet {
                 String isbn = request.getParameter("isbn");
                 String titolo = request.getParameter("titolo");
                 String autoreString = request.getParameter("autore");
-                String [] genere = request.getParameterValues("genere");
-                String altro = request.getParameter("altro");
+                String[] genere = request.getParameterValues("genere");
                 log(genere.toString());
                 String descrizione = request.getParameter("descrizione");
                 BigDecimal prezzo = new BigDecimal(request.getParameter("prezzo"));
@@ -43,21 +42,11 @@ public class InserisciLibroServlet extends HttpServlet {
                 int disponibilita = Integer.parseInt(request.getParameter("disponibilita"));
                 Part foto = request.getPart("foto");
 
-                log(String.valueOf(altro.length()));
-
-                GenereDAO genereDAO = new GenereDAO();
-
-                if(altro.length() > 0) {
-                    genere = new String[]{genere[0],genere[1],altro};
-                    genereDAO.doSave(altro);
-                }
-
                 log(data);
 
                 String uploadPath = getServletContext().getRealPath("") + "img";
                 File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists())
-                    uploadDir.mkdir();
+                if (!uploadDir.exists()) uploadDir.mkdir();
 
                 String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
 
@@ -69,9 +58,9 @@ public class InserisciLibroServlet extends HttpServlet {
                 int month = Integer.parseInt(data.split("-")[1]);
                 int day = Integer.parseInt(data.split("-")[2]);
 
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(year,month,day);
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
 
-                Libro libro = new Libro(isbn,titolo,descrizione,prezzo,dataPubblicazione,editore,sconto,disponibilita,subpath);
+                Libro libro = new Libro(isbn, titolo, descrizione, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath);
 
                 LibroDAO libroDAO = new LibroDAO();
 
@@ -79,27 +68,27 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 Autore autore = autoreDAO.doRetrievebyName(autoreString);
 
-                if(autore != null)
+                String msg = null;
 
-                    if(libroDAO.doSave(libro,autore.getCF(),genere) == 1);
-                String msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                if (libroDAO.doSave(libro, autore.getCF(), genere) == 1)
+                    msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
 
-                String address = "/WEB-INF/insLibro.jsp";
+                String address = "/WEB-INF/ADMIN/insLibro.jsp";
 
-                request.setAttribute("msg",msg);
+                request.setAttribute("msg", msg);
 
-                request.setAttribute("generi",genereDAO.doRetrieveAll());
+                GenereDAO genereDAO = new GenereDAO();
+
+                request.setAttribute("generi", genereDAO.doRetrieveAll());
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
-            } else
-                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
-        } else
-            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+            } else response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+        } else response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
 
     }
 
-    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

@@ -47,4 +47,24 @@ public class AutoreDAO {
 
         return autore;
     }
+
+    public Autore doRetrievebyISBNLibro(String isbn){
+        String sql = "SELECT A.Nome,A.CF FROM Autore A,Scrittura S WHERE (A.CF = S.Autore) AND S.ISBNLibro = ?";
+
+        Autore autore = null;
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);){
+            ps.setString(1,isbn);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                autore = new Autore(rs.getString("CF"),rs.getString("Nome"));
+                return autore;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return autore;
+    }
 }

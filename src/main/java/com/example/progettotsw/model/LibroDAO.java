@@ -26,7 +26,7 @@ public class LibroDAO {
                 libro.setDisponibilita(rs.getInt("Disponibilita"));
                 libro.setEditore(rs.getString("Editore"));
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
                 libro.setDataPubblicazione(dataPubblicazione);
                 libro.setSconto(rs.getBigDecimal("Sconto"));
                 libro.setFoto(rs.getString("Foto"));
@@ -87,7 +87,7 @@ public class LibroDAO {
                 BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
                 BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
@@ -99,6 +99,75 @@ public class LibroDAO {
         }
 
         return libri;
+    }
+
+    public int doUpdate(Libro libro,String autore,String [] genere) {
+        String sql = "UPDATE Libro SET Titolo = ?,Descrizione = ?,Prezzo = ?,DataPubblicazione = ?,Editore = ?,Sconto = ?,Disponibilita = ? WHERE ISBN = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,libro.getTitolo());
+            pstmt.setString(2,libro.getDescrizione());
+            pstmt.setBigDecimal(3,libro.getPrezzo());
+            pstmt.setString(4,libro.getDataPubblicazioneReversedString());
+            pstmt.setString(5,libro.getEditore());
+            pstmt.setBigDecimal(6,libro.getSconto());
+            pstmt.setInt(7,libro.getDisponibilita());
+            pstmt.setString(8,libro.getISBN());
+            int row = pstmt.executeUpdate();
+            doUpdateAppartenenzaGenereLibro(libro,genere);
+            doUpdateScritturaAutoreLibro(libro,autore);
+            return row;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public int doUpdateFoto(Libro libro,String subpath) {
+        String sql = "UPDATE Libro SET Foto = ? WHERE ISBN = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,subpath);
+            pstmt.setString(2,libro.getISBN());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doUpdateAppartenenzaGenereLibro(Libro libro,String [] genere){
+        String sql = "DELETE FROM Appartenenza WHERE ISBNLibro = ?;";
+        String sql2 = "INSERT INTO Appartenenza VALUES(?,?)";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2);) {
+            pstmt.setString(1,libro.getISBN());
+            pstmt.executeUpdate();
+
+            for (String g : genere){
+                pst.setString(1,libro.getISBN());
+                pst.setString(2,g);
+                pst.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void doUpdateScritturaAutoreLibro(Libro libro,String autore) {
+        String sql = "DELETE FROM Scrittura WHERE ISBNLibro = ?;";
+        String sql2 = "INSERT INTO Scrittura VALUES(?,?)";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2);) {
+            pstmt.setString(1,libro.getISBN());
+            pstmt.executeUpdate();
+
+            pst.setString(1,libro.getISBN());
+            pst.setString(2,autore);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int doSave(Libro libro,String autore,String [] genere){

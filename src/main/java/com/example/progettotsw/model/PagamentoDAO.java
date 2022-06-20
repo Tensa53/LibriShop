@@ -22,7 +22,7 @@ public class PagamentoDAO {
                 p = new Pagamento();
                 p.setNumeroCarta(numeroCarta);
                 String scadenzaString = rs.getString("Scadenza");
-                GregorianCalendar scadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), Integer.parseInt(scadenzaString.split("-")[1]), Integer.parseInt(scadenzaString.split("-")[2]));
+                GregorianCalendar scadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), (Integer.parseInt(scadenzaString.split("-")[1]))-1, Integer.parseInt(scadenzaString.split("-")[2]));
                 p.setScadenza(scadenza);
                 p.setCCV(rs.getString("CCV"));
             }
@@ -63,7 +63,7 @@ public class PagamentoDAO {
                 String scadenzaString = rs.getString("Scadenza");
                 String ccv = rs.getString("CCV");
 
-                GregorianCalendar dataScadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), Integer.parseInt(scadenzaString.split("-")[1]), Integer.parseInt(scadenzaString.split("-")[2]));
+                GregorianCalendar dataScadenza = new GregorianCalendar(Integer.parseInt(scadenzaString.split("-")[0]), (Integer.parseInt(scadenzaString.split("-")[1]))-1, Integer.parseInt(scadenzaString.split("-")[2]));
                 Pagamento pagamento = new Pagamento(numeroCarta,dataScadenza,ccv);
 
                 pagamenti.add(pagamento);

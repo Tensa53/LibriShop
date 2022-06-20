@@ -32,7 +32,6 @@
     %>
         <input type="checkbox" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
     <%}%>
-        <input type="text" placeholder="Altro genere" name="altro"><br>
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
     <textarea name="descrizione" id="descrizione"></textarea><br>

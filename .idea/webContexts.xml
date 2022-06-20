@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/ADMIN/modLibro.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/ADMIN" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/dovesiamo.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>

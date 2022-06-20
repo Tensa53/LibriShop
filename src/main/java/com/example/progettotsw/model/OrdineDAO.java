@@ -16,7 +16,7 @@ public class OrdineDAO {
         try(Connection conn = ConPool.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()){
                 String data = rs.getString("DataOrdine");
-                GregorianCalendar dataOrdine = new GregorianCalendar(Integer.parseInt(data.split("-")[0]),Integer.parseInt(data.split("-")[1]),Integer.parseInt(data.split("-")[2]));
+                GregorianCalendar dataOrdine = new GregorianCalendar(Integer.parseInt(data.split("-")[0]),(Integer.parseInt(data.split("-")[1]))-1,Integer.parseInt(data.split("-")[2]));
                 String via = rs.getString("Via");
                 String numero = rs.getString("Numero");
                 String CAP = rs.getString("CAP");
@@ -26,7 +26,7 @@ public class OrdineDAO {
                 Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia,Stato);
                 String numeroCarta = rs.getString("NumeroCarta");
                 String scadenza = rs.getString("Scadenza");
-                GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),Integer.parseInt(scadenza.split("-")[1]),Integer.parseInt(scadenza.split("-")[2]));
+                GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),(Integer.parseInt(scadenza.split("-")[1]))-1,Integer.parseInt(scadenza.split("-")[2]));
                 String CCV = rs.getString("CCV");
                 Pagamento pagamento = new Pagamento(numeroCarta,scadenzaCarta,CCV);
                 BigDecimal totale = rs.getBigDecimal("totale");

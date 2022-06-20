@@ -26,6 +26,25 @@ public class GenereDAO {
         return generi;
     }
 
+    public List<Genere> doRetrieveByISBNLibro(String isbn) {
+        String sql = "SELECT G.Nome FROM Genere G,Appartenenza A WHERE (G.Nome = A.Genere) AND A.ISBNLibro = ?;";
+
+        List<Genere> generi = new ArrayList<>();
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,isbn);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                generi.add(new Genere(rs.getString("Nome")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return generi;
+    }
+
     public void doSave(String nome) {
         String sql = "INSERT INTO Genere VALUES(?);";
 
