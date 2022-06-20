@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <script src="./script/validateFormRegistrazione.js" type="text/javascript"></script>
     <script src="./script/mail.js" type="text/javascript"></script>
+    <script src="./script/username.js" type="text/javascript"></script>
 </head>
 
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
@@ -28,8 +29,9 @@
         <label for = "controlla-mail">Mail : </label> <br>
         <p id="controllomail"></p>
         <input type="email" name="mailr" id="controlla-mail" onblur="ControllaMail()" required><br>
-        <label for = "username">Username : </label> <br>
-        <input type="text" name="usernamer" id="username" required><br>
+        <label for = "controlla-username">Username : </label><br>
+        <p id="controllousername"></p>
+        <input type="text" name="usernamer" id="controlla-username" onblur="ControllaUsername()" required><br>
         <label for = "password">Password : </label>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
