@@ -84,9 +84,11 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 }
 
                 if(insUtente != null) {
-                    String address = "https://www.google.com/";
+                    String address = "/WEB-INF/ADMIN/insUtente.jsp";
 
-                    response.sendRedirect(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
                 }
 
                 if(modUtente != null) {

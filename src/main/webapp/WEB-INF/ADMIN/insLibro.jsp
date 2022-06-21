@@ -1,11 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.progettotsw.model.Genere" %><%--
-  Created by IntelliJ IDEA.
-  User: daniele
-  Date: 14/06/22
-  Time: 10:28
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.progettotsw.model.Genere" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

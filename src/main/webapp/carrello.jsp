@@ -1,12 +1,6 @@
 <%@ page import="com.example.progettotsw.model.Carrello" %>
 <%@ page import="com.example.progettotsw.model.Dettaglio" %>
-<%@ page import="java.math.BigDecimal" %><%--
-  Created by IntelliJ IDEA.
-  User: daniele
-  Date: 08/06/22
-  Time: 18:22
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

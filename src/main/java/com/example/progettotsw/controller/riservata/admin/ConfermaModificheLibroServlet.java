@@ -108,4 +108,8 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
         } else
             response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
     }
+
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
+    }
 }

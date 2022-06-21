@@ -1,13 +1,7 @@
 <%@ page import="com.example.progettotsw.model.Carrello" %>
 <%@ page import="com.example.progettotsw.model.Dettaglio" %>
 <%@ page import="com.example.progettotsw.model.Pagamento" %>
-<%@ page import="com.example.progettotsw.model.Indirizzo" %><%--
-  Created by IntelliJ IDEA.
-  User: daniele
-  Date: 15/06/22
-  Time: 10:48
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.progettotsw.model.Indirizzo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="./css/stile.css">
 <html>

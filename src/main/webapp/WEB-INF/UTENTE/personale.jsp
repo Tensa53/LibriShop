@@ -1,10 +1,4 @@
-<%@ page import="com.example.progettotsw.model.Utente" %><%--
-  Created by IntelliJ IDEA.
-  User: daniele
-  Date: 08/06/22
-  Time: 18:14
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.progettotsw.model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
