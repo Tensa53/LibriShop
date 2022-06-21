@@ -2,6 +2,9 @@
 <%@ page import="com.example.progettotsw.model.Carrello" %>
 <header>
     <script src="${pageContext.request.contextPath}/script/navbar.js"></script>
+    <script src="${pageContext.request.contextPath}/script/dropdownMenuU.js"></script>
+    <script src="${pageContext.request.contextPath}/script/dropdownMenuC.js"></script>
+    <script src="${pageContext.request.contextPath}/script/dropdownMenuR.js"></script>
 
     <a href="http://localhost:8080/progettoTSW_war_exploded/home"><img src="./img/book-icon.png" alt="Icona home"></a>
 
@@ -13,8 +16,8 @@
     %>
 
     <div class="dropdown right">
-        <img src="./img/utente.png" alt="Icona utente"></a>
-        <div class="dropdown-content">
+        <img src="./img/utente.png" alt="Icona utente" id="iconaU" onclick="dropdownMenuU()"></a>
+        <div class="dropdown-content utenteu">
             <a href="http://localhost:8080/progettoTSW_war_exploded/area-riservata">Area Riservata</a>
                 <form action="logout">
                     <a> Logout <input class="right inline-block" type="image" src="./img/logout.png" alt="logout"> </a>
@@ -25,8 +28,8 @@
     <%}else{%>
 
     <div class="dropdown right">
-        <img src="./img/utente.png" alt="Icona utente"></a>
-        <div class="dropdown-content">
+        <img src="./img/utente.png" alt="Icona utente" id="iconaR" onclick="dropdownMenuR()">
+        <div class="dropdown-content utenter">
             <a href="/progettoTSW_war_exploded/login.jsp">Login</a>
             <a href="/progettoTSW_war_exploded/registrazione.jsp">Registrazione</a>
         </div>
@@ -35,8 +38,8 @@
     <%}%>
 
     <div class="dropdown right">
-        <img src="./img/carrello.png" alt="Icona carrello"></a>
-        <div class="dropdown-content">
+        <img src="./img/carrello.png" alt="Icona carrello" id="iconaC" onclick="dropdownMenuC()">
+        <div class="dropdown-content carrello">
                 <%if(carrello != null){
                     if(carrello.getNumeroProdotti() == 1){%>
                         <a id="counter-carrello"><%=carrello.getNumeroProdotti()%> libro nel carrello</a>

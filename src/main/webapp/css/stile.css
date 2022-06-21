@@ -221,8 +221,9 @@ footer p {
     padding: 3px;
 }
 
+.show {display: block;}
+
 .dropdown-content a:hover:not(#counter-carrello) {background-color: #555;}
-.dropdown:hover .dropdown-content {display: block;}
 
 /*media query*/
 
