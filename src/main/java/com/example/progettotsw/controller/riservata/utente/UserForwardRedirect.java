@@ -34,25 +34,25 @@ public class UserForwardRedirect extends HttpServlet {
         if(utente != null) {
             if(!utente.isAmministratore()) {
                 if (iMieiDati != null) {
-                    response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                    response.sendRedirect(request.getContextPath() + "/home");
                 }
 
                 if (iMieiOrdini != null) {
-                    response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                    response.sendRedirect(request.getContextPath() + "/home");
                 }
 
                 if (iMieiIndirizzi != null) {
-                    response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                    response.sendRedirect(request.getContextPath() + "/home");
                 }
 
                 if (iMieiMetodiDiPagamento != null) {
-                    response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                    response.sendRedirect(request.getContextPath() + "/home");
                 }
             } else
-                response.sendRedirect("https://www.google.com");
+                response.sendRedirect(request.getContextPath() + "/home");
 
         } else
-            response.sendRedirect("https://www.google.com");
+            response.sendRedirect(request.getContextPath() + "/home");
 
     }
 

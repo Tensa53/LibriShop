@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
             request.getSession().setAttribute("utente",utente);
         }
 
-        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
+        String address = request.getContextPath() + "/home";
 
         response.sendRedirect(address);
     }

@@ -33,8 +33,8 @@ public class ConfermaIndirizzoServlet extends HttpServlet {
 
                 rd.forward(request,response);
             } else
-                response.sendRedirect("http://localhost:8080/home");
+                response.sendRedirect(request.getContextPath() + "/home");
         } else
-            response.sendRedirect("http://localhost:8080/home");
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 }

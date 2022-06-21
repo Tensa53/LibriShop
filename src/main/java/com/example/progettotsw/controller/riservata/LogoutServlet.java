@@ -51,8 +51,6 @@ public class LogoutServlet extends HttpServlet {
         }
 
 
-        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
-
-        response.sendRedirect(address);
+        response.sendRedirect(request.getContextPath() + "/home");
     }
 }

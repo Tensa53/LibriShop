@@ -53,7 +53,7 @@ public class UpdateQuantitaLibroCarrelloServlet extends HttpServlet {
                 response.getWriter().append("</carrello>");
             }
         } else
-            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+            response.sendRedirect(request.getContextPath() + "/home");
 
     }
 }

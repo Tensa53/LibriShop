@@ -104,9 +104,9 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
             } else
-                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                response.sendRedirect(request.getContextPath() + "/home");
         } else
-            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 
     public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {

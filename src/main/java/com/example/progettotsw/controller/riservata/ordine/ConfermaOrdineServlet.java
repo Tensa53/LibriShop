@@ -28,7 +28,7 @@ public class ConfermaOrdineServlet extends HttpServlet {
                 carrelloDAO.doRemoveAllbyUtente(utente.getMail());//quando l'utente conferma l'ordine,preserviamo il carrello
                 carrelloDAO.doSaveAllbyUtente(carrello,utente.getMail());//lo salviamo già nel db così da poterlo preservare da chiusure involontarie della pagina
             } else
-                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+                response.sendRedirect(request.getContextPath() + "/home");
         }
         else {
             address = "login.jsp";

@@ -145,8 +145,8 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     response.sendRedirect(address);
                 }
             } else
-                response.sendRedirect("http://localhost:8080/progettoTSW_war_exlpoded/home");
+                response.sendRedirect(request.getContextPath() + "/home");
         } else
-            response.sendRedirect("http://localhost:8080/progettoTSW_war_exlpoded/home");
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 }

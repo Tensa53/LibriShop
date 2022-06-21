@@ -56,9 +56,7 @@ public class LoginServlet extends HttpServlet {
 
             request.getSession().setAttribute("utente",utente);
 
-            String address = "http://localhost:8080/progettoTSW_war_exploded/home";
-
-            response.sendRedirect(address);
+            response.sendRedirect(request.getContextPath() + "/home");
         } else {
             String msg = "Mail o password errati !!";
 

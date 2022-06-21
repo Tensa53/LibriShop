@@ -55,9 +55,7 @@ public class AddLibroCarrelloServlet extends HttpServlet {
 
         }
 
-        String address = "http://localhost:8080/progettoTSW_war_exploded/home";
-
-        response.sendRedirect(address);//col sendRedirect la request non sarà condivisa ma ricreata dalla servlet/jsp richiamata
+        response.sendRedirect(request.getContextPath() + "/home");//col sendRedirect la request non sarà condivisa ma ricreata dalla servlet/jsp richiamata
     }
 
 }

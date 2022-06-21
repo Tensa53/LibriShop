@@ -28,6 +28,6 @@ public class AreaRiservataServlet extends HttpServlet {
 
             rd.forward(request,response);
         } else
-            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 }

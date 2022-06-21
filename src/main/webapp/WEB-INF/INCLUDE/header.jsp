@@ -6,7 +6,7 @@
     <script src="${pageContext.request.contextPath}/script/dropdownMenuC.js"></script>
     <script src="${pageContext.request.contextPath}/script/dropdownMenuR.js"></script>
 
-    <a href="http://localhost:8080/progettoTSW_war_exploded/home"><img src="./img/book-icon.png" alt="Icona home"></a>
+    <a href="${pageContext.request.contextPath}/home"><img src="./img/book-icon.png" alt="Icona home"></a>
 
     <span id="slogan">Il tuo posto sicuro dove acquistare libri</span>
 
@@ -18,7 +18,7 @@
     <div class="dropdown right">
         <img src="./img/utente.png" alt="Icona utente" id="iconaU" onclick="dropdownMenuU()"></a>
         <div class="dropdown-content utenteu">
-            <a href="http://localhost:8080/progettoTSW_war_exploded/area-riservata">Area Riservata</a>
+            <a href="${pageContext.request.contextPath}/area-riservata">Area Riservata</a>
                 <form action="logout">
                     <a> Logout <input class="right inline-block" type="image" src="./img/logout.png" alt="logout"> </a>
                 </form>
@@ -30,8 +30,8 @@
     <div class="dropdown right">
         <img src="./img/utente.png" alt="Icona utente" id="iconaR" onclick="dropdownMenuR()">
         <div class="dropdown-content utenter">
-            <a href="/progettoTSW_war_exploded/login.jsp">Login</a>
-            <a href="/progettoTSW_war_exploded/registrazione.jsp">Registrazione</a>
+            <a href="${pageContext.request.contextPath}/login.jsp">Login</a>
+            <a href="${pageContext.request.contextPath}/registrazione.jsp">Registrazione</a>
         </div>
     </div>
 

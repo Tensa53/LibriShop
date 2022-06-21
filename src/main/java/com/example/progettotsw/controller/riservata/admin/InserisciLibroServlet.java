@@ -83,8 +83,8 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
-            } else response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
-        } else response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+            } else response.sendRedirect(request.getContextPath() + "/home");
+        } else response.sendRedirect(request.getContextPath() + "/home");
 
     }
 
