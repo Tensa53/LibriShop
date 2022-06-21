@@ -87,6 +87,8 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                     request.getSession().invalidate();
 
+                    request.getSession().setAttribute("utente",utente);
+
                     request.getSession().setAttribute("carrello", new Carrello());
 
                     address = "/WEB-INF/ORDINE/completo.jsp";

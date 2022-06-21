@@ -1,0 +1,55 @@
+package com.example.progettotsw.controller.riservata.admin;
+
+import com.example.progettotsw.model.Libro;
+import com.example.progettotsw.model.LibroDAO;
+import com.example.progettotsw.model.Utente;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+@WebServlet("/rimuovi-libro-catalogo")
+public class RimuoviLibroCatalogoServlet extends HttpServlet {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Utente utente = (Utente) request.getSession().getAttribute("utente");
+
+        if(utente != null) {
+            if(utente.isAmministratore()) {
+                String isbn = request.getParameter("isbn-libro");
+
+                LibroDAO libroDAO = new LibroDAO();
+
+                Libro libro = libroDAO.doRetrieveById(isbn);
+
+                String msg = null;
+
+                if (libro != null) {
+                    int row = libroDAO.doDeleteLibrobyID(isbn);
+                    if (row == 1)
+                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua altre rimozioni";
+
+                    request.setAttribute("msg",msg);
+
+                    String address = "/WEB-INF/ADMIN/delLibro.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
+                }
+            } else
+                response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+        } else
+            response.sendRedirect("http://localhost:8080/progettoTSW_war_exploded/home");
+
+
+    }
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doPost(request,response);
+    }
+}

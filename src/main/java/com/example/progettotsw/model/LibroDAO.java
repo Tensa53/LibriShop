@@ -170,6 +170,20 @@ public class LibroDAO {
         }
     }
 
+    public void doUpdateDisponibilitaAllFromList(List<Libro> libri){
+        String sql = "UPDATE Libro SET Disponibilita = ? WHERE ISBN = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            for (Libro l : libri){
+                ps.setInt(1,l.getDisponibilita());
+                ps.setString(2,l.getISBN());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public int doSave(Libro libro,String autore,String [] genere){
         String sql = "INSERT INTO Libro VALUES (?,?,?,?,?,?,?,?,?);";
 
@@ -188,20 +202,6 @@ public class LibroDAO {
             doSaveGenereLibro(libro,genere);
             return row;
         }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void doUpdateDisponibilitaAllFromList(List<Libro> libri){
-        String sql = "UPDATE Libro SET Disponibilita = ? WHERE ISBN = ?;";
-
-        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
-            for (Libro l : libri){
-                ps.setInt(1,l.getDisponibilita());
-                ps.setString(2,l.getISBN());
-                ps.executeUpdate();
-            }
-        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -228,6 +228,47 @@ public class LibroDAO {
         try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setString(1,isbn);
             ps.setString(2,CF);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int doDeleteLibrobyID(String ISBN) {
+        String sql = "DELETE FROM Libro WHERE ISBN = ?;";
+        String sql2 = "SET foreign_key_checks = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql); PreparedStatement pst = con.prepareStatement(sql2)) {
+            ps.setString(1,ISBN);
+            doDeleteAppartenenzaGenereLibro(ISBN);
+            doDeleteScritturaAutoreLibro(ISBN);
+            pst.setInt(1,0);
+            pst.executeUpdate();
+            int row = ps.executeUpdate();
+            pst.setInt(1,1);
+            pst.executeUpdate();
+            return row;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDeleteAppartenenzaGenereLibro(String ISBN) {
+        String sql = "DELETE FROM Appartenenza WHERE ISBNLibro = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1,ISBN);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDeleteScritturaAutoreLibro(String ISBN) {
+        String sql = "DELETE FROM Scrittura WHERE ISBNLibro = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1,ISBN);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

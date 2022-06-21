@@ -32,7 +32,7 @@
 <form action="cerca-libro-da-modificare" method="post">
     <select name="isbn-libro">
         <%for(Libro l : libri){%>
-            <option value="<%=l.getISBN()%>"><%=l.getISBN()%></option>
+            <option value="<%=l.getISBN()%>"><%=l.getISBN()%> - <%=l.getTitolo()%></option>
         <%}%>
     </select>
     <input type="submit" value="Modifica Libro">

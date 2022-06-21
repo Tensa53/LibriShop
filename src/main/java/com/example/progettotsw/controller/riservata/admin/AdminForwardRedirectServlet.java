@@ -70,9 +70,17 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 }
 
                 if(delLibro != null) {
-                    String address = "https://www.google.com/";
+                    LibroDAO libroDAO = new LibroDAO();
 
-                    response.sendRedirect(address);
+                    List<Libro> libri = libroDAO.doRetrieveAll();
+
+                    request.getSession().setAttribute("libri",libri);
+
+                    String address = "/WEB-INF/ADMIN/delLibro.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
                 }
 
                 if(insUtente != null) {
