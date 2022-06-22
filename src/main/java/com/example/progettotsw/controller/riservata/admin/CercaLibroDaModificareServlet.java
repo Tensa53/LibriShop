@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/cerca-libro-da-modificare")
-public class ModificaLibroServlet extends HttpServlet {
+public class CercaLibroDaModificareServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 

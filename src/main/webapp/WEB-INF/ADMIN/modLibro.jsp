@@ -19,10 +19,9 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<p>Scegli un libro da modificare selezionando il suo codice ISBN</p>
-
 
 <%if(libri != null){%>
+<p>Scegli un libro da modificare selezionando il suo codice ISBN</p>
 <form action="cerca-libro-da-modificare" method="post">
     <select name="isbn-libro">
         <%for(Libro l : libri){%>

@@ -71,7 +71,7 @@ public class InserisciLibroServlet extends HttpServlet {
                 String msg = null;
 
                 if (libroDAO.doSave(libro, autore.getCF(), genere) == 1)
-                    msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                    msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
 
                 String address = "/WEB-INF/ADMIN/insLibro.jsp";
 

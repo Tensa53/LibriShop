@@ -67,7 +67,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 log(String.valueOf(foto.getSubmittedFileName().length()));
 
-                if (foto.getSubmittedFileName().length() != 0) {
+                if (foto.getSubmittedFileName().length() > 0) {
                     String uploadPath = getServletContext().getRealPath("") + "img";
 
                     log(uploadPath);
@@ -92,7 +92,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 String msg = null;
 
                 if (libroDAO.doUpdate(libro, autore.getCF(), genere) == 1)
-                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua altre modifiche";
+                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                 String address = "/WEB-INF/ADMIN/modLibro.jsp";
 

@@ -92,9 +92,17 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 }
 
                 if(modUtente != null) {
-                    String address = "https://www.google.com/";
+                    String address = "/WEB-INF/ADMIN/modUtente.jsp";
 
-                    response.sendRedirect(address);
+                    UtenteDAO utenteDAO = new UtenteDAO();
+
+                    List<Utente> utenti = utenteDAO.doRetrieveAll();
+
+                    request.getSession().setAttribute("utenti",utenti);
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
                 }
 
                 if(delUtente != null) {

@@ -30,11 +30,9 @@
         <label for = "password">Password : </label>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
-        <label for="amministratore">Amministratore : </label><br>
-        <select id="amministratore" name="amministratorer">
-            <option value="true">SI</option>
-            <option value="false">NO</option>
-        </select><br>
+        <label for="amministratore">Amministratore : </label>
+        <input type="radio" name="amministratore" value="true">SI
+        <input type="radio" name="amministratore" value="false">NO
         <input type="submit" value="Inserisci">
     </form>
 </div>

@@ -37,7 +37,7 @@ public class InserisciUtenteServlet extends HttpServlet {
                     String msg = null;
 
                     if (row == 1)
-                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                        msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
 
                     request.setAttribute("msg",msg);
                 }
