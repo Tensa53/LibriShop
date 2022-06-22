@@ -82,6 +82,10 @@ nav a {
     text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/
 }
 
+#bottonenav {
+    display: none;
+}
+
 /*css per la search bar ed il benvenuto*/
 
 .titoli{
@@ -227,14 +231,54 @@ footer p {
 
 /*media query*/
 
-@media screen and (min-width: 660px) {
-    /*#container-catalogo {*/
-    /*    max-width: 660px;*/
-    /*    margin : auto;*/
-    /*}*/
+@media screen and (max-width: 660px) {
+
+    /*navbar*/
+
+    nav li {
+        background-color: #00627D;
+    }
+
+    .notnav {
+        display: none;
+    }
+
+    .yesnav a {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav li:first-of-type {
+        display: inline-block;
+    }
+
+    nav a:hover:not(.active) {
+        background-color: #555555;
+    }
+
+    #bottonenav {
+        background-color: #00627D;
+        color: white;
+        border:none;
+        text-align: center;
+        font-size: 12px;
+        display: inline-block;
+    }
+
+    .active {
+        background-color: #fdc330;
+        text-transform: uppercase;
+    }
+
+        /*#container-catalogo {*/
+        /*    max-width: 660px;*/
+        /*    margin : auto;*/
+        /*}*/
 }
 
-@media screen and (min-width: 984px) {
+@media screen and (min-width: 984px) and (max-width: 1309px) {
     /*#container-catalogo {*/
     /*    max-width: 984px;*/
     /*    margin : auto;*/
