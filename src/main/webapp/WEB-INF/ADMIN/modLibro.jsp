@@ -7,6 +7,7 @@
 <head>
     <title>Modifica Libro</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <script src="./script/autore.js" type="text/javascript"></script>
     <%List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
       List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
       List<Genere> generiLibro = (List<Genere>) request.getAttribute("generi-libro");
@@ -41,7 +42,8 @@
     <label for = "titolo">Titolo : </label> <br>
     <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>"><br>
     <label for = "autore">Autore : </label> <br>
-    <input type="text" name="autore" id="autore" value="<%=autore.getNome()%>"><br>
+    <p id="controlloautore"></p>
+    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>"><br>
     <label for= "genere">Genere : </label><br>
     <div id="genere">
         <%

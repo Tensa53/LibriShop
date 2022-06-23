@@ -5,6 +5,7 @@
 <head>
     <title>Inserisci Libro</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <script src="./script/autore.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -18,7 +19,8 @@
     <label for = "titolo">Titolo : </label> <br>
     <input type="text" name="titolo" id="titolo"><br>
     <label for = "autore">Autore : </label> <br>
-    <input type="text" name="autore" id="autore"><br>
+    <p id="controlloautore"></p>
+    <input type="text" name="autore" id="autore" onblur="ControllaAutore()"><br>
     <label for= "genere">Genere : </label><br>
     <div id="genere">
     <%List<Genere> generi = (List<Genere>) request.getAttribute("generi");
