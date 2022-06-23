@@ -39,6 +39,10 @@ body {
     margin: 0px;
 }
 
+#fotolibro {
+    max-width: 200px;
+}
+
 /*css per l'header bar*/
 
 header img {

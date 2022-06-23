@@ -8,6 +8,7 @@
     <title>Modifica Libro</title>
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <script src="./script/autore.js" type="text/javascript"></script>
+    <script src="./script/immagineLibro.js" type="text/javascript"></script>
     <%List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
       List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
       List<Genere> generiLibro = (List<Genere>) request.getAttribute("generi-libro");
@@ -20,17 +21,18 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-
 <%if(libri != null){%>
 <p>Scegli un libro da modificare selezionando il suo codice ISBN</p>
 <form action="cerca-libro-da-modificare" method="post">
-    <select name="isbn-libro">
+    <select name="isbn-libro" onchange="immagineLibro(this.value)">
         <%for(Libro l : libri){%>
             <option value="<%=l.getISBN()%>"><%=l.getISBN()%> - <%=l.getTitolo()%></option>
         <%}%>
     </select>
     <input type="submit" value="Modifica Libro">
+    <button formaction="rimuovi-libro-catalogo">Rimuovi Libro</button>
 </form>
+<img id="fotolibro" src="<%=libri.get(0).getFoto()%>">
 <%}%>
 
 
