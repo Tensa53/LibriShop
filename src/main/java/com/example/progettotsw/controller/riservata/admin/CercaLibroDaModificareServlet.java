@@ -42,7 +42,7 @@ public class CercaLibroDaModificareServlet extends HttpServlet {
 
                 request.setAttribute("generi-libro",generiLibro);
 
-                String address = "/WEB-INF/ADMIN/modLibro.jsp";
+                String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
 

@@ -62,7 +62,7 @@ public class CarrelloDAO {
     public void doRemoveAllbyUtente(String mail){
         DettaglioDAO dettaglioDAO = new DettaglioDAO();
 
-        String sql = "UPDATE Carrello SET Totale = ? WHERE Utente = ?";
+        String sql = "UPDATE Carrello SET Totale = ? WHERE Utente = ?;";
 
         try (Connection con = ConPool.getConnection();PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setFloat(1,0.0f);
@@ -73,5 +73,20 @@ public class CarrelloDAO {
         }
 
         dettaglioDAO.doDeleteALLByCarrelloUtente(mail);
+    }
+
+
+    public void doDeletebyUtente(String mail){
+        String sql = "DELETE FROM Carrello WHERE Utente = ?;";
+
+        DettaglioDAO dettaglioDAO = new DettaglioDAO();
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,mail);
+            dettaglioDAO.doDeleteALLByCarrelloUtente(mail);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -39,7 +39,7 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
                 if(utenteDAO.doUpdateUser(u) == 1)
                     msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                String address = "/WEB-INF/ADMIN/modUtente.jsp";
+                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
                 request.setAttribute("msg",msg);
 

@@ -35,8 +35,7 @@ public class PagamentoDAO {
     public int doSave (Pagamento p){
         String sql = "INSERT INTO Pagamento VALUES (?,?,?);";
 
-        try(Connection conn=ConPool.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);) {
+        try(Connection conn=ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql);) {
 
             ps.setString(1,p.getNumeroCarta());
             ps.setString(2,p.getScadenzaString());
@@ -73,6 +72,19 @@ public class PagamentoDAO {
         }
 
         return pagamenti;
+    }
+
+
+    public void doDeletebyNumeroCarta(String numeroCarta) {
+        String sql = "DELETE FROM Pagamento WHERE NumeroCarta = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,numeroCarta);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

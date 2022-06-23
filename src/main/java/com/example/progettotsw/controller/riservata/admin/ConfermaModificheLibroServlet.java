@@ -94,7 +94,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 if (libroDAO.doUpdate(libro, autore.getCF(), genere) == 1)
                         msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                String address = "/WEB-INF/ADMIN/modLibro.jsp";
+                String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
                 request.setAttribute("msg",msg);
 

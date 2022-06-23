@@ -91,4 +91,17 @@ public class IndirizzoDAO {
         return indirizzi;
     }
 
+    public void doDeletebyIndirizzo(String via, String civico, String CAP) {
+        String sql = "DELETE FROM Indirizzo WHERE Via = ? AND Civico = ? AND CAP = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,via);
+            ps.setString(2,civico);
+            ps.setString(3,CAP);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

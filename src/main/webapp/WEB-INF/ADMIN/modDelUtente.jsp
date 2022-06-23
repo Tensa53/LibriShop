@@ -27,6 +27,7 @@
         <%}%>
     </select>
     <input type="submit" value="Modifica Utente">
+    <button formaction="rimuovi-utente">Rimuovi Utente</button>
 </form>
 <%}%>
 

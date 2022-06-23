@@ -20,18 +20,14 @@ public class AdminForwardRedirectServlet extends HttpServlet {
         log(request.getContextPath());
 
         String insLibro = request.getParameter("insLibro");
-        String modLibro = request.getParameter("modLibro");
-        String delLibro = request.getParameter("delLibro");
+        String modDelLibro = request.getParameter("modDelLibro");
         String insUtente = request.getParameter("insUtente");
-        String modUtente = request.getParameter("modUtente");
-        String delUtente = request.getParameter("delUtente");
+        String modDelUtente = request.getParameter("modDelUtente");
         String viewOrdini = request.getParameter("viewOrdini");
         String insAutore = request.getParameter("insAutore");
-        String modAutore = request.getParameter("modAutore");
-        String delAutore = request.getParameter("delAutore");
+        String modDelAutore = request.getParameter("modDelAutore");
         String insGenere = request.getParameter("insGenere");
-        String modGenere = request.getParameter("modGenere");
-        String delGenere = request.getParameter("delGenere");
+        String modDelGenere = request.getParameter("modDelGenere");
 
         if(utente != null){
             if (utente.isAmministratore()){
@@ -49,7 +45,7 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     rd.forward(request,response);
                 }
 
-                if(modLibro != null) {
+                if(modDelLibro != null) {
                     LibroDAO libroDAO = new LibroDAO();
 
                     List<Libro> libri = libroDAO.doRetrieveAll();
@@ -62,21 +58,7 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     request.getSession().setAttribute("generi",generi);
 
-                    String address = "/WEB-INF/ADMIN/modLibro.jsp";
-
-                    RequestDispatcher rd = request.getRequestDispatcher(address);
-
-                    rd.forward(request,response);
-                }
-
-                if(delLibro != null) {
-                    LibroDAO libroDAO = new LibroDAO();
-
-                    List<Libro> libri = libroDAO.doRetrieveAll();
-
-                    request.getSession().setAttribute("libri",libri);
-
-                    String address = "/WEB-INF/ADMIN/delLibro.jsp";
+                    String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
@@ -91,8 +73,8 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     rd.forward(request,response);
                 }
 
-                if(modUtente != null) {
-                    String address = "/WEB-INF/ADMIN/modUtente.jsp";
+                if(modDelUtente != null) {
+                    String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
                     UtenteDAO utenteDAO = new UtenteDAO();
 
@@ -103,12 +85,6 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
                     rd.forward(request,response);
-                }
-
-                if(delUtente != null) {
-                    String address = "https://www.google.com/";
-
-                    response.sendRedirect(address);
                 }
 
                 if(viewOrdini != null) {
@@ -123,17 +99,12 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     response.sendRedirect(address);
                 }
 
-                if(modAutore != null) {
+                if(modDelAutore != null) {
                     String address = "https://www.google.com/";
 
                     response.sendRedirect(address);
                 }
 
-                if(delAutore != null) {
-                    String address = "https://www.google.com/";
-
-                    response.sendRedirect(address);
-                }
 
                 if(insGenere != null) {
                     String address = "https://www.google.com/";
@@ -141,17 +112,12 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     response.sendRedirect(address);
                 }
 
-                if(modGenere != null) {
+                if(modDelGenere != null) {
                     String address = "https://www.google.com/";
 
                     response.sendRedirect(address);
                 }
 
-                if(delGenere != null) {
-                    String address = "https://www.google.com/";
-
-                    response.sendRedirect(address);
-                }
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

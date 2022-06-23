@@ -1,7 +1,4 @@
-function loadImage(){
-    let img = document.get
+function loadImage(val){
 
-    console.log(path);
-
-    img.setAttribute("src",path);
+    console.log(val);
 }

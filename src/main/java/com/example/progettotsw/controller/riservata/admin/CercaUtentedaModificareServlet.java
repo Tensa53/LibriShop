@@ -26,7 +26,7 @@ public class CercaUtentedaModificareServlet extends HttpServlet {
 
                 request.setAttribute("utente",u);
 
-                String address = "/WEB-INF/ADMIN/modUtente.jsp";
+                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
 
