@@ -34,6 +34,10 @@ public class OrdineDAO {
                 String mail = rs.getString("Utente");
                 Utente utente = utenteDAO.doRetrieveByMail(mail);
                 Ordine ordine = new Ordine(dataOrdine,indirizzo,pagamento,totale,utente);
+                int id = rs.getInt("ID");
+                ordine.setId(id);
+                DettaglioDAO dettaglioDAO = new DettaglioDAO();
+                ordine.setDettagli(dettaglioDAO.doRetrievebyIdOrdine(id));
                 ordini.add(ordine);
             }
         } catch (SQLException e) {

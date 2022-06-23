@@ -28,5 +28,5 @@ public class Genere {
         return false;
     }
 
-    String nome;
+    private String nome;
 }

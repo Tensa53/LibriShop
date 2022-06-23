@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Ordine extends HttpServlet {
 
@@ -19,6 +20,14 @@ public class Ordine extends HttpServlet {
         this.pagamento = pagamento;
         this.totale = totale;
         this.utente = utente;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public GregorianCalendar getDataOrdine() {
@@ -73,9 +82,19 @@ public class Ordine extends HttpServlet {
         this.utente = utente;
     }
 
-    GregorianCalendar dataOrdine;
-    Indirizzo indirizzo;
-    Pagamento pagamento;
-    BigDecimal totale;
-    Utente utente;
+    public List<Dettaglio> getDettagli() {
+        return dettagli;
+    }
+
+    public void setDettagli(List<Dettaglio> dettagli) {
+        this.dettagli = dettagli;
+    }
+
+    private int id;
+    private GregorianCalendar dataOrdine;
+    private Indirizzo indirizzo;
+    private Pagamento pagamento;
+    private BigDecimal totale;
+    private Utente utente;
+    private List<Dettaglio> dettagli;
 }

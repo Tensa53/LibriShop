@@ -43,6 +43,38 @@ public class DettaglioDAO {
         return dettagli;
     }
 
+    public List<Dettaglio> doRetrievebyIdOrdine(int idOrdine) {
+        String sql = "SELECT * FROM Dettaglio WHERE Ordine = ?;";
+
+        List<Dettaglio> dettagli = new ArrayList<>();
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)){
+            pstmt.setInt(1,idOrdine);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                int quantita = rs.getInt("Quantita");
+                BigDecimal prezzo = rs.getBigDecimal("Prezzo");
+                String ISBN = rs.getString("ISBNLibro");
+                String TitoloLibro = rs.getString("TitoloLibro");
+                int id = rs.getInt("ID");
+
+                LibroDAO libroDAO = new LibroDAO();
+                Libro libro = libroDAO.doRetrieveById(ISBN);
+
+                if(libro == null)
+                    libro = new Libro(ISBN,TitoloLibro);
+
+                Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
+                dettagli.add(dettaglio);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return dettagli;
+    }
+
 
     public void doSaveAllbyCarrelloUtente(List<Dettaglio> dettagli,String mail) {
         String sql = "INSERT INTO Dettaglio(Quantita,Prezzo,Carrello,ISBNLibro,TitoloLibro) VALUES (?,?,?,?,?);";

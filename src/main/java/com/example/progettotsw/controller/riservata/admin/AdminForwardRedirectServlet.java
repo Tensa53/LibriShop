@@ -88,9 +88,17 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 }
 
                 if(viewOrdini != null) {
-                    String address = "https://www.google.com/";
+                    OrdineDAO ordineDAO = new OrdineDAO();
 
-                    response.sendRedirect(address);
+                    List<Ordine> ordini = ordineDAO.doRetrieveAll();
+
+                    request.setAttribute("ordini",ordini);
+
+                    String address = "/WEB-INF/ADMIN/viewOrdini.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
                 }
 
                 if(insAutore != null) {
