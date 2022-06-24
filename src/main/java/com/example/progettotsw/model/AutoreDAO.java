@@ -48,6 +48,26 @@ public class AutoreDAO {
         return autore;
     }
 
+    public Autore doRetrievebyCF(String cf) {
+        String sql = "SELECT * FROM Autore WHERE CF = ?;";
+
+        Autore autore = null;
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);){
+            ps.setString(1,cf);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                autore = new Autore(rs.getString("CF"),rs.getString("Nome"));
+                return autore;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return autore;
+    }
+
     public Autore doRetrievebyISBNLibro(String isbn){
         String sql = "SELECT A.Nome,A.CF FROM Autore A,Scrittura S WHERE (A.CF = S.Autore) AND S.ISBNLibro = ?";
 
@@ -66,5 +86,41 @@ public class AutoreDAO {
         }
 
         return autore;
+    }
+
+    public int doUpdate(Autore autore) {
+        String sql = "UPDATE Autore SET Nome = ? WHERE CF = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1,autore.getNome());
+            ps.setString(2,autore.getCF());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int doSave(Autore autore) {
+        String sql = "INSERT INTO Autore VALUES (?,?);";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1,autore.getCF());
+            ps.setString(2,autore.getNome());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int doRemoveAutorebyCF(String cf) {
+        String sql = "DELETE FROM Autore WHERE CF = ?;";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1,cf);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

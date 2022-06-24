@@ -30,7 +30,7 @@ public class RimuoviLibroCatalogoServlet extends HttpServlet {
 //                if (libro != null) {
                     int row = libroDAO.doDeleteLibrobyID(isbn);
                     if (row == 1)
-                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"http://localhost:8080/progettoTSW_war_exploded/area-riservata\"> dashboard </a> oppure effettua altre rimozioni";
+                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath()+"/area-riservtata" + "\"> dashboard </a> oppure effettua altre rimozioni";
 
                     request.setAttribute("msg",msg);
 

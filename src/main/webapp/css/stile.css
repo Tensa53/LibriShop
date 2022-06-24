@@ -247,6 +247,10 @@ div.container-ordini-item {
     margin: 5px;
 }
 
+#container-filtro-utente {
+    margin: 5px;
+}
+
 /*media query*/
 
 @media screen and (max-width: 660px) {

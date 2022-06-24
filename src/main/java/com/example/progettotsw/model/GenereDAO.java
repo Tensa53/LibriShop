@@ -45,12 +45,24 @@ public class GenereDAO {
         return generi;
     }
 
-    public void doSave(String nome) {
+    public int doSave(String nome) {
         String sql = "INSERT INTO Genere VALUES(?);";
 
         try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setString(1,nome);
-            ps.executeUpdate();
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public int doRemove(String nome) {
+        String sql = "DELETE FROM Genere WHERE Nome = ?";
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1,nome);
+            return ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

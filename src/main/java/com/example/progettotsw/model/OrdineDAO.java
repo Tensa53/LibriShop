@@ -15,29 +15,50 @@ public class OrdineDAO {
 
         try(Connection conn = ConPool.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()){
-                String data = rs.getString("DataOrdine");
-                GregorianCalendar dataOrdine = new GregorianCalendar(Integer.parseInt(data.split("-")[0]),(Integer.parseInt(data.split("-")[1]))-1,Integer.parseInt(data.split("-")[2]));
-                String via = rs.getString("Via");
-                String numero = rs.getString("Numero");
-                String CAP = rs.getString("CAP");
-                String Citta = rs.getString("Citta");
-                String Provincia = rs.getString("Provincia");
-                String Stato = rs.getString("Stato");
-                Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia,Stato);
-                String numeroCarta = rs.getString("NumeroCarta");
-                String scadenza = rs.getString("Scadenza");
-                GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),(Integer.parseInt(scadenza.split("-")[1]))-1,Integer.parseInt(scadenza.split("-")[2]));
-                String CCV = rs.getString("CCV");
-                Pagamento pagamento = new Pagamento(numeroCarta,scadenzaCarta,CCV);
-                BigDecimal totale = rs.getBigDecimal("totale");
-                UtenteDAO utenteDAO = new UtenteDAO();
-                String mail = rs.getString("Utente");
-                Utente utente = utenteDAO.doRetrieveByMail(mail);
-                Ordine ordine = new Ordine(dataOrdine,indirizzo,pagamento,totale,utente);
-                int id = rs.getInt("ID");
-                ordine.setId(id);
-                DettaglioDAO dettaglioDAO = new DettaglioDAO();
-                ordine.setDettagli(dettaglioDAO.doRetrievebyIdOrdine(id));
+//                String data = rs.getString("DataOrdine");
+//                GregorianCalendar dataOrdine = new GregorianCalendar(Integer.parseInt(data.split("-")[0]),(Integer.parseInt(data.split("-")[1]))-1,Integer.parseInt(data.split("-")[2]));
+//                String via = rs.getString("Via");
+//                String numero = rs.getString("Numero");
+//                String CAP = rs.getString("CAP");
+//                String Citta = rs.getString("Citta");
+//                String Provincia = rs.getString("Provincia");
+//                String Stato = rs.getString("Stato");
+//                Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia,Stato);
+//                String numeroCarta = rs.getString("NumeroCarta");
+//                String scadenza = rs.getString("Scadenza");
+//                GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),(Integer.parseInt(scadenza.split("-")[1]))-1,Integer.parseInt(scadenza.split("-")[2]));
+//                String CCV = rs.getString("CCV");
+//                Pagamento pagamento = new Pagamento(numeroCarta,scadenzaCarta,CCV);
+//                BigDecimal totale = rs.getBigDecimal("totale");
+//                UtenteDAO utenteDAO = new UtenteDAO();
+//                String mail = rs.getString("Utente");
+//                Utente utente = utenteDAO.doRetrieveByMail(mail);
+//                Ordine ordine = new Ordine(dataOrdine,indirizzo,pagamento,totale,utente);
+//                int id = rs.getInt("ID");
+//                ordine.setId(id);
+//                DettaglioDAO dettaglioDAO = new DettaglioDAO();
+//                ordine.setDettagli(dettaglioDAO.doRetrievebyIdOrdine(id));
+                Ordine ordine = composeOrdine(rs);
+                ordini.add(ordine);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ordini;
+    }
+
+    public List<Ordine> doRetrieveAllbyUserMail(String mail) {
+        String sql = "SELECT * FROM Ordine WHERE Utente = ?;";
+
+        List<Ordine> ordini = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,mail);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                Ordine ordine = composeOrdine(rs);
                 ordini.add(ordine);
             }
         } catch (SQLException e) {
@@ -82,6 +103,33 @@ public class OrdineDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Ordine composeOrdine(ResultSet rs) throws SQLException {
+        String data = rs.getString("DataOrdine");
+        GregorianCalendar dataOrdine = new GregorianCalendar(Integer.parseInt(data.split("-")[0]),(Integer.parseInt(data.split("-")[1]))-1,Integer.parseInt(data.split("-")[2]));
+        String via = rs.getString("Via");
+        String numero = rs.getString("Numero");
+        String CAP = rs.getString("CAP");
+        String Citta = rs.getString("Citta");
+        String Provincia = rs.getString("Provincia");
+        String Stato = rs.getString("Stato");
+        Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia,Stato);
+        String numeroCarta = rs.getString("NumeroCarta");
+        String scadenza = rs.getString("Scadenza");
+        GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),(Integer.parseInt(scadenza.split("-")[1]))-1,Integer.parseInt(scadenza.split("-")[2]));
+        String CCV = rs.getString("CCV");
+        Pagamento pagamento = new Pagamento(numeroCarta,scadenzaCarta,CCV);
+        BigDecimal totale = rs.getBigDecimal("totale");
+        UtenteDAO utenteDAO = new UtenteDAO();
+        String mail = rs.getString("Utente");
+        Utente utente = utenteDAO.doRetrieveByMail(mail);
+        Ordine ordine = new Ordine(dataOrdine,indirizzo,pagamento,totale,utente);
+        int id = rs.getInt("ID");
+        ordine.setId(id);
+        DettaglioDAO dettaglioDAO = new DettaglioDAO();
+        ordine.setDettagli(dettaglioDAO.doRetrievebyIdOrdine(id));
+        return ordine;
     }
 
 }

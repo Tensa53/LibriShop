@@ -56,6 +56,8 @@
         <%} else {%>
                     <input type="checkbox" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
         <%}}%>
+        <label for="altro">Altro Genere : </label>
+        <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
     <textarea name="descrizione" id="descrizione"><%=libro.getDescrizione()%></textarea><br>

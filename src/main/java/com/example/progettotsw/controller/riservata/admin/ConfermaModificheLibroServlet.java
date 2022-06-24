@@ -13,8 +13,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 @WebServlet("/conferma-modifiche-libro")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -33,7 +32,9 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 String autoreString = request.getParameter("autore");
                 log("Autore : " + autoreString);
                 String[] genere = request.getParameterValues("genere");
-                log(Arrays.toString(genere));
+                ArrayList<String> generi = new ArrayList<>();
+                Collections.addAll(generi,genere);
+                String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
                 log(descrizione);
                 String prezzoString = request.getParameter("prezzo");
@@ -67,6 +68,12 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 log(String.valueOf(foto.getSubmittedFileName().length()));
 
+                if (altro.length() > 0){
+                    generi.add(altro);
+                    genereDAO.doSave(altro);
+                }
+
+
                 if (foto.getSubmittedFileName().length() > 0) {
                     String uploadPath = getServletContext().getRealPath("") + "img";
 
@@ -91,7 +98,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 String msg = null;
 
-                if (libroDAO.doUpdate(libro, autore.getCF(), genere) == 1)
+                if (libroDAO.doUpdate(libro, autore.getCF(), generi) == 1)
                         msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                 String address = "/WEB-INF/ADMIN/modDelLibro.jsp";

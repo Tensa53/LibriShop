@@ -14,7 +14,8 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.GregorianCalendar;
+import java.sql.Array;
+import java.util.*;
 
 @WebServlet("/inserisci-libro")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -33,7 +34,9 @@ public class InserisciLibroServlet extends HttpServlet {
                 String titolo = request.getParameter("titolo");
                 String autoreString = request.getParameter("autore");
                 String[] genere = request.getParameterValues("genere");
-                log(genere.toString());
+                ArrayList<String> generi = new ArrayList<>();
+                Collections.addAll(generi,genere);
+                String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
                 BigDecimal prezzo = new BigDecimal(request.getParameter("prezzo"));
                 String data = request.getParameter("dataPubblicazione");
@@ -66,24 +69,31 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 AutoreDAO autoreDAO = new AutoreDAO();
 
+                GenereDAO genereDAO = new GenereDAO();
+
                 Autore autore = autoreDAO.doRetrievebyName(autoreString);
+
+                if (altro.length() > 0) {
+                    generi.add(altro);
+                    genereDAO.doSave(altro);
+                }
 
                 String msg = null;
 
-                if (libroDAO.doSave(libro, autore.getCF(), genere) == 1)
+                if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
                     msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
 
                 String address = "/WEB-INF/ADMIN/insLibro.jsp";
 
                 request.setAttribute("msg", msg);
 
-                GenereDAO genereDAO = new GenereDAO();
-
                 request.setAttribute("generi", genereDAO.doRetrieveAll());
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
+
             } else response.sendRedirect(request.getContextPath() + "/home");
+
         } else response.sendRedirect(request.getContextPath() + "/home");
 
     }

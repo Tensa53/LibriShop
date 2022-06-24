@@ -1,10 +1,7 @@
 package com.example.progettotsw.model;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -74,6 +71,66 @@ public class LibroDAO {
         return libri;
     }
 
+    public List<Libro> doRetrievebyAutore(Autore autore) {
+        String sql = "SELECT * FROM Libro L,Scrittura S WHERE (L.ISBN = S.ISBNLibro) AND S.Autore = ?;";
+
+        List<Libro> libri = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,autore.getCF());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                String ISBN = rs.getString("ISBN");
+                String Titolo = rs.getString("Titolo");
+                String Descrizione = rs.getString("Descrizione");
+                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+                String Editore = rs.getString("Editore");
+                String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                BigDecimal Sconto = rs.getBigDecimal("Sconto");
+                int Disponibilita = rs.getInt("Disponibilita");
+                String Foto = rs.getString("Foto");
+                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                libri.add(l);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return libri;
+    }
+
+    public List<Libro> doRetrievebyGenere(String nome) {
+        String sql = "SELECT * FROM Libro L,Appartenenza A WHERE (L.ISBN = A.ISBNLibro) AND A.Genere = ?;";
+
+        List<Libro> libri = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,nome);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                String ISBN = rs.getString("ISBN");
+                String Titolo = rs.getString("Titolo");
+                String Descrizione = rs.getString("Descrizione");
+                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+                String Editore = rs.getString("Editore");
+                String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                BigDecimal Sconto = rs.getBigDecimal("Sconto");
+                int Disponibilita = rs.getInt("Disponibilita");
+                String Foto = rs.getString("Foto");
+                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                libri.add(l);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return libri;
+    }
+
     public List<Libro> doRetrieveAll(){
         String sql = "SELECT * FROM Libro;";
 
@@ -101,7 +158,7 @@ public class LibroDAO {
         return libri;
     }
 
-    public int doUpdate(Libro libro,String autore,String [] genere) {
+    public int doUpdate(Libro libro,String autore,List<String> generi) {
         String sql = "UPDATE Libro SET Titolo = ?,Descrizione = ?,Prezzo = ?,DataPubblicazione = ?,Editore = ?,Sconto = ?,Disponibilita = ? WHERE ISBN = ?;";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -114,7 +171,7 @@ public class LibroDAO {
             pstmt.setInt(7,libro.getDisponibilita());
             pstmt.setString(8,libro.getISBN());
             int row = pstmt.executeUpdate();
-            doUpdateAppartenenzaGenereLibro(libro,genere);
+            doUpdateAppartenenzaGenereLibro(libro,generi);
             doUpdateScritturaAutoreLibro(libro,autore);
             return row;
         } catch (SQLException e) {
@@ -135,7 +192,7 @@ public class LibroDAO {
         }
     }
 
-    public void doUpdateAppartenenzaGenereLibro(Libro libro,String [] genere){
+    public void doUpdateAppartenenzaGenereLibro(Libro libro, List<String> generi){
         String sql = "DELETE FROM Appartenenza WHERE ISBNLibro = ?;";
         String sql2 = "INSERT INTO Appartenenza VALUES(?,?)";
 
@@ -143,7 +200,7 @@ public class LibroDAO {
             pstmt.setString(1,libro.getISBN());
             pstmt.executeUpdate();
 
-            for (String g : genere){
+            for (String g : generi){
                 pst.setString(1,libro.getISBN());
                 pst.setString(2,g);
                 pst.executeUpdate();
@@ -184,7 +241,7 @@ public class LibroDAO {
         }
     }
 
-    public int doSave(Libro libro,String autore,String [] genere){
+    public int doSave(Libro libro,String autore,List<String> generi){
         String sql = "INSERT INTO Libro VALUES (?,?,?,?,?,?,?,?,?);";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -199,14 +256,14 @@ public class LibroDAO {
             pstmt.setString(9,libro.getFoto());
             int row = pstmt.executeUpdate();
             doSaveAutoreLibro(libro,autore);
-            doSaveGenereLibro(libro,genere);
+            doSaveGenereLibro(libro,generi);
             return row;
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void doSaveGenereLibro(Libro libro,String[] generi){
+    public void doSaveGenereLibro(Libro libro,List<String> generi){
         String sql = "INSERT INTO Appartenenza VALUES (?,?);";
         String isbn = libro.getISBN();
 

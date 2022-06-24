@@ -33,6 +33,28 @@ public class UtenteDAO {
         return utenti;
     }
 
+    public List<Utente> doRetrieveAllUsers(){
+        String sql = "SELECT * FROM Utente WHERE Amministratore = false";
+
+        List<Utente> utenti = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
+            while(rs.next()) {
+                String mail = rs.getString("Email");
+                String username = rs.getString("Username");
+                String nome = rs.getString("Nome");
+                String cognome = rs.getString("Cognome");
+                boolean amministratore = rs.getBoolean("Amministratore");
+                Utente u = new Utente(mail,username,nome,cognome,amministratore);
+                utenti.add(u);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return utenti;
+    }
+
     public Utente doRetrieveByMailPassword(String mail,String password){
         String sql = "SELECT * FROM Utente WHERE Email=? AND Passwordhash=SHA1(?);";
 

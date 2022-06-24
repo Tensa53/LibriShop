@@ -25,13 +25,8 @@
         <h4>Operazioni Ordini</h4>
         <input name="viewOrdini" type="submit" value="Visualizza Ordini">
         <br>
-        <h4>Operazioni Autore</h4>
-        <input name="insAutore" type="submit" value="Inserisci Autore">
-        <input name="modDelAutore" type="submit" value="Modifica/Rimuovi Autore">
-        <br>
-        <h4>Operazioni Genere</h4>
-        <input name="insGenere" type="submit" value="Inserisci Genere">
-        <input name="modDelGenere" type="submit" value="Modifica/Rimuovi Genere">
+        <h4>Operazioni Autore e Genere</h4>
+        <input name="opsAutoreGenere" type="submit" value="Gestione Autore e Genere">
     </form>
 <%}else{%>
 <p>Non sei autorizzato ad accedere a questa pagina</p>
