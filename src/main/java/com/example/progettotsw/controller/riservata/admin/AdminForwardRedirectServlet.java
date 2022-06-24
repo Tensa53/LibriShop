@@ -24,10 +24,7 @@ public class AdminForwardRedirectServlet extends HttpServlet {
         String insUtente = request.getParameter("insUtente");
         String modDelUtente = request.getParameter("modDelUtente");
         String viewOrdini = request.getParameter("viewOrdini");
-        String insAutore = request.getParameter("insAutore");
-        String modDelAutore = request.getParameter("modDelAutore");
-        String insGenere = request.getParameter("insGenere");
-        String modDelGenere = request.getParameter("modDelGenere");
+        String opsAutoreGenere = request.getParameter("opsAutoreGenere");
 
         if(utente != null){
             if (utente.isAmministratore()){
@@ -92,7 +89,13 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Ordine> ordini = ordineDAO.doRetrieveAll();
 
+                    UtenteDAO utenteDAO = new UtenteDAO();
+
+                    List<Utente> utenti = utenteDAO.doRetrieveAllUsers();
+
                     request.setAttribute("ordini",ordini);
+
+                    request.setAttribute("utenti",utenti);
 
                     String address = "/WEB-INF/ADMIN/viewOrdini.jsp";
 
@@ -101,29 +104,24 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                     rd.forward(request,response);
                 }
 
-                if(insAutore != null) {
-                    String address = "https://www.google.com/";
+                if (opsAutoreGenere != null) {
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                    response.sendRedirect(address);
-                }
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                if(modDelAutore != null) {
-                    String address = "https://www.google.com/";
+                    GenereDAO genereDAO = new GenereDAO();
 
-                    response.sendRedirect(address);
-                }
+                    List<Genere> generi = genereDAO.doRetrieveAll();
 
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                if(insGenere != null) {
-                    String address = "https://www.google.com/";
+                    List<Autore> autori = autoreDAO.doRetrieveAll();
 
-                    response.sendRedirect(address);
-                }
+                    request.setAttribute("generi",generi);
 
-                if(modDelGenere != null) {
-                    String address = "https://www.google.com/";
+                    request.setAttribute("autori",autori);
 
-                    response.sendRedirect(address);
+                    rd.forward(request,response);
                 }
 
             } else
