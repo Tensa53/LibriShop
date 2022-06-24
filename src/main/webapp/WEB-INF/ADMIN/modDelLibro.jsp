@@ -76,9 +76,6 @@
     <input type="submit" value="Conferma Modifiche"><br>
 </form>
 
-    <p>Immagine attuale : (Inseriscine una nel form per cambiarla)</p>
-    <img src="<%=libro.getFoto()%>">
-
 <%}%>
 
 <%String msg = (String) request.getAttribute("msg");
