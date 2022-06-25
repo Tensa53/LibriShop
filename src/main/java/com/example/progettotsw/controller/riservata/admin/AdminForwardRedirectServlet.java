@@ -26,23 +26,23 @@ public class AdminForwardRedirectServlet extends HttpServlet {
         String viewOrdini = request.getParameter("viewOrdini");
         String opsAutoreGenere = request.getParameter("opsAutoreGenere");
 
-        if(utente != null){
-            if (utente.isAmministratore()){
-                if(insLibro != null) {
+        if (utente != null) {
+            if (utente.isAmministratore()) {
+                if (insLibro != null) {
                     GenereDAO genereDAO = new GenereDAO();
 
                     List<Genere> generi = genereDAO.doRetrieveAll();
 
-                    request.setAttribute("generi",generi);
+                    request.setAttribute("generi", generi);
 
                     String address = "/WEB-INF/ADMIN/insLibro.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
-                if(modDelLibro != null) {
+                if (modDelLibro != null) {
                     LibroDAO libroDAO = new LibroDAO();
 
                     List<Libro> libri = libroDAO.doRetrieveAll();
@@ -51,40 +51,40 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Genere> generi = genereDAO.doRetrieveAll();
 
-                    request.getSession().setAttribute("libri",libri);
+                    request.getSession().setAttribute("libri", libri);
 
-                    request.getSession().setAttribute("generi",generi);
+                    request.getSession().setAttribute("generi", generi);
 
                     String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
-                if(insUtente != null) {
+                if (insUtente != null) {
                     String address = "/WEB-INF/ADMIN/insUtente.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
-                if(modDelUtente != null) {
+                if (modDelUtente != null) {
                     String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
                     UtenteDAO utenteDAO = new UtenteDAO();
 
                     List<Utente> utenti = utenteDAO.doRetrieveAll();
 
-                    request.getSession().setAttribute("utenti",utenti);
+                    request.getSession().setAttribute("utenti", utenti);
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
-                if(viewOrdini != null) {
+                if (viewOrdini != null) {
                     OrdineDAO ordineDAO = new OrdineDAO();
 
                     List<Ordine> ordini = ordineDAO.doRetrieveAll();
@@ -93,15 +93,15 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Utente> utenti = utenteDAO.doRetrieveAllUsers();
 
-                    request.setAttribute("ordini",ordini);
+                    request.setAttribute("ordini", ordini);
 
-                    request.setAttribute("utenti",utenti);
+                    request.setAttribute("utenti", utenti);
 
                     String address = "/WEB-INF/ADMIN/viewOrdini.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
                 if (opsAutoreGenere != null) {
@@ -117,11 +117,11 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Autore> autori = autoreDAO.doRetrieveAll();
 
-                    request.setAttribute("generi",generi);
+                    request.setAttribute("generi", generi);
 
-                    request.setAttribute("autori",autori);
+                    request.setAttribute("autori", autori);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
 
             } else

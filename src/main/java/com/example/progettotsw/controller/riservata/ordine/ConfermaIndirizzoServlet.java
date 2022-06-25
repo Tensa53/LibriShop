@@ -21,17 +21,20 @@ public class ConfermaIndirizzoServlet extends HttpServlet {
             if (!utente.isAmministratore()) {
                 String [] indirizzovet = request.getParameterValues("indirizzo");
 
-                IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+                if(indirizzovet.length == 3) {
+                    IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
 
-                Indirizzo indirizzo = indirizzoDAO.doRetrieveByViaCivicoCAP(indirizzovet[0],indirizzovet[1],indirizzovet[2]);
+                    Indirizzo indirizzo = indirizzoDAO.doRetrieveByViaCivicoCAP(indirizzovet[0],indirizzovet[1],indirizzovet[2]);
 
-                request.getSession().setAttribute("indirizzo",indirizzo);
+                    request.getSession().setAttribute("indirizzo",indirizzo);
 
-                String address = "/WEB-INF/ORDINE/ordine.jsp";
+                    String address = "/WEB-INF/ORDINE/ordine.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request,response);
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/area-riservata");
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

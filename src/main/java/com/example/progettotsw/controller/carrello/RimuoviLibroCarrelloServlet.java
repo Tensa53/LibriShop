@@ -16,9 +16,6 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
         String i = request.getParameter("i");
         String isbn = request.getParameter("isbn"+i);
 
-        log(i);
-        log(isbn);
-
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
         Dettaglio d = carrello.getDettagliobyISBN(isbn);

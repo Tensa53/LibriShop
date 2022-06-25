@@ -39,7 +39,7 @@
         <p>Ordine N. <%=o.getId()%></p>
         <p>Data Ordine : <%=o.getDataOrdineReversedString()%></p>
         <p>Utente : <%=o.getUtente().getMail()%></p>
-        <p>Totale : <%=o.getTotale()%></p>
+        <p>Totale : <%=o.getTotale()%>€</p>
         <p>Dettagli Libri : </p>
         <div class="container-dettagli-ordine">
             <ul>

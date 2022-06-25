@@ -20,6 +20,8 @@ public class ScegliPagamentoServlet extends HttpServlet {
 
         if (utente != null) {
             if (!utente.isAmministratore()) {
+                log(String.valueOf(request.getRequestURL()));
+
                 PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
                 List<Pagamento> pagamenti = pagamentoDAO.doRetrievebyUserMail(utente.getMail());

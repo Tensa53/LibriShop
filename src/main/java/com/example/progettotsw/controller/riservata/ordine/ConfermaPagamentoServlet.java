@@ -21,17 +21,21 @@ public class ConfermaPagamentoServlet extends HttpServlet {
             if (!utente.isAmministratore()) {
                 String numeroCarta = request.getParameter("numeroCarta");
 
-                PagamentoDAO pagamentoDAO = new PagamentoDAO();
+                if (numeroCarta.length() > 0) {
+                    PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-                Pagamento pagamento = pagamentoDAO.doRetrieveByNumeroCarta(numeroCarta);
+                    Pagamento pagamento = pagamentoDAO.doRetrieveByNumeroCarta(numeroCarta);
 
-                request.getSession().setAttribute("pagamento",pagamento);
+                    request.getSession().setAttribute("pagamento",pagamento);
 
-                String address = "/WEB-INF/ORDINE/ordine.jsp";
+                    String address = "/WEB-INF/ORDINE/ordine.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request,response);
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/area-riservata");
+
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

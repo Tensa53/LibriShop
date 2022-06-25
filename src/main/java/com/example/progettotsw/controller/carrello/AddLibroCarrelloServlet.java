@@ -15,7 +15,7 @@ public class AddLibroCarrelloServlet extends HttpServlet {
 
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        if((utente != null && !utente.isAmministratore()) || utente == null){ //possono accedere al carrello solamente gli utenti guest e utenti registrati di livello cliente
+        if(utente == null || (utente != null && !utente.isAmministratore())){ //possono accedere al carrello solamente gli utenti guest e utenti registrati di livello cliente
             String isbn = request.getParameter("isbn");
 
             int quantita = Integer.parseInt(request.getParameter("quantita"));

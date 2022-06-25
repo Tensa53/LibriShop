@@ -12,7 +12,6 @@ import java.io.IOException;
 @WebServlet("/controlla-username")
 
 public class ControlloUsernameServlet extends HttpServlet {
-
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
             String username = request.getParameter("username");

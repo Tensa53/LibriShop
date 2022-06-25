@@ -25,25 +25,29 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 boolean amministratore = Boolean.parseBoolean(request.getParameter("amministratore"));
 
-                Utente u = new Utente(mail,username,nome,cognome,amministratore);
+                boolean compilazioneForm = mail.length() > 0 && username.length() > 0 && nome.length() > 0 && cognome.length() > 0;
 
-                UtenteDAO utenteDAO = new UtenteDAO();
+                if (compilazioneForm) {
+                    Utente u = new Utente(mail, username, nome, cognome, amministratore);
 
-                if (password.length() > 0) {
-                    utente.setPassword(password);
-                    utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(),mail);
+                    UtenteDAO utenteDAO = new UtenteDAO();
+
+                    if (password.length() > 0) {
+                        utente.setPassword(password);
+                        utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(), mail);
+                    }
+
+                    String msg = null;
+
+                    if (utenteDAO.doUpdateUser(u) == 1)
+                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                    request.setAttribute("msg", msg);
+
+                    request.getSession().removeAttribute("utenti");
                 }
 
-                String msg = null;
-
-                if(utenteDAO.doUpdateUser(u) == 1)
-                    msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
-
                 String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
-
-                request.setAttribute("msg",msg);
-
-                request.getSession().removeAttribute("utenti");
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
@@ -53,7 +57,7 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/home");
     }
 
-    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

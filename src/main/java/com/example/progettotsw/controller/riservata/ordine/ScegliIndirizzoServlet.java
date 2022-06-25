@@ -18,6 +18,9 @@ public class ScegliIndirizzoServlet extends HttpServlet {
 
         if (utente != null) {
             if (!utente.isAmministratore()) {
+
+                log(String.valueOf(request.getRequestURL()));
+
                 IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
 
                 List<Indirizzo> indirizzi = indirizzoDAO.doRetrievebyUserMail(utente.getMail());

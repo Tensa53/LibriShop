@@ -10,12 +10,12 @@
     <%for(Indirizzo indirizzo : indirizzi){%>
         <form action="conferma-indirizzo" method="post">
             <ul>
-                <li><%=indirizzo.getVia()%></li>
-                <li><%=indirizzo.getCivico()%></li>
-                <li><%=indirizzo.getCAP()%></li>
-                <li><%=indirizzo.getCitta()%></li>
-                <li><%=indirizzo.getProvincia()%></li>
-                <li><%=indirizzo.getStato()%></li>
+                <li>Via : <%=indirizzo.getVia()%></li>
+                <li>Civico :<%=indirizzo.getCivico()%></li>
+                <li>CAP : <%=indirizzo.getCAP()%></li>
+                <li>Città : <%=indirizzo.getCitta()%></li>
+                <li>Provincia : <%=indirizzo.getProvincia()%></li>
+                <li>Stato : <%=indirizzo.getStato()%></li>
                 <input type="hidden" value="<%=indirizzo.getVia()%>" name="indirizzo">
                 <input type="hidden" value="<%=indirizzo.getCivico()%>" name="indirizzo">
                 <input type="hidden" value="<%=indirizzo.getCAP()%>" name="indirizzo">

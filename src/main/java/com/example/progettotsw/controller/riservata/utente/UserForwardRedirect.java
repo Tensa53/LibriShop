@@ -19,18 +19,6 @@ public class UserForwardRedirect extends HttpServlet {
         String iMieiIndirizzi = request.getParameter("iMieiIndirizzi");
         String iMieiMetodiDiPagamento = request.getParameter("iMieiMetodiDiPagamento");
 
-//        Class<UserForwardRedirect> userForwardRedirectClass = UserForwardRedirect.class;
-//
-//        Package pack = userForwardRedirectClass.getPackage();
-//
-//        String pa = pack.getName();
-//
-//        int last = pa.lastIndexOf(".") + 1;
-//
-//        String pac = pa.substring(last);
-//
-//        log(pac);
-
         if(utente != null) {
             if(!utente.isAmministratore()) {
                 if (iMieiDati != null) {

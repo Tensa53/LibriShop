@@ -23,19 +23,21 @@ public class ConfermaModificheAutoreServlet extends HttpServlet {
                 String cf = request.getParameter("CF");
                 String nome = request.getParameter("nome");
 
-                AutoreDAO autoreDAO = new AutoreDAO();
+                if(cf.length() > 0 && nome.length() > 0){
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                GenereDAO genereDAO = new GenereDAO();
+                    GenereDAO genereDAO = new GenereDAO();
 
-                Autore autore = new Autore(cf,nome);
+                    Autore autore = new Autore(cf,nome);
 
-                autoreDAO.doUpdate(autore);
+                    autoreDAO.doUpdate(autore);
 
-                String msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    String msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                request.setAttribute("autori",autoreDAO.doRetrieveAll());
-                request.setAttribute("generi",genereDAO.doRetrieveAll());
-                request.setAttribute("msg",msg);
+                    request.setAttribute("autori",autoreDAO.doRetrieveAll());
+                    request.setAttribute("generi",genereDAO.doRetrieveAll());
+                    request.setAttribute("msg",msg);
+                }
 
                 String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 

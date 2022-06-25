@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
                 if(!statoCarrelloDB && !statoCarrelloSession) {
                     request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
-                    request.getSession().setAttribute("carrello",mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
+                    request.getSession().setAttribute("carrello",Carrello.mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
                 } else if (!statoCarrelloDB && statoCarrelloSession) {
                     request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
                     request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
@@ -79,38 +79,38 @@ public class LoginServlet extends HttpServlet {
         doPost(request,response);
     }
 
-    private Carrello merge(Carrello carrelloA, Carrello carrelloB){
-        for (Dettaglio dettaglioB : carrelloB.getDettagli()){
-            Dettaglio dettaglioA = null;
-
-            if((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) {
-                dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());
-                BigDecimal prezzoDettaglioA = dettaglioA.getPrezzo();
-                if(dettaglioA.getQuantita() > 5)
-                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(5.00));
-                else
-                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));
-
-                dettaglioA.setPrezzo(prezzoDettaglioA);
-                BigDecimal totaleCarrelloA = carrelloA.getTotale();
-                totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo());
-                carrelloA.setTotale(totaleCarrelloA);
-            }else {
-                carrelloA.addDettaglio(dettaglioB);
-                BigDecimal totaleCarrelloA = carrelloA.getTotale();
-                totaleCarrelloA = totaleCarrelloA.add(dettaglioB.getPrezzo());
-                carrelloA.setTotale(totaleCarrelloA);
-            }
-        }
-
-        return carrelloA;
-    }
-
-    private Carrello mergeCarrelli(Carrello carrelloDB,Carrello carrelloSession) {
-        if(carrelloDB.getDettagli().size() > carrelloSession.getDettagli().size()){ //appendo al carrello più grande
-            return merge(carrelloDB,carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
-        } else {
-            return merge(carrelloSession,carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
-        }
-    }
+//    private Carrello merge(Carrello carrelloA, Carrello carrelloB){
+//        for (Dettaglio dettaglioB : carrelloB.getDettagli()){
+//            Dettaglio dettaglioA = null;
+//
+//            if((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) {
+//                dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());
+//                BigDecimal prezzoDettaglioA = dettaglioA.getPrezzo();
+//                if(dettaglioA.getQuantita() > 5)
+//                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(5.00));
+//                else
+//                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));
+//
+//                dettaglioA.setPrezzo(prezzoDettaglioA);
+//                BigDecimal totaleCarrelloA = carrelloA.getTotale();
+//                totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo());
+//                carrelloA.setTotale(totaleCarrelloA);
+//            }else {
+//                carrelloA.addDettaglio(dettaglioB);
+//                BigDecimal totaleCarrelloA = carrelloA.getTotale();
+//                totaleCarrelloA = totaleCarrelloA.add(dettaglioB.getPrezzo());
+//                carrelloA.setTotale(totaleCarrelloA);
+//            }
+//        }
+//
+//        return carrelloA;
+//    }
+//
+//    private Carrello mergeCarrelli(Carrello carrelloDB,Carrello carrelloSession) {
+//        if(carrelloDB.getDettagli().size() > carrelloSession.getDettagli().size()){ //appendo al carrello più grande
+//            return merge(carrelloDB,carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
+//        } else {
+//            return merge(carrelloSession,carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
+//        }
+//    }
 }

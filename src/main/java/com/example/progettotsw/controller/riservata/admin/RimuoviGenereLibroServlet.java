@@ -17,7 +17,7 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        if(utente != null) {
+        if (utente != null) {
             if (utente.isAmministratore()) {
                 String nome = request.getParameter("nome-genere");
 
@@ -33,10 +33,10 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
 
                 String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                if (libri.size() > 0){
+                if (libri.size() > 0) {
                     msg = "Impossibile rimuovere il seguente genere, è presente nei seguenti libri : <ol>";
 
-                    for (Libro l : libri){
+                    for (Libro l : libri) {
                         msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
                     }
 
@@ -46,22 +46,22 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
                     msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                 }
 
-                request.setAttribute("msg",msg);
+                request.setAttribute("msg", msg);
 
-                request.setAttribute("autori",autoreDAO.doRetrieveAll());
+                request.setAttribute("autori", autoreDAO.doRetrieveAll());
 
-                request.setAttribute("generi",genereDAO.doRetrieveAll());
+                request.setAttribute("generi", genereDAO.doRetrieveAll());
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request,response);
+                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else
             response.sendRedirect(request.getContextPath() + "/home");
     }
 
-    public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-        doPost(request,response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doPost(request, response);
     }
 }

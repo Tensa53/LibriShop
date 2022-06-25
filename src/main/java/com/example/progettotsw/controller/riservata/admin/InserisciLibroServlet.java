@@ -34,60 +34,68 @@ public class InserisciLibroServlet extends HttpServlet {
                 String titolo = request.getParameter("titolo");
                 String autoreString = request.getParameter("autore");
                 String[] genere = request.getParameterValues("genere");
-                ArrayList<String> generi = new ArrayList<>();
-                Collections.addAll(generi,genere);
                 String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
-                BigDecimal prezzo = new BigDecimal(request.getParameter("prezzo"));
+                String prezzoString = request.getParameter("prezzo");
+                String disponibilitaString = request.getParameter("disponibilita");
                 String data = request.getParameter("dataPubblicazione");
                 String editore = request.getParameter("editore");
-                BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
-                int disponibilita = Integer.parseInt(request.getParameter("disponibilita"));
+
                 Part foto = request.getPart("foto");
 
-                log(data);
-
-                String uploadPath = getServletContext().getRealPath("") + "img";
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) uploadDir.mkdir();
-
-                String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
-
-                foto.write(imgpath);
-
-                String subpath = "./img/" + foto.getSubmittedFileName();
-
-                int year = Integer.parseInt(data.split("-")[0]);
-                int month = Integer.parseInt(data.split("-")[1]);
-                int day = Integer.parseInt(data.split("-")[2]);
-
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
-
-                Libro libro = new Libro(isbn, titolo, descrizione, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath);
-
-                LibroDAO libroDAO = new LibroDAO();
-
-                AutoreDAO autoreDAO = new AutoreDAO();
+                boolean compilazioneForm = isbn.length() > 0 && titolo.length() > 0 && autoreString.length() > 0 && genere.length > 0 && descrizione.length() > 0 && prezzoString.length() > 0 && disponibilitaString.length() > 0 && data.length() > 0 && editore.length() > 0 && foto != null;
 
                 GenereDAO genereDAO = new GenereDAO();
 
-                Autore autore = autoreDAO.doRetrievebyName(autoreString);
+                if (compilazioneForm) {
+                    BigDecimal prezzo = new BigDecimal(prezzoString);
+                    BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
+                    int disponibilita = Integer.parseInt(disponibilitaString);
 
-                if (altro.length() > 0) {
-                    generi.add(altro);
-                    genereDAO.doSave(altro);
+                    ArrayList<String> generi = new ArrayList<>();
+                    Collections.addAll(generi, genere);
+
+                    String uploadPath = getServletContext().getRealPath("") + "img";
+                    File uploadDir = new File(uploadPath);
+                    if (!uploadDir.exists()) uploadDir.mkdir();
+
+                    String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
+
+                    foto.write(imgpath);
+
+                    String subpath = "./img/" + foto.getSubmittedFileName();
+
+                    int year = Integer.parseInt(data.split("-")[0]);
+                    int month = Integer.parseInt(data.split("-")[1]);
+                    int day = Integer.parseInt(data.split("-")[2]);
+
+                    GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
+
+                    Libro libro = new Libro(isbn, titolo, descrizione, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath);
+
+                    LibroDAO libroDAO = new LibroDAO();
+
+                    AutoreDAO autoreDAO = new AutoreDAO();
+
+                    Autore autore = autoreDAO.doRetrievebyName(autoreString);
+
+                    if (altro.length() > 0) {
+                        generi.add(altro);
+                        genereDAO.doSave(altro);
+                    }
+
+                    String msg = null;
+
+                    if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
+                        msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+
+                    request.setAttribute("msg", msg);
+
                 }
 
-                String msg = null;
-
-                if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
-                    msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                request.setAttribute("generi", genereDAO.doRetrieveAll());
 
                 String address = "/WEB-INF/ADMIN/insLibro.jsp";
-
-                request.setAttribute("msg", msg);
-
-                request.setAttribute("generi", genereDAO.doRetrieveAll());
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);

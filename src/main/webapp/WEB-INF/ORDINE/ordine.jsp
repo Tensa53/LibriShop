@@ -15,7 +15,7 @@
     if (msg != null) {
 %>
 
-<p class="error">${msg}</p>
+<div class="error">${msg}</div>
 
 <%}%>
 

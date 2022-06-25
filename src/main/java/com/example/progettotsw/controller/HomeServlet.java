@@ -15,7 +15,6 @@ import java.util.List;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-
     public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
         LibroDAO libroDAO = new LibroDAO();

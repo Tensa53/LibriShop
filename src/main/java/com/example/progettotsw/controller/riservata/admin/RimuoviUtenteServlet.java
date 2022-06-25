@@ -16,8 +16,8 @@ public class RimuoviUtenteServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        if (utente != null){
-            if (utente.isAmministratore()){
+        if (utente != null) {
+            if (utente.isAmministratore()) {
                 String mail = request.getParameter("mail-utente");
 
                 if (mail != null) {
@@ -32,13 +32,13 @@ public class RimuoviUtenteServlet extends HttpServlet {
                     if (row == 1)
                         msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                    request.setAttribute("msg",msg);
+                    request.setAttribute("msg", msg);
 
                     String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    rd.forward(request,response);
+                    rd.forward(request, response);
                 }
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
@@ -46,7 +46,7 @@ public class RimuoviUtenteServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/home");
     }
 
-    public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-        doPost(request,response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doPost(request, response);
     }
 }
