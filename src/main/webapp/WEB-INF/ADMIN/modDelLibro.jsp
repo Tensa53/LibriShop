@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/immagineLibro.js" type="text/javascript"></script>
+    <script src="./script/validateFormModLibro.js" type="text/javascript"></script>
     <%List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
       List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
       List<Genere> generiLibro = (List<Genere>) request.getAttribute("generi-libro");
@@ -38,14 +39,17 @@
 
 <%if(libro != null) {;%>
 
-<form action="conferma-modifiche-libro" method="post" enctype="multipart/form-data">
+<form name="modificalibro" action="conferma-modifiche-libro" method="post" enctype="multipart/form-data" onsubmit="return validateFormModLibro()">
     <label for = "isbn">ISBN : <%=libro.getISBN()%></label> <br>
-    <input type="hidden" name="isbn" id="isbn" value="<%=libro.getISBN()%>"><br>
+    <p id="isbnP"></p>
+    <input type="hidden" name="isbn" id="isbn" value="<%=libro.getISBN()%>" required><br>
     <label for = "titolo">Titolo : </label> <br>
-    <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>"><br>
+    <p id="titoloP"></p>
+    <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>" required><br>
     <label for = "autore">Autore : </label> <br>
     <p id="controlloautore"></p>
-    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>"><br>
+    <p id="autoreP"></p>
+    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>" required><br>
     <label for= "genere">Genere : </label><br>
     <div id="genere">
         <%
@@ -57,20 +61,23 @@
                     <input type="checkbox" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
         <%}}%>
         <label for="altro">Altro Genere : </label>
+        <p id="altroP"></p>
         <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
-    <textarea name="descrizione" id="descrizione"><%=libro.getDescrizione()%></textarea><br>
+    <p id="descrizioneP"></p>
+    <textarea required name="descrizione" id="descrizione"><%=libro.getDescrizione()%></textarea><br>
     <label for = "prezzo">Prezzo : </label> <br>
-    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" value="<%=libro.getPrezzo()%>"><br>
+    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>
-    <input type="date" name="dataPubblicazione" id="dataPubblicazione" value="<%=libro.getDataPubblicazioneReversedString()%>"><br>
+    <input type="date" name="dataPubblicazione" id="dataPubblicazione" required value="<%=libro.getDataPubblicazioneReversedString()%>"><br>
     <label for = "editore">Editore : </label> <br>
-    <input type="text" name="editore" id="editore" value="<%=libro.getEditore()%>"><br>
+    <p id="editoreP"></p>
+    <input type="text" name="editore" id="editore" required value="<%=libro.getEditore()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
     <input type="number" name="sconto" id="sconto" min="1" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
-    <input type="number" name="disponibilita" id="disponibilita" value="<%=libro.getDisponibilita()%>"><br>
+    <input type="number" name="disponibilita" id="disponibilita" required value="<%=libro.getDisponibilita()%>"><br>
     <label for = "foto">Foto : </label> <br>
     <input type="file" name="foto" id="foto"><br>
     <input type="submit" value="Conferma Modifiche"><br>
