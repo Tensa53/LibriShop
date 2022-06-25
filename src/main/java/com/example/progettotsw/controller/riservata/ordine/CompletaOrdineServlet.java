@@ -30,23 +30,29 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                 ArrayList<Dettaglio> incompatibili = new ArrayList<>();
 
-                String incompatibiliStr = "";
+                String incompatibiliStr = "<ol>";
+
+                LibroDAO libroDAO = new LibroDAO();
 
                 List<Libro> libri = new ArrayList<>();
 
                 for (Dettaglio d : carrello.getDettagli()) {
                     Libro l = d.getLibro();
 
+                    l.setDisponibilita((libroDAO.doRetrieveById(l.getISBN())).getDisponibilita()); //nel frattempo altri utenti potrebbero aver ordinato lo stesso libro ed occorre aggiornare la disponibilità
+
                     int indisponibile = l.getDisponibilita() - d.getQuantita();
 
                     if (indisponibile < 0) {
                         incompatibili.add(d);
-                        incompatibiliStr += "Titolo : " + d.getLibro().getTitolo() + "ISBN : " + d.getLibro().getISBN() + " quantità in eccesso : " + indisponibile * -1 + "\n";
+                        incompatibiliStr += "<li> Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - quantità in eccesso : " + indisponibile * -1 + "</li>";
                     } else {
                         l.setDisponibilita(l.getDisponibilita() - d.getQuantita());
                         libri.add(l);
                     }
                 }
+
+                incompatibiliStr += "</ol>";
 
                 if (pagamento == null || indirizzo == null) {
                     address = "/WEB-INF/ORDINE/ordine.jsp";
@@ -61,7 +67,7 @@ public class CompletaOrdineServlet extends HttpServlet {
                 } else if (incompatibili.size() > 0) {
                     address = "/WEB-INF/ORDINE/ordine.jsp";
 
-                    String msg = "i seguenti libri " + incompatibiliStr + " sforano la quantità attualmente acquistabile,sei pregato di modificare il carrello";
+                    String msg = "i seguenti libri : " + incompatibiliStr + " sforano la quantità attualmente acquistabile,sei pregato di modificare il carrello";
 
                     request.setAttribute("msg", msg);
 
@@ -74,8 +80,6 @@ public class CompletaOrdineServlet extends HttpServlet {
                     OrdineDAO ordineDAO = new OrdineDAO();
 
                     ordineDAO.doSave(ordine);
-
-                    LibroDAO libroDAO = new LibroDAO();
 
                     libroDAO.doUpdateDisponibilitaAllFromList(libri);
 
