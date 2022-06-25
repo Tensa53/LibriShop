@@ -3,42 +3,46 @@ function validateFormRegistrazione(){
     let nome = document.forms["Registrazione"]["nomer"].value;
     let cognome = document.forms["Registrazione"]["cognomer"].value;
     let mail = document.forms["Registrazione"]["mailr"].value;
+    let username = document.forms["Registrazione"]["usernamer"].value;
     let password = document.forms["Registrazione"]["passwordr"].value;
-    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let c = 0;
+
+    document.getElementById("nomeP").innerText = "";
+    document.getElementById("cognomeP").innerText = "";
+    document.getElementById("mailP").innerText = "";
+    document.getElementById("passwordP").innerText = "";
 
     // nome
     //lunghezza
-    if (nome.length > 20){
-        alert("Il campo nome non può superare i 20 caratteri.")
-        return false;
+    if (nome.length > 20){ c++;
+        document.getElementById("nomeP").innerText = "Il campo nome non può superare i 20 caratteri.";
     }
 
     // cognome
     //lunghezza
-    if (cognome.length > 20){
-        alert("Il campo cognome non può superare i 20 caratteri.")
-        return false;
+    if (cognome.length > 20){ c++;
+        document.getElementById("cognomeP").innerText = "Il campo cognome non può superare i 20 caratteri.";
     }
 
     // mail
     //lunghezza
-    if (mail.length > 30){
-        alert("Il campo mail non può superare i 30 caratteri.")
-        return false;
+    if (mail.length > 30){ c++;
+        document.getElementById("mailP").innerText = "Il campo mail non può superare i 30 caratteri.";
     }
     //formato
-    if (!mail.match(mailformat)){
-        alert("Il formato dell'email deve essere del tipo nomecasella@tuodominio.it")
-        return false;
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!mail.match(mailformat)){ c++;
+        document.getElementById("controllomail").innerText = "Il formato dell'email deve essere del tipo nomecasella@tuodominio.it";
     }
 
     // password
     //lunghezza
-    if (password.length > 40){
-        alert("Il campo password non può superare i 40 caratteri.")
-        return false;
+    if (password.length > 40){ c++;
+        document.getElementById("nomeP").innerText = "Il campo password non può superare i 40 caratteri."
     }
 
-    // i campi sono tutti corretti
+    if (c>0){
+        return false;
+    }
     return true;
 }

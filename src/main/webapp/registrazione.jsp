@@ -16,16 +16,21 @@
 <div id="container-registrazione">
     <form name="Registrazione" action="register" onsubmit="return validateFormRegistrazione()">
         <label for = "nome">Nome : </label> <br>
+        <p id="nomeP"></p>
         <input type="text" name="nomer" id="nome" required><br>
         <label for = "cognome">Cognome : </label> <br>
+        <p id="cognomeP"></p>
         <input type="text" name="cognomer" id="cognome" required><br>
         <label for = "controlla-mail">Mail : </label> <br>
+        <p id="mailP"></p>
         <p id="controllomail"></p>
         <input type="email" name="mailr" id="controlla-mail" onblur="ControllaMail()" required><br>
         <label for = "controlla-username">Username : </label><br>
+        <p id="usernameP"></p>
         <p id="controllousername"></p>
         <input type="text" name="usernamer" id="controlla-username" onblur="ControllaUsername()" required><br>
         <label for = "password">Password : </label>
+        <p id="passwordP"></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
         <input type="hidden" name="amminstratorer" id="amministratore" value="false"><br>
