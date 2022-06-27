@@ -44,25 +44,55 @@
     <%}%>
 </div>
 
-<div id="container-catalogo">
+<div style="overflow-x: auto">
 
-    <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");
+    <table>
+        <tr>
 
-        for (Libro l:libri) { %>
-    <figure class = "catalogo-item">
-        <form action="page-libro">
-        <input type="image" src="<%=l.getFoto()%>">
-        <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
-        <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-            <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
-                <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
-            <%}else {%>
-                <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
-            <%}%>
-        </form>
-    </figure>
-    <% } %>
+            <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");
+
+                for (Libro l : libri) { %>
+            <td>
+                <figure class="catalogo-item">
+                    <form action="page-libro">
+                        <input type="image" src="<%=l.getFoto()%>">
+                        <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+                        <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
+                        <%if (l.getSconto().compareTo(new BigDecimal(0.00)) == 1) {%>
+                        <figcaption><span
+                                class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span>
+                        </figcaption>
+                        <%} else {%>
+                        <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
+                        <%}%>
+                    </form>
+                </figure>
+            </td>
+            <% } %>
+
+        </tr>
+    </table>
 </div>
+
+<%--<div id="container-catalogo">--%>
+
+<%--    <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");--%>
+
+<%--        for (Libro l:libri) { %>--%>
+<%--    <figure class = "catalogo-item">--%>
+<%--        <form action="page-libro">--%>
+<%--        <input type="image" src="<%=l.getFoto()%>">--%>
+<%--        <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>--%>
+<%--        <input type="hidden" name="isbn" value="<%=l.getISBN()%>">--%>
+<%--            <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>--%>
+<%--                <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>--%>
+<%--            <%}else {%>--%>
+<%--                <figcaption><%=l.getPrezzo().toString()%>€</figcaption>--%>
+<%--            <%}%>--%>
+<%--        </form>--%>
+<%--    </figure>--%>
+<%--    <% } %>--%>
+<%--</div>--%>
 
 <!-- <a href="http://www.google.com">Visualizza altro</a> --->
 

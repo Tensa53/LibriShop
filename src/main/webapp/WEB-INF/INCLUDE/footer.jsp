@@ -1,3 +1,3 @@
 <footer>
-  <p>FOOTER</p>
+  <p>Sito realizzato da : Daniele FABIANO e Mariantonietta MASELLI</p>
 </footer>

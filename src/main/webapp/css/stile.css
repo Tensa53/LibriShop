@@ -251,6 +251,16 @@ div.container-ordini-item {
     margin: 5px;
 }
 
+#container-indirizzo-utente {
+    border : 1px solid #555555;
+    margin: 5px;
+}
+
+#container-pagamento-utente {
+    border : 1px solid #555555;
+    margin: 5px;
+}
+
 /*media query*/
 
 @media screen and (max-width: 660px) {
