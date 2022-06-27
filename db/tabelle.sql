@@ -9,13 +9,13 @@ USE base;
 CREATE TABLE Libro (
                        ISBN char(13) primary key,
                        Titolo varchar(30) not null, /*nel titolo viene eventualmente specificata l'edizione*/
-                       Descrizione varchar(500) not null,
                        Prezzo decimal(5,2) not null,
                        DataPubblicazione date not null,
                        Editore varchar(20) not null,
                        Sconto decimal(2,0) not null,
                        Disponibilita int not null,
-                       Foto varchar(50) not null
+                       Foto varchar(50) not null,
+                       Descrizione text not null
 );
 
 CREATE TABLE Genere (
@@ -39,17 +39,19 @@ CREATE TABLE Utente (
 CREATE TABLE Indirizzo (
                            Via varchar(40) not null,
                            Civico varchar(5) not null,
-                           CAP char(5) not null,
                            Citta varchar(20) not null,
+                           CAP char(5) not null,
                            Provincia varchar(20) not null,
-                           Stato varchar(20) not null,
-                           primary key(Via,Civico,CAP)
+                           Utente varchar(30) not null,
+                           primary key(Via,Civico,Citta,Utente)
 );
 
 CREATE TABLE Pagamento (
-                           NumeroCarta varchar(16) primary key,
+                           NumeroCarta varchar(16) not null,
                            Scadenza date not null,
-                           CCV char(3) not null
+                           CCV char(3) not null,
+                           Utente varchar(30) not null,
+                           primary key(NumeroCarta,Utente)
 );
 
 -- tabelle dipendenti
@@ -78,7 +80,6 @@ CREATE TABLE Ordine(
                        CAP char(5) not null,
                        Citta varchar(20) not null,
                        Provincia varchar(20) not null,
-                       Stato varchar(20) not null,
                        NumeroCarta varchar(16) not null,
                        Scadenza date not null,
                        CCV char(3) not null,
@@ -104,22 +105,4 @@ CREATE TABLE Dettaglio (
                            foreign key (ISBNLibro) references Libro(ISBN),
                            foreign key (Carrello) references Carrello(Utente),
                            foreign key (Ordine) references Ordine(ID)
-);
-
-CREATE TABLE Dichiarazione (
-                               Utente varchar(30),
-                               IndirizzoVia varchar(40),
-                               IndirizzoNumero varchar(5),
-                               IndirizzoCAP char(5),
-                               primary key(Utente,IndirizzoVia,IndirizzoNumero,IndirizzoCAP),
-                               foreign key (Utente) references Utente(Email),
-                               foreign key(IndirizzoVia,IndirizzoNumero,IndirizzoCAP) references Indirizzo(Via,Civico,CAP)
-);
-
-CREATE TABLE Definizione (
-                             Utente varchar(30),
-                             Pagamento varchar(16),
-                             primary key(Utente,Pagamento),
-                             foreign key(Utente) references Utente(Email),
-                             foreign key(Pagamento) references Pagamento(NumeroCarta)
 );

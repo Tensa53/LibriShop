@@ -13,11 +13,7 @@ SELECT * FROM Autore;
 
 SELECT * FROM Utente;
 
-SELECT U.Email,I.Via,I.Civico,I.CAP FROM Utente U,Dichiarazione D,Indirizzo I WHERE (U.Email = D.Utente AND I.Via = D.IndirizzoVia AND I.Civico = D.IndirizzoNumero AND I.CAP = D.IndirizzoCAP);
-
 SELECT * FROM Indirizzo;
-
-SELECT U.Email,P.NumeroCarta FROM Utente U,Definizione D,Pagamento P WHERE (D.Utente = U.Email AND P.NumeroCarta = D.Pagamento);
 
 SELECT * FROM Pagamento;
 
