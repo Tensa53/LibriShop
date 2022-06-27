@@ -10,12 +10,13 @@ import java.util.List;
 
 public class PagamentoDAO {
 
-    public Pagamento doRetrieveByNumeroCarta(String numeroCarta) {
+    public Pagamento doRetrieveByNumeroCartaUtente(String numeroCarta,String mail) {
         Pagamento p = null;
 
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Pagamento WHERE NumeroCarta = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Pagamento WHERE NumeroCarta = ? AND Utente = ?");
             ps.setString(1, numeroCarta);
+            ps.setString(2,mail);
 
             ResultSet rs=ps.executeQuery();
             if(rs.next()) {
@@ -49,7 +50,7 @@ public class PagamentoDAO {
     }
 
     public List<Pagamento> doRetrievebyUserMail(String mail) {
-        String sql = "SELECT * FROM Pagamento P,Definizione D WHERE (P.NumeroCarta = D.Pagamento) AND D.Utente = ?";
+        String sql = "SELECT * FROM Pagamento WHERE Utente = ?";
 
         List<Pagamento> pagamenti = new ArrayList<>();
 
@@ -75,11 +76,23 @@ public class PagamentoDAO {
     }
 
 
-    public void doDeletebyNumeroCarta(String numeroCarta) {
-        String sql = "DELETE FROM Pagamento WHERE NumeroCarta = ?;";
+    public void doDeletebyNumeroCartaUtente(String numeroCarta,String mail) {
+        String sql = "DELETE FROM Pagamento WHERE NumeroCarta = ? AND Utente = ?;";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1,numeroCarta);
+            ps.setString(2,mail);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDeleteAllbyUtente(String mail){
+        String sql = "DELETE FROM Pagamento WHERE Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,mail);
 
             ps.executeUpdate();
         } catch (SQLException e) {

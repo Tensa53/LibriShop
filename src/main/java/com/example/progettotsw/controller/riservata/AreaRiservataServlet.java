@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/area-riservata")
 public class AreaRiservataServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         String address = "";
@@ -29,5 +29,8 @@ public class AreaRiservataServlet extends HttpServlet {
             rd.forward(request,response);
         } else
             response.sendRedirect(request.getContextPath() + "/home");
+    }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
     }
 }

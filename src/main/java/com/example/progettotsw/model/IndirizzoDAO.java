@@ -11,8 +11,8 @@ import java.util.List;
 
 public class IndirizzoDAO {
 
-    public Indirizzo doRetrieveByViaCivicoCAP(String via, String civico, String CAP){
-        String sql = "SELECT * FROM Indirizzo WHERE Via=? AND Civico=? AND CAP=?;";
+    public Indirizzo doRetrieveByViaCivicoCittaUtente(String via, String civico, String Citta, String mail){
+        String sql = "SELECT * FROM Indirizzo WHERE Via=? AND Civico=? AND Citta=? AND Utente = ?;";
 
         Indirizzo i = null;
 
@@ -21,7 +21,8 @@ public class IndirizzoDAO {
 
         ps.setString(1,via);
         ps.setString(2,civico);
-        ps.setString(3,CAP);
+        ps.setString(3,Citta);
+        ps.setString(4,mail);
 
             ResultSet rs = ps.executeQuery();
 
@@ -29,10 +30,9 @@ public class IndirizzoDAO {
                 i = new Indirizzo();
                 i.setVia(rs.getString("Via"));
                 i.setCivico(rs.getString("Civico"));
-                i.setCAP(rs.getString("CAP"));
                 i.setCitta(rs.getString("Citta"));
+                i.setCAP(rs.getString("CAP"));
                 i.setProvincia(rs.getString("Provincia"));
-                i.setStato(rs.getString("Stato"));
             }
 
         } catch (SQLException e) {
@@ -51,10 +51,9 @@ public class IndirizzoDAO {
 
             ps.setString(1,i.getVia());
             ps.setString(2,i.getCivico());
-            ps.setString(3,i.getCAP());
-            ps.setString(4,i.getCitta());
+            ps.setString(3,i.getCitta());
+            ps.setString(4,i.getCAP());
             ps.setString(5,i.getProvincia());
-            ps.setString(6,i.getStato());
 
             return ps.executeUpdate();
 
@@ -64,7 +63,7 @@ public class IndirizzoDAO {
     }
 
     public List<Indirizzo> doRetrievebyUserMail(String mail){
-        String sql = "SELECT * FROM Dichiarazione D,Indirizzo I WHERE (D.IndirizzoVia = I.Via AND D.IndirizzoCAP = I.CAP AND D.IndirizzoNumero = I.Civico) AND D.Utente = ?";
+        String sql = "SELECT * FROM Indirizzo WHERE Utente = ?";
 
         List<Indirizzo> indirizzi = new ArrayList<>();
 
@@ -75,12 +74,11 @@ public class IndirizzoDAO {
             while (rs.next()){
                 String via = rs.getString("Via");
                 String civico = rs.getString("Civico");
-                String CAP = rs.getString("CAP");
                 String citta = rs.getString("Citta");
+                String CAP = rs.getString("CAP");
                 String provincia = rs.getString("Provincia");
-                String stato = rs.getString("Stato");
 
-                Indirizzo indirizzo = new Indirizzo(via,civico,CAP,citta,provincia,stato);
+                Indirizzo indirizzo = new Indirizzo(via,civico,citta,CAP,provincia);
 
                 indirizzi.add(indirizzo);
             }
@@ -91,13 +89,25 @@ public class IndirizzoDAO {
         return indirizzi;
     }
 
-    public void doDeletebyIndirizzo(String via, String civico, String CAP) {
-        String sql = "DELETE FROM Indirizzo WHERE Via = ? AND Civico = ? AND CAP = ?;";
+    public void doDeletebyIndirizzoUtente(String via, String civico, String Citta,String mail) {
+        String sql = "DELETE FROM Indirizzo WHERE Via = ? AND Civico = ? AND Citta = ? AND Utente = ?;";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1,via);
             ps.setString(2,civico);
-            ps.setString(3,CAP);
+            ps.setString(3,Citta);
+            ps.setString(4,mail);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDeleteAllbyUtente(String mail) {
+        String sql = "DELETE FROM Indirizzo WHERE Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1,mail);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

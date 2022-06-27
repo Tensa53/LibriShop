@@ -9,19 +9,19 @@ import java.util.function.BiFunction;
 
 public class Libro {
 
-    public Libro(String ISBN, String titolo, String descrizione, BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita, String foto) {
+    public Libro(String ISBN, String titolo, BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita, String foto,  String descrizione) {
         this.ISBN = ISBN;
         this.titolo = titolo;
-        this.descrizione = descrizione;
         this.prezzo = prezzo;
         this.dataPubblicazione = dataPubblicazione;
         this.editore = editore;
         this.sconto = sconto;
         this.disponibilita = disponibilita;
         this.foto = foto;
+        this.descrizione = descrizione;
     }
 
-    public Libro(String ISBN, String titolo, String descrizione, BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita) {
+    public Libro(String ISBN, String titolo,BigDecimal prezzo, GregorianCalendar dataPubblicazione, String editore, BigDecimal sconto, int disponibilita,  String descrizione) {
         this.ISBN = ISBN;
         this.titolo = titolo;
         this.descrizione = descrizione;

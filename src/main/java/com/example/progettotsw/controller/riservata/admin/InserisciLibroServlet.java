@@ -43,7 +43,7 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn.length() > 0 && titolo.length() > 0 && autoreString.length() > 0 && genere.length > 0 && descrizione.length() > 0 && prezzoString.length() > 0 && disponibilitaString.length() > 0 && data.length() > 0 && editore.length() > 0 && foto != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreString != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
                 GenereDAO genereDAO = new GenereDAO();
 
@@ -56,8 +56,11 @@ public class InserisciLibroServlet extends HttpServlet {
                     Collections.addAll(generi, genere);
 
                     String uploadPath = getServletContext().getRealPath("") + "img";
+                    log(uploadPath);
+
                     File uploadDir = new File(uploadPath);
-                    if (!uploadDir.exists()) uploadDir.mkdir();
+                        if (!uploadDir.exists())
+                            uploadDir.mkdir();
 
                     String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
 
@@ -71,7 +74,7 @@ public class InserisciLibroServlet extends HttpServlet {
 
                     GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
 
-                    Libro libro = new Libro(isbn, titolo, descrizione, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath);
+                    Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath, descrizione);
 
                     LibroDAO libroDAO = new LibroDAO();
 

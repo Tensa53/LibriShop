@@ -33,7 +33,11 @@
     <input type="submit" value="Modifica Libro">
     <button formaction="rimuovi-libro-catalogo">Rimuovi Libro</button>
 </form>
-<img id="fotolibro" src="<%=libri.get(0).getFoto()%>">
+<%if (libro != null){%>
+    <img id="fotolibro" src="<%=libro.getFoto()%>">
+<%}else {%>
+    <img id="fotolibro" src="<%=libri.get(0).getFoto()%>">
+<%}%>
 <%}%>
 
 

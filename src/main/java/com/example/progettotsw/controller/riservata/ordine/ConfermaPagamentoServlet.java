@@ -21,10 +21,10 @@ public class ConfermaPagamentoServlet extends HttpServlet {
             if (!utente.isAmministratore()) {
                 String numeroCarta = request.getParameter("numeroCarta");
 
-                if (numeroCarta.length() > 0) {
+                if (numeroCarta != null) {
                     PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-                    Pagamento pagamento = pagamentoDAO.doRetrieveByNumeroCarta(numeroCarta);
+                    Pagamento pagamento = pagamentoDAO.doRetrieveByNumeroCartaUtente(numeroCarta,utente.getMail());
 
                     request.getSession().setAttribute("pagamento",pagamento);
 

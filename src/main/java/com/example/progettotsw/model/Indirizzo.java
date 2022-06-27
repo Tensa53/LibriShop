@@ -2,13 +2,12 @@ package com.example.progettotsw.model;
 
 public class Indirizzo {
 
-    public Indirizzo(String via, String civico, String CAP, String citta, String provincia, String stato) {
+    public Indirizzo(String via, String civico, String citta, String CAP, String provincia) {
         this.via = via;
         this.civico = civico;
-        this.CAP = CAP;
         this.citta = citta;
+        this.CAP = CAP;
         this.provincia = provincia;
-        this.stato = stato;
     }
 
     public Indirizzo(){}
@@ -51,14 +50,6 @@ public class Indirizzo {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
-    }
-
-    public String getStato() {
-        return stato;
-    }
-
-    public void setStato(String stato) {
-        this.stato = stato;
     }
 
     private String via, civico, CAP, citta, provincia, stato;

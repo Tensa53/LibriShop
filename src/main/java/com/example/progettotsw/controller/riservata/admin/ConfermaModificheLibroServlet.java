@@ -38,7 +38,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn.length() > 0 && titolo.length() > 0 && autoreString.length() > 0 && genere.length > 0 && descrizione.length() > 0 && prezzoString.length() > 0 && disponibilitaString.length() > 0 && data.length() > 0 && editore.length() > 0;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreString != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
 
                 if (compilazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);
@@ -54,15 +54,11 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                     GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
 
-                    Libro libro = new Libro(isbn, titolo, descrizione, prezzo, dataPubblicazione, editore, sconto, disponibilita);
+                    Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita,  descrizione);
 
                     LibroDAO libroDAO = new LibroDAO();
 
                     Libro oldLibro = libroDAO.doRetrieveById(isbn);
-
-                    AutoreDAO autoreDAO = new AutoreDAO();
-
-                    Autore autore = autoreDAO.doRetrievebyName(autoreString);
 
                     GenereDAO genereDAO = new GenereDAO();
 
@@ -93,6 +89,10 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                     }
 
                     String msg = null;
+
+                    AutoreDAO autoreDAO = new AutoreDAO();
+
+                    Autore autore = autoreDAO.doRetrievebyName(autoreString);
 
                     if (libroDAO.doUpdate(libro, autore.getCF(), generi) == 1)
                         msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";

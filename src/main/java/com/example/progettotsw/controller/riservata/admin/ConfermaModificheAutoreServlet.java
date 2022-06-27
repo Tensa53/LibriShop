@@ -23,7 +23,7 @@ public class ConfermaModificheAutoreServlet extends HttpServlet {
                 String cf = request.getParameter("CF");
                 String nome = request.getParameter("nome");
 
-                if(cf.length() > 0 && nome.length() > 0){
+                if(cf != null && nome != null){
                     AutoreDAO autoreDAO = new AutoreDAO();
 
                     GenereDAO genereDAO = new GenereDAO();

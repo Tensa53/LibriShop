@@ -13,8 +13,8 @@ import java.util.List;
 
 @WebServlet("/admin-forward-redirect")
 public class AdminForwardRedirectServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         log(request.getContextPath());
@@ -128,5 +128,8 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/home");
         } else
             response.sendRedirect(request.getContextPath() + "/home");
+    }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+            doPost(request,response);
     }
 }

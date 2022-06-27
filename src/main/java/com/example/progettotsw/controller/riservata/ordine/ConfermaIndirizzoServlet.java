@@ -24,7 +24,7 @@ public class ConfermaIndirizzoServlet extends HttpServlet {
                 if(indirizzovet.length == 3) {
                     IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
 
-                    Indirizzo indirizzo = indirizzoDAO.doRetrieveByViaCivicoCAP(indirizzovet[0],indirizzovet[1],indirizzovet[2]);
+                    Indirizzo indirizzo = indirizzoDAO.doRetrieveByViaCivicoCittaUtente(indirizzovet[0],indirizzovet[1],indirizzovet[2], utente.getMail());
 
                     request.getSession().setAttribute("indirizzo",indirizzo);
 

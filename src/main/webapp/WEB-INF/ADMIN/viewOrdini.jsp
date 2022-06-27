@@ -39,6 +39,8 @@
         <p>Ordine N. <%=o.getId()%></p>
         <p>Data Ordine : <%=o.getDataOrdineReversedString()%></p>
         <p>Utente : <%=o.getUtente().getMail()%></p>
+        <p>Indirizzo di spedizione : Via <%=o.getIndirizzo().getVia()%> <%=o.getIndirizzo().getCivico()%> <%=o.getIndirizzo().getCAP()%> <%=o.getIndirizzo().getCitta()%></p>
+        <p>Pagamento con carta N. : <%=o.getPagamento().getNumeroCarta()%></p>
         <p>Totale : <%=o.getTotale()%>€</p>
         <p>Dettagli Libri : </p>
         <div class="container-dettagli-ordine">

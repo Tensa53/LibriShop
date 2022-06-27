@@ -53,7 +53,6 @@ public class LibroDAO {
             while(rs.next()) {
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");
-                String Descrizione = rs.getString("Descrizione");
                 BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
@@ -61,7 +60,8 @@ public class LibroDAO {
                 BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                String Descrizione = rs.getString("Descrizione");
+                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -83,7 +83,6 @@ public class LibroDAO {
             while (rs.next()){
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");
-                String Descrizione = rs.getString("Descrizione");
                 BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
@@ -91,7 +90,8 @@ public class LibroDAO {
                 BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                String Descrizione = rs.getString("Descrizione");
+                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -113,7 +113,6 @@ public class LibroDAO {
             while (rs.next()){
                 String ISBN = rs.getString("ISBN");
                 String Titolo = rs.getString("Titolo");
-                String Descrizione = rs.getString("Descrizione");
                 BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
                 String Editore = rs.getString("Editore");
                 String dataPubblicazioneString = rs.getString("DataPubblicazione");
@@ -121,7 +120,8 @@ public class LibroDAO {
                 BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                String Descrizione = rs.getString("Descrizione");
+                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -148,7 +148,7 @@ public class LibroDAO {
                 BigDecimal Sconto = rs.getBigDecimal("Sconto");
                 int Disponibilita = rs.getInt("Disponibilita");
                 String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Descrizione,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto);
+                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -247,13 +247,13 @@ public class LibroDAO {
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1,libro.getISBN());
             pstmt.setString(2,libro.getTitolo());
-            pstmt.setString(3,libro.getDescrizione());
-            pstmt.setBigDecimal(4,libro.getPrezzo());
-            pstmt.setString(5,libro.getDataPubblicazioneReversedString());
-            pstmt.setString(6,libro.getEditore());
-            pstmt.setBigDecimal(7,libro.getSconto());
-            pstmt.setInt(8,libro.getDisponibilita());
-            pstmt.setString(9,libro.getFoto());
+            pstmt.setBigDecimal(3,libro.getPrezzo());
+            pstmt.setString(4,libro.getDataPubblicazioneReversedString());
+            pstmt.setString(5,libro.getEditore());
+            pstmt.setBigDecimal(6,libro.getSconto());
+            pstmt.setInt(7,libro.getDisponibilita());
+            pstmt.setString(8,libro.getFoto());
+            pstmt.setString(9,libro.getDescrizione());
             int row = pstmt.executeUpdate();
             doSaveAutoreLibro(libro,autore);
             doSaveGenereLibro(libro,generi);

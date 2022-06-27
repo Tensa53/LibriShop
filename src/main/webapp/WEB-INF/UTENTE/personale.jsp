@@ -10,8 +10,6 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<p><%=request.getServletPath().contains("/WEB-INF/UTENTE/")%></p>
-
 <%Utente utente = (Utente) session.getAttribute("utente");
 if (utente != null && utente.isAmministratore() == false){%>
     <form action="user-forward-redirect" method="post">

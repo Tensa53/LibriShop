@@ -12,13 +12,12 @@
             <ul>
                 <li>Via : <%=indirizzo.getVia()%></li>
                 <li>Civico :<%=indirizzo.getCivico()%></li>
-                <li>CAP : <%=indirizzo.getCAP()%></li>
                 <li>Città : <%=indirizzo.getCitta()%></li>
+                <li>CAP : <%=indirizzo.getCAP()%></li>
                 <li>Provincia : <%=indirizzo.getProvincia()%></li>
-                <li>Stato : <%=indirizzo.getStato()%></li>
                 <input type="hidden" value="<%=indirizzo.getVia()%>" name="indirizzo">
                 <input type="hidden" value="<%=indirizzo.getCivico()%>" name="indirizzo">
-                <input type="hidden" value="<%=indirizzo.getCAP()%>" name="indirizzo">
+                <input type="hidden" value="<%=indirizzo.getCitta()%>" name="indirizzo">
                 <input type="submit" value="Conferma il seguente indirizzo">
             </ul>
         </form>

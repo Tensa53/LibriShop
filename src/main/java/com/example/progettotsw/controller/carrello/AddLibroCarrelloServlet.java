@@ -35,10 +35,10 @@ public class AddLibroCarrelloServlet extends HttpServlet {
 
             if (carrello.getTotale().compareTo(zero) == 1 && (d = carrello.getDettagliobyISBN(isbn)) != null) { //carrello non vuoto e libro già esistente
                 BigDecimal totaleCarrello = carrello.getTotale();
-                totaleCarrello = totaleCarrello.subtract(d.getLibro().getPrezzoScontato());
+                totaleCarrello = totaleCarrello.subtract(d.getPrezzo());//rimuovo il prezzo del dettaglio attuale
                 d.setQuantita(d.getQuantita() + quantita);//sommiamo la quantità già esistente e la quantità aggiuntiva
                 BigDecimal prezzoDettaglio = d.getLibro().getPrezzoScontato();//se sconto è uguale a 0,prezzo e prezzoScontato saranno uguali
-                prezzoDettaglio.multiply(new BigDecimal(d.getQuantita()));
+                prezzoDettaglio = prezzoDettaglio.multiply(new BigDecimal(d.getQuantita()));
                 d.setPrezzo(prezzoDettaglio);
                 totaleCarrello = totaleCarrello.add(prezzoDettaglio);
                 carrello.setTotale(totaleCarrello);

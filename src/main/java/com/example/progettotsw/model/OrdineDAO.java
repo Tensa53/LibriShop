@@ -69,7 +69,7 @@ public class OrdineDAO {
     }
 
     public int doSave(Ordine ordine) {
-        String sql = "INSERT INTO Ordine (DataOrdine,Via,Numero,CAP,Citta,Provincia,Stato,NumeroCarta,Scadenza,CCV,Totale,Utente) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO Ordine (DataOrdine,Via,Numero,CAP,Citta,Provincia,NumeroCarta,Scadenza,CCV,Totale,Utente) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 
         String sql2 = "SELECT ID FROM Ordine WHERE Ordine.Utente = ? ORDER BY ID DESC LIMIT 1";
 
@@ -80,12 +80,11 @@ public class OrdineDAO {
             ps.setString(4,ordine.getIndirizzo().getCAP());
             ps.setString(5,ordine.getIndirizzo().getCitta());
             ps.setString(6,ordine.getIndirizzo().getProvincia());
-            ps.setString(7,ordine.getIndirizzo().getStato());
-            ps.setString(8,ordine.getPagamento().getNumeroCarta());
-            ps.setString(9,ordine.getPagamento().getScadenzaReversedString());
-            ps.setString(10,ordine.getPagamento().getCCV());
-            ps.setBigDecimal(11,ordine.getTotale());
-            ps.setString(12,ordine.getUtente().getMail());
+            ps.setString(7,ordine.getPagamento().getNumeroCarta());
+            ps.setString(8,ordine.getPagamento().getScadenzaReversedString());
+            ps.setString(9,ordine.getPagamento().getCCV());
+            ps.setBigDecimal(10,ordine.getTotale());
+            ps.setString(11,ordine.getUtente().getMail());
 
             int row = ps.executeUpdate();
 
@@ -113,8 +112,7 @@ public class OrdineDAO {
         String CAP = rs.getString("CAP");
         String Citta = rs.getString("Citta");
         String Provincia = rs.getString("Provincia");
-        String Stato = rs.getString("Stato");
-        Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia,Stato);
+        Indirizzo indirizzo = new Indirizzo(via,numero,CAP,Citta,Provincia);
         String numeroCarta = rs.getString("NumeroCarta");
         String scadenza = rs.getString("Scadenza");
         GregorianCalendar scadenzaCarta = new GregorianCalendar(Integer.parseInt(scadenza.split("-")[0]),(Integer.parseInt(scadenza.split("-")[1]))-1,Integer.parseInt(scadenza.split("-")[2]));

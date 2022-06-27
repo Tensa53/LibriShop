@@ -27,7 +27,7 @@ public class InserisciAutoreServlet extends HttpServlet {
 
                 GenereDAO genereDAO = new GenereDAO();
 
-                if (cf.length() > 0 && nome.length() > 0) {
+                if (cf != null && nome != null) {
 
                     Autore autore = new Autore(cf, nome);
 

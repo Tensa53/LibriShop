@@ -13,7 +13,7 @@
 <%
     Utente utente = (Utente) session.getAttribute("utente");
     if (utente != null && utente.isAmministratore() == true){%>
-    <form action="admin-forward-redirect" class="center">
+    <form action="admin-forward-redirect" class="center" method="post">
         <h4>Operazioni Libro</h4>
         <input name="insLibro" type="submit" value="Inserisci Libro">
         <input name="modDelLibro" type="submit" value="Modifica/Rimuovi Libro">
