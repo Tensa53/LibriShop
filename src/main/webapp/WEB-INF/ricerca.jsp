@@ -2,14 +2,26 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.progettotsw.model.Utente" %>
 <%@ page import="java.math.BigDecimal" %>
+<%@ page import="com.example.progettotsw.model.Autore" %>
+<%@ page import="com.example.progettotsw.model.Genere" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="./css/stile.css">
-    <meta name="viewport" content="width=device-width, initial-scale = 1">
+<%--    <link rel="stylesheet" type="text/css" href="./css/stile.css">--%>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-ricerca.css">
+
+    <%
+        List<Libro> libri = (List<Libro>) request.getAttribute("libri");
+        List<Autore> autori = (List<Autore>) request.getSession().getAttribute("autori");
+        List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
+    %>
+
 </head>
 <body>
 
@@ -30,24 +42,68 @@
     </form>
 </div>
 
-<div id="container-catalogo">
+<div id="container-body-ricerca">
 
-    <% List<Libro> libri = (List<Libro>) request.getAttribute("libri");
+    <div id="container-filtro-libri">
+        <p>Filtra per : </p>
 
-        for (Libro l:libri) { %>
+
+        <form action="filtra-libri">
+            <%for(Autore a : autori){%>
+                <input type="radio" name="autore" value="<%=a.getCF()%>"><%=a.getNome()%><br>
+            <%}%>
+            <%for (Libro l : libri){%>
+                <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
+            <%}%>
+            <input type="submit" name="filtraAutore" value="Filtra per Autore">
+        </form>
+
+        <br>
+
+        <form action="filtra-libri">
+            <%for(Genere g : generi){%>
+            <input type="radio" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
+            <%}%>
+            <%for (Libro l : libri){%>
+            <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
+            <%}%>
+            <input type="submit" name="filtraGenere" value="Filtra per Genere">
+        </form>
+
+    </div>
+
+    <div id="container-catalogo">
+        <%
+            for (Libro l:libri) { %>
         <figure class = "catalogo-item">
             <form action="page-libro">
-            <input type="image" src="<%=l.getFoto()%>">
-            <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
-            <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-            <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
+                <input type="image" src="<%=l.getFoto()%>">
+                <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+                <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
+                <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
                 <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
-            <%}else {%>
+                <%}else {%>
                 <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
-            <%}%>
+                <%}%>
             </form>
         </figure>
-    <% } %>
+        <% } %>
+    </div>
+
+    <div id="container-ordina-libri">
+        Ordina per prezzo :
+        <form action="filtra-libri">
+        <select name="prezzo">
+            <option value="crescente">crescente</option>
+            <option value="decrescente">decrescente</option>
+        </select>
+            <%for (Libro l : libri){%>
+            <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
+            <%}%>
+        <input type="submit" value="Ordina" name="ordinaPrezzo">
+        </form>
+    </div>
+
 </div>
 
 <jsp:include page="INCLUDE/footer.jsp"></jsp:include>

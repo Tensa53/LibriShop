@@ -158,6 +158,109 @@ public class LibroDAO {
         return libri;
     }
 
+    public List<Libro> doRetrievebyIsbnListandAutore(String [] isbn,String autore) {
+        String sql = "SELECT * FROM Libro L,Scrittura S WHERE (L.ISBN = S.ISBNLibro) AND L.ISBN = ? AND S.Autore = ?;";
+
+        List<Libro> libri = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for(String i : isbn) {
+                pstmt.setString(1,i);
+                pstmt.setString(2,autore);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    String ISBN = rs.getString("ISBN");
+                    String Titolo = rs.getString("Titolo");
+                    String Descrizione = rs.getString("Descrizione");
+                    BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+                    String Editore = rs.getString("Editore");
+                    String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                    GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                    BigDecimal Sconto = rs.getBigDecimal("Sconto");
+                    int Disponibilita = rs.getInt("Disponibilita");
+                    String Foto = rs.getString("Foto");
+                    Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                    libri.add(l);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return libri;
+    }
+
+    public List<Libro> doRetrievebyIsbnListandGenere(String [] isbn,String genere) {
+        String sql = "SELECT * FROM Libro L,Appartenenza A WHERE (L.ISBN = A.ISBNLibro) AND L.ISBN = ? AND A.Genere = ?;";
+
+        List<Libro> libri = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for(String i : isbn) {
+                pstmt.setString(1,i);
+                pstmt.setString(2,genere);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    String ISBN = rs.getString("ISBN");
+                    String Titolo = rs.getString("Titolo");
+                    String Descrizione = rs.getString("Descrizione");
+                    BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+                    String Editore = rs.getString("Editore");
+                    String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                    GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                    BigDecimal Sconto = rs.getBigDecimal("Sconto");
+                    int Disponibilita = rs.getInt("Disponibilita");
+                    String Foto = rs.getString("Foto");
+                    Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                    libri.add(l);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return libri;
+    }
+
+    public List<Libro> doRetrievebyIsbnListandPrezzo(String [] isbn,String prezzo) {
+        String sql = "SELECT * FROM Libro L ORDER BY Prezzo";
+
+        if (prezzo.equals("decrescente"))
+            sql += " DESC";
+
+        List<Libro> libri = new ArrayList<>();
+
+        try(Connection conn = ConPool.getConnection(); Statement st = conn.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+                while (rs.next()) {
+                    String ISBNdb = rs.getString("ISBN");
+
+                    for (String i : isbn) {
+                        if (i.equals(ISBNdb)) {
+                            String Titolo = rs.getString("Titolo");
+                            String Descrizione = rs.getString("Descrizione");
+                            BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+                            String Editore = rs.getString("Editore");
+                            String dataPubblicazioneString = rs.getString("DataPubblicazione");
+                            GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+                            BigDecimal Sconto = rs.getBigDecimal("Sconto");
+                            int Disponibilita = rs.getInt("Disponibilita");
+                            String Foto = rs.getString("Foto");
+                            Libro l = new Libro(ISBNdb,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                            libri.add(l);
+                        }
+                    }
+
+                }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return libri;
+
+    }
+
     public int doUpdate(Libro libro,String autore,List<String> generi) {
         String sql = "UPDATE Libro SET Titolo = ?,Descrizione = ?,Prezzo = ?,DataPubblicazione = ?,Editore = ?,Sconto = ?,Disponibilita = ? WHERE ISBN = ?;";
 

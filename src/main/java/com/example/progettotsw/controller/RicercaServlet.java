@@ -1,7 +1,6 @@
 package com.example.progettotsw.controller;
 
-import com.example.progettotsw.model.Libro;
-import com.example.progettotsw.model.LibroDAO;
+import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +23,18 @@ public class RicercaServlet extends HttpServlet {
             LibroDAO libroDAO = new LibroDAO();
 
             List<Libro> libri = libroDAO.doRetrievebyString(ricerca);
+
+            AutoreDAO autoreDAO = new AutoreDAO();
+
+            List<Autore> autori = autoreDAO.doRetrieveAll();
+
+            GenereDAO genereDAO = new GenereDAO();
+
+            List<Genere> generi = genereDAO.doRetrieveAll();
+
+            request.getSession().setAttribute("autori",autori);
+
+            request.getSession().setAttribute("generi",generi);
 
             request.setAttribute("libri",libri);
 
