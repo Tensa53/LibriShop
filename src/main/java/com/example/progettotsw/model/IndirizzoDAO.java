@@ -114,4 +114,23 @@ public class IndirizzoDAO {
         }
     }
 
+    public int doUpdateIndirizzoByViaCivicoCitta(Indirizzo i, String via, String civico, String citta, String email){
+        String sql = "UPDATE Indirizzo SET Via = ?, Civico = ?, Citta = ?, CAP = ?, Provincia = ? WHERE Via = ? AND Civico = ? AND Citta = ? AND Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,i.getVia());
+            pstmt.setString(2,i.getCivico());
+            pstmt.setString(3,i.getCitta());
+            pstmt.setString(4,i.getCAP());
+            pstmt.setString(5,i.getProvincia());
+            pstmt.setString(6,via);
+            pstmt.setString(7,civico);
+            pstmt.setString(8,citta);
+            pstmt.setString(9,email);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
