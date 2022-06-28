@@ -1,0 +1,29 @@
+/*css per la vista mobile*/
+
+nav ul {
+    list-style-type: none; /*disattiva i bullets della lista*/
+    background-color: #00627D;
+    margin : 0;
+    padding: 0;
+}
+
+nav li a{
+    display: block;
+}
+
+nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il passaggio sull'elemento della navbar, facendogli cambiare colore ed esclude l'elemento attivo da questa regola*/
+    background-color: #555;
+}
+
+.active { /*cambia il colore di sfondo dell'elemento quando è attivo*/
+    background-color: #fdc330;
+    text-transform: uppercase;
+}
+
+nav a {
+    padding: 5px;
+    color: white;
+    text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/
+}
+
+/*seguiranno media query nei relativi breakpoints*/
