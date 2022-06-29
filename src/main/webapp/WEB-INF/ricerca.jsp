@@ -44,32 +44,48 @@
 
 <div id="container-body-ricerca">
 
-    <div id="container-filtro-libri">
-        <p>Filtra per : </p>
-
-
-        <form action="filtra-libri">
-            <%for(Autore a : autori){%>
-                <input type="radio" name="autore" value="<%=a.getCF()%>"><%=a.getNome()%><br>
-            <%}%>
-            <%for (Libro l : libri){%>
+    <div id="container-filtri-ordine">
+        <div id="container-ordina-libri">
+            Ordina per prezzo :
+            <form action="filtra-libri">
+                <select name="prezzo">
+                    <option value="crescente">crescente</option>
+                    <option value="decrescente">decrescente</option>
+                </select>
+                <%for (Libro l : libri){%>
                 <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
-            <%}%>
-            <input type="submit" name="filtraAutore" value="Filtra per Autore">
-        </form>
+                <%}%>
+                <input type="submit" value="Ordina" name="ordinaPrezzo">
+            </form>
+        </div>
 
-        <br>
+        <div id="container-filtro-libri">
+            <p>Filtra per : </p>
 
-        <form action="filtra-libri">
-            <%for(Genere g : generi){%>
-            <input type="radio" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
-            <%}%>
-            <%for (Libro l : libri){%>
-            <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
-            <%}%>
-            <input type="submit" name="filtraGenere" value="Filtra per Genere">
-        </form>
 
+            <form action="filtra-libri">
+                <%for(Autore a : autori){%>
+                <input type="radio" name="autore" value="<%=a.getCF()%>"><%=a.getNome()%><br>
+                <%}%>
+                <%for (Libro l : libri){%>
+                <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
+                <%}%>
+                <input type="submit" name="filtraAutore" value="Filtra per Autore">
+            </form>
+
+            <br>
+
+            <form action="filtra-libri">
+                <%for(Genere g : generi){%>
+                <input type="radio" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
+                <%}%>
+                <%for (Libro l : libri){%>
+                <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
+                <%}%>
+                <input type="submit" name="filtraGenere" value="Filtra per Genere">
+            </form>
+
+        </div>
     </div>
 
     <div id="container-catalogo">
@@ -88,20 +104,6 @@
             </form>
         </figure>
         <% } %>
-    </div>
-
-    <div id="container-ordina-libri">
-        Ordina per prezzo :
-        <form action="filtra-libri">
-        <select name="prezzo">
-            <option value="crescente">crescente</option>
-            <option value="decrescente">decrescente</option>
-        </select>
-            <%for (Libro l : libri){%>
-            <input type="hidden" name="isbn-libro" value="<%=l.getISBN()%>">
-            <%}%>
-        <input type="submit" value="Ordina" name="ordinaPrezzo">
-        </form>
     </div>
 
 </div>
