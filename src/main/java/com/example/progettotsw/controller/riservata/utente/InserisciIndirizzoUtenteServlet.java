@@ -12,19 +12,19 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/rimuovi-indirizzo")
-public class RimuoviIndirizzoServlet extends HttpServlet {
+@WebServlet("/inserisci-indirizzo")
+public class InserisciIndirizzoUtenteServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente != null) {
             if (!utente.isAmministratore()) {
-                String via = request.getParameter("via");
-                String civico = request.getParameter("civico");
-                String provincia = request.getParameter("provincia");
-                String citta = request.getParameter("citta");
-                String CAP = request.getParameter("cap");
+                String via = request.getParameter("viar");
+                String civico = request.getParameter("civicor");
+                String provincia = request.getParameter("provinciar");
+                String citta = request.getParameter("cittar");
+                String CAP = request.getParameter("capr");
                 String mail = utente.getMail();
 
                 boolean compilazioneForm = via != null && civico != null && provincia != null && citta != null && CAP != null;
@@ -35,8 +35,8 @@ public class RimuoviIndirizzoServlet extends HttpServlet {
 
                     String msg = null;
 
-                    if (indirizzoDAO.doDeleteIndirizzoByViaCivicoCitta(i,mail) == 1){
-                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    if (indirizzoDAO.doSaveWithMail(i,mail) == 1){
+                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                         request.setAttribute("msg", msg);
 
@@ -63,6 +63,5 @@ public class RimuoviIndirizzoServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
-
 }
 

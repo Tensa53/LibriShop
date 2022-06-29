@@ -62,6 +62,26 @@ public class IndirizzoDAO {
     }
     }
 
+    public int doSaveWithMail (Indirizzo i, String mail){
+        String sql = "INSERT INTO Indirizzo VALUES (?,?,?,?,?,?)";
+
+        try(Connection conn=ConPool.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);) {
+
+            ps.setString(1,i.getVia());
+            ps.setString(2,i.getCivico());
+            ps.setString(3,i.getCitta());
+            ps.setString(4,i.getCAP());
+            ps.setString(5,i.getProvincia());
+            ps.setString(6,mail);
+
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Indirizzo> doRetrievebyUserMail(String mail){
         String sql = "SELECT * FROM Indirizzo WHERE Utente = ?";
 
