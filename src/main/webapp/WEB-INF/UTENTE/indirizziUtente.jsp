@@ -16,15 +16,15 @@
 
 <form action="inserisci-indirizzo" method="post">
     <label for="viar">Via : </label><br>
-    <input type="text" name="indirizzor" id="viar"><br>
+    <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
-    <input type="text" name="indirizzor" id="civicor"><br>
+    <input type="text" name="civicor" id="civicor" required><br>
     <label for="provinciar">Provincia : </label><br>
-    <input type="text" name="indirizzor" id="provinciar"><br>
+    <input type="text" name="provinciar" id="provinciar" required><br>
     <label for="cittar">Città : </label><br>
-    <input type="text" name="indirizzor" id="cittar"><br>
+    <input type="text" name="cittar" id="cittar" required><br>
     <label for="capr">CAP : </label><br>
-    <input type="text" name="indirizzor" id="capr"><br>
+    <input type="text" name="capr" id="capr" required><br>
     <input type="submit" value="Inserisci un nuovo Indirizzo">
 </form>
 

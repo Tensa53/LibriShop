@@ -10,12 +10,17 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<h3 class="center">Area riservata</h3>
+
 <%Utente utente = (Utente) session.getAttribute("utente");
 if (utente != null && utente.isAmministratore() == false){%>
-    <form action="user-forward-redirect" method="post">
+    <form action="user-forward-redirect" class="center" method="post">
         <input name="iMieiDati" type="submit" value="I miei Dati">
+        <br><br>
         <input name="iMieiOrdini" type="submit" value="I miei Ordini">
+        <br><br>
         <input name="iMieiIndirizzi" type="submit" value="I miei Indirizzi">
+        <br><br>
         <input name="iMieiMetodiDiPagamento" type="submit" value="I Miei Metodi di Pagamento">
     </form>
 <%}else{%>
