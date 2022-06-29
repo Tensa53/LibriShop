@@ -41,7 +41,6 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
                 String msg = null;
 
                 if (indirizzoDAO.doUpdateIndirizzoByViaCivicoCitta(i,viaF,civicoF,cittaF,mail) == 1){
-                    indirizzoDAO.doUpdateIndirizzoByViaCivicoCitta(i,viaF,civicoF,cittaF,mail);
                     msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                     request.setAttribute("msg", msg);

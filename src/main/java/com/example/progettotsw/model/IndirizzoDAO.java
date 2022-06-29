@@ -133,4 +133,19 @@ public class IndirizzoDAO {
         }
     }
 
+    public int doDeleteIndirizzoByViaCivicoCitta(Indirizzo i, String email){
+
+        String sql = "DELETE FROM Indirizzo WHERE Via = ? AND Civico = ? AND Citta = ? AND Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,i.getVia());
+            pstmt.setString(2,i.getCivico());
+            pstmt.setString(3,i.getCitta());
+            pstmt.setString(4,email);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
