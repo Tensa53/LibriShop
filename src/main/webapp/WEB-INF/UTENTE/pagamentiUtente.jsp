@@ -5,13 +5,19 @@
 <head>
   <title>Pagamenti</title>
   <%List<Pagamento> pagamenti = (List<Pagamento>) request.getAttribute("pagamenti");%>
+  <link rel="stylesheet" type="text/css" href="./css/header.css">
+  <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="./css/footer.css">
   <link rel="stylesheet" type="text/css" href="./css/stile.css">
+  <link rel="stylesheet" type="text/css" href="./css/body-form.css">
 </head>
 <body>
 
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<div class="center">
 
 <form method="post">
   <label for="numeroCartar">Numero Carta : </label><br>
@@ -39,6 +45,8 @@
 </form>
 </div>
 <%}%>
+
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

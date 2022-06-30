@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>Inserisci Libro</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/validateFormInsLibro.js" type="text/javascript"></script>
@@ -13,6 +16,14 @@
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<div class="center">
+
+    <%String msg = (String) request.getAttribute("msg");
+        if (msg != null){
+    %>
+    <p class="green">${msg}</p>
+    <%}%>
 
 <form name="inseriscilibro" action="inserisci-libro" method="post" onsubmit="return validateFormInsLibro()" enctype="multipart/form-data">
     <label for = "isbn">ISBN : </label> <br>
@@ -55,11 +66,7 @@
     <input type="submit" value="inserisci"><br>
 </form>
 
-<%String msg = (String) request.getAttribute("msg");
-    if (msg != null){
-%>
-        <p class="green">${msg}</p>
-<%}%>
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

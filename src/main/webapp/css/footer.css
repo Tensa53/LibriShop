@@ -1,5 +1,3 @@
-/*css per la vista mobile*/
-
 footer {
     background-color: #00627D;
     text-align: center;
@@ -14,3 +12,14 @@ footer p {
 }
 
 /*seguiranno media query nei relativi breakpoints*/
+
+@media screen and (min-width: 1018px) {
+    footer {
+        margin-bottom: -30px;
+    }
+
+    footer p {
+        color: white;
+        font-size: 30px;
+    }
+}

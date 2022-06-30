@@ -5,7 +5,11 @@
 <html>
 <head>
     <title>Operazioni Autore e Genere</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <%
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
@@ -19,10 +23,11 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<div class="center">
 
-<%if(msg != null){%>
-<p>${msg}</p>
-<%}%>
+    <%if(msg != null){%>
+    <p>${msg}</p>
+    <%}%>
 
 <p>Elimina un genere : </p>
 <form action="rimuovi-genere" method="post">
@@ -62,6 +67,7 @@
     <button formaction="conferma-modifiche-autore">Conferma Modifiche</button>
     <%}%>
 </form>
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

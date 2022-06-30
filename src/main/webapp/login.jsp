@@ -2,12 +2,18 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
+
+<div class="center">
 
 <form action="login">
     <label for = "mail">Mail : </label> <br>
@@ -30,8 +36,9 @@
 <%}%>
 
 
-
 <p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
+
+</div>
 
 <jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
 </body>

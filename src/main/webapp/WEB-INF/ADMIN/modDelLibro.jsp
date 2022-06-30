@@ -6,7 +6,11 @@
 <html>
 <head>
     <title>Modifica Libro</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/immagineLibro.js" type="text/javascript"></script>
     <script src="./script/validateFormModLibro.js" type="text/javascript"></script>
@@ -21,6 +25,14 @@
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<div class="center">
+
+    <%String msg = (String) request.getAttribute("msg");
+        if (msg != null){
+    %>
+    <p class="success">${msg}</p>
+    <%}%>
 
 <%if(libri != null){%>
 <p>Scegli un libro da modificare selezionando il suo codice ISBN</p>
@@ -87,12 +99,8 @@
     <input type="submit" value="Conferma Modifiche"><br>
 </form>
 
-<%}%>
+</div>
 
-<%String msg = (String) request.getAttribute("msg");
-    if (msg != null){
-%>
-<p class="green">${msg}</p>
 <%}%>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>

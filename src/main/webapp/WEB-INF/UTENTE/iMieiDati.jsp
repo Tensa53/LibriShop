@@ -3,9 +3,15 @@
 <html>
 <head>
     <title>I Miei Dati</title>
-    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/username.js" type="text/javascript"></script>
-    <% Utente utente = (Utente) request.getSession().getAttribute("utente"); %>
+    <% Utente utente = (Utente) request.getSession().getAttribute("utente");
+       String msg = (String) request.getAttribute("msg");
+    %>
 </head>
 <body>
 
@@ -13,8 +19,13 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-registrazione">
-    <form name="Registrazione" action="conferma-modifiche-utente-cliente" method="post"> <!--- onsubmit="return validateFormModificaUtente()" --->
+<div id="container-registrazione" class="center">
+
+    <%if(msg != null){%>
+        <p>${msg}</p>
+    <%}%>
+
+    <form action="conferma-modifiche-utente-cliente" method="post"> <!--- onsubmit="return validateFormModificaUtente()" --->
         <label for = "mail" id="mail">Mail :  <%=utente.getMail()%></label> <br>
         <input type="hidden" value="<%=utente.getMail()%>" name="mail">
         <label for = "nome">Nome : </label> <br>

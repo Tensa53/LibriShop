@@ -1,4 +1,8 @@
-/*css per la vista mobile*/
+html,body {
+    margin: 0;
+    background-color: ghostwhite;
+    height: 100%;
+}
 
 nav ul {
     list-style-type: none; /*disattiva i bullets della lista*/
@@ -7,8 +11,10 @@ nav ul {
     padding: 0;
 }
 
-nav li a{
-    display: block;
+nav a {
+    padding: 5px;
+    color: white;
+    text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/
 }
 
 nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il passaggio sull'elemento della navbar, facendogli cambiare colore ed esclude l'elemento attivo da questa regola*/
@@ -20,10 +26,56 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
     text-transform: uppercase;
 }
 
-nav a {
-    padding: 5px;
-    color: white;
-    text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/
+/*seguiranno media query nei relativi breakpoints*/
+@media screen and (max-width: 983px) {
+    .notnav {
+        display: none;
+    }
+
+    nav li a{
+        display: block;
+    }
+
+    #bottonenav {
+        background-color: #00627D;
+        color: white;
+        border:none;
+        text-align: center;
+        font-size: 12px;
+        display: inline-block;
+    }
+
+    nav li:first-of-type {
+        display: inline-block;
+    }
+
+    .yesnav a {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
 }
 
-/*seguiranno media query nei relativi breakpoints*/
+
+@media screen and (min-width: 984px) {
+    /*navbar orizzontale*/
+    .notnav {
+        display: block;
+    }
+
+    #bottonenav {
+        display: none;
+    }
+
+    nav ul{
+        overflow:hidden;
+    }
+    nav li {
+        display:inline-block;
+    }
+
+    nav a {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,20 @@
+html,body {
+    margin: 0;
+    background-color: ghostwhite;
+    height: 100%;
+}
+
+#container-cdc {
+    text-align: center;
+}
+
+#container-cdc p {
+    font-size: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+#container-cdc img {
+    width: 45%;
+    height: auto;
+}

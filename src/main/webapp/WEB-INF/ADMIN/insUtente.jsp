@@ -3,7 +3,11 @@
 <html>
 <head>
     <title>Inserisci Utente</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/mail.js" type="text/javascript"></script>
     <script src="./script/username.js" type="text/javascript"></script>
     <%String msg = (String) request.getAttribute("msg");%>
@@ -15,7 +19,13 @@
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 <body>
-<div id="container-registrazione">
+
+<div id="container-registrazione" class="center">
+
+<% if(msg != null) {%>
+<p class="green">${msg}</p>
+<%}%>
+
     <form name="Registrazione" action="inserisci-utente" method="post" onsubmit="return validateFormRegistrazione()">
         <label for = "nome">Nome : </label> <br>
         <input type="text" name="nomer" id="nome" required><br>
@@ -35,12 +45,8 @@
         <input type="radio" name="amministratore" value="false">NO
         <input type="submit" value="Inserisci">
     </form>
+
 </div>
-
-
-<% if(msg != null) {%>
-<p class="green">${msg}</p>
-<%}%>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

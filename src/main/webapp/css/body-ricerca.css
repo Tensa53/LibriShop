@@ -1,8 +1,14 @@
 /*css per la vista mobile*/
 
+html,body {
+    margin: 0;
+    background-color: ghostwhite;
+    height: 100%;
+}
+
 #container-catalogo {
-    text-align:center;
-    margin: 0 auto;
+    max-width: 300px;
+    margin: auto;
 }
 
 figure.catalogo-item {
@@ -50,7 +56,56 @@ figcaption {
     text-align: center;
 }
 
+#container-filtri-ordine {
+    text-align: center;
+    margin: 5px;
+    /*border: 1px solid #555555;*/
+}
+
 #container-ricerca input[type=text] {
     margin: 5px;
     width: 50%;
+}
+
+/*media-query*/
+
+@media screen and (min-width: 1018px) {
+
+    #container-filtri-ordine {
+        margin: 30px 5px 5px 5px;
+        float: left;
+        width: 250px;
+    }
+
+    #container-catalogo {
+        margin-left: 255px;
+        max-width: 750px;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    #container-filtri-ordine {
+        margin: 30px 5px 5px 5px;
+        float: left;
+        width: 250px;
+    }
+
+    #container-catalogo {
+        margin-left: 255px;
+        max-width: 1100px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #container-filtri-ordine {
+        margin: 30px 5px 5px 5px;
+        float: left;
+        width: 250px;
+    }
+
+    #container-catalogo {
+        margin-left: 255px;
+        max-width: 1440px;
+    }
 }

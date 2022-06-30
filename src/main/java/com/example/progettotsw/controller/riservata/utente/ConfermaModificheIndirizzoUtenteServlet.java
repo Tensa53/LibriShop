@@ -52,7 +52,7 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
 
             }
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                String address = "/WEB-INF/ADMIN/indirizziUtente.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);

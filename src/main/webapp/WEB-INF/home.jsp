@@ -8,7 +8,11 @@
 <html>
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+<%--    <link rel="stylesheet" type="text/css" href="./css/stile.css">--%>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-home.css">
 </head>
 <body>
 
@@ -20,11 +24,11 @@
 
 <jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
-<div id="benvenuti" class="titoli center">
+<div class="titoli">
     <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
 </div>
 
-<div id="container-ricerca" class="center">
+<div id="container-ricerca">
     <form action="ricerca">
         <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
         <datalist id="titoli">
@@ -33,7 +37,7 @@
     </form>
 </div>
 
-<div class="titoli center">
+<div class="titoli">
     <%
         Utente utente = (Utente) session.getAttribute("utente");
         if(utente != null){
@@ -44,7 +48,7 @@
     <%}%>
 </div>
 
-<div style="overflow-x: auto">
+<div id="container-catalogo-table">
 
     <table>
         <tr>

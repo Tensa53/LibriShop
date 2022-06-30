@@ -5,7 +5,11 @@
 <html>
 <head>
   <title>Visualizza Ordini</title>
-  <link rel="stylesheet" href="./css/stile.css">
+  <link rel="stylesheet" type="text/css" href="./css/header.css">
+  <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="./css/footer.css">
+  <link rel="stylesheet" type="text/css" href="./css/body-form.css">
+  <link rel="stylesheet" type="text/css" href="./css/stile.css">
   <%List<Ordine> ordini = (List<Ordine>) request.getAttribute("ordini");%>
 </head>
 <body>

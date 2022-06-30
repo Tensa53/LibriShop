@@ -2,7 +2,11 @@
 <html>
 <head>
     <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateFormRegistrazione.js" type="text/javascript"></script>
     <script src="./script/mail.js" type="text/javascript"></script>
     <script src="./script/username.js" type="text/javascript"></script>
@@ -13,7 +17,7 @@
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
 <body>
-<div id="container-registrazione">
+<div id="container-registrazione" class="center">
     <form name="Registrazione" action="register" onsubmit="return validateFormRegistrazione()">
         <label for = "nome">Nome : </label> <br>
         <p id="nomeP"></p>

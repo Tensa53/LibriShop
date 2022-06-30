@@ -11,7 +11,10 @@
     <%}else{%>
         <title><%=l.getTitolo()%></title>
     <%}%>
-    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-pageLibro.css">
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>

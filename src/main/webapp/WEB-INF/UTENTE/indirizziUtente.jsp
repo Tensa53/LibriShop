@@ -4,8 +4,14 @@
 <html>
 <head>
   <title>Indirizzi</title>
-  <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");%>
-  <link rel="stylesheet" type="text/css" href="./css/stile.css">
+  <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");
+    String msg = (String) request.getAttribute("mgs");
+  %>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
 </head>
 <body>
 
@@ -13,6 +19,11 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<div class="center">
+
+<%if(msg != null){%>
+    <p>${msg}</p>
+<%}%>
 
 <form action="inserisci-indirizzo" method="post">
     <label for="viar">Via : </label><br>
@@ -51,6 +62,8 @@
 </form>
 </div>
 <%}%>
+
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

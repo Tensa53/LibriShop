@@ -4,7 +4,11 @@
 <html>
 <head>
     <title>Modifica Utente</title>
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/username.js" type="text/javascript"></script>
     <% String msg = (String) request.getAttribute("msg");
         Utente utenteMod = (Utente) request.getAttribute("utente");
@@ -16,6 +20,12 @@
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<div class="center">
+
+    <% if (msg != null) {%>
+    <p class="success">${msg}</p>
+    <%}%>
 
 <%if (utenti != null) {%>
 <p>Scegli un utente da modificare selezionando la sua mail</p>
@@ -60,9 +70,7 @@
 
 <%}%>
 
-<% if (msg != null) {%>
-<p class="green">${msg}</p>
-<%}%>
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 
