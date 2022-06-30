@@ -19,13 +19,13 @@
 
 <div class="center">
 
-<form method="post">
+<form action="inserisci-carta" method="post">
   <label for="numeroCartar">Numero Carta : </label><br>
-  <input type="text" name="numeroCartar" id="numeroCartar"><br>
+  <input type="text" name="numeroCartar" id="numeroCartar" minlength="16" maxlength="16" required><br>
   <label for="scadenzar">Scadenza : </label><br>
-  <input type="date" name="scadenzar" id="scadenzar"><br>
+  <input type="date" name="scadenzar" id="scadenzar" required><br>
   <label for="CCVr">CCV </label><br>
-  <input type="number" min="100" max="999" name="ccvr" id="ccvr"><br>
+  <input type="number" min="100" max="999" name="ccvr" id="ccvr" required><br>
   <input type="submit" value="Inserisci un nuovo metodo di Pagamento">
 </form>
 

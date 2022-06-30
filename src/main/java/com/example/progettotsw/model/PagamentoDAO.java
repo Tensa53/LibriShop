@@ -49,6 +49,23 @@ public class PagamentoDAO {
         }
     }
 
+    public int doSaveByMail (Pagamento p, String mail){
+        String sql = "INSERT INTO Pagamento VALUES (?,?,?,?);";
+
+        try(Connection conn=ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql);) {
+
+            ps.setString(1,p.getNumeroCarta());
+            ps.setString(2,p.getScadenzaReversedString());
+            ps.setString(3,p.getCCV());
+            ps.setString(4,mail);
+
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Pagamento> doRetrievebyUserMail(String mail) {
         String sql = "SELECT * FROM Pagamento WHERE Utente = ?";
 
