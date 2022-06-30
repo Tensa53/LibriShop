@@ -117,4 +117,20 @@ public class PagamentoDAO {
         }
     }
 
+    public int doUpdate(Pagamento p, String numeroCarta, String scadenza, String CCV, String mail) {
+        String sql = "UPDATE Pagamento SET NumeroCarta = ?, Scadenza = ?, CCV = ? WHERE NumeroCarta = ? AND Scadenza = ? AND CCV = ? AND Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,p.getNumeroCarta());
+            pstmt.setString(2,p.getScadenzaReversedString());
+            pstmt.setString(3,p.getCCV());
+            pstmt.setString(4,numeroCarta);
+            pstmt.setString(5,scadenza);
+            pstmt.setString(6,CCV);
+            pstmt.setString(7,mail);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

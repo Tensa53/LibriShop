@@ -15,17 +15,20 @@ import java.util.GregorianCalendar;
 
 import static java.lang.Integer.parseInt;
 
-@WebServlet("/inserisci-carta")
-public class InserisciCartaUtenteServlet extends HttpServlet {
+@WebServlet("/conferma-modifiche-pagamento")
+public class ConfermaModifichePagamentoUtenteServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente != null) {
             if (!utente.isAmministratore()) {
-                String numeroCarta = request.getParameter("numeroCartar");
-                String scadenza = request.getParameter("scadenzar");
-                String CCVr = request.getParameter("ccvr");
+                String numeroCarta = request.getParameter("numeroCarta");
+                String scadenza = request.getParameter("scadenza");
+                String CCV = request.getParameter("ccv");
+                String numeroCartaF = request.getParameter("numeroCartaF");
+                String scadenzaF = request.getParameter("scadenzaF");
+                String CCVf = request.getParameter("CCVF");
                 String mail = utente.getMail();
 
                 String[] data = scadenza.split("-");
@@ -33,16 +36,16 @@ public class InserisciCartaUtenteServlet extends HttpServlet {
                 String mese = data[1];
                 String giorno = data[2];
 
-                boolean compilazioneForm = numeroCarta != null && scadenza != null && CCVr != null;
+                boolean compilazioneForm = numeroCarta != null && scadenza != null && CCV != null;
 
                 if (compilazioneForm){
-                    Pagamento p = new Pagamento(numeroCarta,new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno)),CCVr);
+                    Pagamento p = new Pagamento(numeroCarta,new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno)),CCV);
                     PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
                     String msg = null;
 
-                    if (pagamentoDAO.doSaveByMail(p,mail) == 1){
-                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    if (pagamentoDAO.doUpdate(p,numeroCartaF,scadenzaF,CCVf,mail) == 1){
+                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                         request.setAttribute("msg", msg);
 

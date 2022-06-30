@@ -33,6 +33,9 @@
 <%for(Pagamento pagamento : pagamenti){%>
 <div id="container-pagamento-utente">
 <form method="post">
+  <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCartaF">
+  <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
+  <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
   <label for="numeroCarta">Numero Carta : </label><br>
   <input type="text" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta"><br>
   <label for="scadenza">Scadenza : </label><br>
