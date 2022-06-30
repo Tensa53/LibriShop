@@ -133,4 +133,18 @@ public class PagamentoDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public int doDeletePagamento(Pagamento p, String mail) {
+        String sql = "DELETE FROM Pagamento WHERE NumeroCarta = ? AND Scadenza = ? AND CCV = ? AND Utente = ?;";
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,p.getNumeroCarta());
+            pstmt.setString(2,p.getScadenzaReversedString());
+            pstmt.setString(3,p.getCCV());
+            pstmt.setString(4,mail);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
