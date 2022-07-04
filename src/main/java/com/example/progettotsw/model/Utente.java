@@ -15,6 +15,10 @@ public class Utente {
         this.amministratore = amministratore;
     }
 
+    public Utente(String mail) {
+        this.mail = mail;
+    }
+
     public Utente() {
     }
 

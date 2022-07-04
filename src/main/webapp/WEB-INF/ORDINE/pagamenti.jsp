@@ -7,6 +7,9 @@
     <%List<Pagamento> pagamenti = (List<Pagamento>) request.getAttribute("pagamenti");%>
 </head>
 <body>
+
+<%=pagamenti.size()%>
+
 <%for(Pagamento pagamento : pagamenti){%>
 <form action="conferma-pagamento" method="post">
     <ul>

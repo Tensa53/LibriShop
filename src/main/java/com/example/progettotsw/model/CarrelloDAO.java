@@ -1,5 +1,6 @@
 package com.example.progettotsw.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +36,7 @@ public class CarrelloDAO {
 
         try (Connection con = ConPool.getConnection();PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setString(1,mail);
-            ps.setFloat(2,0.0f);
+            ps.setBigDecimal(2,new BigDecimal(0.00));
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -49,6 +50,7 @@ public class CarrelloDAO {
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println(carrello.getTotale());
             ps.setBigDecimal(1,carrello.getTotale());
             ps.setString(2,mail);
             ps.executeUpdate();
@@ -65,7 +67,7 @@ public class CarrelloDAO {
         String sql = "UPDATE Carrello SET Totale = ? WHERE Utente = ?;";
 
         try (Connection con = ConPool.getConnection();PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setFloat(1,0.0f);
+            ps.setBigDecimal(1,new BigDecimal(0.00));
             ps.setString(2,mail);
             ps.executeUpdate();
         } catch (SQLException e) {

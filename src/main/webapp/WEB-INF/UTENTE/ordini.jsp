@@ -10,13 +10,26 @@
   <link rel="stylesheet" type="text/css" href="./css/footer.css">
   <link rel="stylesheet" type="text/css" href="./css/body-form.css">
   <link rel="stylesheet" type="text/css" href="./css/stile.css">
-  <%List<Ordine> ordini = (List<Ordine>) request.getAttribute("ordini");%>
+  <%List<Ordine> ordini = (List<Ordine>) request.getAttribute("ordini");
+    String msgerror = (String) request.getAttribute("msgerror");
+    String msgsuccess = (String) request.getAttribute("msgsuccess");
+  %>
 </head>
 <body>
 
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<%if(msgerror != null){%>
+  <p class="error">${msgerror}</p>
+<%}%>
+
+
+<%if(msgsuccess != null){%>
+  <p class="success">${msgsuccess}</p>
+<%}%>
+
 
 <div id="container-ordini">
 
@@ -25,11 +38,14 @@
     for(Ordine o : ordini){%>
 
   <div class="container-ordini-item">
+    <form method="post">
     <p>Ordine N. <%=o.getId()%></p>
-    <p>Data Ordine : <%=o.getDataOrdineReversedString()%></p>
+      <input type="hidden" name="id" value="<%=o.getId()%>">
+    <p>Data e Ora Ordine : <%=o.getDataOrdineReversedString()%></p>
     <p>Utente : <%=o.getUtente().getMail()%></p>
     <p>Indirizzo di spedizione : Via <%=o.getIndirizzo().getVia()%> <%=o.getIndirizzo().getCivico()%> <%=o.getIndirizzo().getCAP()%> <%=o.getIndirizzo().getCitta()%></p>
     <p>Pagamento con carta N. : <%=o.getPagamento().getNumeroCarta()%></p>
+    <button formaction="annulla-ordine">Annulla Ordine</button>
     <p>Totale : <%=o.getTotale()%>€</p>
     <p>Dettagli Libri : </p>
     <div class="container-dettagli-ordine">
@@ -39,6 +55,7 @@
         <%}%>
       </ul>
     </div>
+    </form>
   </div>
 
   <%}

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <%List<Ordine> ordini = (List<Ordine>) request.getAttribute("ordini");
-        List<Utente> utenti = (List<Utente>) request.getAttribute("utenti");
+      List<String> mailUtenti = (List<String>) request.getAttribute("mailUtenti");
     %>
 </head>
 <body>
@@ -25,8 +25,8 @@
     <form action="filtra-ordini-utente" class="right" method="post">
         <select name="mail-utente">
             <option value="Nessun Filtro">Non Applicare il filtro</option>
-        <%for (Utente u : utenti){%>
-            <option value="<%=u.getMail()%>"><%=u.getMail()%> - <%=u.getUsername()%> - <%=u.getNome() + " " + u.getCognome()%></option>
+        <%for (String mail : mailUtenti){%>
+            <option value="<%=mail%>"><%=mail%></option>
         <%}%>
         </select>
         <input type="submit" value="Filtra per Utente">

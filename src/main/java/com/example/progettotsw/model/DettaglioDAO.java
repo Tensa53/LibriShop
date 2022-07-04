@@ -123,6 +123,23 @@ public class DettaglioDAO {
         }
     }
 
+    public void doRemoveFromOrdine(int id) {
+        String sql = "DELETE FROM Dettaglio WHERE Ordine = ?;";
+
+        List<Dettaglio> dettagli = this.doRetrievebyIdOrdine(id);
+        LibroDAO libroDAO = new LibroDAO();
+
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+            for (Dettaglio d : dettagli) {
+                ps.setInt(1,id);
+                libroDAO.doUpdateDisponibilitaFromOrdineAnnullato(d.getLibro().getISBN(),d.getQuantita());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Dettaglio> doRetrieveAll(){
         String sql = "SELECT * FROM Dettaglio;";
 

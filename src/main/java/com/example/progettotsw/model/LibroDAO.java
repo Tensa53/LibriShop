@@ -16,18 +16,7 @@ public class LibroDAO {
             ps.setString(1,ISBN);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                libro = new Libro();
-                libro.setISBN(ISBN);
-                libro.setTitolo(rs.getString("Titolo"));
-                libro.setDescrizione(rs.getString("Descrizione"));
-                libro.setDisponibilita(rs.getInt("Disponibilita"));
-                libro.setEditore(rs.getString("Editore"));
-                String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                libro.setDataPubblicazione(dataPubblicazione);
-                libro.setSconto(rs.getBigDecimal("Sconto"));
-                libro.setFoto(rs.getString("Foto"));
-                libro.setPrezzo(rs.getBigDecimal("Prezzo"));
+                libro = composeLibro(rs);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,17 +40,7 @@ public class LibroDAO {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                String ISBN = rs.getString("ISBN");
-                String Titolo = rs.getString("Titolo");
-                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                String Editore = rs.getString("Editore");
-                String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                int Disponibilita = rs.getInt("Disponibilita");
-                String Foto = rs.getString("Foto");
-                String Descrizione = rs.getString("Descrizione");
-                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                Libro l = composeLibro(rs);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -81,17 +60,7 @@ public class LibroDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                String ISBN = rs.getString("ISBN");
-                String Titolo = rs.getString("Titolo");
-                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                String Editore = rs.getString("Editore");
-                String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                int Disponibilita = rs.getInt("Disponibilita");
-                String Foto = rs.getString("Foto");
-                String Descrizione = rs.getString("Descrizione");
-                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                Libro l = composeLibro(rs);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -111,17 +80,7 @@ public class LibroDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                String ISBN = rs.getString("ISBN");
-                String Titolo = rs.getString("Titolo");
-                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                String Editore = rs.getString("Editore");
-                String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                int Disponibilita = rs.getInt("Disponibilita");
-                String Foto = rs.getString("Foto");
-                String Descrizione = rs.getString("Descrizione");
-                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                Libro l = composeLibro(rs);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -138,17 +97,7 @@ public class LibroDAO {
 
         try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while(rs.next()) {
-                String ISBN = rs.getString("ISBN");
-                String Titolo = rs.getString("Titolo");
-                String Descrizione = rs.getString("Descrizione");
-                BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                String Editore = rs.getString("Editore");
-                String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                int Disponibilita = rs.getInt("Disponibilita");
-                String Foto = rs.getString("Foto");
-                Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                Libro l = composeLibro(rs);
                 libri.add(l);
             }
         } catch (SQLException e) {
@@ -170,17 +119,7 @@ public class LibroDAO {
                 ResultSet rs = pstmt.executeQuery();
 
                 if (rs.next()) {
-                    String ISBN = rs.getString("ISBN");
-                    String Titolo = rs.getString("Titolo");
-                    String Descrizione = rs.getString("Descrizione");
-                    BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                    String Editore = rs.getString("Editore");
-                    String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                    GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                    BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                    int Disponibilita = rs.getInt("Disponibilita");
-                    String Foto = rs.getString("Foto");
-                    Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                    Libro l = composeLibro(rs);
                     libri.add(l);
                 }
             }
@@ -203,17 +142,7 @@ public class LibroDAO {
                 ResultSet rs = pstmt.executeQuery();
 
                 if (rs.next()) {
-                    String ISBN = rs.getString("ISBN");
-                    String Titolo = rs.getString("Titolo");
-                    String Descrizione = rs.getString("Descrizione");
-                    BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                    String Editore = rs.getString("Editore");
-                    String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                    GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                    BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                    int Disponibilita = rs.getInt("Disponibilita");
-                    String Foto = rs.getString("Foto");
-                    Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                    Libro l = composeLibro(rs);
                     libri.add(l);
                 }
             }
@@ -238,16 +167,7 @@ public class LibroDAO {
 
                     for (String i : isbn) {
                         if (i.equals(ISBNdb)) {
-                            String Titolo = rs.getString("Titolo");
-                            String Descrizione = rs.getString("Descrizione");
-                            BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
-                            String Editore = rs.getString("Editore");
-                            String dataPubblicazioneString = rs.getString("DataPubblicazione");
-                            GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),(Integer.parseInt(dataPubblicazioneString.split("-")[1]))-1,Integer.parseInt(dataPubblicazioneString.split("-")[2]));
-                            BigDecimal Sconto = rs.getBigDecimal("Sconto");
-                            int Disponibilita = rs.getInt("Disponibilita");
-                            String Foto = rs.getString("Foto");
-                            Libro l = new Libro(ISBNdb,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+                            Libro l = composeLibro(rs);
                             libri.add(l);
                         }
                     }
@@ -329,7 +249,17 @@ public class LibroDAO {
             throw new RuntimeException(e);
         }
     }
+    public void doUpdateDisponibilitaFromOrdineAnnullato(String isbn,int quantita){
+        String sql = "UPDATE Libro SET Disponibilita = ? WHERE ISBN = ?;";
 
+        try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+                ps.setInt(1,this.doRetrieveById(isbn).getDisponibilita() + quantita);
+                ps.setString(2,isbn);
+                ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void doUpdateDisponibilitaAllFromList(List<Libro> libri){
         String sql = "UPDATE Libro SET Disponibilita = ? WHERE ISBN = ?;";
 
@@ -433,5 +363,20 @@ public class LibroDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Libro composeLibro(ResultSet rs) throws SQLException {
+        String ISBN = rs.getString("ISBN");
+        String Titolo = rs.getString("Titolo");
+        BigDecimal Prezzo = rs.getBigDecimal("Prezzo");
+        String Editore = rs.getString("Editore");
+        String dataPubblicazioneString = rs.getString("DataPubblicazione");
+        GregorianCalendar dataPubblicazione = new GregorianCalendar(Integer.parseInt(dataPubblicazioneString.split("-")[0]),Integer.parseInt(dataPubblicazioneString.split("-")[1]),Integer.parseInt(dataPubblicazioneString.split("-")[2]));
+        BigDecimal Sconto = rs.getBigDecimal("Sconto");
+        int Disponibilita = rs.getInt("Disponibilita");
+        String Foto = rs.getString("Foto");
+        String Descrizione = rs.getString("Descrizione");
+        Libro l = new Libro(ISBN,Titolo,Prezzo,dataPubblicazione,Editore,Sconto,Disponibilita,Foto,Descrizione);
+        return l;
     }
 }

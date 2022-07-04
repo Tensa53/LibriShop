@@ -3,8 +3,8 @@ package com.example.progettotsw.model;
 import jakarta.servlet.http.HttpServlet;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,8 +14,14 @@ public class Ordine extends HttpServlet {
 
     }
 
-    public Ordine(GregorianCalendar dataOrdine, Indirizzo indirizzo, Pagamento pagamento, BigDecimal totale, Utente utente) {
-        this.dataOrdine = dataOrdine;
+    public Ordine(Timestamp dataOrdine, Indirizzo indirizzo, Pagamento pagamento, BigDecimal totale, Utente utente) {
+        this.indirizzo = indirizzo;
+        this.pagamento = pagamento;
+        this.totale = totale;
+        this.utente = utente;
+    }
+
+    public Ordine(Indirizzo indirizzo, Pagamento pagamento, BigDecimal totale, Utente utente) {
         this.indirizzo = indirizzo;
         this.pagamento = pagamento;
         this.totale = totale;
@@ -34,12 +40,8 @@ public class Ordine extends HttpServlet {
         return dataOrdine;
     }
 
-    public String getDataOrdineString() {
-        return dataOrdine.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (dataOrdine.get(GregorianCalendar.MONTH) + 1) + "-" + dataOrdine.get(GregorianCalendar.YEAR);
-    }
-
     public String getDataOrdineReversedString() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         format.setCalendar(this.dataOrdine);
         String result = format.format(this.dataOrdine.getTime());
 

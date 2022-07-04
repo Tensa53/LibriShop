@@ -185,6 +185,7 @@ public class UtenteDAO {
 
     public int doDeleteUtente(Utente utente) {
         String sql = "DELETE FROM Utente WHERE Email = ?;";
+        String sql2 = "SET foreign_key_checks = ?;";
 
         CarrelloDAO carrelloDAO = new CarrelloDAO();
 
@@ -192,66 +193,20 @@ public class UtenteDAO {
 
         PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql) ) {
+        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2); ) {
             pstmt.setString(1,utente.getMail());
             indirizzoDAO.doDeleteAllbyUtente(utente.getMail());
             pagamentoDAO.doDeleteAllbyUtente(utente.getMail());
             carrelloDAO.doDeletebyUtente(utente.getMail());
-            return pstmt.executeUpdate();
+            pst.setInt(1,0);
+            pst.executeUpdate();
+            int row = pstmt.executeUpdate();
+            pst.setInt(1,1);
+            pst.executeUpdate();
+            return row;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-//    public void doDeleteDichiarazioneIndirizzoUtente(String mail) {
-//        String sql = "DELETE FROM Dichiarazione WHERE Utente = ?;";
-//        String sql2 = "SELECT * FROM Dichiarazione WHERE IndirizzoVia = ? AND IndirizzoNumero = ? AND IndirizzoCAP = ?;";
-//
-//        IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
-//
-//        List<Indirizzo> indirizzi = indirizzoDAO.doRetrievebyUserMail(mail);
-//
-//        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2); ) {
-//            pstmt.setString(1,mail);
-//            pstmt.executeUpdate();
-//
-//            for (Indirizzo i : indirizzi) {
-//                pst.setString(1,i.getVia());
-//                pst.setString(2,i.getCivico());
-//                pst.setString(3,i.getCAP());
-//
-//                ResultSet rs = pst.executeQuery();
-//
-//                if (!rs.next())
-//                    indirizzoDAO.doDeletebyIndirizzo(i.getVia(),i.getCivico(),i.getCAP());
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void doDeleteDefinizionePagamentoUtente(String mail) {
-//        String sql = "DELETE FROM Definizione WHERE Utente = ?;";
-//        String sql2 = "SELECT * FROM Definizione WHERE Pagamento = ?;";
-//
-//        PagamentoDAO pagamentoDAO = new PagamentoDAO();
-//
-//        List<Pagamento> pagamenti = pagamentoDAO.doRetrievebyUserMail(mail);
-//
-//        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); PreparedStatement pst = conn.prepareStatement(sql2);) {
-//            pstmt.setString(1,mail);
-//            pstmt.executeUpdate();
-//
-//            for (Pagamento p : pagamenti) {
-//                pst.setString(1,p.getNumeroCarta());
-//                ResultSet rs = pst.executeQuery();
-//
-//                if (!rs.next())
-//                    pagamentoDAO.doDeletebyNumeroCarta(p.getNumeroCarta());
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
 }

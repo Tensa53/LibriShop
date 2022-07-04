@@ -27,13 +27,11 @@ public class FiltraOrdiniPerUtenteServlet extends HttpServlet {
 
                     List<Ordine> ordini = ordineDAO.doRetrieveAllbyUserMail(mail);
 
-                    UtenteDAO utenteDAO = new UtenteDAO();
-
-                    List<Utente> utenti = utenteDAO.doRetrieveAllUsers();
+                    List<String> mailUtenti = ordineDAO.doRetrieveAllUserMail();
 
                     request.setAttribute("ordini",ordini);
 
-                    request.setAttribute("utenti",utenti);
+                    request.setAttribute("mailUtenti",mailUtenti);
 
                     String address = "/WEB-INF/ADMIN/viewOrdini.jsp";
 

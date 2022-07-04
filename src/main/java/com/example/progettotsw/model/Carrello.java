@@ -101,13 +101,6 @@ public class Carrello {
 
         return carrelloA;
     }
-    public static Carrello mergeCarrelli(Carrello carrelloDB, Carrello carrelloSession) {
-        if (carrelloDB.getDettagli().size() > carrelloSession.getDettagli().size()) { //appendo al carrello più grande
-            return merge(carrelloDB, carrelloSession); //merge del secondo nel primo, carrelloDB = carrelloA; carrelloSession = carrelloB;
-        } else {
-            return merge(carrelloSession, carrelloDB); //merge del secondo nel primo, carrelloSession = carrelloA; carrelloDB = carrelloB;
-        }
-    }
     private List<Dettaglio> dettagli;
     private BigDecimal totale;
 }

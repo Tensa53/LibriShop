@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -75,7 +76,7 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                     rd.forward(request, response);
                 } else {
-                    Ordine ordine = new Ordine(new GregorianCalendar(), indirizzo, pagamento, carrello.getTotale(), utente);
+                    Ordine ordine = new Ordine(indirizzo, pagamento, carrello.getTotale(), utente);
 
                     OrdineDAO ordineDAO = new OrdineDAO();
 
