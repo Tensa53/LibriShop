@@ -11,55 +11,63 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 @WebServlet("/annulla-ordine")
 public class AnnullaOrdineServlet extends HttpServlet {
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        if(utente != null) {
+            if(!utente.isAmministratore()) {
+                String id = request.getParameter("id");
 
-        OrdineDAO ordineDAO = new OrdineDAO();
+                if(id != null) {
+                    int idOrdine = Integer.parseInt(id);
 
-        Ordine ordine = ordineDAO.doRetrievebyId(id);
+                    OrdineDAO ordineDAO = new OrdineDAO();
 
-        GregorianCalendar momentoOrdine24 = ordine.getDataOrdine();
+                    Ordine ordine = ordineDAO.doRetrievebyId(idOrdine);
 
-        System.out.println(momentoOrdine24.getTime());
+                    GregorianCalendar momentoOrdine24 = ordine.getDataOrdine();
 
-        momentoOrdine24.add(GregorianCalendar.DAY_OF_MONTH,1);
+                    System.out.println(momentoOrdine24.getTime());
 
-        System.out.println(momentoOrdine24.getTime());
+                    momentoOrdine24.add(GregorianCalendar.DAY_OF_MONTH,1);
 
-        GregorianCalendar momentoOra = new GregorianCalendar();
+                    System.out.println(momentoOrdine24.getTime());
 
-        System.out.println(momentoOra.getTime());
+                    GregorianCalendar momentoOra = new GregorianCalendar();
 
-        String address = "/WEB-INF/UTENTE/ordini.jsp";
+                    System.out.println(momentoOra.getTime());
 
-        boolean ordineAnnullabile = momentoOra.before(momentoOrdine24);
+                    String address = "/WEB-INF/UTENTE/ordini.jsp";
 
-        if (ordineAnnullabile) {
-            ordineDAO.doRemovebyId(id);
-            String success = "Ordine N." + id + " rimosso con successo";
-            request.setAttribute("msgsuccess",success);
-            request.setAttribute("ordini",ordineDAO.doRetrieveAllbyUserMail(utente.getMail()));
-            RequestDispatcher rd = request.getRequestDispatcher(address);
-            rd.forward(request,response);
-        } else {
-            String error = "Ordine N." + id + " non è più annullabile dopo 24 ore";
-            request.setAttribute("msgerror",error);
-            request.setAttribute("ordini",ordineDAO.doRetrieveAllbyUserMail(utente.getMail()));
-            RequestDispatcher rd = request.getRequestDispatcher(address);
-            rd.forward(request,response);
-        }
+                    boolean ordineAnnullabile = momentoOra.before(momentoOrdine24);
+
+                    if (ordineAnnullabile) {
+                        ordineDAO.doRemovebyId(idOrdine);
+                        String success = "Ordine N." + id + " rimosso con successo";
+                        request.setAttribute("msgsuccess",success);
+                        request.setAttribute("ordini",ordineDAO.doRetrieveAllbyUserMail(utente.getMail()));
+                        RequestDispatcher rd = request.getRequestDispatcher(address);
+                        rd.forward(request,response);
+                    } else {
+                        String error = "Ordine N." + id + " non è più annullabile dopo 24 ore";
+                        request.setAttribute("msgerror",error);
+                        request.setAttribute("ordini",ordineDAO.doRetrieveAllbyUserMail(utente.getMail()));
+                        RequestDispatcher rd = request.getRequestDispatcher(address);
+                        rd.forward(request,response);
+                    }
+                } else
+                    response.sendRedirect(request.getContextPath()+"/area-riservata");
+
+            } else response.sendRedirect(request.getContextPath() + "/home");
+
+        } else response.sendRedirect(request.getContextPath() + "/home");
+
+
     }
-
     public void doGet(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException {
         doPost(request,response);
     }
