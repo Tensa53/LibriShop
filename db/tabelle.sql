@@ -74,7 +74,7 @@ CREATE TABLE Scrittura (
 
 CREATE TABLE Ordine(
                        ID int primary key auto_increment,
-                       DataOrdine date not null,
+                       DataOrdine timestamp not null,
                        Via varchar(40) not null,
                        Numero varchar(5) not null,
                        CAP char(5) not null,
