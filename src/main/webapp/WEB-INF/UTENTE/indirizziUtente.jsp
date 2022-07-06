@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
+    <script src="./script/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -25,16 +26,23 @@
     <p>${msg}</p>
 <%}%>
 
-<form action="inserisci-indirizzo" method="post">
+<form action="inserisci-indirizzo" name="inserisci-indirizzo" method="post" onsubmit="return validateFormInserisciIndirizzo()">
     <label for="viar">Via : </label><br>
+    <p id="viaP"></p>
     <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
+    <p id="civicoP"></p>
+    <p id="civicoP2"></p>
     <input type="text" name="civicor" id="civicor" required><br>
     <label for="provinciar">Provincia : </label><br>
+    <p id="provinciaP"></p>
     <input type="text" name="provinciar" id="provinciar" required><br>
     <label for="cittar">Città : </label><br>
+    <p id="cittaP"></p>
     <input type="text" name="cittar" id="cittar" required><br>
     <label for="capr">CAP : </label><br>
+    <p id="capP"></p>
+    <p id="capP2"></p>
     <input type="text" name="capr" id="capr" required><br>
     <input type="submit" value="Inserisci un nuovo Indirizzo">
 </form>
@@ -47,14 +55,19 @@
     <input type="hidden" value="<%=indirizzo.getCivico()%>" name="civicoF">
     <input type="hidden" value="<%=indirizzo.getCitta()%>" name="cittaF">
     <label for="via">Via : </label><br>
+    <p id="viaP3"></p>
     <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>"><br>
     <label for="civico">Civico : </label><br>
+    <p id="civicoP3"></p>
     <input type="text" name="civico" id="civico" value="<%=indirizzo.getCivico()%>"><br>
     <label for="provincia">Provincia : </label><br>
+    <p id="provinciaP3"></p>
     <input type="text" name="provincia" id="provincia" value="<%=indirizzo.getProvincia()%>"><br>
     <label for="citta">Città : </label><br>
+    <p id="cittaP3"></p>
     <input type="text" name="citta" id="citta" value="<%=indirizzo.getCitta()%>"><br>
     <label for="cap">CAP : </label><br>
+    <p id="capP3"></p>
     <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>"><br>
     <button formaction="conferma-modifiche-indirizzo">Modifica Indirizzo</button>
     <button formaction="rimuovi-indirizzo">Rimuovi Indirizzo</button>
