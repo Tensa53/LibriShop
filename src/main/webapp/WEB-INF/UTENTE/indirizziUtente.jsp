@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
+    <script src="./script/validateFormModificaIndirizzo.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -50,26 +51,28 @@
 
 <%for(Indirizzo indirizzo : indirizzi){%>
 <div id="container-indirizzo-utente">
-<form method="post">
+<form method="post" name="modifica-indirizzo">
     <input type="hidden" value="<%=indirizzo.getVia()%>" name="viaF">
     <input type="hidden" value="<%=indirizzo.getCivico()%>" name="civicoF">
     <input type="hidden" value="<%=indirizzo.getCitta()%>" name="cittaF">
     <label for="via">Via : </label><br>
     <p id="viaP3"></p>
-    <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>"><br>
+    <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>" required><br>
     <label for="civico">Civico : </label><br>
     <p id="civicoP3"></p>
-    <input type="text" name="civico" id="civico" value="<%=indirizzo.getCivico()%>"><br>
+    <p id="civicoP4"></p>
+    <input type="text" name="civico" id="civico" value="<%=indirizzo.getCivico()%>" required><br>
     <label for="provincia">Provincia : </label><br>
     <p id="provinciaP3"></p>
-    <input type="text" name="provincia" id="provincia" value="<%=indirizzo.getProvincia()%>"><br>
+    <input type="text" name="provincia" id="provincia" value="<%=indirizzo.getProvincia()%>" required><br>
     <label for="citta">Città : </label><br>
     <p id="cittaP3"></p>
-    <input type="text" name="citta" id="citta" value="<%=indirizzo.getCitta()%>"><br>
+    <input type="text" name="citta" id="citta" value="<%=indirizzo.getCitta()%>" required><br>
     <label for="cap">CAP : </label><br>
     <p id="capP3"></p>
-    <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>"><br>
-    <button formaction="conferma-modifiche-indirizzo">Modifica Indirizzo</button>
+    <p id="capP4"></p>
+    <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>" required><br>
+    <button onclick="return validateFormModificaIndirizzo()" formaction="conferma-modifiche-indirizzo">Modifica Indirizzo</button>
     <button formaction="rimuovi-indirizzo">Rimuovi Indirizzo</button>
     <button formaction="area-riservata">Annulla</button>
 </form>
