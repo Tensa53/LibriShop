@@ -9,6 +9,7 @@ function validateFormRegistrazione(){
 
     document.getElementById("nomeP").innerText = "";
     document.getElementById("cognomeP").innerText = "";
+    document.getElementById("usernameP").innerText = "";
     document.getElementById("mailP").innerText = "";
     document.getElementById("passwordP").innerText = "";
 
@@ -39,6 +40,10 @@ function validateFormRegistrazione(){
     //lunghezza
     if (password.length > 40){ c++;
         document.getElementById("nomeP").innerText = "Il campo password non può superare i 40 caratteri."
+    }
+
+    if (username.length > 20){ c++;
+        document.getElementById("usernameP").innerText = "Il campo username non può superare i 20 caratteri."
     }
 
     if (c>0){
