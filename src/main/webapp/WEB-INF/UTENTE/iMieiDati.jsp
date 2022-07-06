@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/username.js" type="text/javascript"></script>
+    <script src="./script/validateFormModificaUtente.js" type="text/javascript"></script
     <% Utente utente = (Utente) request.getSession().getAttribute("utente");
        String msg = (String) request.getAttribute("msg");
     %>
@@ -25,7 +26,7 @@
         <p>${msg}</p>
     <%}%>
 
-    <form action="conferma-modifiche-utente-cliente" method="post"> <!--- onsubmit="return validateFormModificaUtente()" --->
+    <form action="conferma-modifiche-utente-cliente" method="post" name="modifica-utente" onsubmit="return validateFormModificaUtente()" >
         <label for = "mail" id="mail">Mail :  <%=utente.getMail()%></label> <br>
         <input type="hidden" value="<%=utente.getMail()%>" name="mail">
         <label for = "nome">Nome : </label> <br>
@@ -34,8 +35,6 @@
         <label for = "cognome">Cognome : </label> <br>
         <p id="cognomeP"></p>
         <input type="text" name="cognome" id="cognome" value="<%=utente.getCognome()%>" required><br>
-        <p id="mailP"></p>
-        <p id="controllomail"></p>
         <label for = "controlla-username">Username : </label><br>
         <p id="usernameP"></p>
         <p id="controllousername"></p>
