@@ -35,17 +35,18 @@
 
 <%for(Pagamento pagamento : pagamenti){%>
 <div id="container-pagamento-utente">
-<form method="post">
+<form method="post" name="modifica-pagamento">
   <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCartaF">
   <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
   <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
   <label for="numeroCarta">Numero Carta : </label><br>
-  <input type="text" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" required><br>
+  <p id="cartaP2"></p>
+  <input type="text" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" minlength="16" maxlength="16" required><br>
   <label for="scadenza">Scadenza : </label><br>
   <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza" required><br>
   <label for="CCV">CCV </label><br>
   <input type="number" min="100" max="999" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br>
-  <button formaction="conferma-modifiche-pagamento">Modifica Pagamento</button>
+  <button onclick="return validateFormModificaPagamento()" formaction="conferma-modifiche-pagamento">Modifica Pagamento</button>
   <button formaction="rimuovi-pagamento">Rimuovi Pagamento</button>
   <button formaction="area-riservata">Annulla</button>
 </form>
