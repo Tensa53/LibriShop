@@ -1,10 +1,10 @@
-function validateFormRegistrazione(){
+function validateFormInsUtente(){
 
-    let nome = document.forms["Registrazione"]["nomer"].value;
-    let cognome = document.forms["Registrazione"]["cognomer"].value;
-    let mail = document.forms["Registrazione"]["mailr"].value;
-    let username = document.forms["Registrazione"]["usernamer"].value;
-    let password = document.forms["Registrazione"]["passwordr"].value;
+    let nome = document.forms["registrazione"]["nomer"].value;
+    let cognome = document.forms["registrazione"]["cognomer"].value;
+    let mail = document.forms["registrazione"]["mailr"].value;
+    let username = document.forms["registrazione"]["usernamer"].value;
+    let password = document.forms["registrazione"]["passwordr"].value;
     let c = 0;
 
     document.getElementById("nomeP").innerText = "";
