@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
+    <script src="./script/validateModificaNomeAutore.js" type="text/javascript"></script>
+    <script src="./script/validateInserisciNuovoAutore.js" type="text/javascript"></script>
     <%
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
@@ -52,19 +54,22 @@
 
 <p>Inserisci o modifica un Autore : </p>
 
-<form method="post">
+<form method="post" name="gestisci-autore">
     <%if(autoreMod == null){%>
     <label for="CF">CF : </label><br>
-    <input type="text" id="CF" name="CF"><br>
+    <p id="cfP"></p>
+    <input type="text" id="CF" name="CF" minlength="16" maxlength="16"><br>
     <label for="nome">Nome Autore : </label><br>
+    <p id="nomeP"></p>
     <input type="text" name="nome" id="nome"><br>
-    <button formaction="inserisci-autore">Inserisci Autore</button>
+    <button onclick="return validateInserisciNuovoAutore()" formaction="inserisci-autore">Inserisci Autore</button>
     <%} else {%>
     <label for="CF">CF : <%=autoreMod.getCF()%></label><br>
     <input type="hidden" name="CF" id="CF" value="<%=autoreMod.getCF()%>">
+    <p id="nomeP"></p>
     <label for="nome">Nome Autore : </label><br>
     <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>"><br>
-    <button formaction="conferma-modifiche-autore">Conferma Modifiche</button>
+    <button onclick="return validateModificaNomeAutore()" formaction="conferma-modifiche-autore">Conferma Modifiche</button>
     <%}%>
 </form>
 </div>
