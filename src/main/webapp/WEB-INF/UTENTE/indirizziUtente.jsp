@@ -1,11 +1,13 @@
 <%@ page import="com.example.progettotsw.model.Indirizzo" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.progettotsw.model.Provincia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <title>Indirizzi</title>
   <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");
-    String msg = (String) request.getAttribute("mgs");
+    String msg = (String) request.getAttribute("msg");
+    List<Provincia> province = (List<Provincia>) request.getAttribute("provincia");
   %>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
@@ -14,12 +16,29 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
     <script src="./script/validateFormModificaIndirizzo.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
+
+<script>
+    function comuni (provincia) {
+
+        if (provincia != 0) {
+            $.ajax({
+                type : "GET",
+                url : "comuni",
+                data : "provincia="+provincia,
+                success: function(result) {
+                    $('#cittar').html(result);
+                }
+            });
+        }
+    }
+</script>
 
 <div class="center">
 
@@ -36,11 +55,16 @@
     <p id="civicoP2"></p>
     <input type="text" name="civicor" id="civicor" required><br>
     <label for="provinciar">Provincia : </label><br>
-    <p id="provinciaP"></p>
-    <input type="text" name="provinciar" id="provinciar" required><br>
-    <label for="cittar">Città : </label><br>
-    <p id="cittaP"></p>
-    <input type="text" name="cittar" id="cittar" required><br>
+    <select name="provinciar" id="provinciar" onchange="comuni(this.value,this.id)">
+    <option value="0">Selezionare...</option>
+    <%for (Provincia p : province){%>
+        <option value="<%=p.getId()%>"><%=p.getNome()%></option>
+    <%}%>
+    </select><br>
+    <label for="cittar">Citta : </label><br>
+    <select name="cittar" id="cittar">
+
+    </select><br>
     <label for="capr">CAP : </label><br>
     <p id="capP"></p>
     <p id="capP2"></p>
@@ -71,7 +95,7 @@
     <label for="cap">CAP : </label><br>
     <p id="capP3"></p>
     <p id="capP4"></p>
-    <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>" required><br>
+    <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>"><br>
     <button onclick="return validateFormModificaIndirizzo()" formaction="conferma-modifiche-indirizzo">Modifica Indirizzo</button>
     <button formaction="rimuovi-indirizzo">Rimuovi Indirizzo</button>
     <button formaction="area-riservata">Annulla</button>

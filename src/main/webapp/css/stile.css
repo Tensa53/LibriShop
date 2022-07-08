@@ -138,10 +138,10 @@ body {
 /*    margin : 0px;*/
 /*}*/
 
-/*#container-carrello img {*/
-/*    width: 100px;*/
-/*    height: 150px;*/
-/*}*/
+#container-carrello img {
+    width: 100px;
+    height: 150px;
+}
 
 /*figure.catalogo-item {*/
 /*    border-color: transparent;*/

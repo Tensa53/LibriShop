@@ -39,9 +39,9 @@ CREATE TABLE Utente (
 CREATE TABLE Indirizzo (
                            Via varchar(40) not null,
                            Civico varchar(5) not null,
-                           Citta varchar(20) not null,
+                           Citta varchar(50) not null,
                            CAP char(5) not null,
-                           Provincia varchar(20) not null,
+                           Provincia varchar(30) not null,
                            Utente varchar(30) not null,
                            primary key(Via,Civico,Citta,Utente)
 );
@@ -78,8 +78,8 @@ CREATE TABLE Ordine(
                        Via varchar(40) not null,
                        Numero varchar(5) not null,
                        CAP char(5) not null,
-                       Citta varchar(20) not null,
-                       Provincia varchar(20) not null,
+                       Citta varchar(50) not null,
+                       Provincia varchar(30) not null,
                        NumeroCarta varchar(16) not null,
                        Scadenza date not null,
                        CCV char(3) not null,

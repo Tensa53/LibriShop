@@ -27,13 +27,13 @@ function validateFormModificaIndirizzo(){
         document.getElementById("civicoP4").innerText = "Il civico può contenere solo numeri.";
     }
 
-    if (provincia.length > 20){
-        document.getElementById("provinciaP3").innerText = "La provincia non deve superare i 20 caratteri.";
+    if (provincia.length > 30){
+        document.getElementById("provinciaP3").innerText = "La provincia non deve superare i 30 caratteri.";
         c++;
     }
 
-    if (citta.length > 40){
-        document.getElementById("cittaP3").innerText = "La città non deve superare i 20 caratteri.";
+    if (citta.length > 50){
+        document.getElementById("cittaP3").innerText = "La città non deve superare i 50 caratteri.";
         c++;
     }
 

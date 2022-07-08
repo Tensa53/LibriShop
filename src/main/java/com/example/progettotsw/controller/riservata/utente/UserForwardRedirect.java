@@ -49,9 +49,15 @@ public class UserForwardRedirect extends HttpServlet {
                 if (iMieiIndirizzi != null) {
                     IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
 
+                    ProvinciaDAO provinciaDAO = new ProvinciaDAO();
+
+                    List<Provincia> province = provinciaDAO.doRetrieveAll();
+
                     List<Indirizzo> indirizzi = indirizzoDAO.doRetrievebyUserMail(utente.getMail());
 
                     request.setAttribute("indirizzi", indirizzi);
+
+                    request.setAttribute("provincia", province);
 
                     String address = "/WEB-INF/UTENTE/indirizziUtente.jsp";
 

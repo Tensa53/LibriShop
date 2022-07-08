@@ -3,6 +3,7 @@ package com.example.progettotsw.controller.riservata.utente;
 
 import com.example.progettotsw.model.Indirizzo;
 import com.example.progettotsw.model.IndirizzoDAO;
+import com.example.progettotsw.model.ProvinciaDAO;
 import com.example.progettotsw.model.Utente;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -35,7 +36,11 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
             boolean compilazioneForm = via != null && civico != null && provincia != null && citta != null && CAP != null;
 
             if (compilazioneForm){
-                Indirizzo i = new Indirizzo(via,civico,citta,CAP,provincia);
+                ProvinciaDAO provinciaDAO = new ProvinciaDAO();
+
+                String nomeProvincia = provinciaDAO.doRetrievebyId(Integer.parseInt(provincia)).getNome();
+
+                Indirizzo i = new Indirizzo(via,civico,citta,CAP,nomeProvincia);
                 IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
 
                 String msg = null;
