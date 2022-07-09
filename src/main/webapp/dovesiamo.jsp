@@ -19,20 +19,13 @@
     <p>Usa la mappa per scoprire dove trovare i nostri store fisici. Abbiamo in programma di aprire
     nuovi punti vendita per soddisfare le esigenze dei clienti di tutta Italia. Se il tuo paese non
     ha ancora uno store dedicato, ricorda che ordinando online riceverai il tuo ordine in soli 2 giorni lavorativi.</p>
-    <p id="store">Clicca sulla mappa!</p>
-    <img src="./img/cartina.jpg" alt="Cartina Italia" usemap="#workmap">
-
-    <map name="workmap">
-        <area shape="circle" onclick="$('#store').html('Hai scelto Milano Store. Via Manzoni, 80.');"
-              coords="130,160,40" alt="MilanoStore" href="#">
-        <area shape="circle" onclick="$('#store').html('Hai scelto Roma Store. Via Giosuè Carducci, 13.');"
-              coords="300,360,40" alt="RomaStore" href="#">
-        <area shape="circle" onclick="$('#store').html('Hai scelto Salerno Store. Via Dei Mercanti, 56.');"
-              coords="390,410,40" alt="SalernoStore" href="#">
-        <area shape="circle" onclick="$('#store').html('Hai scelto Cagliari Store. Via Roma, 22.');"
-              coords="100,550,40" alt="CagliariStore" href="#">
-    </map>
-
+    <ul>
+        <li>Milano Store. Via Manzoni, 80.</li>
+        <li>Roma Store. Via Giosuè Carducci, 13.</li>
+        <li>Salerno Store. Via Dei Mercanti, 56.</li>
+        <li>Cagliari Store. Via Roma, 22.</li>
+    </ul>
+    <img src="./img/cartina.jpg" alt="Cartina Italia">
 </div>
 
 <jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>

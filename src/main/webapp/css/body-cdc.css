@@ -18,3 +18,7 @@ html,body {
     width: 45%;
     height: auto;
 }
+
+ul {
+    list-style: none;
+}
