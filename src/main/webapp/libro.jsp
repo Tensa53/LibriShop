@@ -58,7 +58,7 @@
         <%}%>
         </figcaption>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-        <figcaption class="catalogo-item descrizione"><%=l.getDescrizione()%></figcaption>
+        <figcaption class="catalogo-item caption"><%=l.getDescrizione()%></figcaption>
     </form>
 </figure>
 

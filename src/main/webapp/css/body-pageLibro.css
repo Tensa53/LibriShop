@@ -58,19 +58,7 @@ figure.catalogo-item {
     padding: 20px;
 }
 
-figcaption.catalogo-item{
-    border-color: #cccccc;
-    font-size: 30px;
-    text-align: center;
-}
-
 figure input[type=image] {
-    width: 300px;
-    height: 500px;
-}
-
-figure img {
-    margin-right: 60px;
     width: 300px;
     height: 500px;
 }
@@ -88,4 +76,105 @@ figcaption {
     color: black;
     padding: 2px;
     text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    input[type=number] {
+        font-size: 15px;
+    }
+
+    input[type=submit] {
+        font-size: 15px;
+    }
+
+    figure img {
+        margin-right: 60px;
+        width: 180px;
+        height: auto;
+    }
+
+    figcaption.catalogo-item{
+        border-color: #cccccc;
+        font-size: 25px;
+        text-align: center;
+    }
+    figcaption.catalogo-item.caption{
+        float: left;
+        border-color: #cccccc;
+        font-size: 15px;
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 984px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    input[type=number] {
+        font-size: 15px;
+    }
+
+    input[type=submit] {
+        font-size: 15px;
+    }
+
+    figure img {
+        margin-right: 60px;
+        width: 280px;
+        height: auto;
+    }
+
+    figcaption.catalogo-item{
+        border-color: #cccccc;
+        font-size: 30px;
+        text-align: center;
+    }
+    figcaption.catalogo-item.caption{
+        border-color: #cccccc;
+        font-size: 20px;
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width: 985px) {
+
+    body {
+        font-size: 20px;
+    }
+
+    input[type=number] {
+        font-size: 20px;
+    }
+
+    input[type=submit] {
+        font-size: 20px;
+    }
+
+    figure img {
+        margin-right: 60px;
+        width: 300px;
+        height: auto;
+    }
+
+    figcaption.catalogo-item{
+        border-color: #cccccc;
+        font-size: 40px;
+        text-align: center;
+    }
+
+    figcaption.catalogo-item.caption{
+        border-color: #cccccc;
+        font-size: 25px;
+        text-align: center;
+    }
+
 }
