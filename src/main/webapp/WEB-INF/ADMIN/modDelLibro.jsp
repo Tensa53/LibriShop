@@ -82,7 +82,7 @@
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
     <p id="descrizioneP"></p>
-    <textarea required name="descrizione" id="descrizione"><%=libro.getDescrizione()%></textarea><br>
+    <textarea required name="descrizione" id="descrizione" rows="20"><%=libro.getDescrizione()%></textarea><br>
     <label for = "prezzo">Prezzo : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>

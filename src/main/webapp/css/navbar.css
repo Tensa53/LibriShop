@@ -1,9 +1,3 @@
-html,body {
-    margin: 0;
-    background-color: ghostwhite;
-    height: 100%;
-}
-
 nav ul {
     list-style-type: none; /*disattiva i bullets della lista*/
     background-color: #00627D;

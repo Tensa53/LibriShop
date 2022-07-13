@@ -42,7 +42,7 @@
     text-decoration: line-through;
 }
 
-body {
+html,body {
     background-color: ghostwhite;
     margin: 0px;
 }
@@ -137,11 +137,6 @@ body {
 /*    text-align: -webkit-center;*/
 /*    margin : 0px;*/
 /*}*/
-
-#container-carrello img {
-    width: 100px;
-    height: 150px;
-}
 
 /*figure.catalogo-item {*/
 /*    border-color: transparent;*/

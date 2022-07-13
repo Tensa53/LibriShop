@@ -1,0 +1,27 @@
+#container-carrello {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1000px;
+}
+
+.container-libro-item {
+    border: 1px solid black;
+    border-radius: 1px;
+    padding: 2px;
+    background-color: #dee3de; /*Whitecap Foam*/
+}
+
+.prezzo-libri {
+    float: right;
+    display: inline-block;
+}
+
+#container-carrello img {
+    width: 100px;
+    height: 150px;
+}
+
+.container-info-libro {
+    margin-left: 2px;
+}

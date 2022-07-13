@@ -49,7 +49,7 @@
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
     <p id="descrizioneP"></p>
-    <textarea name="descrizione" id="descrizione" required></textarea><br>
+    <textarea name="descrizione" id="descrizione" rows="20" required></textarea><br>
     <label for = "prezzo">Prezzo : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>

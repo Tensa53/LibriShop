@@ -34,7 +34,7 @@ public class LogoutServlet extends HttpServlet {
 
                 boolean statoCarrelloSession = carrelloSession.getTotale().compareTo(zero) == 0 || carrelloSession.getDettagli().size() == 0;
 
-                if (statoCarrelloDB) { //al momento del logout
+                if (!statoCarrelloDB) { //al momento del logout
                     carrelloDAO.doRemoveAllbyUtente(utente.getMail());//rimuovo tutto quello che c'è nel carrello di db
                     carrelloDAO.doSaveAllbyUtente(carrelloSession, utente.getMail());//inserisco l'ultima istanza utile da sessione del carrello
                 } else

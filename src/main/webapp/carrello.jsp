@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-carrello.css">
 </head>
 <body>
 
@@ -33,22 +34,31 @@
     int c = totaleCarrello.compareTo(new BigDecimal(0.00));
 
     if(c > 0){ %>
-    <p class="error">Non puoi selezionare più di 5 copie di un libro</p>
+    <p class="error center">Non puoi selezionare più di 5 copie di un libro</p>
         <% for(Dettaglio d : carrello.getDettagli()){%>
-            <div>
+            <div class="container-libro-item">
             <form action="rimuovi-dal-carrello">
-                <a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
-                <p><a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><%=d.getLibro().getTitolo()%></a></p>
-                <input type="number" min="1" max="5" value="<%=d.getQuantita()%>" id="<%=quantita+i%>" name="<%=quantita+i%>" oninput="updateQuantita(<%=i%>)">
-                <input type="hidden" id="<%=isbn+i%>" name="<%=isbn+i%>" value="<%=d.getLibro().getISBN()%>">
-                <input type="hidden" id="i" name="i" value="<%=i%>">
-                <p id="<%=prezzo+i%>" name="<%=prezzo+i%>"><%=d.getPrezzo().toString()%>€</p>
-                <input type="submit" value="Rimuovi dal carrello">
+                <div>
+                <div class="left">
+                    <a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
+                </div>
+                <div class="left container-info-libro">
+                    <p id="titolo-libro"><a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><%=d.getLibro().getTitolo()%></a></p>
+                    <p>Quantità : <input type="number" min="1" max="5" value="<%=d.getQuantita()%>" id="<%=quantita+i%>" name="<%=quantita+i%>" oninput="updateQuantita(<%=i%>)"></p>
+                    <input type="hidden" id="<%=isbn+i%>" name="<%=isbn+i%>" value="<%=d.getLibro().getISBN()%>">
+                    <input type="hidden" id="i" name="i" value="<%=i%>">
+                    <input type="submit" value="Rimuovi dal carrello">
+                </div>
+                <div class="right">
+                    <h3 class="prezzo-libri" id="<%=prezzo+i%>" name="<%=prezzo+i%>">Prezzo : <%=d.getPrezzo().toString()%>€</h3>
+                </div>
+                </div>
             </form>
             </div>
+            <br>
         <%  i++;
         }%>
-            <p id="totale">Totale : <%=carrello.getTotale().toString()%>€</p>
+            <h3 id="totale">Totale : <%=carrello.getTotale().toString()%>€</h3>
             <form action="conferma-ordine"  method="post">
                 <input type="submit" value="Conferma Ordine">
             </form>

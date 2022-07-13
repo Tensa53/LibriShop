@@ -20,7 +20,7 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
 
         Dettaglio d = carrello.getDettagliobyISBN(isbn);
 
-        carrello.getDettagli().remove(d);
+        carrello.removeDettaglio(d);
 
         BigDecimal totaleCarrello = carrello.getTotale();
 

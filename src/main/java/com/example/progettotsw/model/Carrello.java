@@ -65,6 +65,8 @@ public class Carrello {
         return dettaglio;
     }
 
+    public void  removeDettaglio(Dettaglio d) {dettagli.remove(d);}
+
     public String printDettagli() {
         String msg = "";
 
@@ -79,21 +81,22 @@ public class Carrello {
         for (Dettaglio dettaglioB : carrelloB.getDettagli()) {
             Dettaglio dettaglioA = null;
 
-            if ((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) {
-                dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());
-                BigDecimal prezzoDettaglioA = dettaglioA.getPrezzo();
+            BigDecimal totaleCarrelloA = carrelloA.getTotale();
+
+            if ((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) { //se c'è già un dettaglio di questo libro nel carrello
+                totaleCarrelloA = totaleCarrelloA.subtract(dettaglioA.getPrezzo());//rimuovi il vecchio prezzo del dettaglio dal totale del carrello
+                dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());//incrementa la quantità
+                BigDecimal prezzoDettaglioA = dettaglioA.getLibro().getPrezzoScontato();//setta il prezzo base nel dettaglio
                 if (dettaglioA.getQuantita() > 5)
-                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(5.00));
-                else
-                    prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));
+                    dettaglioA.setQuantita(5); //se si eccede nelle quantità,resetta a 5
+
+                prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));//moltiplica il prezzo base per la quantità
 
                 dettaglioA.setPrezzo(prezzoDettaglioA);
-                BigDecimal totaleCarrelloA = carrelloA.getTotale();
-                totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo());
+                totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo()); //aggiorniamo il totale del carrello col nuovo prezzo del dettaglio
                 carrelloA.setTotale(totaleCarrelloA);
             } else {
                 carrelloA.addDettaglio(dettaglioB);
-                BigDecimal totaleCarrelloA = carrelloA.getTotale();
                 totaleCarrelloA = totaleCarrelloA.add(dettaglioB.getPrezzo());
                 carrelloA.setTotale(totaleCarrelloA);
             }

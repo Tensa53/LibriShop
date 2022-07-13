@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Home Page</title>
-<%--    <link rel="stylesheet" type="text/css" href="./css/stile.css">--%>
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">

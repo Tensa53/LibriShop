@@ -1,11 +1,5 @@
 /*css per la vista mobile*/
 
-html,body {
-    margin: 0;
-    background-color: ghostwhite;
-    height: 100%;
-}
-
 #container-catalogo {
     max-width: 300px;
     margin: auto;
