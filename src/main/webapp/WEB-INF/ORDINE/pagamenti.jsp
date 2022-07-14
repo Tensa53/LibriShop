@@ -4,11 +4,17 @@
 <html>
 <head>
     <title>Pagamenti</title>
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <%List<Pagamento> pagamenti = (List<Pagamento>) request.getAttribute("pagamenti");%>
 </head>
 <body>
 
-<%=pagamenti.size()%>
+<jsp:include page="../INCLUDE/header.jsp"></jsp:include>
+
+<jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 <%for(Pagamento pagamento : pagamenti){%>
 <form action="conferma-pagamento" method="post">
@@ -21,5 +27,8 @@
     </ul>
 </form>
 <%}%>
+
+<jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/sidenav.css">
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-ricerca.css">
 
     <%
@@ -44,7 +46,7 @@
 
 <div id="container-body-ricerca">
 
-    <div id="container-filtri-ordine">
+    <div id="container-filtri-ordine" class="sidenav">
         <div id="container-ordina-libri">
             Ordina per prezzo :
             <form action="filtra-libri">
@@ -88,7 +90,7 @@
         </div>
     </div>
 
-    <div id="container-catalogo">
+    <div id="container-catalogo" class="main">
         <%
             for (Libro l:libri) { %>
         <figure class = "catalogo-item">

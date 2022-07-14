@@ -40,10 +40,10 @@
             <form action="rimuovi-dal-carrello">
                 <div>
                 <div class="left">
-                    <a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
+                    <a href="./page-libro?isbn=<%=d.getLibro().getISBN()%>"><img src="<%=d.getLibro().getFoto()%>"></a>
                 </div>
                 <div class="left container-info-libro">
-                    <p id="titolo-libro"><a href="http://localhost:8080/progettoTSW_war_exploded/page-libro?isbn=<%=d.getLibro().getISBN()%>"><%=d.getLibro().getTitolo()%></a></p>
+                    <p id="titolo-libro"><a href="./page-libro?isbn=<%=d.getLibro().getISBN()%>"><%=d.getLibro().getTitolo()%></a></p>
                     <p>Quantità : <input type="number" min="1" max="5" value="<%=d.getQuantita()%>" id="<%=quantita+i%>" name="<%=quantita+i%>" oninput="updateQuantita(<%=i%>)"></p>
                     <input type="hidden" id="<%=isbn+i%>" name="<%=isbn+i%>" value="<%=d.getLibro().getISBN()%>">
                     <input type="hidden" id="i" name="i" value="<%=i%>">
@@ -63,7 +63,7 @@
                 <input type="submit" value="Conferma Ordine">
             </form>
     <%}else{%>
-            <p>vuoto</p>
+            <h3 class="center">Il carrello è vuoto</h3>
     <%}%>
 
 </div>

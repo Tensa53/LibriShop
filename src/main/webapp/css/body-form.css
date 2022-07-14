@@ -7,6 +7,10 @@ form p {
     font-style: italic;
 }
 
+form input type[text] {
+    width: 40%;
+}
+
 div.container-ordini-item {
     border : 1px solid #555555;
     margin: 5px;

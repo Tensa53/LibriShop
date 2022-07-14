@@ -1,0 +1,30 @@
+.sidenav {
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 130px;
+    left: 0;
+    background-color: #dee3de; /*Whitecap Foam*/;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+.main {
+    /*margin-left: 200px; !* Same as the width of the sidenav *!*/
+    /*font-size: 28px; !* Increased text to enable scrolling *!*/
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+@media screen and (max-width: 1018px) {
+    .sidenav {
+        position: static;
+        max-width: 160px;
+        margin: auto;
+    }
+}

@@ -54,7 +54,7 @@ header {
 /*seguiranno media query nei relativi breakpoints*/
 
 
-@media screen and (min-width: 984px) {
+@media screen and (min-width: 1018px) {
     header img {
         width: 40px;
         height: 40px;

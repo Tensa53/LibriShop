@@ -7,9 +7,17 @@
 <html>
 <head>
     <title>Ordine</title>
+    <link rel="stylesheet" type="text/css" href="./css/stile.css">
+    <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <%Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");%>
 </head>
 <body>
+
+<jsp:include page="../INCLUDE/header.jsp"></jsp:include>
+
+<jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 <%String msg = (String) request.getAttribute("msg");
     if (msg != null) {
@@ -51,5 +59,8 @@
   <input type="submit" value="Completa ordine">
 </div>
 </form>
+
+<jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
+
 </body>
 </html>

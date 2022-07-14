@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Utente;
 import com.example.progettotsw.model.UtenteDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -27,10 +28,23 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = mail != null && username != null && nome != null && cognome != null;
 
-                if (compilazioneForm) {
-                    Utente u = new Utente(mail, username, nome, cognome, amministratore);
+                boolean validazioneForm;
 
-                    UtenteDAO utenteDAO = new UtenteDAO();
+                if (password != null)
+                    validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,password,request);
+                else
+                    validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,null,request);
+
+                UtenteDAO utenteDAO = new UtenteDAO();
+
+                Utente utentedb = utenteDAO.doRetrieveByMail(mail);
+
+                if (utentedb.getUsername().equals(username)) {
+                    request.setAttribute("msgusernameinuso", "già in uso");
+                }
+
+                if (compilazioneForm && validazioneForm) {
+                    Utente u = new Utente(mail, username, nome, cognome, amministratore);
 
                     if (password != null) {
                         if (password.length() > 0){
@@ -47,7 +61,8 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
                     request.setAttribute("msg", msg);
 
                     request.getSession().removeAttribute("utenti");
-                }
+                } else
+                    request.setAttribute("msgerr","Errore nella validazione dei campi del form !!!");
 
                 String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 

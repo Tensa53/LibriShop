@@ -21,7 +21,7 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
 }
 
 /*seguiranno media query nei relativi breakpoints*/
-@media screen and (max-width: 983px) {
+@media screen and (max-width: 1017px) {
     .notnav {
         display: none;
     }
@@ -52,7 +52,7 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
 }
 
 
-@media screen and (min-width: 984px) {
+@media screen and (min-width: 1018px) {
     /*navbar orizzontale*/
     .notnav {
         display: block;

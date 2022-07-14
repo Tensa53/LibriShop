@@ -1,60 +1,19 @@
-/*css per la vista mobile*/
+@import "figure.css";
 
 #container-catalogo {
     max-width: 300px;
     margin: auto;
 }
 
-figure.catalogo-item {
-    border-color: transparent;
-    padding: 20px;
-}
-
-figcaption.catalogo-item{
-    border-color: #cccccc;
-    font-size: 30px;
-    text-align: center;
-}
-
-figure input[type=image] {
-    width: 300px;
-    height: 500px;
-}
-
-figure img {
-    margin-right: 60px;
-    width: 300px;
-    height: 500px;
-}
-
-figure {
-    border: 1px #cccccc solid;
-    display: inline-block;
-    text-align: center;
-    padding: 4px;
-    margin: 5px;
-}
-
-figcaption {
-    border: 1px #cccccc solid;
-    color: black;
-    padding: 2px;
-    text-align: center;
-}
-
-.barrato {
-    text-decoration: line-through;
-}
-
 #container-ricerca {
     text-align: center;
 }
 
-#container-filtri-ordine {
-    text-align: center;
-    margin: 5px;
-    /*border: 1px solid #555555;*/
-}
+/*#container-filtri-ordine {*/
+/*    text-align: center;*/
+/*    margin: 5px;*/
+/*    !*border: 1px solid #555555;*!*/
+/*}*/
 
 #container-ricerca input[type=text] {
     margin: 5px;
@@ -65,11 +24,11 @@ figcaption {
 
 @media screen and (min-width: 1018px) {
 
-    #container-filtri-ordine {
-        margin: 30px 5px 5px 5px;
-        float: left;
-        width: 250px;
-    }
+    /*#container-filtri-ordine {*/
+    /*    margin: 30px 5px 5px 5px;*/
+    /*    float: left;*/
+    /*    width: 250px;*/
+    /*}*/
 
     #container-catalogo {
         margin-left: 255px;
@@ -79,29 +38,31 @@ figcaption {
 
 
 @media screen and (min-width: 1200px) {
-    #container-filtri-ordine {
-        margin: 30px 5px 5px 5px;
-        float: left;
-        width: 250px;
-    }
+    /*#container-filtri-ordine {*/
+    /*    margin: 30px 5px 5px 5px;*/
+    /*    float: left;*/
+    /*    width: 250px;*/
+    /*}*/
 
     #container-catalogo {
-        margin-left: auto;
-        margin-right: auto;
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        margin-left: 255px;
         max-width: 1100px;
     }
 }
 
 @media screen and (min-width: 1600px) {
-    #container-filtri-ordine {
-        margin: 30px 5px 5px 5px;
-        float: left;
-        width: 250px;
-    }
+    /*#container-filtri-ordine {*/
+    /*    margin: 30px 5px 5px 5px;*/
+    /*    float: left;*/
+    /*    width: 250px;*/
+    /*}*/
 
     #container-catalogo {
-        margin-left: auto;
-        margin-right: auto;
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        margin-left: 255px;
         max-width: 1440px;
     }
 }

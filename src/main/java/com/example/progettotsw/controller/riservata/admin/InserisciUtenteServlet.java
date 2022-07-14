@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.CarrelloDAO;
 import com.example.progettotsw.model.Utente;
 import com.example.progettotsw.model.UtenteDAO;
@@ -28,11 +29,23 @@ public class InserisciUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = mail != null && username != null && nome != null && cognome != null && password != null;
 
-                if (compilazioneForm) {
+                boolean validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,password,request);
+
+                UtenteDAO utenteDAO = new UtenteDAO();
+
+                Utente utentedb = utenteDAO.doRetrieveByMail(mail);
+
+                if (utentedb.getMail().equals(mail)) {
+                    request.setAttribute("msgmailinuso","già in uso");
+                }
+
+                if (utentedb.getUsername().equals(username)) {
+                    request.setAttribute("msgusernameinuso", "già in uso");
+                }
+
+                if (compilazioneForm && validazioneForm) {
                     Utente nuovoUtente = new Utente(mail, username, nome, cognome, amministratore);
                     nuovoUtente.setPassword(password);
-
-                    UtenteDAO utenteDAO = new UtenteDAO();
 
                     int row = utenteDAO.doSave(nuovoUtente);
 

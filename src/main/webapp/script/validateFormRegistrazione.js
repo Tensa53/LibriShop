@@ -27,8 +27,8 @@ function validateFormRegistrazione(){
 
     // mail
     //lunghezza
-    if (mail.length > 30){ c++;
-        document.getElementById("mailP").innerText = "Il campo mail non può superare i 30 caratteri.";
+    if (mail.length > 50){ c++;
+        document.getElementById("mailP").innerText = "Il campo mail non può superare i 50 caratteri.";
     }
     //formato
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
