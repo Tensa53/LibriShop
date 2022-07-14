@@ -7,9 +7,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class Utente {
 
-    public Utente(String mail, String username, String nome, String cognome, boolean amministratore) {
+    public Utente(String mail, String nome, String cognome, boolean amministratore) {
         this.mail = mail;
-        this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.amministratore = amministratore;
@@ -28,14 +27,6 @@ public class Utente {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getNome() {
@@ -80,10 +71,8 @@ public class Utente {
     }
 
     private String mail;
-    private String username;
     private String nome;
     private String cognome;
     private String passwordhash;
-
     private boolean amministratore;
 }

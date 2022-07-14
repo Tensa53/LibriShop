@@ -17,7 +17,9 @@ public class ControlloUsernameServlet extends HttpServlet {
             String username = request.getParameter("username");
             UtenteDAO utenteDAO = new UtenteDAO();
 
-            Utente utente = utenteDAO.doRetrieveByUsername(username);
+            Utente utente = new Utente();
+
+//            Utente utente = utenteDAO.doRetrieveByUsername(username);
 
             if(utente == null) {}
             else {

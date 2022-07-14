@@ -26,25 +26,21 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 boolean amministratore = Boolean.parseBoolean(request.getParameter("amministratore"));
 
-                boolean compilazioneForm = mail != null && username != null && nome != null && cognome != null;
+                boolean compilazioneForm = mail != null && nome != null && cognome != null;
 
                 boolean validazioneForm;
 
-                if (password != null)
-                    validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,password,request);
-                else
-                    validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,null,request);
-
                 UtenteDAO utenteDAO = new UtenteDAO();
 
-                Utente utentedb = utenteDAO.doRetrieveByMail(mail);
+                Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
 
-                if (utentedb.getUsername().equals(username)) {
-                    request.setAttribute("msgusernameinuso", "già in uso");
-                }
+                if (password == null || password.length() == 0)
+                    validazioneForm = Forms.validateFormUtente(null,nome,cognome,null,request,utentemaildb);
+                else
+                    validazioneForm = Forms.validateFormUtente(null,nome,cognome,password,request,utentemaildb);
 
                 if (compilazioneForm && validazioneForm) {
-                    Utente u = new Utente(mail, username, nome, cognome, amministratore);
+                    Utente u = new Utente(mail,nome, cognome, amministratore);
 
                     if (password != null) {
                         if (password.length() > 0){

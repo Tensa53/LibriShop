@@ -14,11 +14,9 @@
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");
         String mailP = (String) request.getAttribute("msgmailP");
-        String usernameP = (String) request.getAttribute("msgusernameP");
         String passwordP = (String) request.getAttribute("msgpasswordP");
         String controllomail = (String) request.getAttribute("msgcontrollomail");
         String controllopassword = (String) request.getAttribute("msgcontrollopassword");
-        String usernameinuso = (String) request.getAttribute("msgusernameinuso");
         String mailinuso = (String) request.getAttribute("msgmailinuso");
     %>
 </head>
@@ -40,10 +38,7 @@
         <p id="mailP"><%if (mailP != null){%><%=mailP%>><%}%></p>
         <p id="controllomail"><%if (controllomail != null){%><%=controllomail%><%}%></p>
         <input type="email" name="mailr" id="controlla-mail" onblur="ControllaMail()" required><br>
-        <label for = "controlla-username">Username : <%if (usernameinuso != null){%><%=usernameinuso%><%}%></label><br>
-        <p id="usernameP"><%if (usernameP != null){%><%=usernameP%><%}%></p>
         <p id="controllousername"></p>
-        <input type="text" name="usernamer" id="controlla-username" onblur="ControllaUsername()" required><br>
         <label for = "password">Password : </label>
         <p id="passwordP"><%if (passwordP != null){%><%=passwordP%><%}%></p>
         <p id="controllopassword"><%if (controllopassword != null){%><%=controllopassword%><%}%></p>

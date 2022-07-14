@@ -44,4 +44,23 @@ public class ProvinciaDAO {
 
         return provincia;
     }
+
+    public Provincia doRetrievebyNome(String nome) {
+        String sql = "SELECT * FROM Provincia WHERE nome = ?";
+
+        Provincia provincia = null;
+
+        try(Connection conn = ConPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1,nome);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                provincia = new Provincia(rs.getString("nome"),rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return provincia;
+    }
 }

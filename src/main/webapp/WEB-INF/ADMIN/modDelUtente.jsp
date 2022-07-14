@@ -18,11 +18,9 @@
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");
         String mailP = (String) request.getAttribute("msgmailP");
-        String usernameP = (String) request.getAttribute("msgusernameP");
         String passwordP = (String) request.getAttribute("msgpasswordP");
         String controllomail = (String) request.getAttribute("msgcontrollomail");
         String controllopassword = (String) request.getAttribute("msgcontrollopassword");
-        String usernameinuso = (String) request.getAttribute("msgusernameinuso");
         String mailinuso = (String) request.getAttribute("msgmailinuso");
     %>
 </head>
@@ -64,10 +62,6 @@
         <li><%=controllomail%></li>
         <%}%>
 
-        <%if (usernameP != null ){%>
-        <li><%=usernameP%></li>
-        <%}%>
-
         <%if (passwordP != null ){%>
         <li><%=passwordP%></li>
         <%}%>
@@ -88,8 +82,7 @@
     <form action="cerca-utente-da-modificare" method="post">
         <select name="mail-utente">
             <%for (Utente u : utenti) {%>
-            <option value="<%=u.getMail()%>"><%=u.getMail()%> - <%=u.getUsername()%>
-                - <%=u.getNome() + " " + u.getCognome()%>
+            <option value="<%=u.getMail()%>"><%=u.getMail()%> - <%=u.getNome() + " " + u.getCognome()%>
             </option>
             <%}%>
         </select>
@@ -110,18 +103,12 @@
         <label for="cognome">Cognome : </label> <br>
         <p id="cognomeP"><%if (cognomeP != null) {%><%=cognomeP%><%}%></p>
         <input type="text" name="cognome" id="cognome" value="<%=utenteMod.getCognome()%>" required><br>
-        <label for="controlla-username">Username : <%if (usernameinuso != null) {%><%=usernameinuso%><%}%></label><br>
-        <p id="usernameP"><%if (usernameP != null) {%><%=usernameP%><%}%></p>
-        <p id="controllousername"></p>
-        <input type="text" name="username" id="controlla-username" value="<%=utenteMod.getUsername()%>"
-               onblur="ControllaUsername()" required><br>
         <label for="password">Password : </label>
         <p id="passwordP"><%if (passwordP != null) {%><%=passwordP%><%}%></p>
         <p id="controllopassword"><%if (controllopassword != null) {%><%=controllopassword%><%}%></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un
             numero.)</p>
-        <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"
-               required><br>
+        <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"><br>
         <label>Amministratore : </label>
         <%if (utenteMod.isAmministratore()) {%>
         <input type="radio" name="amministratore" value="true" checked>SI

@@ -19,11 +19,10 @@ public class UtenteDAO {
         try(Connection conn = ConPool.getConnection(); java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
             while(rs.next()) {
                 String mail = rs.getString("Email");
-                String username = rs.getString("Username");
                 String nome = rs.getString("Nome");
                 String cognome = rs.getString("Cognome");
                 boolean amministratore = rs.getBoolean("Amministratore");
-                Utente u = new Utente(mail,username,nome,cognome,amministratore);
+                Utente u = new Utente(mail,nome,cognome,amministratore);
                 utenti.add(u);
             }
         } catch (SQLException e) {
@@ -45,7 +44,7 @@ public class UtenteDAO {
                 String nome = rs.getString("Nome");
                 String cognome = rs.getString("Cognome");
                 boolean amministratore = rs.getBoolean("Amministratore");
-                Utente u = new Utente(mail,username,nome,cognome,amministratore);
+                Utente u = new Utente(mail,nome,cognome,amministratore);
                 utenti.add(u);
             }
         } catch (SQLException e) {
@@ -69,7 +68,6 @@ public class UtenteDAO {
             if (rs.next()){
                 u = new Utente();
                 u.setMail(rs.getString("Email"));
-                u.setUsername(rs.getString("Username"));
                 u.setNome(rs.getString("Nome"));
                 u.setCognome(rs.getString("Cognome"));
                 u.setPasswordhash(rs.getString("Passwordhash"));
@@ -96,7 +94,6 @@ public class UtenteDAO {
             if (rs.next()){
                 u = new Utente();
                 u.setMail(rs.getString("Email"));
-                u.setUsername(rs.getString("Username"));
                 u.setNome(rs.getString("Nome"));
                 u.setCognome(rs.getString("Cognome"));
                 u.setPasswordhash(rs.getString("Passwordhash"));
@@ -111,15 +108,14 @@ public class UtenteDAO {
     }
 
     public int doSave(Utente utente) {
-        String sql = "INSERT INTO Utente VALUES (?,?,?,?,?,?);";
+        String sql = "INSERT INTO Utente VALUES (?,?,?,?,?);";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1,utente.getMail());
-            pstmt.setString(2,utente.getUsername());
-            pstmt.setString(3,utente.getNome());
-            pstmt.setString(4,utente.getCognome());
-            pstmt.setString(5,utente.getPasswordhash());
-            pstmt.setBoolean(6,utente.isAmministratore());
+            pstmt.setString(2,utente.getNome());
+            pstmt.setString(3,utente.getCognome());
+            pstmt.setString(4,utente.getPasswordhash());
+            pstmt.setBoolean(5,utente.isAmministratore());
 
             return pstmt.executeUpdate();
         }catch (SQLException e) {
@@ -128,42 +124,14 @@ public class UtenteDAO {
 
     }
 
-    public Utente doRetrieveByUsername(String username) {
-        String sql = "SELECT * FROM Utente WHERE Username=?;";
-
-        Utente u = null;
-
-        try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);){
-            pstmt.setString(1,username);
-
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()){
-                u = new Utente();
-                u.setMail(rs.getString("Email"));
-                u.setUsername(rs.getString("Username"));
-                u.setNome(rs.getString("Nome"));
-                u.setCognome(rs.getString("Cognome"));
-                u.setPasswordhash(rs.getString("Passwordhash"));
-                u.setAmministratore(rs.getBoolean("Amministratore"));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return u;
-    }
-
     public int doUpdateUser(Utente utente) {
-        String sql = "UPDATE Utente SET Username = ?,Nome = ?,Cognome = ?,Amministratore = ? WHERE Email = ?;";
+        String sql = "UPDATE Utente SET Nome = ?,Cognome = ?,Amministratore = ? WHERE Email = ?;";
 
         try(Connection conn = ConPool.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
-            pstmt.setString(1, utente.getUsername());
-            pstmt.setString(2,utente.getNome());
-            pstmt.setString(3,utente.getCognome());
-            pstmt.setBoolean(4,utente.isAmministratore());
-            pstmt.setString(5, utente.getMail());
+            pstmt.setString(1,utente.getNome());
+            pstmt.setString(2,utente.getCognome());
+            pstmt.setBoolean(3,utente.isAmministratore());
+            pstmt.setString(4, utente.getMail());
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

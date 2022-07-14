@@ -38,7 +38,7 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
             if (compilazioneForm){
                 ProvinciaDAO provinciaDAO = new ProvinciaDAO();
 
-                String nomeProvincia = provinciaDAO.doRetrievebyId(Integer.parseInt(provincia)).getNome();
+                String nomeProvincia = provinciaDAO.doRetrievebyNome(provincia).getNome();
 
                 Indirizzo i = new Indirizzo(via,civico,citta,CAP,nomeProvincia);
                 IndirizzoDAO indirizzoDAO = new IndirizzoDAO();

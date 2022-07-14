@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.utente;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Utente;
 import com.example.progettotsw.model.UtenteDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/conferma-modifiche-utente-cliente")
 public class ConfermaModificheUtenteClienteServlet extends HttpServlet {
@@ -20,18 +22,25 @@ public class ConfermaModificheUtenteClienteServlet extends HttpServlet {
         if (utente != null) {
             if (!utente.isAmministratore()) {
                 String mail = request.getParameter("mail");
-                String username = request.getParameter("username");
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String password = request.getParameter("password");
+
                 boolean amministratore = Boolean.parseBoolean(request.getParameter("amministratore"));
 
-                boolean compilazioneForm = mail != null && username != null && nome != null && cognome != null;
+                boolean compilazioneForm = mail != null && nome != null && cognome != null;
 
-                if (compilazioneForm) {
-                    Utente u = new Utente(mail, username, nome, cognome, amministratore);
+                boolean validazioneForm;
 
-                    UtenteDAO utenteDAO = new UtenteDAO();
+                UtenteDAO utenteDAO = new UtenteDAO();
+
+                if (password == null || password.length() == 0)
+                    validazioneForm = Forms.validateFormUtente(mail,nome,cognome,null,request,null);
+                else
+                    validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,null);
+
+                if (compilazioneForm && validazioneForm) {
+                    Utente u = new Utente(mail,nome, cognome, amministratore);
 
                     if (password != null) {
                         if (password.length() > 0){
@@ -52,7 +61,7 @@ public class ConfermaModificheUtenteClienteServlet extends HttpServlet {
                     request.getSession().setAttribute("utente",utenteDAO.doRetrieveByMail(mail));
                 }
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                String address = "/WEB-INF/UTENTE/iMieiDati.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);

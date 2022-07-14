@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller;
 
+import com.example.progettotsw.model.Utente;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.regex.Matcher;
@@ -7,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Forms {
 
-    public static boolean validateFormUtente(String mail, String username, String nome, String cognome, String password, HttpServletRequest request) {
+    public static boolean validateFormUtente(String mail,String nome, String cognome, String password, HttpServletRequest request, Utente utentemaildb) {
         int c = 0;
 
         if(nome.length() > 20) {
@@ -23,14 +24,8 @@ public class Forms {
         if (mail != null) {
             //regex per la mail
 
-            System.out.println(mail);
-
             Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
             Matcher matcher = pattern.matcher(mail);
-
-            boolean res = matcher.matches();
-
-            System.out.println("regex : " + res);
 
             if(mail.length() > 50) {
                 request.setAttribute("msgmailP","Il campo mail non può superare i 50 caratteri.");
@@ -40,6 +35,13 @@ public class Forms {
             if (!matcher.matches()) {
                 request.setAttribute("msgcontrollomail","Il formato dell'email deve essere del tipo nomecasella@tuodominio.it");
                 c++;
+            }
+
+            if(utentemaildb != null) {
+                if (utentemaildb.getMail().equals(mail)) {
+                    request.setAttribute("msgmailinuso","già in uso");
+                    c++;
+                }
             }
         }
 
@@ -58,11 +60,6 @@ public class Forms {
                 request.setAttribute("msgcontrollopassword","Rispetta i criteri per la password");
                 c++;
             }
-        }
-
-        if(username.length() > 20) {
-            request.setAttribute("msgusernameP","Il campo username non può superare i 20 caratteri");
-            c++;
         }
 
         return !(c > 0);

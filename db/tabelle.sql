@@ -29,7 +29,6 @@ CREATE TABLE Autore (
 
 CREATE TABLE Utente (
                         Email varchar(30) primary key,
-                        Username varchar(20) unique,
                         Nome varchar(20) not null,
                         Cognome varchar(20) not null,
                         PasswordHash varchar(40) not null,

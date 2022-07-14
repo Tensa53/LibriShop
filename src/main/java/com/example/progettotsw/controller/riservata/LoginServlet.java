@@ -25,7 +25,6 @@ public class LoginServlet extends HttpServlet {
 
         if (utente != null) {
             if(!utente.isAmministratore()) {
-                log(utente.getUsername());
 
                 CarrelloDAO carrelloDAO = new CarrelloDAO();
 

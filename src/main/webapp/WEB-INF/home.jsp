@@ -42,7 +42,7 @@
         Utente utente = (Utente) session.getAttribute("utente");
         if(utente != null){
     %>
-            <h3>Benvenut* <%=utente.getUsername()%>. I nostri consigli : </h3>
+            <h3>Benvenut* <%=utente.getNome()%> <%=utente.getCognome()%>. I nostri consigli : </h3>
     <%}else{%>
             <h3>Benvenut* guest. I nostri consigli : </h3>
     <%}%>

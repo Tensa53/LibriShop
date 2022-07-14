@@ -18,30 +18,21 @@ public class RegisterServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         String mail = request.getParameter("mailr");
-        String username = request.getParameter("usernamer");
         String nome = request.getParameter("nomer");
         String cognome = request.getParameter("cognomer");
         String password = request.getParameter("passwordr");
         boolean amministratore = Boolean.parseBoolean(request.getParameter("amministratorer"));
 
-        boolean compilazioneForm = mail != null && username != null && nome != null && cognome != null && password != null;
-
-        boolean validazioneForm = Forms.validateFormUtente(mail,username,nome,cognome,password,request);
+        boolean compilazioneForm = mail != null && nome != null && cognome != null && password != null;
 
         UtenteDAO utenteDAO = new UtenteDAO();
 
-        Utente utentedb = utenteDAO.doRetrieveByMail(mail);
+        Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
 
-        if (utentedb.getMail().equals(mail)) {
-            request.setAttribute("msgmailinuso","già in uso");
-        }
-
-        if (utentedb.getUsername().equals(username)) {
-            request.setAttribute("msgusernameinuso", "già in uso");
-        }
+        boolean validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,utentemaildb);
 
         if(compilazioneForm && validazioneForm) {
-            Utente utente = new Utente(mail,username,nome,cognome,amministratore);
+            Utente utente = new Utente(mail,nome,cognome,amministratore);
             utente.setPassword(password);
 
             log("righe :" + utenteDAO.doSave(utente));
