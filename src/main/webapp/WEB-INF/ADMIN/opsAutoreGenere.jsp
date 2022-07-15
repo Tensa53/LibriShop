@@ -20,6 +20,9 @@
         String msg = (String) request.getAttribute("msg");
         String genereP = (String) request.getAttribute("msggenereP");
         String controllogenere = (String) request.getAttribute("msgcontrollogenere");
+        String nomeP = (String) request.getAttribute("msgnomeP");
+        String cfP = (String) request.getAttribute("msgCFP");
+        String controlloCF = (String) request.getAttribute("msgcontrolloCF");
     %>
 </head>
 <body>
@@ -37,7 +40,7 @@
 <p>Inserisci un genere : <%if(controllogenere != null){%><%=controllogenere%><%}%></p>
 <p id="genereP"><%if(genereP != null){%><%=genereP%><%}%></p>
 <form method="post" name="inseriscigen" action="inserisci-genere" onsubmit="return validateFormGenere()">
-    <input type="text" name="genere" id="genere">
+    <input type="text" name="genere" id="genere" required>
     <input type="submit" value="Inserisci">
 </form>
 
@@ -68,12 +71,12 @@
 
 <form method="post" name="gestisci-autore">
     <%if(autoreMod == null){%>
-    <label for="CF">CF : </label><br>
-    <p id="cfP"></p>
-    <input type="number" id="CF" name="CF"><br>
+    <label for="CF">CF : <%if(controlloCF != null){%><%=controlloCF%><%}%></label><br>
+    <p id="cfP"><%if(cfP != null){%><%=cfP%><%}%></p>
+    <input type="text" id="CF" name="CF"><br>
     <p id="CFP"></p>
     <label for="nome">Nome Autore : </label><br>
-    <p id="nomeP"></p>
+    <p id="nomeP"> <%if(nomeP != null){%><%=nomeP%><%}%></p>
     <input type="text" name="nome" id="nome"><br>
     <button onclick="return validateInserisciNuovoAutore()" formaction="inserisci-autore">Inserisci Autore</button>
     <%} else {%>

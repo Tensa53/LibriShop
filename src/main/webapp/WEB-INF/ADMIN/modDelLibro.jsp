@@ -25,6 +25,7 @@
       Autore autore = (Autore) request.getAttribute("autore");
         String titoloP = (String) request.getAttribute("msgtitoloP");
         String altroP = (String) request.getAttribute("msgaltroP");
+        String controllogenerealtro = (String) request.getAttribute("controllogenerealtro");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
         String editoreP = (String) request.getAttribute("msgeditoreP");
     %>
@@ -106,8 +107,8 @@
         <%}%>
     </select><br>
 <%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>" required><br>--%>
-    <label for= "genere">Genere : </label><br>
-    <div id="genere" class="checkbox-grid">
+    <label for= "genere">Genere : <span id="controllogenere"></span></label><br>
+    <div id="genere" class="checkbox-grid" required>
         <%
             for (Genere g : generi) {
                 if(g.contenutoIn(generiLibro)) {
@@ -118,6 +119,7 @@
         <%}}%>
         <label for="altro">Altro Genere : </label>
         <p id="altroP"></p>
+        <p id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
         <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>

@@ -39,9 +39,13 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
 
-                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,null,request);
+                GenereDAO genereDAO = new GenereDAO();
+
+                Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
+
+                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,null,generedbaltro,request);
 
                 if (compilazioneForm && validazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);
@@ -62,8 +66,6 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                     LibroDAO libroDAO = new LibroDAO();
 
                     Libro oldLibro = libroDAO.doRetrieveById(isbn);
-
-                    GenereDAO genereDAO = new GenereDAO();
 
                     if (altro.length() > 0) {
                         generi.add(altro);

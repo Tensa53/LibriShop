@@ -24,9 +24,6 @@ import java.util.*;
         maxRequestSize = 1024 * 1024 * 50) //50MB
 public class InserisciLibroServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        log(request.getServletPath());
-
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente != null) {
@@ -41,10 +38,9 @@ public class InserisciLibroServlet extends HttpServlet {
                 String disponibilitaString = request.getParameter("disponibilita");
                 String data = request.getParameter("dataPubblicazione");
                 String editore = request.getParameter("editore");
-
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
                 GenereDAO genereDAO = new GenereDAO();
 
@@ -56,8 +52,9 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 String autoreString = autoreDAO.doRetrievebyCF(autoreCF).getNome();
 
-                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,librodb,request);
+                Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
+                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,librodb,generedbaltro,request);
 
                 if (compilazioneForm && validazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);

@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/validateFormInsLibro.js" type="text/javascript"></script>
-    <script src="./script/oggi.js"></script>
     <%
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
@@ -20,6 +19,7 @@
         String controlloisbn = (String) request.getAttribute("msgcontrolloisbn");
         String titoloP = (String) request.getAttribute("msgtitoloP");
         String altroP = (String) request.getAttribute("msgaltroP");
+        String controllogenerealtro = (String) request.getAttribute("msgcontrollogenerealtro");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
         String editoreP = (String) request.getAttribute("msgeditoreP");
     %>
@@ -55,7 +55,7 @@
         <%}%>
     </select><br>
 <%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" required><br>--%>
-    <label for= "genere">Genere : </label><br>
+    <label for= "genere">Genere : <span id="controllogenere"></span></label><br>
     <div id="genere">
     <%
         for (Genere g : generi) {
@@ -64,6 +64,7 @@
     <%}%>
     <label for="altro">Altro Genere : </label>
     <p id="altroP"><%if(altroP != null){%><%=altroP%><%}%></p>
+    <p id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
     <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>

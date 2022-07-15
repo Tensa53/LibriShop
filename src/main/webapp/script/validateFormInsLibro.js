@@ -4,13 +4,34 @@ function validateFormInsLibro(){
     let altroL = document.forms["inseriscilibro"]["altro"].value;
     let descrizioneL = document.forms["inseriscilibro"]["descrizione"].value;
     let editoreL = document.forms["inseriscilibro"]["editore"].value;
+
     let c = 0;
+
+    const checkboxes = document.querySelectorAll('input[name="genere"]');
+
+    var flag = false;
+
+    for (i = 0; i < checkboxes.length; i++){
+        let att = checkboxes[i].checked;
+
+        console.log(att);
+
+        if (att === "true")
+            flag = true;
+    }
+
+    console.log(flag);
 
     document.getElementById("isbnP").innerText = "";
     document.getElementById("titoloP").innerText = "";
     document.getElementById("descrizioneP").innerText = "";
     document.getElementById("editoreP").innerText = "";
     document.getElementById("altroP").innerText = "";
+
+    if (!flag) {
+        document.getElementById("controllogenere").innerText = "seleziona una casella";
+        c++;
+    }
 
     if (isbnL.length != 13){
             document.getElementById("isbnP").innerText = "Il codice ISBN deve essere di 13 cifre";

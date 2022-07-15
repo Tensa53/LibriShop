@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller;
 
+import com.example.progettotsw.model.Autore;
 import com.example.progettotsw.model.Genere;
 import com.example.progettotsw.model.Libro;
 import com.example.progettotsw.model.Utente;
@@ -67,7 +68,7 @@ public class Forms {
         return !(c > 0);
     }
 
-    public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, HttpServletRequest request) {
+    public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
         int c = 0;
 
         if(isbn != null) {
@@ -84,13 +85,18 @@ public class Forms {
             }
         }
 
-        if (titolo.length() > 30){
-            request.setAttribute("msgtitoloP","La lunghezza del titolo non deve superare i 30 caratteri");
+        if (titolo.length() > 50){
+            request.setAttribute("msgtitoloP","La lunghezza del titolo non deve superare i 50 caratteri");
             c++;
         }
 
         if(altro.length() > 20){
             request.setAttribute("msgaltroP","Il genere può avere massimo 20 caratteri");
+            c++;
+        }
+
+        if (generedbaltro != null) {
+            request.setAttribute("msgcontrollogenerealtro","Il genere è già presente, selezionalo sopra");
             c++;
         }
 
@@ -119,6 +125,34 @@ public class Forms {
                 request.setAttribute("msgcontrollogenere","già presente nel db");
                 c++;
             }
+        }
+
+        return !(c > 0);
+    }
+
+    public static boolean validateFormAutore(String cf, String nome, Autore autoredb, HttpServletRequest request) {
+        int c = 0;
+
+        if (cf != null) {
+
+            if (cf.length() != 16) {
+                request.setAttribute("msgCFP","Il CF dell'autore deve essere di 16 cifre");
+                c++;
+            }
+
+            if (autoredb != null) {
+
+                if (autoredb.getCF().equals(cf)) {
+                    request.setAttribute("msgcontrolloCF","già in uso");
+                    c++;
+                }
+            }
+
+        }
+
+        if (nome.length() > 40) {
+            request.setAttribute("msgnomeP","Il nome dell'autore non deve superare i 40 caratteri");
+            c++;
         }
 
         return !(c > 0);

@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Autore;
 import com.example.progettotsw.model.AutoreDAO;
 import com.example.progettotsw.model.GenereDAO;
@@ -23,20 +24,25 @@ public class InserisciAutoreServlet extends HttpServlet {
                 String cf = request.getParameter("CF");
                 String nome = request.getParameter("nome");
 
+                String msg = "";
+
                 AutoreDAO autoreDAO = new AutoreDAO();
 
                 GenereDAO genereDAO = new GenereDAO();
 
-                if (cf != null && nome != null) {
+                boolean compilazioneForm = cf != null && nome != null;
+
+                boolean validazioneForm = Forms.validateFormAutore(cf,nome,autoreDAO.doRetrievebyCF(cf),request);
+
+                if (compilazioneForm && validazioneForm) {
 
                     Autore autore = new Autore(cf, nome);
 
-                    String msg = null;
-
                     if (autoreDAO.doSave(autore) == 1)
-                        msg = "msg = \"Inserimento effettuato con successo !!! Torna alla <a href = \\\"\" + request.getContextPath() + \"/area-riservata\\\"> dashboard </a>\";";
+                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \\\"\" + request.getContextPath() + \"/area-riservata\\\"> dashboard </a>\";";
                 }
 
+                request.setAttribute("msg",msg);
                 request.setAttribute("autori", autoreDAO.doRetrieveAll());
                 request.setAttribute("generi", genereDAO.doRetrieveAll());
 
