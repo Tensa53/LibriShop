@@ -17,8 +17,8 @@ function validateFormInsLibro(){
             c++;
     }
 
-    if (titoloL.length > 30){
-        document.getElementById("titoloP").innerText = "La lunghezza del titolo non deve superare i 30 caratteri.";
+    if (titoloL.length > 50){
+        document.getElementById("titoloP").innerText = "La lunghezza del titolo non deve superare i 50 caratteri.";
         c++;
     }
 

@@ -8,7 +8,7 @@ USE base;
 
 CREATE TABLE Libro (
                        ISBN char(13) primary key,
-                       Titolo varchar(30) not null, /*nel titolo viene eventualmente specificata l'edizione*/
+                       Titolo varchar(50) not null, /*nel titolo viene eventualmente specificata l'edizione*/
                        Prezzo decimal(5,2) not null,
                        DataPubblicazione date not null,
                        Editore varchar(20) not null,
