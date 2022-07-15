@@ -95,7 +95,6 @@ figcaption {
     figcaption.catalogo-item{
         border-color: #cccccc;
         font-size: 25px;
-        text-align: center;
     }
     figcaption.catalogo-item.caption{
         float: left;
@@ -129,7 +128,6 @@ figcaption {
     figcaption.catalogo-item{
         border-color: #cccccc;
         font-size: 30px;
-        text-align: center;
     }
     figcaption.catalogo-item.caption{
         border-color: #cccccc;
@@ -142,15 +140,15 @@ figcaption {
 @media screen and (min-width: 985px) {
 
     body {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     input[type=number] {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     input[type=submit] {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     figure img {
@@ -161,13 +159,12 @@ figcaption {
 
     figcaption.catalogo-item{
         border-color: #cccccc;
-        font-size: 40px;
-        text-align: center;
+        font-size: 30px;
     }
 
     figcaption.catalogo-item.caption{
         border-color: #cccccc;
-        font-size: 25px;
+        font-size: 20px;
         text-align: center;
     }
 

@@ -66,9 +66,13 @@
         <%}else{%>
                 <input type="submit" value="Aggiungi al carrello">
         <%}%>
+                    <h4>Informazioni sul libro:</h4>
+                Editore: <%=l.getEditore()%><br>
+                Data pubblicazione: <%=l.getDataPubblicazioneString()%><br>
+                ISBN: <%=l.getISBN()%>
         </figcaption>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-        <figcaption class="catalogo-item caption"><%=l.getDescrizione()%></figcaption>
+            <figcaption class="catalogo-item caption"><h2>Descrizione:</h2><%=l.getDescrizione()%></figcaption>
     </form>
 </figure>
 
