@@ -12,11 +12,14 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateModificaNomeAutore.js" type="text/javascript"></script>
     <script src="./script/validateInserisciNuovoAutore.js" type="text/javascript"></script>
+    <script src="./script/validateFormGenere.js"></script>
     <%
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
         Autore autoreMod = (Autore) request.getAttribute("autore");
         String msg = (String) request.getAttribute("msg");
+        String genereP = (String) request.getAttribute("msggenereP");
+        String controllogenere = (String) request.getAttribute("msgcontrollogenere");
     %>
 </head>
 <body>
@@ -31,8 +34,17 @@
     <p>${msg}</p>
     <%}%>
 
+<p>Inserisci un genere : <%if(controllogenere != null){%><%=controllogenere%><%}%></p>
+<p id="genereP"><%if(genereP != null){%><%=genereP%><%}%></p>
+<form method="post" name="inseriscigen" action="inserisci-genere" onsubmit="return validateFormGenere()">
+    <input type="text" name="genere" id="genere">
+    <input type="submit" value="Inserisci">
+</form>
+
+
+
 <p>Elimina un genere : </p>
-<form action="rimuovi-genere" method="post">
+<form method="post" action="rimuovi-genere">
     <select name="nome-genere">
         <%for (Genere g : generi){%>
         <option value="<%=g.getNome()%>"><%=g.getNome()%></option>
@@ -58,7 +70,8 @@
     <%if(autoreMod == null){%>
     <label for="CF">CF : </label><br>
     <p id="cfP"></p>
-    <input type="text" id="CF" name="CF" minlength="16" maxlength="16"><br>
+    <input type="number" id="CF" name="CF"><br>
+    <p id="CFP"></p>
     <label for="nome">Nome Autore : </label><br>
     <p id="nomeP"></p>
     <input type="text" name="nome" id="nome"><br>

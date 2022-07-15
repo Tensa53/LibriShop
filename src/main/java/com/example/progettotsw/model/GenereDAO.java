@@ -26,6 +26,24 @@ public class GenereDAO {
         return generi;
     }
 
+    public Genere doRetrievebyNome(String nome) {
+        String sql = "SELECT * FROM Genere WHERE Nome = ?";
+
+        Genere genere = null;
+
+        try (Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,nome);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                genere = new Genere(rs.getString("Nome"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return genere;
+    }
+
     public List<Genere> doRetrieveByISBNLibro(String isbn) {
         String sql = "SELECT G.Nome FROM Genere G,Appartenenza A WHERE (G.Nome = A.Genere) AND A.ISBNLibro = ?;";
 
