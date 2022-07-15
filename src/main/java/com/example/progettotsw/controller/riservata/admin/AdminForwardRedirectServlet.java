@@ -31,9 +31,15 @@ public class AdminForwardRedirectServlet extends HttpServlet {
                 if (insLibro != null) {
                     GenereDAO genereDAO = new GenereDAO();
 
+                    AutoreDAO autoreDAO = new AutoreDAO();
+
                     List<Genere> generi = genereDAO.doRetrieveAll();
 
+                    List<Autore> autori = autoreDAO.doRetrieveAll();
+
                     request.setAttribute("generi", generi);
+
+                    request.setAttribute("autori",autori);
 
                     String address = "/WEB-INF/ADMIN/insLibro.jsp";
 
@@ -49,11 +55,17 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     GenereDAO genereDAO = new GenereDAO();
 
+                    AutoreDAO autoreDAO = new AutoreDAO();
+
                     List<Genere> generi = genereDAO.doRetrieveAll();
+
+                    List<Autore> autori = autoreDAO.doRetrieveAll();
 
                     request.getSession().setAttribute("libri", libri);
 
                     request.getSession().setAttribute("generi", generi);
+
+                    request.getSession().setAttribute("autori",autori);
 
                     String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
