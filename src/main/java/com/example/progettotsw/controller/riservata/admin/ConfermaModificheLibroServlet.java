@@ -28,7 +28,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String isbn = request.getParameter("isbn");
                 String titolo = request.getParameter("titolo");
-                String autoreString = request.getParameter("autore");
+                String autoreCF = request.getParameter("autore");
                 String[] genere = request.getParameterValues("genere");
                 String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
@@ -39,9 +39,9 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreString != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
 
-                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,request);
+                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,null,request);
 
                 if (compilazioneForm && validazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);
@@ -95,7 +95,7 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                     AutoreDAO autoreDAO = new AutoreDAO();
 
-                    Autore autore = autoreDAO.doRetrievebyName(autoreString);
+                    Autore autore = autoreDAO.doRetrievebyCF(autoreCF);
 
                     if (libroDAO.doUpdate(libro, autore.getCF(), generi) == 1)
                         msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";

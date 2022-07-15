@@ -1,6 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
-
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,14 +12,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/rimuovi-genere")
-public class RimuoviGenereLibroServlet extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+@WebServlet("/inserisci-genere")
+public class InserisciGenereServlet extends HttpServlet {
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 
         if (utente != null) {
             if (utente.isAmministratore()) {
-                String nome = request.getParameter("nome-genere");
+                String nome = request.getParameter("genere");
 
                 LibroDAO libroDAO = new LibroDAO();
 
@@ -29,24 +31,18 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
 
                 List<Libro> libri = libroDAO.doRetrievebyGenere(nome);
 
-                String msg = null;
+                Genere generdb = genereDAO.doRetrievebyNome(nome);
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                boolean compilazioneForm = nome != null;
 
-                if (libri.size() > 0) {
-                    msg = "Impossibile rimuovere il seguente genere, è presente nei seguenti libri : <ol style=\"list-style-type : none\">";
+                boolean validazioneForm = Forms.validateFormGenere(nome,generdb,request);
 
-                    for (Libro l : libri) {
-                        msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
-                    }
-
-                    msg += "</ol>";
-                } else {
-                    genereDAO.doRemove(nome);
-                    msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                if (compilazioneForm && validazioneForm){
+                    genereDAO.doSave(nome);
+                    request.setAttribute("msg","Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento");
                 }
 
-                request.setAttribute("msg", msg);
+                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
                 request.setAttribute("autori", autoreDAO.doRetrieveAll());
 

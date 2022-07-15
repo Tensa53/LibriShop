@@ -1,5 +1,7 @@
 package com.example.progettotsw.controller;
 
+import com.example.progettotsw.model.Genere;
+import com.example.progettotsw.model.Libro;
 import com.example.progettotsw.model.Utente;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -38,7 +40,7 @@ public class Forms {
             }
 
             if(utentemaildb != null) {
-                if (utentemaildb.getMail().equals(mail)) {
+                if (utentemaildb.getMail().equalsIgnoreCase(mail)) {
                     request.setAttribute("msgmailinuso","già in uso");
                     c++;
                 }
@@ -65,13 +67,20 @@ public class Forms {
         return !(c > 0);
     }
 
-    public static boolean validateFormLibro(String isbn,String titolo,String altro,String descrizione, String editore,HttpServletRequest request) {
+    public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, HttpServletRequest request) {
         int c = 0;
 
         if(isbn != null) {
             if(isbn.length() != 13){
                 request.setAttribute("msgisbnP","Il codice ISBN deve essere di 13 cifre");
                 c++;
+            }
+
+            if (librodb != null) {
+                if (librodb.getISBN().equals(isbn)){
+                    request.setAttribute("msgcontrolloisbn","già in uso");
+                    c++;
+                }
             }
         }
 
@@ -92,6 +101,24 @@ public class Forms {
 
         if (editore.length() > 20) {
             request.setAttribute("msgeditoreP","Il nome dell'editore non deve superare i 20 caratteri");
+        }
+
+        return !(c > 0);
+    }
+
+    public static boolean validateFormGenere(String nome, Genere generdb, HttpServletRequest request) {
+        int c = 0;
+
+        if (nome.length() > 20) {
+            request.setAttribute("msggenereP","Il genere può avere massimo 20 caratteri");
+            c++;
+        }
+
+        if (generdb != null) {
+            if (generdb.getNome().equalsIgnoreCase(nome)){
+                request.setAttribute("msgcontrollogenere","già presente nel db");
+                c++;
+            }
         }
 
         return !(c > 0);

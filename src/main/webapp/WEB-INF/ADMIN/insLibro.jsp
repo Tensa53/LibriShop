@@ -12,10 +12,12 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/validateFormInsLibro.js" type="text/javascript"></script>
+    <script src="./script/oggi.js"></script>
     <%
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         String isbnP = (String) request.getAttribute("msgisbnP");
+        String controlloisbn = (String) request.getAttribute("msgcontrolloisbn");
         String titoloP = (String) request.getAttribute("msgtitoloP");
         String altroP = (String) request.getAttribute("msgaltroP");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
@@ -29,12 +31,6 @@
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 
-<script>
-    function oggi () {
-        return new Date().getDate();
-    }
-</script>
-
 <div class="center">
 
     <%String msg = (String) request.getAttribute("msg");
@@ -44,7 +40,7 @@
     <%}%>
 
 <form name="inseriscilibro" action="inserisci-libro" method="post" onsubmit="return validateFormInsLibro()" enctype="multipart/form-data">
-    <label for = "isbn">ISBN : </label> <br>
+    <label for = "isbn">ISBN : <span id="controlloisbn"><%if(controlloisbn != null){%><%=controlloisbn%><%}%></span></label> <br>
     <p id="isbnP"><%if(isbnP != null){%><%=isbnP%><%}%></p>
     <input type="number" name="isbn" id="isbn" required><br>
     <label for = "titolo">Titolo : </label> <br>

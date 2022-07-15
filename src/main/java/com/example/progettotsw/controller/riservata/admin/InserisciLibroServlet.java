@@ -33,7 +33,7 @@ public class InserisciLibroServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String isbn = request.getParameter("isbn");
                 String titolo = request.getParameter("titolo");
-                String autoreString = request.getParameter("autore");
+                String autoreCF = request.getParameter("autore");
                 String[] genere = request.getParameterValues("genere");
                 String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
@@ -44,7 +44,7 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreString != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
                 GenereDAO genereDAO = new GenereDAO();
 
@@ -52,7 +52,11 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 AutoreDAO autoreDAO = new AutoreDAO();
 
-                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,request);
+                Libro librodb = libroDAO.doRetrieveById(isbn);
+
+                String autoreString = autoreDAO.doRetrievebyCF(autoreCF).getNome();
+
+                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,librodb,request);
 
 
                 if (compilazioneForm && validazioneForm) {
