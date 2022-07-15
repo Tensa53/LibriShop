@@ -12,7 +12,7 @@ public class Forms {
         int c = 0;
 
         if(nome.length() > 20) {
-            request.setAttribute("msgnomeP","Il campo nome non può superare i 20 caratteri.");
+            request.setAttribute("msgnomeP","Il campo nome non può superare i 20 caratteri");
             c++;
         }
 
@@ -28,7 +28,7 @@ public class Forms {
             Matcher matcher = pattern.matcher(mail);
 
             if(mail.length() > 50) {
-                request.setAttribute("msgmailP","Il campo mail non può superare i 50 caratteri.");
+                request.setAttribute("msgmailP","Il campo mail non può superare i 50 caratteri");
                 c++;
             }
 
@@ -60,6 +60,38 @@ public class Forms {
                 request.setAttribute("msgcontrollopassword","Rispetta i criteri per la password");
                 c++;
             }
+        }
+
+        return !(c > 0);
+    }
+
+    public static boolean validateFormLibro(String isbn,String titolo,String altro,String descrizione, String editore,HttpServletRequest request) {
+        int c = 0;
+
+        if(isbn != null) {
+            if(isbn.length() != 13){
+                request.setAttribute("msgisbnP","Il codice ISBN deve essere di 13 cifre");
+                c++;
+            }
+        }
+
+        if (titolo.length() > 30){
+            request.setAttribute("msgtitoloP","La lunghezza del titolo non deve superare i 30 caratteri");
+            c++;
+        }
+
+        if(altro.length() > 20){
+            request.setAttribute("msgaltroP","Il genere può avere massimo 20 caratteri");
+            c++;
+        }
+
+        if(descrizione.length() > 65535){
+            request.setAttribute("msgdescrizioneP","La descrizione deve rientrare nei 65535 caratteri");
+            c++;
+        }
+
+        if (editore.length() > 20) {
+            request.setAttribute("msgeditoreP","Il nome dell'editore non deve superare i 20 caratteri");
         }
 
         return !(c > 0);

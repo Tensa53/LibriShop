@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -40,7 +41,9 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                 boolean compilazioneForm = isbn != null && titolo != null && autoreString != null && genere.length > 0 && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
 
-                if (compilazioneForm) {
+                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,request);
+
+                if (compilazioneForm && validazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);
                     BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
                     int disponibilita = Integer.parseInt(disponibilitaString);
@@ -101,7 +104,9 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                     request.getSession().removeAttribute("libri");
                     request.getSession().removeAttribute("generi");
-                }
+                    request.getSession().removeAttribute("autori");
+                } else
+                    request.setAttribute("msgerror", "Errore nella validazione dei campi del form !!!");
 
                 String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 

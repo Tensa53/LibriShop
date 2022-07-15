@@ -1,6 +1,7 @@
 package com.example.progettotsw.controller.riservata.admin;
 
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -47,7 +48,14 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 GenereDAO genereDAO = new GenereDAO();
 
-                if (compilazioneForm) {
+                LibroDAO libroDAO = new LibroDAO();
+
+                AutoreDAO autoreDAO = new AutoreDAO();
+
+                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,request);
+
+
+                if (compilazioneForm && validazioneForm) {
                     BigDecimal prezzo = new BigDecimal(prezzoString);
                     BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
                     int disponibilita = Integer.parseInt(disponibilitaString);
@@ -76,10 +84,6 @@ public class InserisciLibroServlet extends HttpServlet {
 
                     Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath, descrizione);
 
-                    LibroDAO libroDAO = new LibroDAO();
-
-                    AutoreDAO autoreDAO = new AutoreDAO();
-
                     Autore autore = autoreDAO.doRetrievebyName(autoreString);
 
                     if (altro.length() > 0) {
@@ -97,6 +101,8 @@ public class InserisciLibroServlet extends HttpServlet {
                 }
 
                 request.setAttribute("generi", genereDAO.doRetrieveAll());
+
+                request.setAttribute("autori", autoreDAO.doRetrieveAll());
 
                 String address = "/WEB-INF/ADMIN/insLibro.jsp";
 

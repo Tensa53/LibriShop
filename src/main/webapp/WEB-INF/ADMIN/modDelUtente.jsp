@@ -33,14 +33,14 @@
 <div class="center">
 
     <% if (msg != null) {%>
-    <p class="success">${msg}</p>
+    <h3 class="success">${msg}</h3>
     <%}%>
 
     <div class="error">
 
     <% if (msgerr != null) {%>
-
-    <ul style="list-style-type: none;">
+    <h3>
+    <ul class="nobullet">
 
         <li>${msgerr}</li>
 
@@ -71,7 +71,7 @@
         <%}%>
 
     </ul>
-
+    </h3>
 
     <%}%>
 

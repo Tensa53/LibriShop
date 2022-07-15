@@ -8,6 +8,10 @@
     display: none;
 }
 
+.nobullet{
+    list-style-type: none;
+}
+
 .block{
     display: block;
 }

@@ -7,7 +7,7 @@ form p {
     font-style: italic;
 }
 
-form input type[text] {
+form input [type = text] {
     width: 40%;
 }
 

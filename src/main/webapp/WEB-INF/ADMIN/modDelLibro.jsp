@@ -14,11 +14,19 @@
     <script src="./script/autore.js" type="text/javascript"></script>
     <script src="./script/immagineLibro.js" type="text/javascript"></script>
     <script src="./script/validateFormModLibro.js" type="text/javascript"></script>
-    <%List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
+    <%
+        String msg = (String) request.getAttribute("msg");
+        String msgerr = (String) request.getAttribute("msgerror");
+        List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
       List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
+      List<Autore> autori = (List<Autore>) request.getSession().getAttribute("autori");
       List<Genere> generiLibro = (List<Genere>) request.getAttribute("generi-libro");
       Libro libro = (Libro) request.getAttribute("libro");
       Autore autore = (Autore) request.getAttribute("autore");
+        String titoloP = (String) request.getAttribute("msgtitoloP");
+        String altroP = (String) request.getAttribute("msgaltroP");
+        String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
+        String editoreP = (String) request.getAttribute("msgeditoreP");
     %>
 </head>
 <body>
@@ -28,10 +36,37 @@
 
 <div class="center">
 
-    <%String msg = (String) request.getAttribute("msg");
-        if (msg != null){
-    %>
-    <p class="success">${msg}</p>
+    <%if (msg != null){%>
+    <h3 class="success">${msg}</h3>
+    <%}%>
+
+
+    <%if (msgerr != null){%>
+    <h3 class="error">
+        <ul class="nobullet">
+            <li><%=msgerr%></li>
+
+            <%if (titoloP != null) {%>
+            <li><%=titoloP%>
+            </li>
+            <%}%>
+
+            <%if (altroP != null) {%>
+            <li><%=altroP%>
+            </li>
+            <%}%>
+
+            <%if (descrizioneP != null) {%>
+            <li><%=titoloP%>
+            </li>
+            <%}%>
+
+            <%if (editoreP != null) {%>
+            <li><%=editoreP%>
+            </li>
+            <%}%>
+        </ul>
+    </h3>
     <%}%>
 
 <%if(libri != null){%>
@@ -62,12 +97,17 @@
     <label for = "titolo">Titolo : </label> <br>
     <p id="titoloP"></p>
     <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>" required><br>
-    <label for = "autore">Autore : </label> <br>
-    <p id="controlloautore"></p>
-    <p id="autoreP"></p>
-    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>" required><br>
+    <label for = "autore">Autore : </label>
+<%--    <p id="controlloautore"></p>--%>
+<%--    <p id="autoreP"></p>--%>
+    <select name="autore" id="autore">
+        <%for (Autore a : autori){%>
+        <option value="<%=a.getCF()%>"><%=a.getNome()%></option>
+        <%}%>
+    </select><br>
+<%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>" required><br>--%>
     <label for= "genere">Genere : </label><br>
-    <div id="genere">
+    <div id="genere" class="checkbox-grid">
         <%
             for (Genere g : generi) {
                 if(g.contenutoIn(generiLibro)) {
@@ -95,7 +135,7 @@
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required value="<%=libro.getDisponibilita()%>"><br>
     <label for = "foto">Foto : </label> <br>
-    <input type="file" name="foto" id="foto"><br>
+    <input type="file" name="foto" id="foto" accept="image/*"><br>
     <input type="submit" value="Conferma Modifiche"><br>
 </form>
 
