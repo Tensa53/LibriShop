@@ -28,42 +28,47 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = mail != null && nome != null && cognome != null;
 
-                boolean validazioneForm;
+                if (compilazioneForm) {
+                    boolean validazioneForm;
 
-                UtenteDAO utenteDAO = new UtenteDAO();
+                    UtenteDAO utenteDAO = new UtenteDAO();
 
-                Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
+                    Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
 
-                if (password == null || password.length() == 0)
-                    validazioneForm = Forms.validateFormUtente(null,nome,cognome,null,request,utentemaildb);
-                else
-                    validazioneForm = Forms.validateFormUtente(null,nome,cognome,password,request,utentemaildb);
+                    if (password == null || password.length() == 0)
+                        validazioneForm = Forms.validateFormUtente(null,nome,cognome,null,request,utentemaildb);
+                    else
+                        validazioneForm = Forms.validateFormUtente(null,nome,cognome,password,request,utentemaildb);
 
-                if (compilazioneForm && validazioneForm) {
-                    Utente u = new Utente(mail,nome, cognome, amministratore);
+                    if (validazioneForm) {
 
-                    if (password != null) {
-                        if (password.length() > 0){
-                            utente.setPassword(password);
-                            utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(), mail);
+                        Utente u = new Utente(mail,nome, cognome, amministratore);
+
+                        if (password != null) {
+                            if (password.length() > 0){
+                                utente.setPassword(password);
+                                utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(), mail);
+                            }
                         }
-                    }
 
-                    String msg = null;
+                        String msg = null;
 
-                    if (utenteDAO.doUpdateUser(u) == 1)
-                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                        if (utenteDAO.doUpdateUser(u) == 1)
+                            msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                    request.setAttribute("msg", msg);
+                        request.setAttribute("msg", msg);
 
-                    request.getSession().removeAttribute("utenti");
+                        request.getSession().removeAttribute("utenti");
+                    }else
+                        request.setAttribute("msgerr","Errore nella validazione dei campi del form !!!");
+
+                    String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
                 } else
-                    request.setAttribute("msgerr","Errore nella validazione dei campi del form !!!");
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelUtente=Modifica/Rimuovi%20Utente");
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
-
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

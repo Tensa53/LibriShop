@@ -14,7 +14,7 @@
     <% String msg = (String) request.getAttribute("msg");
         String msgerr = (String) request.getAttribute("msgerr");
         Utente utenteMod = (Utente) request.getAttribute("utente");
-        List<Utente> utenti = (List<Utente>) request.getSession().getAttribute("utenti");
+        List<Utente> utenti = (List<Utente>) request.getAttribute("utenti");
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");
         String mailP = (String) request.getAttribute("msgmailP");

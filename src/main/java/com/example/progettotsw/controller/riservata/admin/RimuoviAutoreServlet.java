@@ -20,42 +20,47 @@ public class RimuoviAutoreServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String cf = request.getParameter("cf-autore");
 
-                AutoreDAO autoreDAO = new AutoreDAO();
+                if(cf != null) {
 
-                GenereDAO genereDAO = new GenereDAO();
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                Autore autore = autoreDAO.doRetrievebyCF(cf);
+                    GenereDAO genereDAO = new GenereDAO();
 
-                LibroDAO libroDAO = new LibroDAO();
+                    Autore autore = autoreDAO.doRetrievebyCF(cf);
 
-                List<Libro> libri = libroDAO.doRetrievebyAutore(autore);
+                    LibroDAO libroDAO = new LibroDAO();
 
-                String msg = null;
+                    List<Libro> libri = libroDAO.doRetrievebyAutore(autore);
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                    String msg = null;
 
-                if (libri.size() > 0) {
-                    msg = "Impossibile rimuovere il seguente autore, è presente nei seguenti libri : <ol>";
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                    for (Libro l : libri) {
-                        msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                    if (libri.size() > 0) {
+                        msg = "Impossibile rimuovere il seguente autore, è presente nei seguenti libri : <ol>";
+
+                        for (Libro l : libri) {
+                            msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                        }
+
+                        msg += "</ol>";
+                    } else {
+                        autoreDAO.doRemoveAutorebyCF(cf);
+                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                     }
 
-                    msg += "</ol>";
-                } else {
-                    autoreDAO.doRemoveAutorebyCF(cf);
-                    msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
-                }
+                    request.setAttribute("msg", msg);
 
-                request.setAttribute("msg", msg);
+                    request.setAttribute("autori", autoreDAO.doRetrieveAll());
 
-                request.setAttribute("autori", autoreDAO.doRetrieveAll());
+                    request.setAttribute("generi", genereDAO.doRetrieveAll());
 
-                request.setAttribute("generi", genereDAO.doRetrieveAll());
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelUtente=Modifica/Rimuovi%20Utente");
 
-                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

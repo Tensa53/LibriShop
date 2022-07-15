@@ -21,40 +21,44 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String nome = request.getParameter("nome-genere");
 
-                LibroDAO libroDAO = new LibroDAO();
+                if (nome != null) {
+                    LibroDAO libroDAO = new LibroDAO();
 
-                GenereDAO genereDAO = new GenereDAO();
+                    GenereDAO genereDAO = new GenereDAO();
 
-                AutoreDAO autoreDAO = new AutoreDAO();
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                List<Libro> libri = libroDAO.doRetrievebyGenere(nome);
+                    List<Libro> libri = libroDAO.doRetrievebyGenere(nome);
 
-                String msg = null;
+                    String msg = null;
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                if (libri.size() > 0) {
-                    msg = "Impossibile rimuovere il seguente genere, è presente nei seguenti libri : <ol style=\"list-style-type : none\">";
+                    if (libri.size() > 0) {
+                        msg = "Impossibile rimuovere il seguente genere, è presente nei seguenti libri : <ol style=\"list-style-type : none\">";
 
-                    for (Libro l : libri) {
-                        msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                        for (Libro l : libri) {
+                            msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                        }
+
+                        msg += "</ol>";
+                    } else {
+                        genereDAO.doRemove(nome);
+                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                     }
 
-                    msg += "</ol>";
-                } else {
-                    genereDAO.doRemove(nome);
-                    msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
-                }
+                    request.setAttribute("msg", msg);
 
-                request.setAttribute("msg", msg);
+                    request.setAttribute("autori", autoreDAO.doRetrieveAll());
 
-                request.setAttribute("autori", autoreDAO.doRetrieveAll());
+                    request.setAttribute("generi", genereDAO.doRetrieveAll());
 
-                request.setAttribute("generi", genereDAO.doRetrieveAll());
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?Gestione%20Autore%20e%20Genere");
 
-                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

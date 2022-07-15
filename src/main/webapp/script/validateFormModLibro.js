@@ -5,19 +5,9 @@ function validateFormModLibro() {
     let editoreL = document.forms["modificalibro"]["editore"].value;
     let c = 0;
 
-
     const checkboxes = document.querySelectorAll('input[name="genere"]');
 
-    var flag = false;
-
-    for (i = 0; i < checkboxes.length; i++){
-        let att = checkboxes[i].checked;
-
-        console.log(att);
-
-        if (att === "true")
-            flag = true;
-    }
+    var flag = controllacheckboxes(checkboxes);
 
     console.log(flag);
 
@@ -55,4 +45,15 @@ function validateFormModLibro() {
         return false;
     } else return true;
 
+}
+
+function controllacheckboxes(checkboxes) {
+    for (i = 0; i < checkboxes.length; i++){
+        let att = checkboxes[i].checked;
+
+        if (att)
+            return true;
+    }
+
+    return false;
 }

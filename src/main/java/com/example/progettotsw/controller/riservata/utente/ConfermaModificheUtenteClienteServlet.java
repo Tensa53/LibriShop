@@ -30,41 +30,47 @@ public class ConfermaModificheUtenteClienteServlet extends HttpServlet {
 
                 boolean compilazioneForm = mail != null && nome != null && cognome != null;
 
-                boolean validazioneForm;
+                if (compilazioneForm) {
 
-                UtenteDAO utenteDAO = new UtenteDAO();
+                    boolean validazioneForm;
 
-                if (password == null || password.length() == 0)
-                    validazioneForm = Forms.validateFormUtente(mail,nome,cognome,null,request,null);
-                else
-                    validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,null);
+                    UtenteDAO utenteDAO = new UtenteDAO();
 
-                if (compilazioneForm && validazioneForm) {
-                    Utente u = new Utente(mail,nome, cognome, amministratore);
+                    if (password == null || password.length() == 0)
+                        validazioneForm = Forms.validateFormUtente(mail,nome,cognome,null,request,null);
+                    else
+                        validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,null);
 
-                    if (password != null) {
-                        if (password.length() > 0){
-                            utente.setPassword(password);
-                            utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(), mail);
+                    if(validazioneForm) {
+                        Utente u = new Utente(mail,nome, cognome, amministratore);
+
+                        if (password != null) {
+                            if (password.length() > 0){
+                                utente.setPassword(password);
+                                utenteDAO.doUpdateUserPasswordByMail(utente.getPasswordhash(), mail);
+                            }
                         }
+
+                        String msg = null;
+
+                        if (utenteDAO.doUpdateUser(u) == 1)
+                            msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                        request.setAttribute("msg", msg);
+
+                        request.getSession().removeAttribute("utente");
+
+                        request.getSession().setAttribute("utente",utenteDAO.doRetrieveByMail(mail));
                     }
 
-                    String msg = null;
+                    String address = "/WEB-INF/UTENTE/iMieiDati.jsp";
 
-                    if (utenteDAO.doUpdateUser(u) == 1)
-                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
 
-                    request.setAttribute("msg", msg);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/user-forward-redirect?iMieiDati=I%20miei%20Dati");
 
-                    request.getSession().removeAttribute("utente");
-
-                    request.getSession().setAttribute("utente",utenteDAO.doRetrieveByMail(mail));
-                }
-
-                String address = "/WEB-INF/UTENTE/iMieiDati.jsp";
-
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

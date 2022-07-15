@@ -24,19 +24,23 @@ public class CercaAutoredaModificareServlet extends HttpServlet {
 
                 GenereDAO genereDAO = new GenereDAO();
 
-                Autore autore = autoreDAO.doRetrievebyCF(cf);
+                if(cf != null) {
+                    Autore autore = autoreDAO.doRetrievebyCF(cf);
 
-                request.setAttribute("autore",autore);
+                    request.setAttribute("autore",autore);
 
-                request.setAttribute("autori",autoreDAO.doRetrieveAll());
+                    request.setAttribute("autori",autoreDAO.doRetrieveAll());
 
-                request.setAttribute("generi",genereDAO.doRetrieveAll());
+                    request.setAttribute("generi",genereDAO.doRetrieveAll());
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request,response);
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?opsAutoreGenere=Gestione%20Autore%20e%20Genere");
+
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

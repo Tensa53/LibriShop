@@ -37,13 +37,16 @@ public class ConfermaModificheAutoreServlet extends HttpServlet {
                     request.setAttribute("autori",autoreDAO.doRetrieveAll());
                     request.setAttribute("generi",genereDAO.doRetrieveAll());
                     request.setAttribute("msg",msg);
-                }
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request,response);
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?Gestione%20Autore%20e%20Genere");
+
+
             }else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

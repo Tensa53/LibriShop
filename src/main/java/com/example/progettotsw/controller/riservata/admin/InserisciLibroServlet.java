@@ -42,73 +42,78 @@ public class InserisciLibroServlet extends HttpServlet {
 
                 boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
-                GenereDAO genereDAO = new GenereDAO();
+                if (compilazioneForm) {
+                    GenereDAO genereDAO = new GenereDAO();
 
-                LibroDAO libroDAO = new LibroDAO();
+                    LibroDAO libroDAO = new LibroDAO();
 
-                AutoreDAO autoreDAO = new AutoreDAO();
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                Libro librodb = libroDAO.doRetrieveById(isbn);
+                    Libro librodb = libroDAO.doRetrieveById(isbn);
 
-                String autoreString = autoreDAO.doRetrievebyCF(autoreCF).getNome();
+                    String autoreString = autoreDAO.doRetrievebyCF(autoreCF).getNome();
 
-                Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
+                    Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
-                boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,editore,descrizione,librodb,generedbaltro,request);
+                    boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,descrizione,editore,librodb,generedbaltro,request);
 
-                if (compilazioneForm && validazioneForm) {
-                    BigDecimal prezzo = new BigDecimal(prezzoString);
-                    BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
-                    int disponibilita = Integer.parseInt(disponibilitaString);
+                    if (validazioneForm) {
+                        BigDecimal prezzo = new BigDecimal(prezzoString);
+                        BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
+                        int disponibilita = Integer.parseInt(disponibilitaString);
 
-                    ArrayList<String> generi = new ArrayList<>();
-                    Collections.addAll(generi, genere);
+                        ArrayList<String> generi = new ArrayList<>();
+                        Collections.addAll(generi, genere);
 
-                    String uploadPath = getServletContext().getRealPath("") + "img";
-                    log(uploadPath);
+                        String uploadPath = getServletContext().getRealPath("") + "img";
+                        log(uploadPath);
 
-                    File uploadDir = new File(uploadPath);
+                        File uploadDir = new File(uploadPath);
                         if (!uploadDir.exists())
                             uploadDir.mkdir();
 
-                    String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
+                        String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
 
-                    foto.write(imgpath);
+                        foto.write(imgpath);
 
-                    String subpath = "./img/" + foto.getSubmittedFileName();
+                        String subpath = "./img/" + foto.getSubmittedFileName();
 
-                    int year = Integer.parseInt(data.split("-")[0]);
-                    int month = Integer.parseInt(data.split("-")[1]);
-                    int day = Integer.parseInt(data.split("-")[2]);
+                        int year = Integer.parseInt(data.split("-")[0]);
+                        int month = Integer.parseInt(data.split("-")[1]);
+                        int day = Integer.parseInt(data.split("-")[2]);
 
-                    GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
+                        GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
 
-                    Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath, descrizione);
+                        Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita, subpath, descrizione);
 
-                    Autore autore = autoreDAO.doRetrievebyName(autoreString);
+                        Autore autore = autoreDAO.doRetrievebyName(autoreString);
 
-                    if (altro.length() > 0) {
-                        generi.add(altro);
-                        genereDAO.doSave(altro);
+                        if (altro.length() > 0) {
+                            generi.add(altro);
+                            genereDAO.doSave(altro);
+                        }
+
+                        String msg = null;
+
+                        if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
+                            msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+
+                        request.setAttribute("msg", msg);
+
+                        request.setAttribute("generi", genereDAO.doRetrieveAll());
+
+                        request.setAttribute("autori", autoreDAO.doRetrieveAll());
+
                     }
 
-                    String msg = null;
+                    String address = "/WEB-INF/ADMIN/insLibro.jsp";
 
-                    if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
-                        msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?insLibro=Inserisci%20Libro");
 
-                    request.setAttribute("msg", msg);
 
-                }
-
-                request.setAttribute("generi", genereDAO.doRetrieveAll());
-
-                request.setAttribute("autori", autoreDAO.doRetrieveAll());
-
-                String address = "/WEB-INF/ADMIN/insLibro.jsp";
-
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
 
             } else response.sendRedirect(request.getContextPath() + "/home");
 

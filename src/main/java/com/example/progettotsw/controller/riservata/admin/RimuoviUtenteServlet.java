@@ -39,7 +39,9 @@ public class RimuoviUtenteServlet extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
                     rd.forward(request, response);
-                }
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelUtente=Modifica/Rimuovi%20Utente");
+
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

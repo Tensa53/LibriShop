@@ -25,33 +25,35 @@ public class RegisterServlet extends HttpServlet {
 
         boolean compilazioneForm = mail != null && nome != null && cognome != null && password != null;
 
-        UtenteDAO utenteDAO = new UtenteDAO();
+        if (compilazioneForm) {
+            UtenteDAO utenteDAO = new UtenteDAO();
 
-        Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
+            Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
 
-        boolean validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,utentemaildb);
+            boolean validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,utentemaildb);
 
-        if(compilazioneForm && validazioneForm) {
-            Utente utente = new Utente(mail,nome,cognome,amministratore);
-            utente.setPassword(password);
+            if(validazioneForm) {
+                Utente utente = new Utente(mail,nome,cognome,amministratore);
+                utente.setPassword(password);
 
-            log("righe :" + utenteDAO.doSave(utente));
+                log("righe :" + utenteDAO.doSave(utente));
 
-            CarrelloDAO carrelloDAO = new CarrelloDAO();
+                CarrelloDAO carrelloDAO = new CarrelloDAO();
 
-            carrelloDAO.doCreate(mail);
+                carrelloDAO.doCreate(mail);
 
-            request.getSession().setAttribute("utente",utente);
+                request.getSession().setAttribute("utente",utente);
 
-            String address = request.getContextPath() + "/home";
+                String address = request.getContextPath() + "/home";
 
-            response.sendRedirect(address);
-        } else {
-            String address = "registrazione.jsp";
-            System.out.println(address);
-            RequestDispatcher rd = request.getRequestDispatcher(address);
-            rd.forward(request,response);
-        }
+                response.sendRedirect(address);
+            }
+                String address = "registrazione.jsp";
+                RequestDispatcher rd = request.getRequestDispatcher(address);
+                rd.forward(request,response);
+        } else
+            response.sendRedirect(request.getContextPath() + "/registrazione.jsp");
+
     }
 
     public void doGet (HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {

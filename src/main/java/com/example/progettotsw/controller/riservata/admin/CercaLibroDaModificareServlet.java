@@ -22,31 +22,46 @@ public class CercaLibroDaModificareServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String isbn = request.getParameter("isbn-libro");
 
-                LibroDAO libroDAO = new LibroDAO();
+                if (isbn != null) {
+                    LibroDAO libroDAO = new LibroDAO();
 
-                GenereDAO genereDAO = new GenereDAO();
+                    GenereDAO genereDAO = new GenereDAO();
 
-                Libro libro = libroDAO.doRetrieveById(isbn);
+                    Libro libro = libroDAO.doRetrieveById(isbn);
 
-                log(libro.getDataPubblicazioneReversedString());
+                    log(libro.getDataPubblicazioneReversedString());
 
-                AutoreDAO autoreDAO = new AutoreDAO();
+                    AutoreDAO autoreDAO = new AutoreDAO();
 
-                List<Genere> generiLibro = genereDAO.doRetrieveByISBNLibro(isbn);
+                    List<Genere> generiLibro = genereDAO.doRetrieveByISBNLibro(isbn);
 
-                Autore autoreLibro = autoreDAO.doRetrievebyISBNLibro(isbn);
+                    Autore autoreLibro = autoreDAO.doRetrievebyISBNLibro(isbn);
 
-                request.setAttribute("libro",libro);
+                    List<Libro> libri = libroDAO.doRetrieveAll();
 
-                request.setAttribute("autore",autoreLibro);
+                    List<Genere> generi = genereDAO.doRetrieveAll();
 
-                request.setAttribute("generi-libro",generiLibro);
+                    List<Autore> autori = autoreDAO.doRetrieveAll();
 
-                String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
+                    request.setAttribute("libri", libri);
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    request.setAttribute("generi", generi);
 
-                rd.forward(request,response);
+                    request.setAttribute("autori",autori);
+
+                    request.setAttribute("libro",libro);
+
+                    request.setAttribute("autore",autoreLibro);
+
+                    request.setAttribute("generi-libro",generiLibro);
+
+                    String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelLibro=Modifica/Rimuovi%20Libro");
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

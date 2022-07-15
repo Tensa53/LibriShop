@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/cerca-utente-da-modificare")
 public class CercaUtentedaModificareServlet extends HttpServlet {
@@ -20,17 +21,24 @@ public class CercaUtentedaModificareServlet extends HttpServlet {
             if (utente.isAmministratore()) {
                 String mail = request.getParameter("mail-utente");
 
-                UtenteDAO utenteDAO = new UtenteDAO();
+                if (mail != null) {
+                    UtenteDAO utenteDAO = new UtenteDAO();
 
-                Utente u = utenteDAO.doRetrieveByMail(mail);
+                    Utente u = utenteDAO.doRetrieveByMail(mail);
 
-                request.setAttribute("utente",u);
+                    List<Utente> utenti = utenteDAO.doRetrieveAll();
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                    request.setAttribute("utenti", utenti);
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    request.setAttribute("utente",u);
 
-                rd.forward(request,response);
+                    String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+
+                    rd.forward(request,response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelUtente=Modifica/Rimuovi%20Utente");
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

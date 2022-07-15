@@ -37,83 +37,100 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 String data = request.getParameter("dataPubblicazione");
                 String editore = request.getParameter("editore");
 
+                log(String.valueOf(editore.length()));
+
                 Part foto = request.getPart("foto");
 
                 boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
 
-                GenereDAO genereDAO = new GenereDAO();
+                LibroDAO libroDAO = new LibroDAO();
 
-                Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
+                if (compilazioneForm) {
 
-                boolean validazioneForm = Forms.validateFormLibro(null,titolo,altro,editore,descrizione,null,generedbaltro,request);
-
-                if (compilazioneForm && validazioneForm) {
-                    BigDecimal prezzo = new BigDecimal(prezzoString);
-                    BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
-                    int disponibilita = Integer.parseInt(disponibilitaString);
-
-                    ArrayList<String> generi = new ArrayList<>();
-                    Collections.addAll(generi, genere);
-
-                    int year = Integer.parseInt(data.split("-")[0]);
-                    int month = Integer.parseInt(data.split("-")[1]);
-                    int day = Integer.parseInt(data.split("-")[2]);
-
-                    GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
-
-                    Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita,  descrizione);
-
-                    LibroDAO libroDAO = new LibroDAO();
-
-                    Libro oldLibro = libroDAO.doRetrieveById(isbn);
-
-                    if (altro.length() > 0) {
-                        generi.add(altro);
-                        genereDAO.doSave(altro);
-                    }
-
-
-                    if (foto.getSubmittedFileName().length() > 0) {
-                        String uploadPath = getServletContext().getRealPath("") + "img";
-
-                        File uploadDir = new File(uploadPath);
-                        if (!uploadDir.exists())
-                            uploadDir.mkdir();
-
-                        String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
-
-                        File oldimg = new File(getServletContext().getRealPath("") + oldLibro.getFoto().substring(1));
-
-                        oldimg.delete();
-
-                        foto.write(imgpath);
-
-                        String subpath = "./img/" + foto.getSubmittedFileName();
-
-                        libroDAO.doUpdateFoto(libro, subpath);
-                    }
-
-                    String msg = null;
+                    GenereDAO genereDAO = new GenereDAO();
 
                     AutoreDAO autoreDAO = new AutoreDAO();
 
-                    Autore autore = autoreDAO.doRetrievebyCF(autoreCF);
+                    Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
-                    if (libroDAO.doUpdate(libro, autore.getCF(), generi) == 1)
-                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    boolean validazioneForm = Forms.validateFormLibro(null, titolo, altro, descrizione,editore, null, generedbaltro, request);
 
-                    request.setAttribute("msg", msg);
+                    if (validazioneForm) {
+                        BigDecimal prezzo = new BigDecimal(prezzoString);
+                        BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
+                        int disponibilita = Integer.parseInt(disponibilitaString);
 
-                    request.getSession().removeAttribute("libri");
-                    request.getSession().removeAttribute("generi");
-                    request.getSession().removeAttribute("autori");
+                        ArrayList<String> generi = new ArrayList<>();
+                        Collections.addAll(generi, genere);
+
+                        int year = Integer.parseInt(data.split("-")[0]);
+                        int month = Integer.parseInt(data.split("-")[1]);
+                        int day = Integer.parseInt(data.split("-")[2]);
+
+                        GregorianCalendar dataPubblicazione = new GregorianCalendar(year, month, day);
+
+                        Libro libro = new Libro(isbn, titolo, prezzo, dataPubblicazione, editore, sconto, disponibilita, descrizione);
+
+                        Libro oldLibro = libroDAO.doRetrieveById(isbn);
+
+                        if (altro.length() > 0) {
+                            generi.add(altro);
+                            genereDAO.doSave(altro);
+                        }
+
+
+                        if (foto.getSubmittedFileName().length() > 0) {
+                            String uploadPath = getServletContext().getRealPath("") + "img";
+
+                            File uploadDir = new File(uploadPath);
+                            if (!uploadDir.exists())
+                                uploadDir.mkdir();
+
+                            String imgpath = uploadPath + File.separator + foto.getSubmittedFileName();
+
+                            File oldimg = new File(getServletContext().getRealPath("") + oldLibro.getFoto().substring(1));
+
+                            oldimg.delete();
+
+                            foto.write(imgpath);
+
+                            String subpath = "./img/" + foto.getSubmittedFileName();
+
+                            libroDAO.doUpdateFoto(libro, subpath);
+                        }
+
+                        String msg = null;
+
+                        Autore autore = autoreDAO.doRetrievebyCF(autoreCF);
+
+                        if (libroDAO.doUpdate(libro, autore.getCF(), generi) == 1)
+                            msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                        request.setAttribute("msg", msg);
+                    } else
+                        request.setAttribute("msgerror", "Errore nella validazione dei campi del form !!!");
+
+                    List<Genere> generi = genereDAO.doRetrieveAll();
+
+                    List<Libro> libri = libroDAO.doRetrieveAll();
+
+                    List<Autore> autori = autoreDAO.doRetrieveAll();
+
+                    request.setAttribute("libri", libri);
+
+                    request.setAttribute("generi", generi);
+
+                    request.setAttribute("autori",autori);
+
+
+                    String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
+
                 } else
-                    request.setAttribute("msgerror", "Errore nella validazione dei campi del form !!!");
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelLibro=Modifica/Rimuovi%20Libro");
 
-                String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
-
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

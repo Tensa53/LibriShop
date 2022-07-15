@@ -3,13 +3,11 @@ function validateFormInsUtente(){
     let nome = document.forms["registrazione"]["nomer"].value;
     let cognome = document.forms["registrazione"]["cognomer"].value;
     let mail = document.forms["registrazione"]["mailr"].value;
-    let username = document.forms["registrazione"]["usernamer"].value;
     let password = document.forms["registrazione"]["passwordr"].value;
     let c = 0;
 
     document.getElementById("nomeP").innerText = "";
     document.getElementById("cognomeP").innerText = "";
-    document.getElementById("usernameP").innerText = "";
     document.getElementById("mailP").innerText = "";
     document.getElementById("passwordP").innerText = "";
 
@@ -40,10 +38,6 @@ function validateFormInsUtente(){
     //lunghezza
     if (password.length > 40){ c++;
         document.getElementById("passwordP").innerText = "Il campo password non può superare i 40 caratteri."
-    }
-
-    if (username.length > 20){ c++;
-        document.getElementById("usernameP").innerText = "Il campo username non può superare i 20 caratteri."
     }
 
     if (c>0){

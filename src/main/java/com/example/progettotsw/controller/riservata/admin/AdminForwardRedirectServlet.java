@@ -61,11 +61,11 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Autore> autori = autoreDAO.doRetrieveAll();
 
-                    request.getSession().setAttribute("libri", libri);
+                    request.setAttribute("libri", libri);
 
-                    request.getSession().setAttribute("generi", generi);
+                    request.setAttribute("generi", generi);
 
-                    request.getSession().setAttribute("autori",autori);
+                    request.setAttribute("autori",autori);
 
                     String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
@@ -89,7 +89,7 @@ public class AdminForwardRedirectServlet extends HttpServlet {
 
                     List<Utente> utenti = utenteDAO.doRetrieveAll();
 
-                    request.getSession().setAttribute("utenti", utenti);
+                    request.setAttribute("utenti", utenti);
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 

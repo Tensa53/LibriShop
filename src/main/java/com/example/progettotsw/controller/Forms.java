@@ -68,6 +68,14 @@ public class Forms {
         return !(c > 0);
     }
 
+    public static boolean validateFormIndirizzo() {
+        return false;
+    }
+
+    public static boolean validateFormPagamento() {
+        return false;
+    }
+
     public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
         int c = 0;
 

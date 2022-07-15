@@ -17,9 +17,9 @@
     <%
         String msg = (String) request.getAttribute("msg");
         String msgerr = (String) request.getAttribute("msgerror");
-        List<Libro> libri = (List<Libro>) request.getSession().getAttribute("libri");
-      List<Genere> generi = (List<Genere>) request.getSession().getAttribute("generi");
-      List<Autore> autori = (List<Autore>) request.getSession().getAttribute("autori");
+        List<Libro> libri = (List<Libro>) request.getAttribute("libri");
+      List<Genere> generi = (List<Genere>) request.getAttribute("generi");
+      List<Autore> autori = (List<Autore>) request.getAttribute("autori");
       List<Genere> generiLibro = (List<Genere>) request.getAttribute("generi-libro");
       Libro libro = (Libro) request.getAttribute("libro");
       Autore autore = (Autore) request.getAttribute("autore");

@@ -24,33 +24,34 @@ public class InserisciAutoreServlet extends HttpServlet {
                 String cf = request.getParameter("CF");
                 String nome = request.getParameter("nome");
 
-                String msg = "";
-
                 AutoreDAO autoreDAO = new AutoreDAO();
 
                 GenereDAO genereDAO = new GenereDAO();
 
                 boolean compilazioneForm = cf != null && nome != null;
 
-                boolean validazioneForm = Forms.validateFormAutore(cf,nome,autoreDAO.doRetrievebyCF(cf),request);
+                if (compilazioneForm) {
+                    boolean validazioneForm = Forms.validateFormAutore(cf,nome,autoreDAO.doRetrievebyCF(cf),request);
 
-                if (compilazioneForm && validazioneForm) {
+                    if (validazioneForm) {
 
-                    Autore autore = new Autore(cf, nome);
+                        Autore autore = new Autore(cf, nome);
 
-                    if (autoreDAO.doSave(autore) == 1)
-                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \\\"\" + request.getContextPath() + \"/area-riservata\\\"> dashboard </a>\";";
-                }
+                        if (autoreDAO.doSave(autore) == 1)
+                            request.setAttribute("msg","Inserimento effettuato con successo !!! Torna alla <a href = \\\"\" + request.getContextPath() + \"/area-riservata\\\"> dashboard </a>\";");
+                    }
 
-                request.setAttribute("msg",msg);
-                request.setAttribute("autori", autoreDAO.doRetrieveAll());
-                request.setAttribute("generi", genereDAO.doRetrieveAll());
+                    request.setAttribute("autori", autoreDAO.doRetrieveAll());
+                    request.setAttribute("generi", genereDAO.doRetrieveAll());
 
-                String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
+                    String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                rd.forward(request, response);
+                    rd.forward(request, response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?Gestione%20Autore%20e%20Genere");
+
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         } else

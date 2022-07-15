@@ -28,37 +28,43 @@ public class InserisciUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = mail != null && nome != null && cognome != null && password != null;
 
-                UtenteDAO utenteDAO = new UtenteDAO();
+                if (compilazioneForm) {
 
-                Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
+                    UtenteDAO utenteDAO = new UtenteDAO();
 
-                boolean validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,utentemaildb);
+                    Utente utentemaildb = utenteDAO.doRetrieveByMail(mail);
 
-                if (compilazioneForm && validazioneForm) {
-                    Utente nuovoUtente = new Utente(mail,nome, cognome, amministratore);
-                    nuovoUtente.setPassword(password);
+                    boolean validazioneForm = Forms.validateFormUtente(mail,nome,cognome,password,request,utentemaildb);
 
-                    int row = utenteDAO.doSave(nuovoUtente);
+                    if (validazioneForm) {
+                        Utente nuovoUtente = new Utente(mail,nome, cognome, amministratore);
+                        nuovoUtente.setPassword(password);
 
-                    if (!amministratore) {
-                        CarrelloDAO carrelloDAO = new CarrelloDAO();
+                        int row = utenteDAO.doSave(nuovoUtente);
 
-                        carrelloDAO.doCreate(mail);
+                        if (!amministratore) {
+                            CarrelloDAO carrelloDAO = new CarrelloDAO();
+
+                            carrelloDAO.doCreate(mail);
+                        }
+
+                        String msg = null;
+
+                        if (row == 1)
+                            msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+
+                        request.setAttribute("msg", msg);
                     }
 
-                    String msg = null;
+                    String address = "/WEB-INF/ADMIN/insUtente.jsp";
 
-                    if (row == 1)
-                        msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
 
-                    request.setAttribute("msg", msg);
-                }
+                    rd.forward(request, response);
+                } else
+                    response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?insUtente=Inserisci%20Utente");
 
-                String address = "/WEB-INF/ADMIN/insUtente.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-
-                rd.forward(request, response);
 
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
