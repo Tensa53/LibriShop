@@ -21,7 +21,12 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
 }
 
 /*seguiranno media query nei relativi breakpoints*/
-@media screen and (max-width: 1017px) {
+@media screen and (max-width: 600px) {
+
+    nav a {
+        font-size: 20px;
+    }
+
     .notnav {
         display: none;
     }
@@ -35,7 +40,42 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
         color: white;
         border:none;
         text-align: center;
-        font-size: 12px;
+        font-size: 20px;
+        display: inline-block;
+    }
+
+    nav li:first-of-type {
+        display: inline-block;
+    }
+
+    .yesnav a {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 984px) {
+
+    nav a {
+        font-size: 25px;
+    }
+
+    .notnav {
+        display: none;
+    }
+
+    nav li a{
+        display: block;
+    }
+
+    #bottonenav {
+        background-color: #00627D;
+        color: white;
+        border:none;
+        text-align: center;
+        font-size: 20px;
         display: inline-block;
     }
 
@@ -52,7 +92,7 @@ nav a:hover:not(.active) { /*utilizzo della sottoclasse hover per segnalare il p
 }
 
 
-@media screen and (min-width: 1018px) {
+@media screen and (min-width: 985px) {
     /*navbar orizzontale*/
     .notnav {
         display: block;
