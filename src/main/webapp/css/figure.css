@@ -1,5 +1,5 @@
 figure.catalogo-item {
-    border-color: navajowhite;
+    border-color: transparent;
     padding: 20px;
 }
 
@@ -7,11 +7,6 @@ figcaption.catalogo-item{
     border-color: #cccccc;
     font-size: 30px;
     text-align: center;
-}
-
-figure input[type=image] {
-    width: 300px;
-    height: 500px;
 }
 
 figure img {
@@ -37,4 +32,25 @@ figcaption {
 
 .barrato {
     text-decoration: line-through;
+}
+
+@media screen and (max-width: 600px) {
+    figure input[type=image] {
+        width: 200px;
+        height: 333px;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 984px) {
+    figure input[type=image] {
+        width: 250px;
+        height: 416px;
+    }
+}
+
+@media screen and (min-width: 985px) {
+    figure input[type=image] {
+        width: 300px;
+        height: 500px;
+    }
 }

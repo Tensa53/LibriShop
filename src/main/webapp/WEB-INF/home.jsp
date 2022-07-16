@@ -64,7 +64,7 @@
                         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
                         <%if (l.getSconto().compareTo(new BigDecimal(0.00)) == 1) {%>
                         <figcaption><span
-                                class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span>
+                                class="barrato"><%=l.getPrezzo().toString()%>€</span><span> <%=l.getPrezzoScontato().toString()%>€</span>
                         </figcaption>
                         <%} else {%>
                         <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
