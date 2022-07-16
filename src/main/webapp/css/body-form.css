@@ -5,6 +5,7 @@ form label {
 form p {
     font-size: 18px;
     font-style: italic;
+    font-family: "Times New Roman", Verdana, sans-serif;
 }
 
 form input [type = text] {

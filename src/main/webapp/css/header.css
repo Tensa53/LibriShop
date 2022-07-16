@@ -11,6 +11,10 @@ header {
     display: inline-block;
 }
 
+header span {
+    font-family: Georgia, Verdana, sans-serif;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;

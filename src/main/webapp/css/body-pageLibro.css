@@ -17,10 +17,15 @@ figure {
 }
 
 figcaption {
+    font-family: Georgia, Verdana, sans-serif;
     border: 1px #cccccc solid;
     color: black;
     padding: 2px;
     text-align: center;
+}
+
+figcaption.catalogo-item.caption {
+    font-family: "Times New Roman", Verdana, sans-serif;
 }
 
 @media screen and (max-width: 600px) {
