@@ -1,12 +1,25 @@
 function validateFormModificaPagamento(){
     let carta = document.forms["modifica-pagamento"]["numeroCarta"].value;
-    let numerionly = /^[0-9]+$/;
+    let ccv = document.forms["modifica-pagamento"]["ccv"].value;
 
-    if (!carta.match(numerionly)){
-        document.getElementById("cartaP2").innerText = "La carta può contenere solo numeri.";
-        return false;
+    let c = 0;
+
+    document.getElementById("cartaP").innerText = "";
+    document.getElementById("ccvP").innerText = "";
+
+    if (carta.length > 16) {
+        document.getElementById("cartaP").innerText = "Il numero carta ha massimo 16 cifre.";
+        c++;
     }
 
-    return true;
+    if (ccv.length != 3) {
+        document.getElementById("ccvP").innerText = "Il ccv contiene 3 cifre.";
+        c++;
+    }
+
+    if (c > 0)
+        return false;
+    else
+        return true;
 
 }

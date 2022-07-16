@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.utente;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Indirizzo;
 import com.example.progettotsw.model.IndirizzoDAO;
 import com.example.progettotsw.model.ProvinciaDAO;
@@ -30,29 +31,38 @@ public class InserisciIndirizzoUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = via != null && civico != null && provincia != null && citta != null && CAP != null;
 
+                IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+
+                ProvinciaDAO provinciaDAO = new ProvinciaDAO();
+
                 if (compilazioneForm){
-                    ProvinciaDAO provinciaDAO = new ProvinciaDAO();
 
-                    String nomeProvincia = provinciaDAO.doRetrievebyId(Integer.parseInt(provincia)).getNome();
+                    int idprovincia = Integer.parseInt(provincia);
 
-                    Indirizzo i = new Indirizzo(via,civico,citta,CAP,nomeProvincia);
-                    IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+                    String nomeProvincia = provinciaDAO.doRetrievebyId(idprovincia).getNome();
 
-                    String msg = null;
+                    Indirizzo indirizzodb = indirizzoDAO.doRetrieveByViaCivicoCittaUtente(via, civico, citta, mail);
 
-                    if (indirizzoDAO.doSaveWithMail(i,mail) == 1){
-                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    boolean validazioneForm = Forms.validateFormIndirizzo(via, civico, citta, nomeProvincia, CAP, null, indirizzodb, request);
 
-                        request.setAttribute("msg", msg);
+                    if (validazioneForm) {
+                        Indirizzo i = new Indirizzo(via,civico,citta,CAP,nomeProvincia);
 
-                        request.getSession().removeAttribute("indirizzi");
+                        String msg = null;
 
-                        request.getSession().setAttribute("indirizzi",indirizzoDAO.doRetrievebyUserMail(mail));
+                        if (indirizzoDAO.doSaveWithMail(i,mail) == 1){
+                            msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                            request.setAttribute("msg", msg);
+                        }
                     }
-
                 }
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                request.setAttribute("province",provinciaDAO.doRetrieveAll());
+
+                request.setAttribute("indirizzi",indirizzoDAO.doRetrievebyUserMail(mail));
+
+                String address = "/WEB-INF/UTENTE/indirizziUtente.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);

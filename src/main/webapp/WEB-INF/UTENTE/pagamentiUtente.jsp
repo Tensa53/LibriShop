@@ -24,11 +24,12 @@
 <form action="inserisci-carta" method="post" name="inserisci-pagamento" onsubmit="return validateFormInserisciPagamento()">
   <label for="numeroCartar">Numero Carta : </label><br>
   <p id="cartaP"></p>
-  <input type="text" name="numeroCartar" id="numeroCartar" minlength="16" maxlength="16" required><br>
+  <input type="number" name="numeroCartar" id="numeroCartar" required><br>
   <label for="scadenzar">Scadenza : </label><br>
   <input type="date" name="scadenzar" id="scadenzar" required><br>
   <label for="CCVr">CCV </label><br>
-  <input type="number" min="100" max="999" name="ccvr" id="ccvr" required><br>
+  <p id="ccvP"></p>
+  <input type="number" name="ccvr" id="ccvr" required><br>
   <input type="submit" value="Inserisci un nuovo metodo di Pagamento">
 </form>
 
@@ -41,11 +42,11 @@
   <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
   <label for="numeroCarta">Numero Carta : </label><br>
   <p id="cartaP2"></p>
-  <input type="text" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" minlength="16" maxlength="16" required><br>
+  <input type="number" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" required><br>
   <label for="scadenza">Scadenza : </label><br>
   <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza" required><br>
   <label for="CCV">CCV </label><br>
-  <input type="number" min="100" max="999" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br>
+  <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br>
   <button onclick="return validateFormModificaPagamento()" formaction="conferma-modifiche-pagamento">Modifica Pagamento</button>
   <button formaction="rimuovi-pagamento">Rimuovi Pagamento</button>
   <button formaction="area-riservata">Annulla</button>

@@ -18,11 +18,11 @@
 <%Utente utente = (Utente) session.getAttribute("utente");
 if (utente != null && utente.isAmministratore() == false){%>
     <form action="user-forward-redirect" class="center" method="post">
-        <input name="iMieiDati" type="submit" value="I miei Dati">
+        <input name="iMieiDati" type="submit" value="I Miei Dati">
         <br><br>
-        <input name="iMieiOrdini" type="submit" value="I miei Ordini">
+        <input name="iMieiOrdini" type="submit" value="I Miei Ordini">
         <br><br>
-        <input name="iMieiIndirizzi" type="submit" value="I miei Indirizzi">
+        <input name="iMieiIndirizzi" type="submit" value="I Miei Indirizzi">
         <br><br>
         <input name="iMieiMetodiDiPagamento" type="submit" value="I Miei Metodi di Pagamento">
     </form>

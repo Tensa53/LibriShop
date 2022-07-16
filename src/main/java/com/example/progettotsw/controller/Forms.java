@@ -1,9 +1,6 @@
 package com.example.progettotsw.controller;
 
-import com.example.progettotsw.model.Autore;
-import com.example.progettotsw.model.Genere;
-import com.example.progettotsw.model.Libro;
-import com.example.progettotsw.model.Utente;
+import com.example.progettotsw.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.regex.Matcher;
@@ -68,12 +65,74 @@ public class Forms {
         return !(c > 0);
     }
 
-    public static boolean validateFormIndirizzo() {
-        return false;
+    public static boolean validateFormIndirizzo(String via, String civico, String citta, String provincia, String cap, Indirizzo oldindirizzodb, Indirizzo indirizzodb, HttpServletRequest request) {
+        int c = 0;
+
+        Indirizzo newindirizzo = new Indirizzo(via,civico,citta,cap,provincia);
+
+        if (oldindirizzodb != null){
+            if (newindirizzo.equals(oldindirizzodb)) {
+                return true;
+            }
+        }
+
+        if (via.length() > 40) {
+            request.setAttribute("msgviaP","La via non deve superare i 40 caratteri");
+            c++;
+        }
+
+        if (civico.length() > 5) {
+            request.setAttribute("msgcivicoP","Il numero civico ha massimo 5 cifre");
+            c++;
+        }
+
+        if (cap.length() != 5) {
+            request.setAttribute("msgcapP", "Il CAP deve essere di 5 cifre");
+        }
+
+        if (indirizzodb != null) {
+            boolean res = true;
+
+            if (oldindirizzodb != null)
+                res = !(indirizzodb.equals(oldindirizzodb));
+
+            if (res) {
+                boolean duplicato = indirizzodb.getVia().equals(via) && indirizzodb.getCivico().equals(civico) && indirizzodb.getCitta().equals(citta);
+
+                if (duplicato) {
+                    request.setAttribute("controlloindirizzo", "Indirizzo già in uso");
+                    c++;
+                }
+            }
+        }
+
+        return !(c > 0);
     }
 
-    public static boolean validateFormPagamento() {
-        return false;
+    public static boolean validateFormPagamento(String numeroCarta, String ccv,Pagamento pagamentodb, HttpServletRequest request) {
+        int c = 0;
+
+        if (numeroCarta.length() > 16){
+            request.setAttribute("msgnumerocartaP","Il numero carta ha massimo 16 cifre");
+            c++;
+        }
+
+        if (ccv.length() != 3) {
+            request.setAttribute("msgccvP", "Il ccv contiene 3 cifre");
+            c++;
+        }
+
+        if (pagamentodb != null){
+            boolean uguali = pagamentodb.getNumeroCarta().equals(numeroCarta);
+
+            if (pagamentodb.getNumeroCarta().equals(numeroCarta)){
+                request.setAttribute("msgcontrollonumerocarta","già in uso");
+                c++;
+            }
+        }
+
+        return !(c > 0);
+
     }
 
     public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {

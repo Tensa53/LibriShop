@@ -52,6 +52,12 @@ public class Indirizzo {
         this.provincia = provincia;
     }
 
-    private String via, civico, CAP, citta, provincia, stato;
+    public boolean equals(Indirizzo i) {
+        boolean res = this.via.equalsIgnoreCase(i.getVia()) && this.civico.equals(i.getCivico()) && this.citta.equalsIgnoreCase(i.getCitta()) && this.provincia.equalsIgnoreCase(i.getProvincia()) && this.CAP.equals(i.getCAP());
+
+        return res;
+    }
+
+    private String via, civico, CAP, citta, provincia;
 
 }

@@ -57,7 +57,7 @@ public class UserForwardRedirect extends HttpServlet {
 
                     request.setAttribute("indirizzi", indirizzi);
 
-                    request.setAttribute("provincia", province);
+                    request.setAttribute("province", province);
 
                     String address = "/WEB-INF/UTENTE/indirizziUtente.jsp";
 
