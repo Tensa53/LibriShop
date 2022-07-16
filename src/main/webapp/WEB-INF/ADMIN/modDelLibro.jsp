@@ -133,7 +133,7 @@
     <p id="editoreP"></p>
     <input type="text" name="editore" id="editore" required value="<%=libro.getEditore()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
-    <input type="number" name="sconto" id="sconto" min="1" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>
+    <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required value="<%=libro.getDisponibilita()%>"><br>
     <label for = "foto">Foto : </label> <br>

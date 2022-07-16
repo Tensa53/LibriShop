@@ -78,7 +78,7 @@
     <p id="editoreP"><%if(editoreP != null){%><%=editoreP%><%}%></p>
     <input type="text" name="editore" id="editore" required><br>
     <label for = "sconto">Sconto : </label> <br>
-    <input type="number" name="sconto" id="sconto"><br>
+    <input type="number" name="sconto" id="sconto" min="0" max="99" step="1"><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required><br>
     <label for = "foto">Foto : </label> <br>
