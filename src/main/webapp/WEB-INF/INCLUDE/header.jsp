@@ -1,7 +1,7 @@
 <%@ page import="com.example.progettotsw.model.Utente" %>
 <%@ page import="com.example.progettotsw.model.Carrello" %>
 <header>
-    <script src="${pageContext.request.contextPath}/script/navbar.js"></script>
+    <script src="${pageContext.request.contextPath}/script/ajax/navbar.js"></script>
     <script src="${pageContext.request.contextPath}/script/dropdownMenuU.js"></script>
     <script src="${pageContext.request.contextPath}/script/dropdownMenuC.js"></script>
     <script src="${pageContext.request.contextPath}/script/dropdownMenuR.js"></script>

@@ -14,7 +14,7 @@
 <body>
 
 <script>
-    <jsp:include page="/script/quantita.js"></jsp:include>
+    <jsp:include page="/script/ajax/quantita.js"></jsp:include>
 </script>
 
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>

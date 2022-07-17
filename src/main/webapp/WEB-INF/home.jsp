@@ -17,7 +17,7 @@
 <body>
 
 <script>
-    <jsp:include page="/script/suggerimenti.js"></jsp:include>
+    <jsp:include page="/script/ajax/suggerimenti.js"></jsp:include>
 </script>
 
 <jsp:include page="INCLUDE/header.jsp"></jsp:include>

@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-cdc.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>

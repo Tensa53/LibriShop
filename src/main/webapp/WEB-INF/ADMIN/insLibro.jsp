@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/autore.js" type="text/javascript"></script>
-    <script src="./script/validateFormInsLibro.js" type="text/javascript"></script>
+    <script src="./script/ajax/autore.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormInsLibro.js" type="text/javascript"></script>
     <%
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");

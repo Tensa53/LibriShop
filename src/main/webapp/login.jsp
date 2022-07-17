@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/validateFormLogin.js" type="text/javascript"></script>
+    <script src="script/form/validateFormLogin.js" type="text/javascript"></script>
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>

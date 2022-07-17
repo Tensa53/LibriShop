@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/autore.js" type="text/javascript"></script>
-    <script src="./script/immagineLibro.js" type="text/javascript"></script>
-    <script src="./script/validateFormModLibro.js" type="text/javascript"></script>
+    <script src="./script/ajax/autore.js" type="text/javascript"></script>
+    <script src="./script/ajax/immagineLibro.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormModLibro.js" type="text/javascript"></script>
     <%
         String msg = (String) request.getAttribute("msg");
         String msgerr = (String) request.getAttribute("msgerror");

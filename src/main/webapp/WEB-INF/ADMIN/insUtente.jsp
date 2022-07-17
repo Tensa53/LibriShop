@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/mail.js" type="text/javascript"></script>
-    <script src="./script/username.js" type="text/javascript"></script>
-    <script src="./script/validateFormInsUtente.js" type="text/javascript"></script>
+    <script src="./script/ajax/mail.js" type="text/javascript"></script>
+<%--    <script src="./script/username.js" type="text/javascript"></script>--%>
+    <script src="./script/ajax/validateFormInsUtente.js" type="text/javascript"></script>
     <%String msg = (String) request.getAttribute("msg");
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");

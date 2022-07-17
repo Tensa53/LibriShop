@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/validateFormModificaPagamento.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormModificaPagamento.js" type="text/javascript"></script>
 </head>
 <body>
 

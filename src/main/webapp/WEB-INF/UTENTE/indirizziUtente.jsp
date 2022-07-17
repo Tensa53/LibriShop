@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./script/comuni.js"></script>
+    <script src="./script/ajax/comuni.js"></script>
 </head>
 <body>
 

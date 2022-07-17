@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
-    <script src="./script/username.js" type="text/javascript"></script>
-    <script src="./script/validateFormModificaUtente.js" type="text/javascript"></script>
+<%--    <script src="./script/username.js" type="text/javascript"></script>--%>
+    <script src="./script/form/validateFormModificaUtente.js" type="text/javascript"></script>
     <% Utente utente = (Utente) request.getSession().getAttribute("utente");
        String msg = (String) request.getAttribute("msg");
         String nomeP = (String) request.getAttribute("msgnomeP");

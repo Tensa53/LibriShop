@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/validateFormModificaIndirizzo.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormModificaIndirizzo.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./script/comuni.js"></script>
+    <script src="./script/ajax/comuni.js"></script>
     <%Indirizzo indirizzo = (Indirizzo) request.getAttribute("indirizzo");
       List<Provincia> province = (List<Provincia>) request.getAttribute("province");
       Provincia provincia = (Provincia) request.getAttribute("provincia");

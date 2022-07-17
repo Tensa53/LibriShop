@@ -62,7 +62,7 @@
         <%if (l.getDisponibilita() > 0){%>
             Quantità : <input type="number" name="quantita" value="1" min="1" max="5">
         <%}else{%>
-            Quantità : Attualmente acquistabile
+            Quantità : Attualmente non acquistabile
         <%}%>
         <%
             if(utente != null){

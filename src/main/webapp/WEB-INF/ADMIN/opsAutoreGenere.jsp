@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-    <script src="./script/validateModificaNomeAutore.js" type="text/javascript"></script>
-    <script src="./script/validateInserisciNuovoAutore.js" type="text/javascript"></script>
-    <script src="./script/validateFormGenere.js"></script>
+    <script src="./script/form/validateModificaNomeAutore.js" type="text/javascript"></script>
+    <script src="./script/form/validateInserisciNuovoAutore.js" type="text/javascript"></script>
+    <script src="./script/form/validateFormGenere.js"></script>
     <%
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
