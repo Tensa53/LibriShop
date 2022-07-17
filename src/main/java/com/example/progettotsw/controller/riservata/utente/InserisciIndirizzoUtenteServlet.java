@@ -56,7 +56,8 @@ public class InserisciIndirizzoUtenteServlet extends HttpServlet {
                             request.setAttribute("msg", msg);
                         }
                     }
-                }
+                } else
+                    response.sendRedirect(request.getContextPath() + "/user-forward-redirect?iMieiIndirizzi=i%20Miei%20Indirizzi");
 
                 request.setAttribute("province",provinciaDAO.doRetrieveAll());
 

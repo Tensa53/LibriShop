@@ -17,6 +17,8 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
+        log(request.getContextPath());
+
         LibroDAO libroDAO = new LibroDAO();
 
         List<Libro> libri = libroDAO.doRetrieveAll();

@@ -8,7 +8,7 @@
   <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");
     String msg = (String) request.getAttribute("msg");
     List<Provincia> province = (List<Provincia>) request.getAttribute("province");
-    String msgerrmod = (String) request.getAttribute("msgerr");
+    String msgerrmod = (String) request.getAttribute("msgerrmod");
     String controlloindirizzo = (String) request.getAttribute("controlloindirizzo");
     String viaP = (String) request.getAttribute("msgviaP");
     String civicoP = (String) request.getAttribute("msgcivicoP");
@@ -22,28 +22,13 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateFormInserisciIndirizzo.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./script/comuni.js"></script>
 </head>
 <body>
 
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
-
-<script>
-    function comuni (provincia) {
-
-        if (provincia != 0) {
-            $.ajax({
-                type : "GET",
-                url : "comuni",
-                data : "provincia="+provincia,
-                success: function(result) {
-                    $('#cittar').html(result);
-                }
-            });
-        }
-    }
-</script>
 
 <div class="center">
 

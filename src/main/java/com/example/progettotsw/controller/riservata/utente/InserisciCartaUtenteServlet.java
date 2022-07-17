@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.utente;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Pagamento;
 import com.example.progettotsw.model.PagamentoDAO;
 import com.example.progettotsw.model.Utente;
@@ -23,9 +24,9 @@ public class InserisciCartaUtenteServlet extends HttpServlet {
 
         if (utente != null) {
             if (!utente.isAmministratore()) {
-                String numeroCarta = request.getParameter("numeroCartar");
-                String scadenza = request.getParameter("scadenzar");
-                String CCVr = request.getParameter("ccvr");
+                String numeroCarta = request.getParameter("numeroCarta");
+                String scadenza = request.getParameter("scadenza");
+                String CCVr = request.getParameter("ccv");
                 String mail = utente.getMail();
 
                 String[] data = scadenza.split("-");
@@ -33,30 +34,40 @@ public class InserisciCartaUtenteServlet extends HttpServlet {
                 String mese = data[1];
                 String giorno = data[2];
 
+                PagamentoDAO pagamentoDAO = new PagamentoDAO();
+
                 boolean compilazioneForm = numeroCarta != null && scadenza != null && CCVr != null;
 
                 if (compilazioneForm){
-                    Pagamento p = new Pagamento(numeroCarta,new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno)),CCVr);
-                    PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-                    String msg = null;
+                    Pagamento pagamentodb = pagamentoDAO.doRetrieveByNumeroCartaUtente(numeroCarta,utente.getMail());
 
-                    if (pagamentoDAO.doSaveByMail(p,mail) == 1){
-                        msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    GregorianCalendar gregorianCalendar = new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno));
 
-                        request.setAttribute("msg", msg);
+                    boolean validazioneForm = Forms.validateFormPagamento(numeroCarta,gregorianCalendar,CCVr,pagamentodb,null,request);
 
-                        request.getSession().removeAttribute("pagamenti");
+                    if (validazioneForm) {
+                        Pagamento p = new Pagamento(numeroCarta,gregorianCalendar,CCVr);
 
-                        request.getSession().setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
+                        String msg = null;
+
+                        if (pagamentoDAO.doSaveByMail(p,mail) == 1){
+                            msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                            request.setAttribute("msg", msg);
+                        }
                     }
 
-                }
+                    request.setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                    String address = "/WEB-INF/UTENTE/pagamentiUtente.jsp";
 
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
+
+                } else
+                    response.sendRedirect(request.getContextPath() + "/user-forward-redirect?iMieiMetodiDiPagamento=i%20Miei%20Metodi%20Di%20Pagamento");
+
 
             }
 

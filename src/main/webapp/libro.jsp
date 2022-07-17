@@ -4,13 +4,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.progettotsw.model.Genere" %>
 <%@ page import="com.example.progettotsw.model.Autore" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%Libro l = (Libro) request.getAttribute("libro");
-
     List<Genere> generi = (List<Genere>) request.getAttribute("genere");
     Autore autore = (Autore) request.getAttribute("autore");
+    Utente utente = (Utente) request.getSession().getAttribute("utente");
+    GregorianCalendar oggi = new GregorianCalendar();
 
       if(l == null){
     %>
@@ -57,15 +59,24 @@
         <%}else{%>
             <figcaption class="catalogo-item">Prezzo : <%=l.getPrezzo().toString()%> € <br>
         <%}%>
+        <%if (l.getDisponibilita() > 0){%>
             Quantità : <input type="number" name="quantita" value="1" min="1" max="5">
-        <%
-            Utente utente = (Utente) request.getSession().getAttribute("utente");
-            if(utente != null){
-        %>
-                <input type="submit" value="Aggiungi al carrello" onclick="checkUtente(<%=utente.isAmministratore()%>)">
         <%}else{%>
-                <input type="submit" value="Aggiungi al carrello">
+            Quantità : Attualmente acquistabile
         <%}%>
+        <%
+            if(utente != null){
+                if(l.getDataPubblicazione().after(oggi) || l.getDisponibilita() == 0){
+        %>
+                    <input type="submit" value="Aggiungi al carrello" onclick="checkUtente(<%=utente.isAmministratore()%>)" disabled>
+                <%}else{%>
+                    <input type="submit" value="Aggiungi al carrello" onclick="checkUtente(<%=utente.isAmministratore()%>)">
+        <%}}else{
+                if(l.getDataPubblicazione().after(oggi)){%>
+                    <input type="submit" value="Aggiungi al carrello" disabled>
+                <%}else{%>
+                    <input type="submit" value="Aggiungi al carrello">
+        <%}}%>
                     <h4>Informazioni sul libro:</h4>
                 Editore: <%=l.getEditore()%><br>
                 Data pubblicazione: <%=l.getDataPubblicazioneString()%><br>

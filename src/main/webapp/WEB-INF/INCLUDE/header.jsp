@@ -16,7 +16,7 @@
     %>
 
     <div class="dropdown right">
-        <img src="./img/utente.png" alt="Icona utente" id="iconaU" onclick="dropdownMenuU()"></a>
+        <div class="icona-menu"><img src="./img/utente.png" alt="Icona utente" id="iconaU" onclick="dropdownMenuU()"></div>
         <div class="dropdown-content utenteu">
             <a href="${pageContext.request.contextPath}/area-riservata">Area Riservata</a>
                 <form action="logout">
@@ -28,7 +28,7 @@
     <%}else{%>
 
     <div class="dropdown right">
-        <img src="./img/utente.png" alt="Icona utente" id="iconaR" onclick="dropdownMenuR()">
+        <div class="icona-menu"><img src="./img/utente.png" alt="Icona utente" id="iconaR" onclick="dropdownMenuR()"></div>
         <div class="dropdown-content utenter">
             <a href="${pageContext.request.contextPath}/login.jsp">Login</a>
             <a href="${pageContext.request.contextPath}/registrazione.jsp">Registrazione</a>
@@ -38,7 +38,7 @@
     <%}%>
 
     <div class="dropdown right">
-        <img src="./img/carrello.png" alt="Icona carrello" id="iconaC" onclick="dropdownMenuC()">
+        <div class="icona-menu"><img src="./img/carrello.png" alt="Icona carrello" id="iconaC" onclick="dropdownMenuC()"></div>
         <div class="dropdown-content carrello">
                 <%if(carrello != null){
                     if(carrello.getNumeroProdotti() == 1){%>

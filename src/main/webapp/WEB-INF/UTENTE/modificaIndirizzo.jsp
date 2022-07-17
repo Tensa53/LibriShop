@@ -12,28 +12,13 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/validateFormModificaIndirizzo.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./script/comuni.js"></script>
     <%Indirizzo indirizzo = (Indirizzo) request.getAttribute("indirizzo");
       List<Provincia> province = (List<Provincia>) request.getAttribute("province");
       Provincia provincia = (Provincia) request.getAttribute("provincia");
     %>
 </head>
 <body>
-
-<script>
-    function comuni (provincia) {
-
-        if (provincia != 0) {
-            $.ajax({
-                type : "GET",
-                url : "comuni",
-                data : "provincia="+provincia,
-                success: function(result) {
-                    $('#citta').html(result);
-                }
-            });
-        }
-    }
-</script>
 
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 

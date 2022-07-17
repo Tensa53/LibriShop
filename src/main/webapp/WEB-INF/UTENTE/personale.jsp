@@ -24,7 +24,7 @@ if (utente != null && utente.isAmministratore() == false){%>
         <br><br>
         <input name="iMieiIndirizzi" type="submit" value="I Miei Indirizzi">
         <br><br>
-        <input name="iMieiMetodiDiPagamento" type="submit" value="I Miei Metodi di Pagamento">
+        <input name="iMieiMetodiDiPagamento" type="submit" value="I Miei Metodi Di Pagamento">
     </form>
 <%}else{%>
 <p>Non sei autorizzato ad accedere a questa pagina</p>

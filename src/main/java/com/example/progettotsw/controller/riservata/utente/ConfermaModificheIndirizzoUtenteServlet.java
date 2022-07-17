@@ -74,8 +74,7 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
                     RequestDispatcher rd = request.getRequestDispatcher(address);
                     rd.forward(request, response);
 
-                } else
-                    response.sendRedirect(request.getContextPath() + "/user-forward-redirect?iMieiIndirizzi=i%20Miei%20Indirizzi");
+                }
 
             } else
                 response.sendRedirect(request.getContextPath() + "/home");

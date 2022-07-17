@@ -15,8 +15,6 @@ import java.util.List;
 public class CercaIndirizzodaModificareServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log(request.getContextPath());
-
 
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 

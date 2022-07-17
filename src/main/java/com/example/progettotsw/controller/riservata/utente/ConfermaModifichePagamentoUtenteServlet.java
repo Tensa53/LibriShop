@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.utente;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Pagamento;
 import com.example.progettotsw.model.PagamentoDAO;
 import com.example.progettotsw.model.Utente;
@@ -39,27 +40,37 @@ public class ConfermaModifichePagamentoUtenteServlet extends HttpServlet {
                 boolean compilazioneForm = numeroCarta != null && scadenza != null && CCV != null;
 
                 if (compilazioneForm){
-                    Pagamento p = new Pagamento(numeroCarta,new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno)),CCV);
+                    GregorianCalendar gregorianCalendar = new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno));
+
                     PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-                    String msg = null;
+                    Pagamento pagamentodb = pagamentoDAO.doRetrieveByNumeroCartaUtente(numeroCarta,utente.getMail());
 
-                    if (pagamentoDAO.doUpdate(p,numeroCartaF,scadenzaF,CCVf,mail) == 1){
-                        msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                    Pagamento oldpagamentodb = pagamentoDAO.doRetrieveByNumeroCartaUtente(numeroCartaF,utente.getMail());
 
-                        request.setAttribute("msg", msg);
+                    boolean validazioneForm = Forms.validateFormPagamento(numeroCarta,gregorianCalendar,CCV,pagamentodb,oldpagamentodb,request);
 
-                        request.getSession().removeAttribute("pagamenti");
+                    if (validazioneForm) {
+                        Pagamento p = new Pagamento(numeroCarta,gregorianCalendar,CCV);
 
-                        request.getSession().setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
-                    }
+                        String msg = null;
+
+                        if (pagamentoDAO.doUpdate(p,numeroCartaF,scadenzaF,CCVf,mail) == 1){
+                            msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                            request.setAttribute("msg", msg);
+                        }
+                    } else
+                        request.setAttribute("msgerrmod","Errore nella compilazione del form di modifica pagamento !!!");
+
+                    request.setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
+
+                    String address = "/WEB-INF/UTENTE/pagamentiUtente.jsp";
+
+                    RequestDispatcher rd = request.getRequestDispatcher(address);
+                    rd.forward(request, response);
 
                 }
-
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
-
-                RequestDispatcher rd = request.getRequestDispatcher(address);
-                rd.forward(request, response);
 
             }
 

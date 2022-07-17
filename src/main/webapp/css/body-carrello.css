@@ -7,8 +7,8 @@
 
 .container-libro-item {
     border: 1px solid black;
-    border-radius: 1px;
-    padding: 2px;
+    border-radius: 2px;
+    padding: 5px;
     background-color: #dee3de; /*Whitecap Foam*/
 }
 

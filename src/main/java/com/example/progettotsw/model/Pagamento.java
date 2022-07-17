@@ -37,6 +37,10 @@ public class Pagamento {
         return result;
     }
 
+    public boolean equals (Pagamento p) {
+        return this.numeroCarta.equals(p.getNumeroCarta()) && this.scadenza.equals(p.getScadenza()) && this.CCV.equals(p.getCCV());
+    }
+
     public void setScadenza(GregorianCalendar scadenza) {
         this.scadenza = scadenza;
     }

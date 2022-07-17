@@ -3,6 +3,7 @@ package com.example.progettotsw.controller;
 import com.example.progettotsw.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -109,8 +110,18 @@ public class Forms {
         return !(c > 0);
     }
 
-    public static boolean validateFormPagamento(String numeroCarta, String ccv,Pagamento pagamentodb, HttpServletRequest request) {
+    public static boolean validateFormPagamento(String numeroCarta, GregorianCalendar scadenza, String ccv, Pagamento pagamentodb,Pagamento oldpagamentodb, HttpServletRequest request) {
         int c = 0;
+
+        Pagamento newpagamento = new Pagamento(numeroCarta,scadenza,ccv);
+
+        GregorianCalendar oggi = new GregorianCalendar();
+
+        if (oldpagamentodb != null){
+            if (oldpagamentodb.equals(newpagamento)){
+                return true;
+            }
+        }
 
         if (numeroCarta.length() > 16){
             request.setAttribute("msgnumerocartaP","Il numero carta ha massimo 16 cifre");
@@ -122,13 +133,27 @@ public class Forms {
             c++;
         }
 
-        if (pagamentodb != null){
-            boolean uguali = pagamentodb.getNumeroCarta().equals(numeroCarta);
+        if (scadenza.before(oggi)) {
+            request.setAttribute("msgscadenzaP", "non valida");
+            c++;
+        }
 
-            if (pagamentodb.getNumeroCarta().equals(numeroCarta)){
-                request.setAttribute("msgcontrollonumerocarta","già in uso");
-                c++;
+        if (pagamentodb != null){
+            boolean res = true;
+
+            if (oldpagamentodb != null)
+                res = !(pagamentodb.equals(oldpagamentodb));
+
+            if (res) {
+                boolean duplicato = pagamentodb.getNumeroCarta().equals(numeroCarta);
+
+                if (duplicato){
+                    request.setAttribute("msgcontrollonumerocarta","già in uso");
+                    c++;
+                }
             }
+
+
         }
 
         return !(c > 0);
