@@ -35,7 +35,7 @@
             <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
             <datalist id="titoli">
             </datalist>
-            <input type="submit" id="#button-ricerca" value="cerca">
+            <input type="submit" id="button-ricerca" value="cerca">
         </form>
     </div>
 
