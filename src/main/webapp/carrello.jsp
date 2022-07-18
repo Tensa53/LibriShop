@@ -32,7 +32,7 @@
 <div id="container-carrello">
 
     <%if (c > 0) { %>
-    <p class="error center">Non puoi selezionare più di 5 copie di un libro</p>
+    <h3 class="error center">Non puoi selezionare più di 5 copie di un libro</h3>
     <% for (i = 0; i < dettagli.size(); i++) {
         Dettaglio d = dettagli.get(i);%>
     <div class="container-libro-item">

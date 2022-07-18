@@ -26,9 +26,17 @@
 <jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
 <div id="container-home">
-    <div class="titoli center">
-        <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>
-    </div>
+<%--    <div class="titoli center">--%>
+<%--        <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>--%>
+<%--    </div>--%>
+
+        <div class="center">
+            <%if(utente != null){%>
+            <h2>Benvenut* <%=utente.getNome()%> <%=utente.getCognome()%> sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro </h2>
+            <%}else{%>
+            <h2>Benvenut* guest sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro </h2>
+            <%}%>
+        </div>
 
     <div id="container-ricerca" class="center">
         <form action="ricerca">
@@ -37,14 +45,6 @@
             </datalist>
             <input type="submit" id="button-ricerca" value="cerca">
         </form>
-    </div>
-
-    <div class="center">
-        <%if(utente != null){%>
-        <h3>Benvenut* <%=utente.getNome()%> <%=utente.getCognome()%>. I nostri consigli : </h3>
-        <%}else{%>
-        <h3>Benvenut* guest. I nostri consigli : </h3>
-        <%}%>
     </div>
 
     <div id="container-catalogo-table">

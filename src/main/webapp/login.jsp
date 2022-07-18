@@ -29,11 +29,11 @@
     <input type="submit" value="Login">
 </form>
 
+<p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
+
 <%if (msg != null){%>
     <h3 class="error">${msg}</h3>
 <%}%>
-
-<p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
 
 </div>
 
