@@ -20,7 +20,7 @@ function validateFormInsLibro(){
     document.getElementById("altroP").innerText = "";
 
     if (!flag) {
-        document.getElementById("controllogenere").innerText = "seleziona una casella";
+        document.getElementById("controllogenere").innerText = "seleziona un genere";
         c++;
     }
 

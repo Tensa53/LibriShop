@@ -21,30 +21,29 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<div id="container-forms" class="center">
+
 <%if(msgerror != null){%>
-  <p class="error">${msgerror}</p>
+  <h3 class="error">${msgerror}</h3>
 <%}%>
 
 
 <%if(msgsuccess != null){%>
-  <p class="success">${msgsuccess}</p>
+  <h3 class="success">${msgsuccess}</h3>
 <%}%>
-
-
-<div id="container-ordini">
 
 
   <%if(ordini.size() > 0){
     for(Ordine o : ordini){%>
 
-  <div class="container-ordini-item">
+  <fieldset>
+    <legend>Ordine N. <%=o.getId()%></legend>
     <form method="post">
-    <p>Ordine N. <%=o.getId()%></p>
       <input type="hidden" name="id" value="<%=o.getId()%>">
     <p>Data e Ora Ordine : <%=o.getDataOrdineReversedString()%></p>
     <p>Utente : <%=o.getUtente().getMail()%></p>
     <p>Indirizzo di spedizione : Via <%=o.getIndirizzo().getVia()%> <%=o.getIndirizzo().getCivico()%> <%=o.getIndirizzo().getCAP()%> <%=o.getIndirizzo().getCitta()%></p>
-    <p>Pagamento con carta N. : <%=o.getPagamento().getNumeroCarta()%></p>
+    <p>Pagamento con carta N. : <%=o.getPagamento().getFormattedNumeroCarta()%></p>
     <button formaction="annulla-ordine">Annulla Ordine</button>
     <p>Totale : <%=o.getTotale()%>€</p>
     <p>Dettagli Libri : </p>
@@ -56,14 +55,15 @@
       </ul>
     </div>
     </form>
-  </div>
+  </fieldset>
 
   <%}
   } else {%>
-  <p>Non ci sono ordini</p>
+  <h3 class="center">Non ci sono ordini</h3>
   <%}%>
-
-  <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 </div>
+
+<jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -25,6 +25,7 @@
       Autore autore = (Autore) request.getAttribute("autore");
         String titoloP = (String) request.getAttribute("msgtitoloP");
         String altroP = (String) request.getAttribute("msgaltroP");
+        String controllogenere = (String) request.getAttribute("msgcontrollogenere");
         String controllogenerealtro = (String) request.getAttribute("controllogenerealtro");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
         String editoreP = (String) request.getAttribute("msgeditoreP");
@@ -35,7 +36,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div class="center" id="container-forms">
 
     <%if (msg != null){%>
     <h3 class="success">${msg}</h3>
@@ -49,6 +50,11 @@
 
             <%if (titoloP != null) {%>
             <li><%=titoloP%>
+            </li>
+            <%}%>
+
+            <%if (controllogenere != null) {%>
+            <li><%=controllogenere%>
             </li>
             <%}%>
 
@@ -99,15 +105,12 @@
     <p id="titoloP"></p>
     <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>" required><br>
     <label for = "autore">Autore : </label>
-<%--    <p id="controlloautore"></p>--%>
-<%--    <p id="autoreP"></p>--%>
     <select name="autore" id="autore">
         <%for (Autore a : autori){%>
         <option value="<%=a.getCF()%>"><%=a.getNome()%></option>
         <%}%>
     </select><br>
-<%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" value="<%=autore.getNome()%>" required><br>--%>
-    <label for= "genere">Genere : <span id="controllogenere"></span></label><br>
+    <label for= "genere">Genere : <span id="controllogenere"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
     <div id="genere" class="checkbox-grid" required>
         <%
             for (Genere g : generi) {
@@ -137,14 +140,15 @@
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required value="<%=libro.getDisponibilita()%>"><br>
     <label for = "foto">Foto : </label> <br>
-    <input type="file" name="foto" id="foto" accept="image/*"><br>
+    <input type="file" name="foto" id="foto" accept="image/*"><br><br>
     <input type="submit" value="Conferma Modifiche"><br>
 </form>
 
-</div>
-
 <%}%>
 
+</div>
+
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
+
 </body>
 </html>

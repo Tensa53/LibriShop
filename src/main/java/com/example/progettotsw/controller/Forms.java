@@ -40,7 +40,7 @@ public class Forms {
 
             if(utentemaildb != null) {
                 if (utentemaildb.getMail().equalsIgnoreCase(mail)) {
-                    request.setAttribute("msgmailinuso","già in uso");
+                    request.setAttribute("msgmailinuso","Mail già in uso");
                     c++;
                 }
             }
@@ -148,7 +148,7 @@ public class Forms {
                 boolean duplicato = pagamentodb.getNumeroCarta().equals(numeroCarta);
 
                 if (duplicato){
-                    request.setAttribute("msgcontrollonumerocarta","già in uso");
+                    request.setAttribute("msgcontrollonumerocarta","Carta già in uso");
                     c++;
                 }
             }
@@ -160,7 +160,7 @@ public class Forms {
 
     }
 
-    public static boolean validateFormLibro(String isbn, String titolo, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
+    public static boolean validateFormLibro(String isbn, String titolo, String[] genere, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
         int c = 0;
 
         if(isbn != null) {
@@ -171,7 +171,7 @@ public class Forms {
 
             if (librodb != null) {
                 if (librodb.getISBN().equals(isbn)){
-                    request.setAttribute("msgcontrolloisbn","già in uso");
+                    request.setAttribute("msgcontrolloisbn","ISBN già in uso");
                     c++;
                 }
             }
@@ -179,6 +179,11 @@ public class Forms {
 
         if (titolo.length() > 50){
             request.setAttribute("msgtitoloP","La lunghezza del titolo non deve superare i 50 caratteri");
+            c++;
+        }
+
+        if (genere == null){
+            request.setAttribute("msgcontrollogenere","seleziona un genere");
             c++;
         }
 
@@ -235,7 +240,7 @@ public class Forms {
             if (autoredb != null) {
 
                 if (autoredb.getCF().equals(cf)) {
-                    request.setAttribute("msgcontrolloCF","già in uso");
+                    request.setAttribute("msgcontrolloCF","CF già in uso");
                     c++;
                 }
             }

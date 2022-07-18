@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="./script/ajax/mail.js" type="text/javascript"></script>
-<%--    <script src="./script/username.js" type="text/javascript"></script>--%>
-    <script src="./script/ajax/validateFormInsUtente.js" type="text/javascript"></script>
+    <script src="./script/checkPassword.js"></script>
+    <script src="./script/form/validateFormInsUtente.js" type="text/javascript"></script>
     <%String msg = (String) request.getAttribute("msg");
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");
@@ -29,7 +29,7 @@
 
 <body>
 
-<div id="container-registrazione" class="center">
+<div id="container-forms" class="center">
 
 <% if(msg != null) {%>
 <p class="green">${msg}</p>
@@ -51,9 +51,10 @@
         <p id="controllopassword"><%if (controllopassword != null){%><%=controllopassword%><%}%></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
+        <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
         <label>Amministratore : </label>
         <input type="radio" name="amministratore" value="true">SI
-        <input type="radio" name="amministratore" value="false">NO
+        <input type="radio" name="amministratore" value="false">NO<br><br>
         <input type="submit" value="Inserisci">
     </form>
 

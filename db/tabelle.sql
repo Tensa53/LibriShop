@@ -100,7 +100,7 @@ CREATE TABLE Dettaglio (
                            Carrello varchar(20),
                            Ordine int,
                            ISBNLibro varchar(13) not null,
-                           TitoloLibro varchar(30) not null,
+                           TitoloLibro varchar(50) not null,
                            foreign key (ISBNLibro) references Libro(ISBN),
                            foreign key (Carrello) references Carrello(Utente),
                            foreign key (Ordine) references Ordine(ID)

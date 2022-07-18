@@ -13,7 +13,7 @@
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-cdc">
+<div id="container-cdc" class="center">
 
     <h1>Dove puoi trovarci?</h1>
     <p>Usa la mappa per scoprire dove trovare i nostri store fisici. Abbiamo in programma di aprire

@@ -11,9 +11,9 @@ header {
     display: inline-block;
 }
 
-header span {
-    font-family: Georgia, Verdana, sans-serif;
-}
+/*header span {*/
+/*    font-family: Georgia, Verdana, sans-serif;*/
+/*}*/
 
 .dropdown-content {
     display: none;
@@ -46,7 +46,7 @@ header span {
 
     header span {
         font-size: 25px;
-        font-family: "Sitka Display";
+        /*font-family: "Sitka Display";*/
         text-align: center;
     }
     .dropdown-content a {

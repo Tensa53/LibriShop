@@ -1,24 +1,12 @@
 @import "figure.css";
 
-.titoli{
-    text-align: center;
-    font-family: Georgia, Verdana, sans-serif;
-    color: black;
-}
-
-#container-ricerca input[type=text] {
-    width: 50%;
-}
-
-#container-ricerca {
-    text-align: center;
-}
-
-#container-ricerca input[type=text] {
-    margin: 5px;
-    width: 50%;
-}
+@import "searchbar.css";
 
 #container-catalogo-table {
     overflow-x: auto
+}
+
+#container-home {
+    max-width: 1400px;
+    margin: auto;
 }

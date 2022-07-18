@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="script/form/validateFormLogin.js" type="text/javascript"></script>
+    <script src="script/checkPassword.js"></script>
+    <%String msg = (String) request.getAttribute("msg");%>
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
@@ -23,21 +25,13 @@
     <label for = "password">Password : </label><br>
     <p id="passwordP"></p>
     <input type="password" name="password" id="password" required><br>
+    <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
     <input type="submit" value="Login">
 </form>
 
-<%
-    String msg = (String) request.getAttribute("msg");
-    System.out.println(msg);
-    if (msg != null){
-%>
-
-<div class="error">${msg}</div>
-
-<%}else {%>
-
+<%if (msg != null){%>
+    <h3 class="error">${msg}</h3>
 <%}%>
-
 
 <p>oppure <a href="${pageContext.request.contextPath}/registrazione.jsp">registrati</a></p>
 

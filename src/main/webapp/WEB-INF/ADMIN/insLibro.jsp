@@ -19,6 +19,7 @@
         String controlloisbn = (String) request.getAttribute("msgcontrolloisbn");
         String titoloP = (String) request.getAttribute("msgtitoloP");
         String altroP = (String) request.getAttribute("msgaltroP");
+        String controllogenere = (String) request.getAttribute("msgcontrollogenere");
         String controllogenerealtro = (String) request.getAttribute("msgcontrollogenerealtro");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
         String editoreP = (String) request.getAttribute("msgeditoreP");
@@ -31,7 +32,7 @@
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
 
-<div class="center">
+<div class="center" id="container-forms">
 
     <%String msg = (String) request.getAttribute("msg");
         if (msg != null){
@@ -55,7 +56,7 @@
         <%}%>
     </select><br>
 <%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" required><br>--%>
-    <label for= "genere">Genere : <span id="controllogenere"></span></label><br>
+    <label for= "genere">Genere : <span id="controllogenere"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
     <div id="genere">
     <%
         for (Genere g : generi) {
@@ -82,8 +83,8 @@
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required><br>
     <label for = "foto">Foto : </label> <br>
-    <input type="file" name="foto" id="foto" accept="image/*" required><br>
-    <input type="submit" value="inserisci"><br>
+    <input type="file" name="foto" id="foto" accept="image/*" required><br><br>
+    <input type="submit" value="inserisci">
 </form>
 
 </div>

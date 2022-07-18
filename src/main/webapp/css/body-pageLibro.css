@@ -1,35 +1,5 @@
 @import "figure.css";
 
-/*figure.catalogo-item {*/
-/*    border-color: transparent;*/
-/*    padding: 20px;*/
-/*}*/
-
-/*figure input[type=image] {*/
-/*    width: 300px;*/
-/*    height: 500px;*/
-/*}*/
-
-/*figure {*/
-/*    border: 1px #cccccc solid;*/
-/*    display: inline-block;*/
-/*    text-align: center;*/
-/*    padding: 4px;*/
-/*    margin: 5px;*/
-/*}*/
-
-/*figcaption {*/
-/*    font-family: Georgia, Verdana, sans-serif;*/
-/*    border: 1px #cccccc solid;*/
-/*    color: black;*/
-/*    padding: 2px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*figcaption.catalogo-item.caption {*/
-/*    font-family: "Times New Roman", Verdana, sans-serif;*/
-/*}*/
-
 @media screen and (max-width: 600px) {
 
     body {

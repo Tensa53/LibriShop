@@ -1,5 +1,6 @@
 package com.example.progettotsw.controller.riservata.admin;
 
+import com.example.progettotsw.controller.Forms;
 import com.example.progettotsw.model.Autore;
 import com.example.progettotsw.model.AutoreDAO;
 import com.example.progettotsw.model.GenereDAO;
@@ -23,20 +24,29 @@ public class ConfermaModificheAutoreServlet extends HttpServlet {
                 String cf = request.getParameter("CF");
                 String nome = request.getParameter("nome");
 
-                if(cf != null && nome != null){
+                boolean compilazioneForm = nome != null;
+
+                if(compilazioneForm){
+
+                    boolean validazioneForm = Forms.validateFormAutore(null,nome,null,request);
+
                     AutoreDAO autoreDAO = new AutoreDAO();
 
                     GenereDAO genereDAO = new GenereDAO();
 
-                    Autore autore = new Autore(cf,nome);
+                    if (validazioneForm) {
 
-                    autoreDAO.doUpdate(autore);
+                        Autore autore = new Autore(cf,nome);
 
-                    String msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                        autoreDAO.doUpdate(autore);
+
+                        String msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+
+                        request.setAttribute("msg",msg);
+                    }
 
                     request.setAttribute("autori",autoreDAO.doRetrieveAll());
                     request.setAttribute("generi",genereDAO.doRetrieveAll());
-                    request.setAttribute("msg",msg);
 
                     String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 

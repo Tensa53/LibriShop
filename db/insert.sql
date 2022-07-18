@@ -68,12 +68,12 @@ INSERT INTO Utente VALUES
                        ('marymaselli@libero.it','Mariantonietta','Maselli','7BEF225F10720B39E2645C72B96CEA9ED83CB8C4',true);
 
 INSERT INTO Indirizzo VALUES
-                          ("Roma","23","Serre","84028","Salerno",'mariorossi@gmail.com'),
-                          ("Giuseppe Ungaretti","112","Melzo","20066","Milano",'lindabianchi@libero.it'),
-                          ("Altabella","2","Bologna","40126","Bologna",'lucaruocco@hotmail.it'),
-                          ("Borgo dell’Oro","56","Torino","10094","Torino",'lucaruocco@hotmail.it'),
-                          ("Miramonte","32","Fiesole","50014","Firenze",'rosagiudice@gmail.com'),
-                          ("Savonella","24","Alberobello","70011","Bari",'rosagiudice@gmail.com');
+                          ("Via Roma","23","Serre","84028","Salerno",'mariorossi@gmail.com'),
+                          ("Viale Giuseppe Ungaretti","112","Melzo","20066","Milano",'lindabianchi@libero.it'),
+                          ("Via Altabella","2","Bologna","40126","Bologna",'lucaruocco@hotmail.it'),
+                          ("Via Borgo dell’Oro","56","Torino","10094","Torino",'lucaruocco@hotmail.it'),
+                          ("Via Miramonte","32","Fiesole","50014","Firenze",'rosagiudice@gmail.com'),
+                          ("Via Savonella","24","Alberobello","70011","Bari",'rosagiudice@gmail.com');
 
 INSERT INTO Pagamento VALUES
                           ('4716019594082932', '2025-12-01', '176','mariorossi@gmail.com'),

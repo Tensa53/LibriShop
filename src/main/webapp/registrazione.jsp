@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <script src="script/form/validateFormRegistrazione.js" type="text/javascript"></script>
     <script src="script/ajax/mail.js" type="text/javascript"></script>
+    <script src="script/checkPassword.js"></script>
     <%
         String nomeP = (String) request.getAttribute("msgnomeP");
         String cognomeP = (String) request.getAttribute("msgcognomeP");
@@ -43,7 +44,8 @@
         <p id="controllopassword"><%if (controllopassword != null){%><%=controllopassword%><%}%></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
-        <input type="hidden" name="amminstratorer" id="amministratore" value="false"><br>
+        <input type="checkbox" onclick="checkPassword()">Mostra Password<br>
+        <input type="hidden" name="amminstratorer" id="amministratore" value="false"><br><br>
         <input type="submit" value="Registrati">
     </form>
 </div>

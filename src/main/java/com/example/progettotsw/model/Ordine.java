@@ -41,7 +41,7 @@ public class Ordine extends HttpServlet {
     }
 
     public String getDataOrdineReversedString() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         format.setCalendar(this.dataOrdine);
         String result = format.format(this.dataOrdine.getTime());
 

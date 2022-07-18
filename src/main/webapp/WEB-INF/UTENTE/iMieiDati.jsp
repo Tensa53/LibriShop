@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
-<%--    <script src="./script/username.js" type="text/javascript"></script>--%>
     <script src="./script/form/validateFormModificaUtente.js" type="text/javascript"></script>
+    <script src="./script/checkPassword.js"></script>
     <% Utente utente = (Utente) request.getSession().getAttribute("utente");
        String msg = (String) request.getAttribute("msg");
         String nomeP = (String) request.getAttribute("msgnomeP");
@@ -24,7 +24,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-registrazione" class="center">
+<div id="container-forms" class="center">
 
     <%if(msg != null){%>
         <p>${msg}</p>
@@ -46,6 +46,7 @@
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un
             numero.)</p>
         <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"><br>
+        <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
         <input type="submit" value="Conferma Modifiche">
         <button formaction="area-riservata">Annulla</button>
     </form>

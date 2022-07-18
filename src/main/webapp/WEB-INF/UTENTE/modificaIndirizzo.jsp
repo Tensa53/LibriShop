@@ -24,7 +24,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div id="container-forms" class="center">
     <form method="post" name="modifica-indirizzo">
         <input type="hidden" value="<%=indirizzo.getVia()%>" name="viaF">
         <input type="hidden" value="<%=indirizzo.getCivico()%>" name="civicoF">
@@ -50,7 +50,7 @@
         </select><br>
         <label for="cap">CAP : </label><br>
         <p id="capP"></p>
-        <input type="number" name="cap" id="cap" value="<%=indirizzo.getCAP()%>" required><br>
+        <input type="number" name="cap" id="cap" value="<%=indirizzo.getCAP()%>" required><br><br>
         <button formaction="conferma-modifiche-indirizzo" onclick="return validateFormModificaIndirizzo()">Conferma Modifiche Indirizzo</button>
         <button formaction="area-riservata">Annulla</button>
     </form>

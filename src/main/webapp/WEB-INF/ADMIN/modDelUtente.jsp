@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-form.css">
-<%--    <script src="./script/username.js" type="text/javascript"></script>--%>
     <script src="./script/form/validateFormModUtente.js" type="text/javascript"></script>
+    <script src="./script/checkPassword.js"></script>
     <% String msg = (String) request.getAttribute("msg");
         String msgerr = (String) request.getAttribute("msgerr");
         Utente utenteMod = (Utente) request.getAttribute("utente");
@@ -21,7 +21,6 @@
         String passwordP = (String) request.getAttribute("msgpasswordP");
         String controllomail = (String) request.getAttribute("msgcontrollomail");
         String controllopassword = (String) request.getAttribute("msgcontrollopassword");
-        String mailinuso = (String) request.getAttribute("msgmailinuso");
     %>
 </head>
 <body>
@@ -30,7 +29,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div class="center" id="container-forms">
 
     <% if (msg != null) {%>
     <h3 class="success">${msg}</h3>
@@ -109,13 +108,14 @@
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un
             numero.)</p>
         <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"><br>
+        <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
         <label>Amministratore : </label>
         <%if (utenteMod.isAmministratore()) {%>
         <input type="radio" name="amministratore" value="true" checked>SI
-        <input type="radio" name="amministratore" value="false">NO
+        <input type="radio" name="amministratore" value="false">NO<br><br>
         <%} else {%>
         <input type="radio" name="amministratore" value="true">SI
-        <input type="radio" name="amministratore" value="false" checked>NO
+        <input type="radio" name="amministratore" value="false" checked>NO<br><br>
         <%}%>
         <input type="submit" value="Conferma Modifiche">
     </form>

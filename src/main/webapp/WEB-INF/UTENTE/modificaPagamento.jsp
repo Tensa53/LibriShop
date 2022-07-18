@@ -17,7 +17,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div id="container-forms" class="center">
     <form method="post" name="modifica-pagamento">
         <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCartaF">
         <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
@@ -28,7 +28,7 @@
         <label for="scadenza">Scadenza : </label><br>
         <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza"  required><br>
         <label for="CCV">CCV </label><br>
-        <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br>
+        <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br><br>
         <button onclick="return validateFormModificaPagamento()" formaction="conferma-modifiche-pagamento">Conferma Modifiche</button>
         <button formaction="area-riservata">Annulla</button>
     </form>

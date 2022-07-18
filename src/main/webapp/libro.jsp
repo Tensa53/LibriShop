@@ -26,22 +26,13 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
     <link rel="stylesheet" type="text/css" href="./css/body-pageLibro.css">
+    <script src="./script/checkUtente.js"></script>
 
 </head>
 <body>
 <jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
-
-<script>
-    function checkUtente(admin) {
-
-        if (admin == true) {
-            alert("Gli utenti amministratori non sono abilitati all'acquisto");
-        }
-
-    }
-</script>
 
 <%
     if(l ==  null){

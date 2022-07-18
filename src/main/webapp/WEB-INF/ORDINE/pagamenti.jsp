@@ -19,7 +19,7 @@
 <%for(Pagamento pagamento : pagamenti){%>
 <form action="conferma-pagamento" method="post">
     <ul>
-        <li>Numero Carta : <%=pagamento.getNumeroCarta()%></li>
+        <li>Numero Carta : <%=pagamento.getFormattedNumeroCarta()%></li>
         <li>Scadenza : <%=pagamento.getScadenzaString()%></li>
         <li>CCV : <%=pagamento.getCCV()%></li>
         <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta">

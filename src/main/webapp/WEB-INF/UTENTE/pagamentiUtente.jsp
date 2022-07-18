@@ -24,7 +24,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div id="container-forms" class="center">
 
   <%if (msg != null){%>
   <h3 class="success center">${msg}</h3>
@@ -65,7 +65,7 @@
   <input type="date" name="scadenza" id="scadenza" required><br>
   <label for="CCV">CCV </label><br>
   <p id="ccvP"><%if (ccvP != null){%><%=ccvP%><%}%></p>
-  <input type="number" name="ccv" id="ccv" required><br>
+  <input type="number" name="ccv" id="ccv" required><br><br>
   <input type="submit" value="Inserisci un nuovo metodo di Pagamento">
 </form>
 </fieldset>
@@ -78,19 +78,12 @@
   <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
   <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
 
-  <ul>
-    <li>Numero Carta : <%=pagamento.getNumeroCarta()%></li>
+  <ul class="nobullet">
+    <li>Numero Carta : <%=pagamento.getFormattedNumeroCarta()%></li>
     <li>Scadenza : <%=pagamento.getScadenzaReversedString()%></li>
     <li>CCV : <%=pagamento.getCCV()%></li>
   </ul>
 
-<%--  <label for="numeroCarta">Numero Carta : </label><br>--%>
-<%--  <p id="cartaP2"></p>--%>
-<%--  <input type="number" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" required><br>--%>
-<%--  <label for="scadenza">Scadenza : </label><br>--%>
-<%--  <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza"  required><br>--%>
-<%--  <label for="CCV">CCV </label><br>--%>
-<%--  <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br>--%>
   <button formaction="cerca-pagamento-da-modificare">Modifica Pagamento</button>
   <button formaction="rimuovi-pagamento">Rimuovi Pagamento</button>
 </form>

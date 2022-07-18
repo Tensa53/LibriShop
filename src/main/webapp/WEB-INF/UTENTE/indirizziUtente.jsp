@@ -30,7 +30,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div class="center" id="container-forms">
 
 <%if(msg != null){%>
     <h3 class="success">${msg}</h3>
@@ -69,7 +69,6 @@
     <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
     <p id="civicoP"><%if(civicoP != null){%><%=civicoP%><%}%></p>
-<%--    <p id="civicoP2"></p>--%>
     <input type="number" name="civicor" id="civicor" required><br>
     <label for="provinciar">Provincia : </label><br>
     <select name="provinciar" id="provinciar" onchange="comuni(this.value)">
@@ -84,8 +83,7 @@
     </select><br>
     <label for="capr">CAP : </label><br>
     <p id="capP"><%if(capP != null){%><%=capP%><%}%></p>
-<%--    <p id="capP2"></p>--%>
-    <input type="number" name="capr" id="capr" required><br>
+    <input type="number" name="capr" id="capr" required><br><br>
     <input type="submit" value="Inserisci un nuovo Indirizzo">
 </form>
 </fieldset>
@@ -98,7 +96,7 @@
     <input type="hidden" value="<%=indirizzo.getCivico()%>" name="civicoF">
     <input type="hidden" value="<%=indirizzo.getCitta()%>" name="cittaF">
 
-    <ul>
+    <ul class="nobullet">
         <li>Via/Viale/Piazza : <%=indirizzo.getVia()%></li>
         <li>Civico : <%=indirizzo.getCivico()%></li>
         <li>Provincia : <%=indirizzo.getProvincia()%></li>
@@ -106,23 +104,6 @@
         <li>CAP : <%=indirizzo.getCAP()%></li>
     </ul>
 
-<%--    <label for="via">Via : </label><br>--%>
-<%--    <p id="viaP3"></p>--%>
-<%--    <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>" required><br>--%>
-<%--    <label for="civico">Civico : </label><br>--%>
-<%--    <p id="civicoP3"></p>--%>
-<%--    <p id="civicoP4"></p>--%>
-<%--    <input type="text" name="civico" id="civico" value="<%=indirizzo.getCivico()%>" required><br>--%>
-<%--    <label for="provincia">Provincia : </label><br>--%>
-<%--    <p id="provinciaP3"></p>--%>
-<%--    <input type="text" name="provincia" id="provincia" value="<%=indirizzo.getProvincia()%>" required><br>--%>
-<%--    <label for="citta">Città : </label><br>--%>
-<%--    <p id="cittaP3"></p>--%>
-<%--    <input type="text" name="citta" id="citta" value="<%=indirizzo.getCitta()%>" required><br>--%>
-<%--    <label for="cap">CAP : </label><br>--%>
-<%--    <p id="capP3"></p>--%>
-<%--    <p id="capP4"></p>--%>
-<%--    <input type="text" name="cap" id="cap" value="<%=indirizzo.getCAP()%>"><br>--%>
     <button formaction="cerca-indirizzo-da-modificare">Modifica Indirizzo</button>
     <button formaction="rimuovi-indirizzo">Rimuovi Indirizzo</button>
 </form>

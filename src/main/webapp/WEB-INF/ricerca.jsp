@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>Home Page</title>
-<%--    <link rel="stylesheet" type="text/css" href="./css/stile.css">--%>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
@@ -40,7 +39,7 @@
         <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
         <datalist id="titoli">
         </datalist>
-        <input type="submit" value="cerca">
+        <input type="submit" id="button-ricerca" value="cerca">
     </form>
 </div>
 
@@ -90,7 +89,7 @@
         </div>
     </div>
 
-    <div id="container-catalogo" class="main">
+    <div id="container-catalogo">
         <%
             for (Libro l:libri) { %>
         <figure class = "catalogo-item">

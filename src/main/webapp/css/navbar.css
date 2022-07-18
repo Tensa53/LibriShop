@@ -6,7 +6,7 @@ nav ul {
 }
 
 nav a {
-    font-family: Georgia, Verdana, sans-serif;
+    /*font-family: Georgia, Verdana, sans-serif;*/
     padding: 5px;
     color: white;
     text-decoration: none; /*disattiva la decorazione del testo come ad esempio l'underline di un link*/

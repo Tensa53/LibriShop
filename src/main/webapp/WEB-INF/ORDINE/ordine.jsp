@@ -34,7 +34,7 @@
         <%
             Pagamento pagamento = (Pagamento) request.getSession().getAttribute("pagamento");
             if(pagamento != null){%>
-              <p>Hai scelto la carta numero : <%=pagamento.getNumeroCarta()%></p>
+              <p>Hai scelto la carta numero : <%=pagamento.getFormattedNumeroCarta()%></p>
             <%}%>
     </div>
 

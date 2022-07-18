@@ -57,10 +57,10 @@ public class ConfermaModificheUtenteServlet extends HttpServlet {
                             msg = "Modifiche effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                         request.setAttribute("msg", msg);
-
-                        request.getSession().removeAttribute("utenti");
                     }else
                         request.setAttribute("msgerr","Errore nella validazione dei campi del form !!!");
+
+                    request.setAttribute("utenti",utenteDAO.doRetrieveAll());
 
                     String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 

@@ -40,7 +40,7 @@ public class InserisciLibroServlet extends HttpServlet {
                 String editore = request.getParameter("editore");
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && genere != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
                 if (compilazioneForm) {
                     GenereDAO genereDAO = new GenereDAO();
@@ -55,7 +55,7 @@ public class InserisciLibroServlet extends HttpServlet {
 
                     Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
-                    boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,altro,descrizione,editore,librodb,generedbaltro,request);
+                    boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,genere,altro,descrizione,editore,librodb,generedbaltro,request);
 
                     if (validazioneForm) {
                         BigDecimal prezzo = new BigDecimal(prezzoString);
@@ -100,11 +100,11 @@ public class InserisciLibroServlet extends HttpServlet {
 
                         request.setAttribute("msg", msg);
 
-                        request.setAttribute("generi", genereDAO.doRetrieveAll());
-
-                        request.setAttribute("autori", autoreDAO.doRetrieveAll());
-
                     }
+
+                    request.setAttribute("generi", genereDAO.doRetrieveAll());
+
+                    request.setAttribute("autori", autoreDAO.doRetrieveAll());
 
                     String address = "/WEB-INF/ADMIN/insLibro.jsp";
 

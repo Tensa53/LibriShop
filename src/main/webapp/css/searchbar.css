@@ -1,0 +1,9 @@
+#container-ricerca input[type=text] {
+    margin: 10px;
+    font-size: 20px;
+    width: 50%;
+}
+
+#button-ricerca {
+    font-size: 20px;
+}

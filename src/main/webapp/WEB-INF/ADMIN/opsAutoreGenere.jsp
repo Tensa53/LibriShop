@@ -31,7 +31,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div class="center" id="container-forms">
 
     <%if(msg != null){%>
     <p>${msg}</p>
@@ -43,8 +43,6 @@
     <input type="text" name="genere" id="genere" required>
     <input type="submit" value="Inserisci">
 </form>
-
-
 
 <p>Elimina un genere : </p>
 <form method="post" action="rimuovi-genere">
@@ -84,7 +82,7 @@
     <input type="hidden" name="CF" id="CF" value="<%=autoreMod.getCF()%>">
     <p id="nomeP"></p>
     <label for="nome">Nome Autore : </label><br>
-    <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>"><br>
+    <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>"><br><br>
     <button onclick="return validateModificaNomeAutore()" formaction="conferma-modifiche-autore">Conferma Modifiche</button>
     <%}%>
 </form>

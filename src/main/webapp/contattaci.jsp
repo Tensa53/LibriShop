@@ -13,7 +13,7 @@
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-cdc">
+<div id="container-cdc" class="center">
     <h1>Dove reperirci:</h1>
     <p>Se hai bisogno di assistenza, offriamo numerose opzioni per il servizio clienti. Puoi:</p>
     <h2>Contattare telefonicamente il servizio clienti:</h2>

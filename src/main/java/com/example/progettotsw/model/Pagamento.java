@@ -18,6 +18,11 @@ public class Pagamento {
         return numeroCarta;
     }
 
+    public String getFormattedNumeroCarta () {
+        char delimiter = ' ';
+        return numeroCarta.replaceAll(".{4}(?!$)", "$0" + delimiter);
+    }
+
     public void setNumeroCarta(String numeroCarta) {
         this.numeroCarta = numeroCarta;
     }

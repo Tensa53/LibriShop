@@ -5,28 +5,30 @@ form label {
 form p {
     font-size: 18px;
     font-style: italic;
-    font-family: "Times New Roman", Verdana, sans-serif;
+}
+
+legend {
+    border: 1px solid black;
+    background-color: #dee3de;
 }
 
 form input [type = text] {
     width: 40%;
 }
 
-div.container-ordini-item {
-    border : 1px solid #555555;
-    margin: 5px;
+#fotolibro {
+    max-width: 200px;
+}
+
+#container-forms {
+    max-width: 1000px;
+    margin: auto;
 }
 
 #container-filtro-utente {
-    margin: 5px;
+    margin: 10px;
 }
 
-#container-indirizzo-utente {
-    border : 1px solid #555555;
-    margin: 5px;
-}
-
-#container-pagamento-utente {
-    border : 1px solid #555555;
+fieldset {
     margin: 5px;
 }
