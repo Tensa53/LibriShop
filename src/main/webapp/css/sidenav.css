@@ -1,6 +1,6 @@
 .sidenav {
     width: 160px;
-    position: fixed;
+    position: relative;
     z-index: 1;
     top: 130px;
     left: 0;
@@ -15,16 +15,39 @@
     padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 25px;}
+@media screen and (max-width: 600px) {
+    .sidenav {
+        top: 20px;
+        position: relative;
+        alignment: center;
+        max-width: 140px;
+        margin: auto;
+    }
+
+    #container-filtri-ordine {
+        position: relative;
+    }
 }
 
-
-@media screen and (max-width: 1018px) {
+@media screen and (min-width: 601px) and (max-width: 984px) {
     .sidenav {
-        position: static;
-        max-width: 160px;
-        margin: auto;
+        top: 180px;
+        padding-top: 15px;
+        width: 170px;
+    }
+    .sidenav a {font-size: 25px;}
+
+    #container-filtri-ordine {
+        position: absolute;
+    }
+
+}
+
+@media screen and (min-width: 985px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 25px;}
+
+    #container-filtri-ordine {
+        position: absolute;
     }
 }
