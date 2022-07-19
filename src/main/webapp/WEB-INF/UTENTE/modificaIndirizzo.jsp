@@ -31,10 +31,10 @@
         <input type="hidden" value="<%=indirizzo.getCitta()%>" name="cittaF">
 
         <label for="via">Via/Viale/Piazza : </label><br>
-        <p id="viaP"></p>
+        <p class="error" id="viaP"></p>
         <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>" required><br>
         <label for="civico">Civico : </label><br>
-        <p id="civicoP"></p>
+        <p class="error" id="civicoP"></p>
         <input type="number" name="civico" id="civico" value="<%=indirizzo.getCivico()%>" required><br>
         <label for="provincia">Provincia : </label><br>
         <select name="provincia" id="provincia" oninput="comuni(this.value)">
@@ -49,7 +49,7 @@
             <option value="<%=indirizzo.getCitta()%>"><%=indirizzo.getCitta()%></option>
         </select><br>
         <label for="cap">CAP : </label><br>
-        <p id="capP"></p>
+        <p class="error" id="capP"></p>
         <input type="number" name="cap" id="cap" value="<%=indirizzo.getCAP()%>" required><br><br>
         <button formaction="conferma-modifiche-indirizzo" onclick="return validateFormModificaIndirizzo()">Conferma Modifiche Indirizzo</button>
         <button formaction="area-riservata">Annulla</button>

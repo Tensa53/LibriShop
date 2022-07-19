@@ -23,7 +23,7 @@
         <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
         <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
         <label for="numeroCarta">Numero Carta : </label><br>
-        <p id="cartaP2"></p>
+        <p class="error" id="cartaP2"></p>
         <input type="number" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" required><br>
         <label for="scadenza">Scadenza : </label><br>
         <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza"  required><br>

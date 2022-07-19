@@ -99,10 +99,10 @@
 
 <form name="modificalibro" action="conferma-modifiche-libro" method="post" enctype="multipart/form-data" onsubmit="return validateFormModLibro()">
     <label for = "isbn">ISBN : <%=libro.getISBN()%></label> <br>
-    <p id="isbnP"></p>
+    <p class="error" id="isbnP"></p>
     <input type="hidden" name="isbn" id="isbn" value="<%=libro.getISBN()%>" required><br>
     <label for = "titolo">Titolo : </label> <br>
-    <p id="titoloP"></p>
+    <p class="error" id="titoloP"></p>
     <input type="text" name="titolo" id="titolo" value="<%=libro.getTitolo()%>" required><br>
     <label for = "autore">Autore : </label>
     <select name="autore" id="autore">
@@ -110,7 +110,7 @@
         <option value="<%=a.getCF()%>"><%=a.getNome()%></option>
         <%}%>
     </select><br>
-    <label for= "genere">Genere : <span id="controllogenere"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
+    <label for= "genere">Genere : <span class="error" id="controllogenere"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
     <div id="genere" class="checkbox-grid" required>
         <%
             for (Genere g : generi) {
@@ -121,19 +121,19 @@
                     <input type="checkbox" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
         <%}}%>
         <label for="altro">Altro Genere : </label>
-        <p id="altroP"></p>
-        <p id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
+        <p class="error" id="altroP"></p>
+        <p class="error" id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
         <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
-    <p id="descrizioneP"></p>
+    <p class="error" id="descrizioneP"></p>
     <textarea required name="descrizione" id="descrizione" rows="20"><%=libro.getDescrizione()%></textarea><br>
     <label for = "prezzo">Prezzo : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>
     <input type="date" name="dataPubblicazione" id="dataPubblicazione" required value="<%=libro.getDataPubblicazioneReversedString()%>"><br>
     <label for = "editore">Editore : </label> <br>
-    <p id="editoreP"></p>
+    <p class="error" id="editoreP"></p>
     <input type="text" name="editore" id="editore" required value="<%=libro.getEditore()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
     <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>

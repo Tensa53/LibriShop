@@ -37,18 +37,18 @@
 
     <form name="registrazione" action="inserisci-utente" method="post" onsubmit="return validateFormInsUtente()">
         <label for = "nome">Nome : </label> <br>
-        <p id="nomeP"><%if (nomeP != null){%><%=nomeP%><%}%></p>
+        <p class="error" id="nomeP"><%if (nomeP != null){%><%=nomeP%><%}%></p>
         <input type="text" name="nomer" id="nome" required><br>
         <label for = "cognome">Cognome : </label> <br>
-        <p id="cognomeP"><%if (cognomeP != null){%><%=cognomeP%><%}%></p>
+        <p class="error" id="cognomeP"><%if (cognomeP != null){%><%=cognomeP%><%}%></p>
         <input type="text" name="cognomer" id="cognome" required><br>
         <label for = "controlla-mail">Mail : <%if (mailinuso != null){%><%=mailinuso%><%}%></label> <br>
-        <p id="mailP"><%if (mailP != null){%><%=mailP%>><%}%></p>
-        <p id="controllomail"><%if (controllomail != null){%><%=controllomail%><%}%></p>
+        <p class="error" id="mailP"><%if (mailP != null){%><%=mailP%>><%}%></p>
+        <p class="error" id="controllomail"><%if (controllomail != null){%><%=controllomail%><%}%></p>
         <input type="email" name="mailr" id="controlla-mail" onblur="ControllaMail()" required><br>
         <label for = "password">Password : </label>
-        <p id="passwordP"><%if (passwordP != null){%><%=passwordP%><%}%></p>
-        <p id="controllopassword"><%if (controllopassword != null){%><%=controllopassword%><%}%></p>
+        <p class="error" id="passwordP"><%if (passwordP != null){%><%=passwordP%><%}%></p>
+        <p class="error" id="controllopassword"><%if (controllopassword != null){%><%=controllopassword%><%}%></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un numero.)</p>
         <input type="password" name="passwordr" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}" required><br>
         <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>

@@ -35,14 +35,14 @@
         </label><br>
         <input type="hidden" id="mail" name="mail" value="<%=utente.getMail()%>">
         <label for="nome">Nome : </label> <br>
-        <p id="nomeP"><%if (nomeP != null) {%><%=nomeP%><%}%></p>
+        <p class="error" id="nomeP"><%if (nomeP != null) {%><%=nomeP%><%}%></p>
         <input type="text" name="nome" id="nome" value="<%=utente.getNome()%>" required><br>
         <label for="cognome">Cognome : </label> <br>
-        <p id="cognomeP"><%if (cognomeP != null) {%><%=cognomeP%><%}%></p>
+        <p class="error" id="cognomeP"><%if (cognomeP != null) {%><%=cognomeP%><%}%></p>
         <input type="text" name="cognome" id="cognome" value="<%=utente.getCognome()%>" required><br>
         <label for="password">Password : </label>
-        <p id="passwordP"><%if (passwordP != null) {%><%=passwordP%><%}%></p>
-        <p id="controllopassword"><%if (controllopassword != null) {%><%=controllopassword%><%}%></p>
+        <p class="error" id="passwordP"><%if (passwordP != null) {%><%=passwordP%><%}%></p>
+        <p class="error" id="controllopassword"><%if (controllopassword != null) {%><%=controllopassword%><%}%></p>
         <p>(La password deve contenere almeno 8 caratteri di cui almeno uno maiuscolo, un carattere speciale, un
             numero.)</p>
         <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"><br>

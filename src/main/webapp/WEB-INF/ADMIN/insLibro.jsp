@@ -42,10 +42,10 @@
 
 <form name="inseriscilibro" action="inserisci-libro" method="post" onsubmit="return validateFormInsLibro()" enctype="multipart/form-data">
     <label for = "isbn">ISBN : <span id="controlloisbn"><%if(controlloisbn != null){%><%=controlloisbn%><%}%></span></label> <br>
-    <p id="isbnP"><%if(isbnP != null){%><%=isbnP%><%}%></p>
+    <p class="error" id="isbnP"><%if(isbnP != null){%><%=isbnP%><%}%></p>
     <input type="number" name="isbn" id="isbn" required><br>
     <label for = "titolo">Titolo : </label> <br>
-    <p id="titoloP"><%if(titoloP != null){%><%=titoloP%><%}%></p>
+    <p class="error" id="titoloP"><%if(titoloP != null){%><%=titoloP%><%}%></p>
     <input type="text" name="titolo" id="titolo" required><br>
     <label for = "autore">Autore : </label>
 <%--    <p id="controlloautore"></p>--%>
@@ -64,19 +64,19 @@
         <input type="checkbox" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
     <%}%>
     <label for="altro">Altro Genere : </label>
-    <p id="altroP"><%if(altroP != null){%><%=altroP%><%}%></p>
-    <p id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
+    <p class="error" id="altroP"><%if(altroP != null){%><%=altroP%><%}%></p>
+    <p class="error" id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
     <input type="text" id="altro" name="altro">
     </div><br>
     <label for = "descrizione">Descrizione : </label> <br>
-    <p id="descrizioneP"><%if(descrizioneP != null){%><%=descrizioneP%><%}%></p>
+    <p class="error" id="descrizioneP"><%if(descrizioneP != null){%><%=descrizioneP%><%}%></p>
     <textarea name="descrizione" id="descrizione" rows="20" required></textarea><br>
     <label for = "prezzo">Prezzo : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>
     <input type="date" name="dataPubblicazione" id="dataPubblicazione" max="" required><br>
     <label for = "editore">Editore : </label> <br>
-    <p id="editoreP"><%if(editoreP != null){%><%=editoreP%><%}%></p>
+    <p class="error" id="editoreP"><%if(editoreP != null){%><%=editoreP%><%}%></p>
     <input type="text" name="editore" id="editore" required><br>
     <label for = "sconto">Sconto : </label> <br>
     <input type="number" name="sconto" id="sconto" min="0" max="99" step="1"><br>

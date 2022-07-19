@@ -20,10 +20,10 @@
 
 <form name="login" action="login" onsubmit="return validateFormLogin()">
     <label for = "mail">Mail : </label> <br>
-    <p id="mailP"></p>
+    <p class="error" id="mailP"></p>
     <input type="email" name="mail" id="mail" required><br>
     <label for = "password">Password : </label><br>
-    <p id="passwordP"></p>
+    <p class="error" id="passwordP"></p>
     <input type="password" name="password" id="password" required><br>
     <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
     <input type="submit" value="Login">

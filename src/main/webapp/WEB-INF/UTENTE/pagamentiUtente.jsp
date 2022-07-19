@@ -59,12 +59,12 @@
   <legend>Inserisci un nuovo metodo di pagamento : <span class="error"><%if(controllopagamento != null){%><%=controllopagamento%><%}%></span></legend>
 <form action="inserisci-carta" method="post" name="inserisci-pagamento" onsubmit="return validateFormInserisciPagamento()">
   <label for="numeroCarta">Numero Carta : </label><br>
-  <p id="cartaP"><%if (cartaP != null){%><%=cartaP%><%}%></p>
+  <p class="error" id="cartaP"><%if (cartaP != null){%><%=cartaP%><%}%></p>
   <input type="number" name="numeroCarta" id="numeroCarta" required><br>
   <label for="scadenza">Scadenza : <span><%if (scadenzaP != null){%><%=scadenzaP%><%}%></span></label><br>
   <input type="date" name="scadenza" id="scadenza" required><br>
   <label for="CCV">CCV </label><br>
-  <p id="ccvP"><%if (ccvP != null){%><%=ccvP%><%}%></p>
+  <p class="error" id="ccvP"><%if (ccvP != null){%><%=ccvP%><%}%></p>
   <input type="number" name="ccv" id="ccv" required><br><br>
   <input type="submit" value="Inserisci un nuovo metodo di Pagamento">
 </form>

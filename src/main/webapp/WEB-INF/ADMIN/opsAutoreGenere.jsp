@@ -70,17 +70,17 @@
 <form method="post" name="gestisci-autore">
     <%if(autoreMod == null){%>
     <label for="CF">CF : <%if(controlloCF != null){%><%=controlloCF%><%}%></label><br>
-    <p id="cfP"><%if(cfP != null){%><%=cfP%><%}%></p>
+    <p class="error" id="cfP"><%if(cfP != null){%><%=cfP%><%}%></p>
     <input type="text" id="CF" name="CF"><br>
-    <p id="CFP"></p>
+    <p class="error" id="CFP"></p>
     <label for="nome">Nome Autore : </label><br>
-    <p id="nomeP"> <%if(nomeP != null){%><%=nomeP%><%}%></p>
+    <p class="error" id="nomeP"> <%if(nomeP != null){%><%=nomeP%><%}%></p>
     <input type="text" name="nome" id="nome"><br>
     <button onclick="return validateInserisciNuovoAutore()" formaction="inserisci-autore">Inserisci Autore</button>
     <%} else {%>
     <label for="CF">CF : <%=autoreMod.getCF()%></label><br>
     <input type="hidden" name="CF" id="CF" value="<%=autoreMod.getCF()%>">
-    <p id="nomeP"></p>
+    <p class="error" id="nomeP"></p>
     <label for="nome">Nome Autore : </label><br>
     <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>"><br><br>
     <button onclick="return validateModificaNomeAutore()" formaction="conferma-modifiche-autore">Conferma Modifiche</button>

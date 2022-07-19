@@ -65,10 +65,10 @@
     <legend>Inserisci un nuovo indirizzo : <span class="error"><%if(controlloindirizzo != null){%><%=controlloindirizzo%><%}%></span></legend>
 <form action="inserisci-indirizzo" name="inserisci-indirizzo" method="post" onsubmit="return validateFormInserisciIndirizzo()">
     <label for="viar">Via/Viale/Piazza : </label><br>
-    <p id="viaP"><%if(viaP != null){%><%=viaP%><%}%></p>
+    <p class="error" id="viaP"><%if(viaP != null){%><%=viaP%><%}%></p>
     <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
-    <p id="civicoP"><%if(civicoP != null){%><%=civicoP%><%}%></p>
+    <p class="error" id="civicoP"><%if(civicoP != null){%><%=civicoP%><%}%></p>
     <input type="number" name="civicor" id="civicor" required><br>
     <label for="provinciar">Provincia : </label><br>
     <select name="provinciar" id="provinciar" onchange="comuni(this.value)">
@@ -82,7 +82,7 @@
 
     </select><br>
     <label for="capr">CAP : </label><br>
-    <p id="capP"><%if(capP != null){%><%=capP%><%}%></p>
+    <p class="error" id="capP"><%if(capP != null){%><%=capP%><%}%></p>
     <input type="number" name="capr" id="capr" required><br><br>
     <input type="submit" value="Inserisci un nuovo Indirizzo">
 </form>
