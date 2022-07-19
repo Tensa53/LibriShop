@@ -42,13 +42,14 @@
 
 <h1 class="center"><%=l.getTitolo()%></h1>
 
-<figure class = "catalogo-item">
+<div class="container-libro">
+<img class="copertina left" src="<%=l.getFoto()%>">
+<div class = "catalogo-item right">
     <form action="aggiungi-al-carrello">
-        <img class="left" src="<%=l.getFoto()%>">
         <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
-        <figcaption class="catalogo-item">Prezzo : <span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span><br>
+        <div class="catalogo-item caption">Prezzo : <span class="barrato"><%=l.getPrezzo().toString()%>€</span><span> <%=l.getPrezzoScontato().toString()%>€</span><br>
         <%}else{%>
-            <figcaption class="catalogo-item">Prezzo : <%=l.getPrezzo().toString()%> € <br>
+            <div class="catalogo-item caption">Prezzo : <%=l.getPrezzo().toString()%> € <br>
         <%}%>
         <%if (l.getDisponibilita() > 0){%>
             Quantità : <input type="number" name="quantita" value="1" min="1" max="5">
@@ -72,11 +73,12 @@
                 Editore: <%=l.getEditore()%><br>
                 Data pubblicazione: <%=l.getDataPubblicazioneString()%><br>
                 ISBN: <%=l.getISBN()%>
-        </figcaption>
+        </div>
         <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-            <figcaption class="catalogo-item caption"><h2>Descrizione:</h2><%=l.getDescrizione()%></figcaption>
+            <div class="catalogo-item caption"><h2>Descrizione:</h2><%=l.getDescrizione()%></div>
     </form>
-</figure>
+</div>
+</div>
 
 <%}%>
 

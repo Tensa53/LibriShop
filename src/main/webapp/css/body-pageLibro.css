@@ -1,6 +1,14 @@
-@import "figure.css";
+div.container-libro {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
 
 @media screen and (max-width: 600px) {
+
+    div.container-libro {
+        padding: 10px;
+    }
 
     body {
         font-size: 15px;
@@ -14,19 +22,22 @@
         font-size: 15px;
     }
 
-    figure img {
+     img.copertina {
+        border: 1px #cccccc solid;
+        padding: 1px;
         margin-right: 60px;
         width: 180px;
         height: auto;
     }
 
-    figcaption.catalogo-item{
-        border-color: #cccccc;
+    div.catalogo-item{
+        margin: auto;
+        max-width: 590px;
+        border: 1px #cccccc solid;
         font-size: 25px;
     }
-    figcaption.catalogo-item.caption{
+    div.catalogo-item.caption{
         float: left;
-        border-color: #cccccc;
         font-size: 15px;
         text-align: center;
     }
@@ -35,6 +46,10 @@
 
 @media screen and (min-width: 601px) and (max-width: 984px) {
 
+    div.container-libro {
+        padding: 20px;
+    }
+
     body {
         font-size: 15px;
     }
@@ -47,25 +62,32 @@
         font-size: 15px;
     }
 
-    figure img {
+     img.copertina {
+        border: 1px #cccccc solid;
+        padding: 1px;
         margin-right: 60px;
         width: 280px;
         height: auto;
     }
 
-    figcaption.catalogo-item{
-        border-color: #cccccc;
+    div.catalogo-item{
+        margin: auto;
+        max-width: 974px;
+        border: 1px #cccccc solid;
         font-size: 25px;
     }
-    figcaption.catalogo-item.caption{
-        border-color: #cccccc;
+    div.catalogo-item.caption{
+        padding: 4px;
         font-size: 20px;
         text-align: center;
     }
-
 }
 
 @media screen and (min-width: 985px) {
+
+    div.container-libro {
+        padding: 30px;
+    }
 
     body {
         font-size: 15px;
@@ -79,19 +101,23 @@
         font-size: 15px;
     }
 
-    figure img {
+     img.copertina {
+        border: 1px #cccccc solid;
+        padding: 1px;
         margin-right: 60px;
         width: 300px;
         height: auto;
     }
 
-    figcaption.catalogo-item{
-        border-color: #cccccc;
+    div.catalogo-item{
+        margin: auto;
+        max-width: 1300px;
+        border: 1px #cccccc solid;
         font-size: 30px;
     }
 
-    figcaption.catalogo-item.caption{
-        border-color: #cccccc;
+    div.catalogo-item.caption{
+        padding: 5px;
         font-size: 20px;
         text-align: center;
     }
