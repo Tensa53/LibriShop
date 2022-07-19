@@ -42,7 +42,7 @@
         <label for = "cognome">Cognome : </label> <br>
         <p class="error" id="cognomeP"><%if (cognomeP != null){%><%=cognomeP%><%}%></p>
         <input type="text" name="cognomer" id="cognome" required><br>
-        <label for = "controlla-mail">Mail : <%if (mailinuso != null){%><%=mailinuso%><%}%></label> <br>
+        <label for = "controlla-mail">Mail : <span class="error"><%if (mailinuso != null){%><%=mailinuso%><%}%></span></label> <br>
         <p class="error" id="mailP"><%if (mailP != null){%><%=mailP%>><%}%></p>
         <p class="error" id="controllomail"><%if (controllomail != null){%><%=controllomail%><%}%></p>
         <input type="email" name="mailr" id="controlla-mail" onblur="ControllaMail()" required><br>

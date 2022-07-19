@@ -48,15 +48,12 @@
     <p class="error" id="titoloP"><%if(titoloP != null){%><%=titoloP%><%}%></p>
     <input type="text" name="titolo" id="titolo" required><br>
     <label for = "autore">Autore : </label>
-<%--    <p id="controlloautore"></p>--%>
-<%--    <p id="autoreP"></p>--%>
     <select name="autore" id="autore">
         <%for (Autore a : autori){%>
             <option value="<%=a.getCF()%>"><%=a.getNome()%></option>
         <%}%>
     </select><br>
-<%--    <input type="text" name="autore" id="autore" onblur="ControllaAutore()" required><br>--%>
-    <label for= "genere">Genere : <span id="controllogenere"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
+    <label for= "genere">Genere : <span id="controllogenere" class="error"><%if (controllogenere != null){%><%=controllogenere%><%}%></span></label><br>
     <div id="genere">
     <%
         for (Genere g : generi) {
