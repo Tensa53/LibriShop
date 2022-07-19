@@ -34,16 +34,15 @@
 
 <jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-ricerca" class="center">
-    <form action="ricerca">
-        <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
-        <datalist id="titoli">
-        </datalist>
-        <input type="submit" id="button-ricerca" value="cerca">
-    </form>
-</div>
-
 <div id="container-body-ricerca">
+    <div id="container-ricerca" class="center">
+        <form action="ricerca">
+            <input type="text" required autocomplete="off" name="ricerca" id="ricerca-ajax" list="titoli" onkeyup="getTitoli()">
+            <datalist id="titoli">
+            </datalist>
+            <input type="submit" id="button-ricerca" value="cerca">
+        </form>
+    </div>
 
     <div id="container-filtri-ordine" class="sidenav">
         <div id="container-ordina-libri">
@@ -92,10 +91,11 @@
     <div id="container-catalogo">
         <%
             for (Libro l:libri) { %>
-        <figure class = "catalogo-item">
+        <div class="catalogo-item">
+        <figure>
             <form action="page-libro">
                 <input type="image" src="<%=l.getFoto()%>">
-                <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+                <figcaption><input type="submit" title="<%=l.getTitolo()%>" value="<%=l.getTitolo()%>"></figcaption>
                 <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
                 <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
                 <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
@@ -104,6 +104,7 @@
                 <%}%>
             </form>
         </figure>
+        </div>
         <% } %>
     </div>
 

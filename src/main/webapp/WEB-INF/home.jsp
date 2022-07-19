@@ -26,15 +26,12 @@
 <jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
 <div id="container-home">
-<%--    <div class="titoli center">--%>
-<%--        <h2>Benvenuti sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro</h2>--%>
-<%--    </div>--%>
 
         <div class="center">
             <%if(utente != null){%>
-            <h2>Benvenut* <%=utente.getNome()%> <%=utente.getCognome()%> sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro </h2>
+            <h2>Benvenut* <%=utente.getNome()%> <%=utente.getCognome()%> sul nostro sito.</h2>
             <%}else{%>
-            <h2>Benvenut* guest sul nostro sito di vendita libri. Usa la barra per cercare uno specifico libro </h2>
+            <h2>Benvenut* guest sul nostro sito. </h2>
             <%}%>
         </div>
 
@@ -59,7 +56,7 @@
                     <figure class="catalogo-item">
                         <form action="page-libro">
                             <input type="image" src="<%=l.getFoto()%>">
-                            <figcaption><input type="submit" value="<%=l.getTitolo()%>"></figcaption>
+                            <figcaption><input type="submit" title="<%=l.getTitolo()%>" value="<%=l.getTitolo()%>"></figcaption>
                             <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
                             <%if (l.getSconto().compareTo(new BigDecimal(0.00)) == 1) {%>
                             <figcaption><span

@@ -45,8 +45,7 @@ header {
     }
 
     header span {
-        font-size: 19px;
-        /*font-family: "Sitka Display";*/
+        font-size: 20px;
         text-align: center;
     }
     .dropdown-content a {
@@ -65,7 +64,7 @@ header {
     }
 
     header span {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     .dropdown-content a {

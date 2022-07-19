@@ -1,19 +1,18 @@
-figure.catalogo-item {
-    border-color: transparent;
-    padding: 20px;
-}
+/*figure.catalogo-item {*/
+/*    border-color: transparent;*/
+/*}*/
 
-figcaption.catalogo-item{
-    border-color: #cccccc;
-    font-size: 30px;
-    text-align: center;
-}
+/*figcaption.catalogo-item{*/
+/*    border-color: #cccccc;*/
+/*    font-size: 30px;*/
+/*    text-align: center;*/
+/*}*/
 
-figure img {
-    margin-right: 60px;
-    width: 300px;
-    height: 500px;
-}
+/*figure img {*/
+/*    margin-right: 60px;*/
+/*    width: 300px;*/
+/*    height: 500px;*/
+/*}*/
 
 figure {
     border: 1px #cccccc solid;
@@ -35,6 +34,11 @@ figcaption {
 }
 
 @media screen and (max-width: 600px) {
+    figcaption :first-child {
+        max-width: 145px;
+    }
+
+
     figure input[type=image] {
         width: 200px;
         height: 333px;
@@ -42,6 +46,11 @@ figcaption {
 }
 
 @media screen and (min-width: 601px) and (max-width: 984px) {
+    figcaption :first-child {
+        max-width: 180px;
+    }
+
+
     figure input[type=image] {
         width: 250px;
         height: 416px;

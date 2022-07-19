@@ -1,12 +1,12 @@
 .sidenav {
     width: 160px;
-    position: relative;
+    position: fixed;
     z-index: 1;
     top: 130px;
     left: 0;
     background-color: #dee3de; /*Whitecap Foam*/;
     overflow-x: hidden;
-    padding: 20px;
+    padding: 10px;
 }
 
 .main {
@@ -19,35 +19,40 @@
     .sidenav {
         top: 20px;
         position: relative;
-        alignment: center;
-        max-width: 140px;
         margin: auto;
     }
 
-    #container-filtri-ordine {
-        position: relative;
-    }
+    /*#container-filtri-ordine {*/
+    /*    position: relative;*/
+    /*}*/
 }
 
 @media screen and (min-width: 601px) and (max-width: 984px) {
     .sidenav {
+        position: fixed;
         top: 180px;
         padding-top: 15px;
-        width: 170px;
+        right: 7px;
+        left: 7px;
     }
     .sidenav a {font-size: 25px;}
 
-    #container-filtri-ordine {
-        position: absolute;
-    }
+    /*#container-filtri-ordine {*/
+    /*    position: absolute;*/
+    /*}*/
 
 }
 
 @media screen and (min-width: 985px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 25px;}
 
-    #container-filtri-ordine {
-        position: absolute;
+    .sidenav {
+        top: 180px;
+        padding-top: 15px;
+        left: 7px;
+        right: 7px;
     }
+
+    /*#container-filtri-ordine {*/
+    /*    position: absolute;*/
+    /*}*/
 }
