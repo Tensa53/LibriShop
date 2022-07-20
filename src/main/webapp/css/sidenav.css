@@ -15,7 +15,7 @@
 @media screen and (max-width: 600px) {
     .sidenav {
         top: 20px;
-        /*position: relative;*/
+        position: relative;
         margin: auto;
     }
 
