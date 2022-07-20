@@ -28,7 +28,7 @@ CREATE TABLE Autore (
 );
 
 CREATE TABLE Utente (
-                        Email varchar(30) primary key,
+                        Email varchar(50) primary key,
                         Nome varchar(20) not null,
                         Cognome varchar(20) not null,
                         PasswordHash varchar(40) not null,
@@ -41,7 +41,7 @@ CREATE TABLE Indirizzo (
                            Citta varchar(50) not null,
                            CAP char(5) not null,
                            Provincia varchar(30) not null,
-                           Utente varchar(30) not null,
+                           Utente varchar(50) not null,
                            primary key(Via,Civico,Citta,Utente)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE Pagamento (
                            NumeroCarta varchar(16) not null,
                            Scadenza date not null,
                            CCV char(3) not null,
-                           Utente varchar(30) not null,
+                           Utente varchar(50) not null,
                            primary key(NumeroCarta,Utente)
 );
 
@@ -83,12 +83,12 @@ CREATE TABLE Ordine(
                        Scadenza date not null,
                        CCV char(3) not null,
                        Totale decimal(6,2) not null,
-                       Utente varchar(30) not null,
+                       Utente varchar(50) not null,
                        foreign key(Utente) references Utente(Email)
 );
 
 CREATE TABLE Carrello (
-                          Utente varchar(30) not null,
+                          Utente varchar(50) not null,
                           Totale decimal(6,2) not null,
                           foreign key(Utente) references Utente(Email)
 );
@@ -97,7 +97,7 @@ CREATE TABLE Dettaglio (
                            ID int primary key auto_increment,
                            Quantita int not null,
                            Prezzo decimal(6,2) not null,
-                           Carrello varchar(20),
+                           Carrello varchar(50),
                            Ordine int,
                            ISBNLibro varchar(13) not null,
                            TitoloLibro varchar(50) not null,

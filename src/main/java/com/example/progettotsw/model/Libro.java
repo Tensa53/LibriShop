@@ -32,9 +32,11 @@ public class Libro {
         this.disponibilita = disponibilita;
     }
 
-    public Libro(String ISBN,String titolo) {
+    public Libro(String ISBN,String titolo,String foto,int disponibilita) {
         this.ISBN = ISBN;
         this.titolo = titolo;
+        this.foto = foto;
+        this.disponibilita = disponibilita;
     }
 
 

@@ -31,7 +31,7 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                 ArrayList<Dettaglio> incompatibili = new ArrayList<>();
 
-                String incompatibiliStr = "<ol>";
+                ArrayList<String> incompatibiliStr = new ArrayList<>();
 
                 LibroDAO libroDAO = new LibroDAO();
 
@@ -46,21 +46,20 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                     if (indisponibile < 0) {
                         incompatibili.add(d);
-                        incompatibiliStr += "<li> Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - quantità in eccesso : " + indisponibile * -1 + "</li>";
+                        String incompatibile = "Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - quantità in eccesso : " + indisponibile * -1;
+                        incompatibiliStr.add(incompatibile);
                     } else {
                         l.setDisponibilita(l.getDisponibilita() - d.getQuantita());
                         libri.add(l);
                     }
                 }
 
-                incompatibiliStr += "</ol>";
-
                 if (pagamento == null || indirizzo == null) {
                     address = "/WEB-INF/ORDINE/ordine.jsp";
 
                     String msg = "Seleziona un indirizzo e un metodo di pagamento per il seguente ordine";
 
-                    request.setAttribute("msg", msg);
+                    request.setAttribute("msgerrrpagind", msg);
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
@@ -68,9 +67,7 @@ public class CompletaOrdineServlet extends HttpServlet {
                 } else if (incompatibili.size() > 0) {
                     address = "/WEB-INF/ORDINE/ordine.jsp";
 
-                    String msg = "i seguenti libri : " + incompatibiliStr + " sforano la quantità attualmente acquistabile,sei pregato di modificare il carrello";
-
-                    request.setAttribute("msg", msg);
+                    request.setAttribute("incompatibili",incompatibiliStr);
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 

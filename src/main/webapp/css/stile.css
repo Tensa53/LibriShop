@@ -10,6 +10,19 @@ html,body {
     float: left; /*fissa l'elemento a sinistra*/
 }
 
+.text-left{
+    text-align: left;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#img-libro-ordine {
+    width: 100px;
+    height: 150px;
+}
+
 .none{
     display: none;
 }

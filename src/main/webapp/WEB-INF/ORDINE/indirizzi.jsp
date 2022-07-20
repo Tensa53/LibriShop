@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
+    <link rel="stylesheet" type="text/css" href="./css/body-form.css">
     <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");%>
 </head>
 <body>
@@ -16,10 +17,12 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<div id="container-forms" class="center">
+
     <%for(Indirizzo indirizzo : indirizzi){%>
         <form action="conferma-indirizzo" method="post">
-            <ul>
-                <li>Via : <%=indirizzo.getVia()%></li>
+            <ul class="nobullet">
+                <li class="bold">Via/Viale/Piazza : <%=indirizzo.getVia()%></li>
                 <li>Civico :<%=indirizzo.getCivico()%></li>
                 <li>Città : <%=indirizzo.getCitta()%></li>
                 <li>CAP : <%=indirizzo.getCAP()%></li>
@@ -31,6 +34,10 @@
             </ul>
         </form>
     <%}%>
+
+
+</div>
+
 </body>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>

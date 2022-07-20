@@ -37,8 +37,8 @@
     <p>${msg}</p>
     <%}%>
 
-<p>Inserisci un genere : <%if(controllogenere != null){%><%=controllogenere%><%}%></p>
-<p id="genereP"><%if(genereP != null){%><%=genereP%><%}%></p>
+    <p>Inserisci un genere : <span class="error"><%if(controllogenere != null){%><%=controllogenere%><%}%></span></p>
+<p id="genereP" class="error"><%if(genereP != null){%><%=genereP%><%}%></p>
 <form method="post" name="inseriscigen" action="inserisci-genere" onsubmit="return validateFormGenere()">
     <input type="text" name="genere" id="genere" required>
     <input type="submit" value="Inserisci">

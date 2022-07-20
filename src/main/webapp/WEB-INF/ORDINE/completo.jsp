@@ -13,7 +13,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<p>Ordine completato, torna alla <a href="http://localhost:8080/progettoTSW_war_exploded/home">home</a></p>
+<h3 class="success center">Ordine completato, torna alla <a href="http://localhost:8080/progettoTSW_war_exploded/home">home</a></h3>
 </body>
 
 

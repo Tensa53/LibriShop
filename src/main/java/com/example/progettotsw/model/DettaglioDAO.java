@@ -31,7 +31,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro);
+                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -62,7 +62,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro);
+                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -132,7 +132,11 @@ public class DettaglioDAO {
         try(Connection con = ConPool.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
             for (Dettaglio d : dettagli) {
                 ps.setInt(1,id);
-                libroDAO.doUpdateDisponibilitaFromOrdineAnnullato(d.getLibro().getISBN(),d.getQuantita());
+                Libro l = libroDAO.doRetrieveById(d.getLibro().getISBN());
+
+                if (l != null)
+                    libroDAO.doUpdateDisponibilitaFromOrdineAnnullato(d.getLibro().getISBN(),d.getQuantita());
+
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -157,7 +161,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro);
+                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);

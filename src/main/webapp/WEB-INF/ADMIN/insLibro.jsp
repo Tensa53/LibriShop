@@ -37,10 +37,12 @@
     <%String msg = (String) request.getAttribute("msg");
         if (msg != null){
     %>
-    <h3 class="green">${msg}</h3>
+    <h3 class="green success">${msg}</h3>
     <%}%>
 
 <form name="inseriscilibro" action="inserisci-libro" method="post" onsubmit="return validateFormInsLibro()" enctype="multipart/form-data">
+
+    <div id="form-libro-1">
     <label for = "isbn">ISBN : <span id="controlloisbn"><%if(controlloisbn != null){%><%=controlloisbn%><%}%></span></label> <br>
     <p class="error" id="isbnP"><%if(isbnP != null){%><%=isbnP%><%}%></p>
     <input type="number" name="isbn" id="isbn" required><br>
@@ -65,23 +67,28 @@
     <p class="error" id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
     <input type="text" id="altro" name="altro">
     </div><br>
-    <label for = "descrizione">Descrizione : </label> <br>
-    <p class="error" id="descrizioneP"><%if(descrizioneP != null){%><%=descrizioneP%><%}%></p>
-    <textarea name="descrizione" id="descrizione" rows="20" required></textarea><br>
-    <label for = "prezzo">Prezzo : </label> <br>
-    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>
     <input type="date" name="dataPubblicazione" id="dataPubblicazione" max="" required><br>
     <label for = "editore">Editore : </label> <br>
     <p class="error" id="editoreP"><%if(editoreP != null){%><%=editoreP%><%}%></p>
     <input type="text" name="editore" id="editore" required><br>
-    <label for = "sconto">Sconto : </label> <br>
+    </div>
+
+    <div id="form-libro-2">
+    <label for = "descrizione">Descrizione : </label> <br>
+    <p class="error" id="descrizioneP"><%if(descrizioneP != null){%><%=descrizioneP%><%}%></p>
+    <textarea name="descrizione" id="descrizione" rows="20" required></textarea><br>
+    <label for = "prezzo">Prezzo (€) : </label> <br>
+    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required><br>
+    <label for = "sconto">Sconto (%) : </label> <br>
     <input type="number" name="sconto" id="sconto" min="0" max="99" step="1"><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
     <input type="number" name="disponibilita" id="disponibilita" required><br>
     <label for = "foto">Foto : </label> <br>
     <input type="file" name="foto" id="foto" accept="image/*" required><br><br>
     <input type="submit" value="inserisci">
+    </div>
+
 </form>
 
 </div>

@@ -11,9 +11,14 @@
     <span id="slogan">Il tuo posto sicuro dove acquistare libri</span>
 
     <%Utente utente = (Utente) request.getSession().getAttribute("utente");
+        String urlstr = request.getContextPath();
       Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
         if(utente != null){
     %>
+
+    <script>
+
+    </script>
 
     <div class="dropdown right">
         <div class="icona-menu"><img src="./img/utente.png" alt="Icona utente" id="iconaU" onclick="dropdownMenuU()"></div>
@@ -48,7 +53,7 @@
                 <%}}else{%>
                     <a id="counter-carrello">0 libri nel carrello</a>
                 <%}%>
-            <a href="${pageContext.request.contextPath}/carrello.jsp">Vai al Carrello</a>
+            <a href="${pageContext.request.contextPath}/carrello">Vai al Carrello</a>
         </div>
     </div>
 

@@ -42,15 +42,17 @@
       <input type="hidden" name="id" value="<%=o.getId()%>">
     <p>Data e Ora Ordine : <%=o.getDataOrdineReversedString()%></p>
     <p>Utente : <%=o.getUtente().getMail()%></p>
-    <p>Indirizzo di spedizione : Via <%=o.getIndirizzo().getVia()%> <%=o.getIndirizzo().getCivico()%> <%=o.getIndirizzo().getCAP()%> <%=o.getIndirizzo().getCitta()%></p>
+    <p>Indirizzo di spedizione : <%=o.getIndirizzo().getVia()%> <%=o.getIndirizzo().getCivico()%> <%=o.getIndirizzo().getCAP()%> <%=o.getIndirizzo().getCitta()%></p>
     <p>Pagamento con carta N. : <%=o.getPagamento().getFormattedNumeroCarta()%></p>
     <button formaction="annulla-ordine">Annulla Ordine</button>
     <p>Totale : <%=o.getTotale()%>€</p>
     <p>Dettagli Libri : </p>
     <div class="container-dettagli-ordine">
-      <ul>
-        <%for(Dettaglio d : o.getDettagli()) {%>
-        <li><%=d.getLibro().getISBN()%> - <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€</li>
+      <ul class="nobullet text-left">
+        <%for(Dettaglio d : o.getDettagli()) {
+          String link = request.getContextPath() + "/page-libro?isbn=" + d.getLibro().getISBN();%>
+        <li><a href="<%=link%>"><img id="img-libro-ordine" src="<%=d.getLibro().getFoto()%>"> </a> ISBN : <%=d.getLibro().getISBN()%> - Titolo : <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€
+        </li>
         <%}%>
       </ul>
     </div>

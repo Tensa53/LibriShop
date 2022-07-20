@@ -65,7 +65,9 @@ public class Carrello {
         return dettaglio;
     }
 
-    public void  removeDettaglio(Dettaglio d) {dettagli.remove(d);}
+    public void  removeDettaglio(Dettaglio d) {
+        dettagli.remove(d);
+    }
 
     public String printDettagli() {
         String msg = "";

@@ -6,6 +6,9 @@ form p {
     font-size: 18px;
     font-style: italic;
 }
+form span {
+    font-style: italic;
+}
 
 legend {
     border: 1px solid black;
@@ -29,6 +32,22 @@ form input [type = text] {
     margin: 10px;
 }
 
+#container-ordine {
+    max-width: 900px;
+    margin: auto;
+}
+
 fieldset {
     margin: 5px;
+}
+
+form {
+    margin: 5px;
+}
+
+@media screen and (min-width: 985px){
+    #form-libro-1,#form-libro-2 {
+        display: inline-block;
+        margin: 20px;
+    }
 }

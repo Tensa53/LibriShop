@@ -2,6 +2,7 @@
 <%@ page import="com.example.progettotsw.model.Dettaglio" %>
 <%@ page import="java.math.BigDecimal" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.progettotsw.model.Libro" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,6 +19,7 @@
         String isbn = "isbn";
         String prezzo = "prezzo";
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+        List<Libro> indisponibili = (List<Libro>) request.getAttribute("indisponibili");
         BigDecimal totaleCarrello = carrello.getTotale();
         List<Dettaglio> dettagli = carrello.getDettagli();
         int c = totaleCarrello.compareTo(new BigDecimal(0.00));
@@ -25,11 +27,22 @@
 </head>
 <body>
 
-<jsp:include page="WEB-INF/INCLUDE/header.jsp"></jsp:include>
+<jsp:include page="INCLUDE/header.jsp"></jsp:include>
 
-<jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
+<jsp:include page="INCLUDE/nav.jsp"></jsp:include>
 
 <div id="container-carrello">
+
+    <%if (indisponibili.size() > 0){%>
+        <h3 class="error center">
+        <ul class="nobullet">
+            <li>I seguenti libri non sono attualmente disponibili o non più in vendita : </li>
+            <%for (Libro l : indisponibili){%>
+                <li><%=l.getISBN()%> - <%=l.getTitolo()%></li>
+            <%}%>
+        </ul>
+        </h3>
+    <%}%>
 
     <%if (c > 0) { %>
     <h3 class="error center">Non puoi selezionare più di 5 copie di un libro</h3>
@@ -70,6 +83,6 @@
 
 </div>
 
-<jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
+<jsp:include page="INCLUDE/footer.jsp"></jsp:include>
 </body>
 </html>

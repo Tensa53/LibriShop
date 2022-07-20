@@ -98,6 +98,8 @@
 <%if(libro != null) {;%>
 
 <form name="modificalibro" action="conferma-modifiche-libro" method="post" enctype="multipart/form-data" onsubmit="return validateFormModLibro()">
+
+    <div id="form-libro-1">
     <label for = "isbn">ISBN : <%=libro.getISBN()%></label> <br>
     <p class="error" id="isbnP"></p>
     <input type="hidden" name="isbn" id="isbn" value="<%=libro.getISBN()%>" required><br>
@@ -125,16 +127,19 @@
         <p class="error" id="controllogenerealtro"><%if(controllogenerealtro != null){%><%=controllogenerealtro%><%}%></p>
         <input type="text" id="altro" name="altro">
     </div><br>
-    <label for = "descrizione">Descrizione : </label> <br>
-    <p class="error" id="descrizioneP"></p>
-    <textarea required name="descrizione" id="descrizione" rows="20"><%=libro.getDescrizione()%></textarea><br>
-    <label for = "prezzo">Prezzo : </label> <br>
-    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "dataPubblicazione">Data di Pubblicazione : </label> <br>
     <input type="date" name="dataPubblicazione" id="dataPubblicazione" required value="<%=libro.getDataPubblicazioneReversedString()%>"><br>
     <label for = "editore">Editore : </label> <br>
     <p class="error" id="editoreP"></p>
     <input type="text" name="editore" id="editore" required value="<%=libro.getEditore()%>"><br>
+    </div>
+
+    <div id="form-libro-2">
+    <label for = "descrizione">Descrizione : </label> <br>
+    <p class="error" id="descrizioneP"></p>
+    <textarea required name="descrizione" id="descrizione" rows="20"><%=libro.getDescrizione()%></textarea><br>
+    <label for = "prezzo">Prezzo (€) : </label> <br>
+    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
     <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
@@ -142,6 +147,8 @@
     <label for = "foto">Foto : </label> <br>
     <input type="file" name="foto" id="foto" accept="image/*"><br><br>
     <input type="submit" value="Conferma Modifiche"><br>
+    </div>
+
 </form>
 
 <%}%>
