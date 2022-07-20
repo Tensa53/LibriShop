@@ -77,7 +77,7 @@
     <div id="form-libro-2">
     <label for = "descrizione">Descrizione : </label> <br>
     <p class="error" id="descrizioneP"><%if(descrizioneP != null){%><%=descrizioneP%><%}%></p>
-    <textarea name="descrizione" id="descrizione" rows="20" required></textarea><br>
+    <textarea name="descrizione" id="descrizione" rows="16" required></textarea><br>
     <label for = "prezzo">Prezzo (€) : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required><br>
     <label for = "sconto">Sconto (%) : </label> <br>

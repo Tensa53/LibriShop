@@ -137,7 +137,7 @@
     <div id="form-libro-2">
     <label for = "descrizione">Descrizione : </label> <br>
     <p class="error" id="descrizioneP"></p>
-    <textarea required name="descrizione" id="descrizione" rows="20"><%=libro.getDescrizione()%></textarea><br>
+    <textarea required name="descrizione" id="descrizione" rows="12"><%=libro.getDescrizione()%></textarea><br>
     <label for = "prezzo">Prezzo (€) : </label> <br>
     <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
