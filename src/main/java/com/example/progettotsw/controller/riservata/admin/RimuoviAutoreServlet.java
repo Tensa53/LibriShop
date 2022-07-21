@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/rimuovi-autore")
@@ -32,24 +33,26 @@ public class RimuoviAutoreServlet extends HttpServlet {
 
                     List<Libro> libri = libroDAO.doRetrievebyAutore(autore);
 
+                    ArrayList<String> autoriIncancellabili = new ArrayList<>();
+
                     String msg = null;
 
                     String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
                     if (libri.size() > 0) {
-                        msg = "Impossibile rimuovere il seguente autore, è presente nei seguenti libri : <ol>";
 
                         for (Libro l : libri) {
-                            msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                            autoriIncancellabili.add(l.getISBN() + " - " + l.getTitolo());
                         }
 
-                        msg += "</ol>";
                     } else {
                         autoreDAO.doRemoveAutorebyCF(cf);
                         msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                     }
 
                     request.setAttribute("msg", msg);
+
+                    request.setAttribute("autoriIncancellabili",autoriIncancellabili);
 
                     request.setAttribute("autori", autoreDAO.doRetrieveAll());
 

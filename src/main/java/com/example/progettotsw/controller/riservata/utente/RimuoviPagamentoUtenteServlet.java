@@ -35,9 +35,10 @@ public class RimuoviPagamentoUtenteServlet extends HttpServlet {
 
                 boolean compilazioneForm = numeroCarta != null && scadenza != null && CCV != null;
 
+                PagamentoDAO pagamentoDAO = new PagamentoDAO();
+
                 if (compilazioneForm){
                     Pagamento p = new Pagamento(numeroCarta,new GregorianCalendar(parseInt(anno),parseInt(mese)-1,parseInt(giorno)),CCV);
-                    PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
                     String msg = null;
 
@@ -45,15 +46,13 @@ public class RimuoviPagamentoUtenteServlet extends HttpServlet {
                         msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
                         request.setAttribute("msg", msg);
-
-                        request.getSession().removeAttribute("pagamenti");
-
-                        request.getSession().setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
                     }
 
                 }
 
-                String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
+                request.setAttribute("pagamenti",pagamentoDAO.doRetrievebyUserMail(mail));
+
+                String address = "/WEB-INF/UTENTE/pagamentiUtente.jsp";
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);

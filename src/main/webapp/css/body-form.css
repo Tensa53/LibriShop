@@ -3,6 +3,10 @@ form label {
 }
 
 form p {
+    font-style: italic;
+}
+
+form p.error {
     font-size: 14px;
     font-style: italic;
 }

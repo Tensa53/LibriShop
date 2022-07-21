@@ -19,17 +19,20 @@
 
 <div id="container-forms" class="center">
 
-<%for(Pagamento pagamento : pagamenti){%>
-<form action="conferma-pagamento" method="post">
-    <ul class="nobullet">
-        <li class="bold">Numero Carta : <%=pagamento.getFormattedNumeroCarta()%></li>
-        <li>Scadenza : <%=pagamento.getScadenzaString()%></li>
-        <li>CCV : <%=pagamento.getCCV()%></li>
-        <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta">
-        <input type="submit" value="Conferma il seguente tipo di pagamento">
-    </ul>
-</form>
-<%}%>
+<%if(pagamenti.size() > 0){
+    for(Pagamento pagamento : pagamenti){%>
+    <form action="conferma-pagamento" method="post">
+        <ul class="nobullet">
+            <li class="bold">Numero Carta : <%=pagamento.getFormattedNumeroCarta()%></li>
+            <li>Scadenza : <%=pagamento.getScadenzaString()%></li>
+            <li>CCV : <%=pagamento.getCCV()%></li>
+            <input type="hidden" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta">
+            <input type="submit" value="Conferma il seguente tipo di pagamento">
+        </ul>
+    </form>
+    <%}}else {%>
+    <h3 class="error">Non hai nessun metodo di pagamento, <a href="<%=request.getContextPath() + "/user-forward-redirect?iMieiMetodiDiPagamento=i%20Miei%20Metodi%20Di%20Pagamento"%>">inseriscine uno nuovo</a></h3>
+    <%}%>
 
 </div>
 

@@ -47,10 +47,12 @@ public class RegisterServlet extends HttpServlet {
                 String address = request.getContextPath() + "/home";
 
                 response.sendRedirect(address);
-            }
+            } else {
                 String address = "registrazione.jsp";
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request,response);
+            }
+
         } else
             response.sendRedirect(request.getContextPath() + "/registrazione.jsp");
 

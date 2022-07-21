@@ -59,7 +59,7 @@ public class CompletaOrdineServlet extends HttpServlet {
 
                     String msg = "Seleziona un indirizzo e un metodo di pagamento per il seguente ordine";
 
-                    request.setAttribute("msgerrrpagind", msg);
+                    request.setAttribute("msgerrpagind", msg);
 
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 

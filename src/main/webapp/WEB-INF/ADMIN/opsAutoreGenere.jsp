@@ -16,6 +16,8 @@
     <%
         List<Autore> autori = (List<Autore>) request.getAttribute("autori");
         List<Genere> generi = (List<Genere>) request.getAttribute("generi");
+        List<String> autoriIncancellabili = (List<String>) request.getAttribute("autoriIncancellabili");
+        List<String> generiIncancellabili = (List<String>) request.getAttribute("generiIncancellabili");
         Autore autoreMod = (Autore) request.getAttribute("autore");
         String msg = (String) request.getAttribute("msg");
         String genereP = (String) request.getAttribute("msggenereP");
@@ -36,6 +38,33 @@
     <%if(msg != null){%>
     <p>${msg}</p>
     <%}%>
+
+
+    <%if (autoriIncancellabili != null){
+        if (autoriIncancellabili.size() > 0 ){%>
+        <h3 class="error">
+            <ul class="nobullet">
+                <li>Impossibile eliminare l'autore, è coinvolto nei seguenti libri : </li>
+
+                <%for (String s : autoriIncancellabili){%>
+                    <li><%=s%></li>
+                <%}%>
+            </ul>
+        </h3>
+    <%}}%>
+
+    <%if (generiIncancellabili != null){
+        if (generiIncancellabili.size() > 0 ){%>
+    <h3 class="error">
+        <ul class="nobullet">
+            <li>Impossibile eliminare il genere, è coinvolto nei seguenti libri : </li>
+
+            <%for (String s : generiIncancellabili){%>
+            <li><%=s%></li>
+            <%}%>
+        </ul>
+    </h3>
+    <%}}%>
 
     <p>Inserisci un genere : <span class="error"><%if(controllogenere != null){%><%=controllogenere%><%}%></span></p>
 <p id="genereP" class="error"><%if(genereP != null){%><%=genereP%><%}%></p>

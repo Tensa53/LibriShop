@@ -19,22 +19,25 @@
 
 <div id="container-forms" class="center">
 
-    <%for(Indirizzo indirizzo : indirizzi){%>
-        <form action="conferma-indirizzo" method="post">
-            <ul class="nobullet">
-                <li class="bold">Via/Viale/Piazza : <%=indirizzo.getVia()%></li>
-                <li>Civico :<%=indirizzo.getCivico()%></li>
-                <li>Città : <%=indirizzo.getCitta()%></li>
-                <li>CAP : <%=indirizzo.getCAP()%></li>
-                <li>Provincia : <%=indirizzo.getProvincia()%></li>
-                <input type="hidden" value="<%=indirizzo.getVia()%>" name="indirizzo">
-                <input type="hidden" value="<%=indirizzo.getCivico()%>" name="indirizzo">
-                <input type="hidden" value="<%=indirizzo.getCitta()%>" name="indirizzo">
-                <input type="submit" value="Conferma il seguente indirizzo">
-            </ul>
-        </form>
-    <%}%>
 
+    <%if(indirizzi.size() > 0){
+        for(Indirizzo indirizzo : indirizzi){%>
+    <form action="conferma-indirizzo" method="post">
+        <ul class="nobullet">
+            <li class="bold">Via/Viale/Piazza : <%=indirizzo.getVia()%></li>
+            <li>Civico :<%=indirizzo.getCivico()%></li>
+            <li>Città : <%=indirizzo.getCitta()%></li>
+            <li>CAP : <%=indirizzo.getCAP()%></li>
+            <li>Provincia : <%=indirizzo.getProvincia()%></li>
+            <input type="hidden" value="<%=indirizzo.getVia()%>" name="indirizzo">
+            <input type="hidden" value="<%=indirizzo.getCivico()%>" name="indirizzo">
+            <input type="hidden" value="<%=indirizzo.getCitta()%>" name="indirizzo">
+            <input type="submit" value="Conferma il seguente indirizzo">
+        </ul>
+    </form>
+    <%}}else {%>
+        <h3 class="error">Non hai nessun indirizzo, <a href="<%=request.getContextPath() + "/user-forward-redirect?iMieiIndirizzi=i%20Miei%20Indirizzi"%>">inseriscine uno nuovo</a></h3>
+    <%}%>
 
 </div>
 

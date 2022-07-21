@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/rimuovi-genere")
@@ -30,24 +31,26 @@ public class RimuoviGenereLibroServlet extends HttpServlet {
 
                     List<Libro> libri = libroDAO.doRetrievebyGenere(nome);
 
+                    ArrayList<String> generiIncancellabili = new ArrayList<>();
+
                     String msg = null;
 
                     String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
 
                     if (libri.size() > 0) {
-                        msg = "Impossibile rimuovere il seguente genere, è presente nei seguenti libri : <ol style=\"list-style-type : none\">";
 
                         for (Libro l : libri) {
-                            msg += "<li>" + l.getISBN() + "-" + l.getTitolo() + "</li>";
+                            generiIncancellabili.add(l.getISBN() + " - " + l.getTitolo());
                         }
 
-                        msg += "</ol>";
                     } else {
                         genereDAO.doRemove(nome);
                         msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                     }
 
                     request.setAttribute("msg", msg);
+
+                    request.setAttribute("generiIncancellabili",generiIncancellabili);
 
                     request.setAttribute("autori", autoreDAO.doRetrieveAll());
 

@@ -25,14 +25,20 @@ public class RimuoviUtenteServlet extends HttpServlet {
 
                     Utente u = utenteDAO.doRetrieveByMail(mail);
 
-                    int row = utenteDAO.doDeleteUtente(u);
+                    if (u.getMail().equalsIgnoreCase(utente.getMail())){
+                        request.setAttribute("msgerr","Non puoi eliminare il tuo stesso account !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>");
+                    } else {
+                        int row = utenteDAO.doDeleteUtente(u);
 
-                    String msg = null;
+                        String msg = null;
 
-                    if (row == 1)
-                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
+                        if (row == 1)
+                            msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
 
-                    request.setAttribute("msg", msg);
+                        request.setAttribute("msg", msg);
+                    }
+
+                    request.setAttribute("utenti",utenteDAO.doRetrieveAll());
 
                     String address = "/WEB-INF/ADMIN/modDelUtente.jsp";
 
