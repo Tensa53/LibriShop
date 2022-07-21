@@ -25,8 +25,8 @@ public class ConfermaOrdineServlet extends HttpServlet {
             if (!utente.isAmministratore()) {
                 address = "/WEB-INF/ORDINE/ordine.jsp";
                 CarrelloDAO carrelloDAO = new CarrelloDAO();
-                carrelloDAO.doRemoveAllbyUtente(utente.getMail());//quando l'utente conferma l'ordine,preserviamo il carrello
-                carrelloDAO.doSaveAllbyUtente(carrello,utente.getMail());//lo salviamo già nel db così da poterlo preservare da chiusure involontarie della pagina
+                carrelloDAO.doRemoveAllbyUtente(utente.getMail());//quando l'utente conferma l'ordine,cancelliamo il carrello dal db
+                carrelloDAO.doSaveAllbyUtente(carrello,utente.getMail());//lo sovrascriviamo già nel db così da poterlo preservare da chiusure involontarie della pagina
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
         }
@@ -39,5 +39,10 @@ public class ConfermaOrdineServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher(address);
 
         rd.forward(request, response);
+    }
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
     }
 }

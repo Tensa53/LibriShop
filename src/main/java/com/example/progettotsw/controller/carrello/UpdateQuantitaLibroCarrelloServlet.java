@@ -17,41 +17,44 @@ public class UpdateQuantitaLibroCarrelloServlet extends HttpServlet {
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
         if (carrello != null) {
-            synchronized (carrello) {
-                int quantita = Integer.parseInt(request.getParameter("quantita"));
-                String isbn = request.getParameter("isbn");
+            if (carrello.getDettagli().size() > 0) {
+                synchronized (carrello) {
+                    int quantita = Integer.parseInt(request.getParameter("quantita"));
+                    String isbn = request.getParameter("isbn");
 
-                Dettaglio d = carrello.getDettagliobyISBN(isbn);
+                    Dettaglio d = carrello.getDettagliobyISBN(isbn);
 
-                BigDecimal carrelloTotale = carrello.getTotale();
+                    BigDecimal carrelloTotale = carrello.getTotale();
 
-                carrelloTotale = carrelloTotale.subtract(d.getPrezzo());
+                    carrelloTotale = carrelloTotale.subtract(d.getPrezzo());
 
-                log(carrelloTotale.toString());
+                    log(carrelloTotale.toString());
 
-                d.setQuantita(quantita);
+                    d.setQuantita(quantita);
 
-                BigDecimal prezzoDettaglio = d.getPrezzo();
+                    BigDecimal prezzoDettaglio = d.getPrezzo();
 
-                log(prezzoDettaglio.toString());
+                    log(prezzoDettaglio.toString());
 
-                BigDecimal prezzoLibro = d.getLibro().getPrezzoScontato();
+                    BigDecimal prezzoLibro = d.getLibro().getPrezzoScontato();
 
-                prezzoDettaglio = prezzoLibro.multiply(new BigDecimal(quantita));
+                    prezzoDettaglio = prezzoLibro.multiply(new BigDecimal(quantita));
 
-                d.setPrezzo(prezzoDettaglio);
+                    d.setPrezzo(prezzoDettaglio);
 
-                carrelloTotale = carrelloTotale.add(prezzoDettaglio);
+                    carrelloTotale = carrelloTotale.add(prezzoDettaglio);
 
-                carrello.setTotale(carrelloTotale);
+                    carrello.setTotale(carrelloTotale);
 
-                log(carrelloTotale.toString());
+                    log(carrelloTotale.toString());
 
-                response.setContentType("text/xml;charset=UTF-8");
-                response.getWriter().append("<carrello>");
-                response.getWriter().append("<libro><prezzoDettaglio>" + d.getPrezzo() + "</prezzoDettaglio><prezzoTotale>" + carrello.getTotale() + "</prezzoTotale></libro>");
-                response.getWriter().append("</carrello>");
-            }
+                    response.setContentType("text/xml;charset=UTF-8");
+                    response.getWriter().append("<carrello>");
+                    response.getWriter().append("<libro><prezzoDettaglio>" + d.getPrezzo() + "</prezzoDettaglio><prezzoTotale>" + carrello.getTotale() + "</prezzoTotale></libro>");
+                    response.getWriter().append("</carrello>");
+                }
+            } else
+                response.sendRedirect(request.getContextPath() + "/carrello");
         } else
             response.sendRedirect(request.getContextPath() + "/home");
 

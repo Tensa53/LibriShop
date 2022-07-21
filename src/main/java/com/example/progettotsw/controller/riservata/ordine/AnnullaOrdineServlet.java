@@ -68,7 +68,7 @@ public class AnnullaOrdineServlet extends HttpServlet {
 
 
     }
-    public void doGet(HttpServletResponse response,HttpServletRequest request) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
 }

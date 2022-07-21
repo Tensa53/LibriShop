@@ -7,7 +7,7 @@
   <%List<Pagamento> pagamenti = (List<Pagamento>) request.getAttribute("pagamenti");
     String msg = (String) request.getAttribute("msg");
     String msgerrmod = (String) request.getAttribute("msgerrmod");
-    String controllopagamento = (String) request.getAttribute("msgcontrollopagamento");
+    String controllopagamento = (String) request.getAttribute("msgcontrollonumerocarta");
     String cartaP = (String) request.getAttribute("msgnumerocartaP");
     String scadenzaP = (String) request.getAttribute("msgscadenzaP");
     String ccvP = (String) request.getAttribute("msgccvP");%>

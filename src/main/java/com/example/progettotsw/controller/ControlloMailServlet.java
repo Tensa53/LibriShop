@@ -15,13 +15,17 @@ public class ControlloMailServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String mail = request.getParameter("mail");
-        UtenteDAO utenteDAO = new UtenteDAO();
 
-        Utente utente = utenteDAO.doRetrieveByMail(mail);
+        if (mail != null) {
+            UtenteDAO utenteDAO = new UtenteDAO();
 
-            if(utente == null) {}
-            else {
+            Utente utente = utenteDAO.doRetrieveByMail(mail);
+
+            if (utente == null) {
+            } else {
                 response.getWriter().print("Scegli un'email diversa.");
             }
-        }
+        } else
+            response.sendRedirect(request.getContextPath() + "/home");
     }
+}

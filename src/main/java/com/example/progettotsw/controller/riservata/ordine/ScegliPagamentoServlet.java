@@ -38,4 +38,9 @@ public class ScegliPagamentoServlet extends HttpServlet {
         } else
             response.sendRedirect(request.getContextPath() + "/home");
     }
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
+    }
 }

@@ -19,25 +19,30 @@ public class VerificaCarrelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
-        ArrayList<Dettaglio> dettagli = (ArrayList<Dettaglio>) carrello.getDettagli();
+        if (carrello != null) {
+            ArrayList<Dettaglio> dettagli = (ArrayList<Dettaglio>) carrello.getDettagli();
 
-        ArrayList<Libro> indisponibili = new ArrayList<>();
+            ArrayList<Libro> indisponibili = new ArrayList<>();
 
-        if (dettagli.size() > 0) {
-            for (Dettaglio d : dettagli) {
-                if (d.getLibro().getDisponibilita() == -1 || d.getLibro().getDisponibilita() == 0) {
-                    carrello.removeDettaglio(d);
-                    indisponibili.add(d.getLibro());
+            if (dettagli.size() > 0) {
+                for (Dettaglio d : dettagli) {
+                    if (d.getLibro().getDisponibilita() == -1 || d.getLibro().getDisponibilita() == 0) {
+                        carrello.removeDettaglio(d);
+                        indisponibili.add(d.getLibro());
+                    }
                 }
             }
-        }
 
-        request.setAttribute("indisponibili",indisponibili);
+            request.setAttribute("indisponibili",indisponibili);
 
-        String address = "/WEB-INF/carrello.jsp";
+            String address = "/WEB-INF/carrello.jsp";
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
+            RequestDispatcher rd = request.getRequestDispatcher(address);
 
-        rd.forward(request,response);
+            rd.forward(request,response);
+        } else
+            response.sendRedirect(request.getContextPath() + "/home");
+
+
     }
 }

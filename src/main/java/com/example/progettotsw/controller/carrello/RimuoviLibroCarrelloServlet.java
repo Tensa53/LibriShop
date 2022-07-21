@@ -18,20 +18,22 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
 
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
-        Dettaglio d = carrello.getDettagliobyISBN(isbn);
+        if (carrello != null) {
 
-        if (carrello.getDettagli().size() > 0) {
-            carrello.removeDettaglio(d);
+            Dettaglio d = carrello.getDettagliobyISBN(isbn);
 
-            BigDecimal totaleCarrello = carrello.getTotale();
+            if (carrello.getDettagli().size() > 0) {
+                carrello.removeDettaglio(d);
 
-            totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
+                BigDecimal totaleCarrello = carrello.getTotale();
 
-            carrello.setTotale(totaleCarrello);
-        }
+                totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
 
-        log(String.valueOf(carrello.getNumeroProdotti()));
+                carrello.setTotale(totaleCarrello);
+            }
 
-        response.sendRedirect(request.getContextPath() + "/carrello");
+            response.sendRedirect(request.getContextPath() + "/carrello");
+        } else
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 }
