@@ -69,7 +69,7 @@
     <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
     <p class="error" id="civicoP"><%if(civicoP != null){%><%=civicoP%><%}%></p>
-    <input type="number" name="civicor" id="civicor" required><br>
+    <input type="number" name="civicor" id="civicor" min="1" required><br>
     <label for="provinciar">Provincia : </label><br>
     <select name="provinciar" id="provinciar" onchange="comuni(this.value)">
     <option value="0">Selezionare...</option>

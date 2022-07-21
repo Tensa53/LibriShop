@@ -82,8 +82,8 @@ public class Forms {
             c++;
         }
 
-        if (civico.length() > 5) {
-            request.setAttribute("msgcivicoP","Il numero civico ha massimo 5 cifre");
+        if (civico.length() > 5 || civico.length() < 1) {
+            request.setAttribute("msgcivicoP","Il numero civico ha minimo 1 e massimo 5 cifre");
             c++;
         }
 
