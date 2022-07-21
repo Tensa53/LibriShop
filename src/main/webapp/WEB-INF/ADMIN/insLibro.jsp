@@ -44,7 +44,7 @@
     <div id="form-libro-1">
     <label for = "isbn">ISBN : <span id="controlloisbn"><%if(controlloisbn != null){%><%=controlloisbn%><%}%></span></label> <br>
     <p class="error" id="isbnP"><%if(isbnP != null){%><%=isbnP%><%}%></p>
-    <input type="number" name="isbn" id="isbn" required><br>
+    <input type="number" name="isbn" id="isbn" min="1" required><br>
     <label for = "titolo">Titolo : </label> <br>
     <p class="error" id="titoloP"><%if(titoloP != null){%><%=titoloP%><%}%></p>
     <input type="text" name="titolo" id="titolo" required><br>
