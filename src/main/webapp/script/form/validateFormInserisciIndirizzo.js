@@ -3,7 +3,7 @@ function validateFormInserisciIndirizzo(){
     let civico = document.forms["inserisci-indirizzo"]["civicor"].value;
     let cap = document.forms["inserisci-indirizzo"]["capr"].value;
     let c = 0;
-    // let numerionly = /^[0-9]+$/;
+    let numerionly = /^[0-9]+$/;
 
     document.getElementById("viaP").innerText = "";
     document.getElementById("civicoP").innerText = "";
@@ -14,19 +14,28 @@ function validateFormInserisciIndirizzo(){
         c++;
     }
 
-    if (civico.length > 5){
-        document.getElementById("civicoP").innerText = "Il numero civico ha massimo 5 cifre.";
-        c++;
+
+    if (civico.match(numerionly)) {
+        if (civico.length > 5){
+            document.getElementById("civicoP").innerText = "Il numero civico ha massimo 5 cifre.";
+            c++;
+        }
+
+        if (civico.length < 1){
+            document.getElementById("civicoP").innerText = "Il numero civico deve essere maggiore di 1.";
+            c++;
+        }
+    } else {
+        document.getElementById("civicoP").innerText = "Il numero civico deve essere formato solamente da cifre.";
     }
 
-    if (civico.length < 1){
-        document.getElementById("civicoP").innerText = "Il numero civico deve essere maggiore di 1.";
-        c++;
-    }
-
-    if (cap.length != 5){
-        document.getElementById("capP").innerText = "Il CAP deve essere di 5 cifre.";
-        c++;
+    if (cap.match(numerionly)) {
+        if (cap.length != 5){
+            document.getElementById("capP").innerText = "Il CAP deve essere di 5 cifre.";
+            c++;
+        }
+    } else {
+        document.getElementById("capP").innerText = "Il CAP deve essere formato solamente da cifre.";
     }
 
     if (c>0) {

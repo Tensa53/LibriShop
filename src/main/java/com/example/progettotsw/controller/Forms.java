@@ -82,13 +82,30 @@ public class Forms {
             c++;
         }
 
-        if (civico.length() > 5 || civico.length() < 1) {
-            request.setAttribute("msgcivicoP","Il numero civico ha minimo 1 e massimo 5 cifre");
+        Pattern pattern = Pattern.compile("^[0-9]+$");
+        Matcher matcher = pattern.matcher(civico);
+
+        if (matcher.matches()) {
+            if (civico.length() > 5 || civico.length() < 1) {
+                request.setAttribute("msgcivicoP","Il numero civico ha minimo 1 e massimo 5 cifre");
+                c++;
+            }
+
+
+        } else {
+            request.setAttribute("msgcivicoP", "Il numero civico deve essere formato solamente da cifre");
             c++;
         }
 
-        if (cap.length() != 5) {
-            request.setAttribute("msgcapP", "Il CAP deve essere di 5 cifre");
+        matcher = pattern.matcher(cap);
+
+        if (matcher.matches()) {
+            if (cap.length() != 5) {
+                request.setAttribute("msgcapP", "Il CAP deve essere di 5 cifre");
+                c++;
+            }
+        } else {
+            request.setAttribute("msgcapP","Il CAP deve essere formato solamente da cifre");
         }
 
         if (indirizzodb != null) {
@@ -113,6 +130,9 @@ public class Forms {
     public static boolean validateFormPagamento(String numeroCarta, GregorianCalendar scadenza, String ccv, Pagamento pagamentodb,Pagamento oldpagamentodb, HttpServletRequest request) {
         int c = 0;
 
+        Pattern pattern = Pattern.compile("^[0-9]+$");
+        Matcher matcher;
+
         Pagamento newpagamento = new Pagamento(numeroCarta,scadenza,ccv);
 
         GregorianCalendar oggi = new GregorianCalendar();
@@ -123,15 +143,31 @@ public class Forms {
             }
         }
 
-        if (numeroCarta.length() > 16){
-            request.setAttribute("msgnumerocartaP","Il numero carta ha massimo 16 cifre");
+        matcher = pattern.matcher(numeroCarta);
+
+        if (matcher.matches()) {
+            if (numeroCarta.length() > 16){
+                request.setAttribute("msgnumerocartaP","Il numero carta ha massimo 16 cifre");
+                c++;
+            }
+        } else {
+            request.setAttribute("msgnumerocartaP", "Il numero carta deve essere formato solamente da cifre");
             c++;
         }
 
-        if (ccv.length() != 3) {
-            request.setAttribute("msgccvP", "Il ccv contiene 3 cifre");
+
+        matcher = pattern.matcher(ccv);
+
+        if (matcher.matches()) {
+            if (ccv.length() != 3) {
+                request.setAttribute("msgccvP", "Il ccv contiene 3 cifre");
+                c++;
+            }
+        } else {
+            request.setAttribute("msgccvP", "Il ccv deve essere formato solamente da cifre");
             c++;
         }
+
 
         if (scadenza.before(oggi)) {
             request.setAttribute("msgscadenzaP", "non valida");
@@ -163,8 +199,11 @@ public class Forms {
     public static boolean validateFormLibro(String isbn, String titolo, String[] genere, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
         int c = 0;
 
+        Pattern pattern = Pattern.compile("^[0-9]+$");
+        Matcher matcher = pattern.matcher(isbn);
+
         if(isbn != null) {
-            if(isbn.length() != 13){
+            if(isbn.length() != 13 && !matcher.matches()){
                 request.setAttribute("msgisbnP","Il codice ISBN deve essere di 13 cifre");
                 c++;
             }

@@ -4,6 +4,7 @@ function validateFormInsLibro(){
     let altroL = document.forms["inseriscilibro"]["altro"].value;
     let descrizioneL = document.forms["inseriscilibro"]["descrizione"].value;
     let editoreL = document.forms["inseriscilibro"]["editore"].value;
+    let numerionly = /^[0-9]+$/;
 
     let c = 0;
 
@@ -24,7 +25,7 @@ function validateFormInsLibro(){
         c++;
     }
 
-    if (isbnL.length != 13){
+    if (isbnL.length != 13 || !isbnL.match(numerionly)){
             document.getElementById("isbnP").innerText = "Il codice ISBN deve essere di 13 cifre";
             c++;
     }

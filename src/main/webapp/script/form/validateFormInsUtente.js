@@ -5,6 +5,7 @@ function validateFormInsUtente(){
     let mail = document.forms["registrazione"]["mailr"].value;
     let password = document.forms["registrazione"]["passwordr"].value;
     let c = 0;
+    let passwordformat = /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}/;
 
     document.getElementById("nomeP").innerText = "";
     document.getElementById("cognomeP").innerText = "";
@@ -37,7 +38,13 @@ function validateFormInsUtente(){
     // password
     //lunghezza
     if (password.length > 40){ c++;
-        document.getElementById("passwordP").innerText = "Il campo password non può superare i 40 caratteri."
+        document.getElementById("passwordP").innerText = "Il campo password non può superare i 40 caratteri.";
+    }
+
+    //formato
+    if (!password.match(passwordformat)) {
+        document.getElementById("controllopassword").innerText = "Rispetta il formato richiesto.";
+        c++;
     }
 
     if (c>0){
