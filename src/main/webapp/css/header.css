@@ -40,12 +40,12 @@ header {
 
 @media screen and (max-width: 600px) {
     header img {
-        width: 24px;
-        height: 24px;
+        width: 16px;
+        height: 16px;
     }
 
     header span {
-        font-size: 20px;
+        font-size: 16px;
         text-align: center;
     }
     .dropdown-content a {
@@ -59,8 +59,8 @@ header {
 
 @media screen and (min-width: 601px) and (max-width: 984px) {
     header img {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
     }
 
     header span {
@@ -79,12 +79,12 @@ header {
 
 @media screen and (min-width: 985px) {
     header img {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 
     header span {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .dropdown-content a {

@@ -18,11 +18,6 @@ html,body {
     font-weight: bold;
 }
 
-#img-libro-ordine {
-    width: 100px;
-    height: 150px;
-}
-
 .none{
     display: none;
 }
@@ -30,6 +25,7 @@ html,body {
 .nobullet{
     list-style-type: none;
 }
+
 
 .block{
     display: block;

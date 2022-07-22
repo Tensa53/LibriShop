@@ -8,6 +8,7 @@ div.container-libro {
 
     div.container-libro {
         padding: 10px;
+        flex-direction: column;
     }
 
     body {
@@ -48,6 +49,7 @@ div.container-libro {
 
     div.container-libro {
         padding: 20px;
+        flex-direction: column;
     }
 
     body {

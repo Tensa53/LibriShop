@@ -1,9 +1,13 @@
 form label {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 form p {
     font-style: italic;
+}
+
+form ul {
+    list-style-type: none;
 }
 
 form p.error {
@@ -36,11 +40,6 @@ form input [type = text] {
     margin: 10px;
 }
 
-#container-ordine {
-    max-width: 900px;
-    margin: auto;
-}
-
 fieldset {
     margin: 5px;
 }
@@ -49,9 +48,50 @@ form {
     margin: 5px;
 }
 
+@media screen and (max-width: 600px){
+    form ul {
+        list-style-type: square;
+    }
+
+
+    form label {
+        font-size: 16px;
+    }
+
+    form p,fieldset p {
+        font-size: 14px;
+    }
+
+    form p.error {
+        font-size: 12px;
+    }
+
+    #img-libro-ordine {
+        width: 30px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 984px){
+    #img-libro-ordine {
+        width: 66px;
+        height: 100px;
+    }
+}
+
 @media screen and (min-width: 985px){
     #form-libro-1,#form-libro-2 {
         display: inline-block;
         margin: 20px;
+    }
+
+    #img-libro-ordine {
+        width: 100px;
+        height: 150px;
+    }
+
+    #container-ordine {
+        max-width: 900px;
+        margin: auto;
     }
 }

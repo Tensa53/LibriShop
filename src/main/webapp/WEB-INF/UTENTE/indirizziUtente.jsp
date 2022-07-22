@@ -97,7 +97,7 @@
     <input type="hidden" value="<%=indirizzo.getCivico()%>" name="civicoF">
     <input type="hidden" value="<%=indirizzo.getCitta()%>" name="cittaF">
 
-    <ul class="nobullet">
+    <ul>
         <li>Via/Viale/Piazza : <%=indirizzo.getVia()%></li>
         <li>Civico : <%=indirizzo.getCivico()%></li>
         <li>Provincia : <%=indirizzo.getProvincia()%></li>

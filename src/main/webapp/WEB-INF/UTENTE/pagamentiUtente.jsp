@@ -79,7 +79,7 @@
   <input type="hidden" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenzaF">
   <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
 
-  <ul class="nobullet">
+  <ul>
     <li>Numero Carta : <%=pagamento.getFormattedNumeroCarta()%></li>
     <li>Scadenza : <%=pagamento.getScadenzaReversedString()%></li>
     <li>CCV : <%=pagamento.getCCV()%></li>

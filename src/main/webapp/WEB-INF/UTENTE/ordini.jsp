@@ -49,13 +49,10 @@
     <p>Totale : <%=o.getTotale()%>€</p>
     <p>Dettagli Libri : </p>
     <div class="container-dettagli-ordine">
-      <ul class="nobullet text-left">
-        <%for(Dettaglio d : o.getDettagli()) {
-          String link = request.getContextPath() + "/page-libro?isbn=" + d.getLibro().getISBN();%>
-        <li><a href="<%=link%>"><img id="img-libro-ordine" src="<%=d.getLibro().getFoto()%>"> </a> ISBN : <%=d.getLibro().getISBN()%> - Titolo : <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€
-        </li>
-        <%}%>
-      </ul>
+      <%for (Dettaglio d : o.getDettagli()) {
+        String link = request.getContextPath() + "/page-libro?isbn=" + d.getLibro().getISBN();%>
+      <p class="text-left"><a href="<%=link%>"><img id="img-libro-ordine" src="<%=d.getLibro().getFoto()%>"></a> ISBN : <%=d.getLibro().getISBN()%> - Titolo : <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€</p>
+      <%}%>
     </div>
     </form>
   </fieldset>

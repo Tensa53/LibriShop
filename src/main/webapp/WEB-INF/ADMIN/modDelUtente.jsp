@@ -78,14 +78,14 @@
     </div>
 
     <%if (utenti != null) {%>
-    <p>Scegli un utente da modificare selezionando la sua mail</p>
+    <p>Scegli un utente da modificare selezionando la sua mail : </p>
     <form action="cerca-utente-da-modificare" method="post">
         <select name="mail-utente">
             <%for (Utente u : utenti) {%>
             <option value="<%=u.getMail()%>"><%=u.getMail()%> - <%=u.getNome() + " " + u.getCognome()%>
             </option>
             <%}%>
-        </select>
+        </select><br><br>
         <input type="submit" value="Modifica Utente">
         <button formaction="rimuovi-utente">Rimuovi Utente</button>
     </form>

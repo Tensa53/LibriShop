@@ -90,7 +90,7 @@
         <%for (Autore a : autori) {%>
         <option value="<%=a.getCF()%>"><%=a.getCF()%> - <%=a.getNome()%> </option>
         <%}%>
-    </select>
+    </select><br><br>
     <button formaction="cerca-autore-da-modificare">Modifica Autore</button>
     <button formaction="rimuovi-autore">Rimuovi Autore</button>
 </form>

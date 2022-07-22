@@ -77,13 +77,13 @@
     <%}%>
 
 <%if(libri != null){%>
-<p>Scegli un libro da modificare selezionando il suo codice ISBN</p>
+<p>Scegli un libro da modificare selezionando il suo codice ISBN : </p>
 <form action="cerca-libro-da-modificare" method="post">
     <select name="isbn-libro" onchange="immagineLibro(this.value)">
         <%for(Libro l : libri){%>
             <option value="<%=l.getISBN()%>"><%=l.getISBN()%> - <%=l.getTitolo()%></option>
         <%}%>
-    </select>
+    </select><br><br>
     <input type="submit" value="Modifica Libro">
     <button formaction="rimuovi-libro-catalogo">Rimuovi Libro</button>
 </form>

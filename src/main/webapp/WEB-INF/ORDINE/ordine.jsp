@@ -69,13 +69,10 @@
 
 <div id="container-ordine">
   <p>Riepilogo ordine</p>
-  <ul class="nobullet text-left">
-  <%for(Dettaglio d : carrello.getDettagli()){
-      String link = request.getContextPath() + "/page-libro?isbn=" + d.getLibro().getISBN();%>
-      <li><a href="<%=link%>"><img id="img-libro-ordine" src="<%=d.getLibro().getFoto()%>"> </a> ISBN : <%=d.getLibro().getISBN()%> - Titolo : <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€
-      </li>
-  <%}%>
-  </ul>
+    <%for (Dettaglio d : carrello.getDettagli()) {
+        String link = request.getContextPath() + "/page-libro?isbn=" + d.getLibro().getISBN();%>
+    <p class="text-left"><a href="<%=link%>"><img id="img-libro-ordine" src="<%=d.getLibro().getFoto()%>"></a> ISBN : <%=d.getLibro().getISBN()%> - Titolo : <%=d.getLibro().getTitolo()%> - Quantità : <%=d.getQuantita()%> - Prezzo : <%=d.getPrezzo()%>€</p>
+    <%}%>
   <p>Totale : <%=carrello.getTotale().toString()%>€</p>
   <input type="submit" value="Completa ordine">
 </div>

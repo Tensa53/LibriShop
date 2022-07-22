@@ -14,7 +14,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<h3 class="success center">Ordine completato, torna alla <a href="http://localhost:8080/progettoTSW_war_exploded/home">home</a></h3>
+<h3 class="success center">Ordine completato, torna alla <a href="<%=request.getContextPath() + "/home"%>">home</a></h3>
 </body>
 
 
