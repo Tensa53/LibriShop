@@ -87,6 +87,7 @@ public class Carrello {
 
             if ((dettaglioA = carrelloA.getDettagliobyISBN(dettaglioB.getLibro().getISBN())) != null) { //se c'è già un dettaglio di questo libro nel carrello
                 totaleCarrelloA = totaleCarrelloA.subtract(dettaglioA.getPrezzo());//rimuovi il vecchio prezzo del dettaglio dal totale del carrello
+
                 dettaglioA.setQuantita(dettaglioA.getQuantita() + dettaglioB.getQuantita());//incrementa la quantità
                 BigDecimal prezzoDettaglioA = dettaglioA.getLibro().getPrezzoScontato();//setta il prezzo base nel dettaglio
                 if (dettaglioA.getQuantita() > 5)
@@ -95,6 +96,7 @@ public class Carrello {
                 prezzoDettaglioA = prezzoDettaglioA.multiply(new BigDecimal(dettaglioA.getQuantita()));//moltiplica il prezzo base per la quantità
 
                 dettaglioA.setPrezzo(prezzoDettaglioA);
+
                 totaleCarrelloA = totaleCarrelloA.add(dettaglioA.getPrezzo()); //aggiorniamo il totale del carrello col nuovo prezzo del dettaglio
                 carrelloA.setTotale(totaleCarrelloA);
             } else {

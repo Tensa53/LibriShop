@@ -200,9 +200,11 @@ public class Forms {
         int c = 0;
 
         Pattern pattern = Pattern.compile("^[0-9]+$");
-        Matcher matcher = pattern.matcher(isbn);
+
 
         if(isbn != null) {
+            Matcher matcher = pattern.matcher(isbn);
+
             if(isbn.length() != 13 && !matcher.matches()){
                 request.setAttribute("msgisbnP","Il codice ISBN deve essere di 13 cifre");
                 c++;

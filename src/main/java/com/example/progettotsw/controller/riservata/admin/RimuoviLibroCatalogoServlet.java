@@ -34,12 +34,13 @@ public class RimuoviLibroCatalogoServlet extends HttpServlet {
 
                     String address = "/WEB-INF/ADMIN/modDelLibro.jsp";
 
+                    request.setAttribute("libri",libroDAO.doRetrieveAll());
+
                     RequestDispatcher rd = request.getRequestDispatcher(address);
 
                     rd.forward(request, response);
                 } else
                     response.sendRedirect(request.getContextPath() + "/admin-forward-redirect?modDelLibro=Modifica/Rimuovi%20Libro");
-
 
             } else
                 response.sendRedirect(request.getContextPath() + "/home");
