@@ -4,6 +4,7 @@
 <html>
 <head>
   <title>Pagamenti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%List<Pagamento> pagamenti = (List<Pagamento>) request.getAttribute("pagamenti");
     String msg = (String) request.getAttribute("msg");
     String msgerrmod = (String) request.getAttribute("msgerrmod");

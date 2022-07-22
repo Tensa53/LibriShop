@@ -5,6 +5,7 @@
 <html>
 <head>
   <title>Indirizzi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%List<Indirizzo> indirizzi = (List<Indirizzo>) request.getAttribute("indirizzi");
     String msg = (String) request.getAttribute("msg");
     List<Provincia> province = (List<Provincia>) request.getAttribute("province");

@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Modifica Utente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
@@ -109,7 +110,7 @@
             numero.)</p>
         <input type="password" name="password" id="password" pattern="(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}"><br>
         <input type="checkbox" onclick="checkPassword()">Mostra Password<br><br>
-        <label>Amministratore : </label>
+        <label>Amministratore : </label><br>
         <%if (utenteMod.isAmministratore()) {%>
         <input type="radio" name="amministratore" value="true" checked>SI
         <input type="radio" name="amministratore" value="false">NO<br><br>
