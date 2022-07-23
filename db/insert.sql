@@ -33,6 +33,7 @@ INSERT INTO Genere VALUES
 INSERT INTO Appartenenza VALUES
                              ('9788883379529','Narrativa'),
                              ('9788868361297','Horror'),
+                             ('9788845921841','Horror'),
                              ('9788868361297','Dramma'),
                              ('9788868361297','Fantascienza'),
                              ('9788868361297','Thriller'),
