@@ -96,7 +96,7 @@ public class InserisciLibroServlet extends HttpServlet {
                         String msg = null;
 
                         if (libroDAO.doSave(libro, autore.getCF(), generi) == 1)
-                            msg = "Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
+                            msg = "Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento";
 
                         request.setAttribute("msg", msg);
 
