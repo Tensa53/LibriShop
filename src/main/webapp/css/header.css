@@ -31,7 +31,11 @@ header {
     padding: 3px;
 }
 
-.show {display: block;}
+/*.show {display: block;}*/
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 .dropdown-content a:hover:not(#counter-carrello) {background-color: #555;}
 
