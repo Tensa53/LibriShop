@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DettaglioDAO {
@@ -31,7 +32,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -62,7 +63,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -161,7 +162,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,"./img/noimage.jpg",-1);
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);

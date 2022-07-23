@@ -34,7 +34,19 @@ public class VerificaCarrelloServlet extends HttpServlet {
 
                     Libro libro = libroDAO.doRetrieveById(d.getLibro().getISBN());
 
-                    if (libro.getDisponibilita() == -1 ||libro.getDisponibilita() == 0) {
+                    if (libro != null) {
+                        if (libro.getDisponibilita() == -1 || libro.getDisponibilita() == 0) {
+                            BigDecimal totaleCarrello = carrello.getTotale();
+
+                            totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
+
+                            carrello.removeDettaglio(d);
+
+                            carrello.setTotale(totaleCarrello);
+
+                            indisponibili.add(d.getLibro());
+                        }
+                    } else {
                         BigDecimal totaleCarrello = carrello.getTotale();
 
                         totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
@@ -48,16 +60,14 @@ public class VerificaCarrelloServlet extends HttpServlet {
                 }
             }
 
-            request.setAttribute("indisponibili",indisponibili);
+            request.setAttribute("indisponibili", indisponibili);
 
             String address = "/WEB-INF/carrello.jsp";
 
             RequestDispatcher rd = request.getRequestDispatcher(address);
 
-            rd.forward(request,response);
+            rd.forward(request, response);
         } else
             response.sendRedirect(request.getContextPath() + "/home");
-
-
     }
 }
