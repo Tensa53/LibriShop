@@ -26,8 +26,8 @@ function validateFormModLibro() {
         c++;
     }
 
-    if (altroL.length > 20) {
-        document.getElementById("altroP").innerText = "Il genere può avere massimo 20 caratteri.";
+    if (altroL.length > 40) {
+        document.getElementById("altroP").innerText = "Il genere può avere massimo 40 caratteri.";
         c++;
     }
 

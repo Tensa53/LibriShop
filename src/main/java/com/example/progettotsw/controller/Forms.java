@@ -228,8 +228,8 @@ public class Forms {
             c++;
         }
 
-        if(altro.length() > 20){
-            request.setAttribute("msgaltroP","Il genere può avere massimo 20 caratteri");
+        if(altro.length() > 40){
+            request.setAttribute("msgaltroP","Il genere può avere massimo 40 caratteri");
             c++;
         }
 
@@ -253,8 +253,8 @@ public class Forms {
     public static boolean validateFormGenere(String nome, Genere generdb, HttpServletRequest request) {
         int c = 0;
 
-        if (nome.length() > 20) {
-            request.setAttribute("msggenereP","Il genere può avere massimo 20 caratteri");
+        if (nome.length() > 40) {
+            request.setAttribute("msggenereP","Il genere può avere massimo 40 caratteri");
             c++;
         }
 
