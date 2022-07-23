@@ -39,7 +39,7 @@ public class InserisciGenereServlet extends HttpServlet {
 
                 if (compilazioneForm && validazioneForm){
                     genereDAO.doSave(nome);
-                    request.setAttribute("msg","Inserimento effettuate con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento");
+                    request.setAttribute("msg","Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a> oppure effettua un altro inserimento");
                 }
 
                 String address = "/WEB-INF/ADMIN/opsAutoreGenere.jsp";
