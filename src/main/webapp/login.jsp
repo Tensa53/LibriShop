@@ -19,7 +19,7 @@
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
-<div class="center">
+<div class="center" id="container-forms">
 
 <form name="login" action="login" onsubmit="return validateFormLogin()">
     <label for = "mail">Mail : </label> <br>

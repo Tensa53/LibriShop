@@ -38,6 +38,8 @@
 
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
+<div id="container-body-pageLibro">
+
 <%
     if(l ==  null){
 %>
@@ -85,6 +87,8 @@
 </div>
 
 <%}%>
+
+</div>
 
 <jsp:include page="WEB-INF/INCLUDE/footer.jsp"></jsp:include>
 </body>

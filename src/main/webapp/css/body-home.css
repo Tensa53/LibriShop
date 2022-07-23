@@ -8,5 +8,6 @@
 
 #container-home {
     max-width: 90%;
+    min-height: 100%;
     margin: auto;
 }

@@ -11,15 +11,13 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
-<body>
+<div>
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<%
-    Utente utente = (Utente) session.getAttribute("utente");
-    if (utente != null && utente.isAmministratore() == true){%>
-    <form action="admin-forward-redirect" class="center" method="post">
+<div id="container-forms" class="center">
+    <form action="admin-forward-redirect" method="post">
         <h4>Operazioni Libro</h4>
         <input name="insLibro" type="submit" value="Inserisci Libro">
         <input name="modDelLibro" type="submit" value="Modifica/Rimuovi Libro">
@@ -34,9 +32,7 @@
         <h4>Operazioni Autore e Genere</h4>
         <input name="opsAutoreGenere" type="submit" value="Gestione Autore e Genere">
     </form>
-<%}else{%>
-<p>Non sei autorizzato ad accedere a questa pagina</p>
-<%}%>
+</div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 </body>

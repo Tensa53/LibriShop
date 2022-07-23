@@ -29,7 +29,7 @@
 <jsp:include page="WEB-INF/INCLUDE/nav.jsp"></jsp:include>
 
 <body>
-<div id="container-registrazione" class="center">
+<div id="container-forms" class="center">
     <form name="Registrazione" action="register" onsubmit="return validateFormRegistrazione()">
         <label for = "nome">Nome : </label> <br>
         <p class="error" id="nomeP"><%if (nomeP != null){%><%=nomeP%><%}%></p>

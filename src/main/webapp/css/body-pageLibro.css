@@ -1,3 +1,7 @@
+#container-body-pageLibro {
+    min-height: 100%;
+}
+
 div.container-libro {
     display: flex;
     align-items: flex-start;
