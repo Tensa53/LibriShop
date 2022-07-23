@@ -32,7 +32,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.jpg","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -63,7 +63,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.jpg","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
@@ -162,7 +162,7 @@ public class DettaglioDAO {
                 Libro libro = libroDAO.doRetrieveById(ISBN);
 
                 if(libro == null)
-                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.png","non disponibile");
+                    libro = new Libro(ISBN,TitoloLibro,new BigDecimal(0.00),new GregorianCalendar(),"non disponibile",new BigDecimal(0.00),-1,"./img/noimage.jpg","non disponibile");
 
                 Dettaglio dettaglio = new Dettaglio(quantita,prezzo,libro,id);
                 dettagli.add(dettaglio);
