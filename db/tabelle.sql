@@ -19,7 +19,7 @@ CREATE TABLE Libro (
 );
 
 CREATE TABLE Genere (
-    Nome varchar(20) primary key
+    Nome varchar(40) primary key
 );
 
 CREATE TABLE Autore (

@@ -5,8 +5,8 @@ function validateFormGenere() {
 
     genereP.innerText = "";
 
-    if (genere.length > 20){
-        genereP.innerText = "Il genere può avere massimo 20 caratteri";
+    if (genere.length > 40){
+        genereP.innerText = "Il genere può avere massimo 40 caratteri";
         return false;
     } else
         return true;
