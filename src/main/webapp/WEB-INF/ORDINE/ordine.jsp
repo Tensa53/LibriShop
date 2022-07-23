@@ -26,16 +26,18 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
+<div id="container-forms" class="center">
+
 <%if (msgerrpagind != null) {%>
 
-<h3 class="error center">${msgerrpagind}</h3>
+<h3 class="error">${msgerrpagind}</h3>
 
 <%}%>
 
 
 <%if (incompatibiliStr != null){
     if (incompatibiliStr.size()>0){%>
-    <h3 class="error center">
+    <h3 class="error">
         <ul class="nobullet">
             <li>I seguenti libri sforano la quantità acquistabile. Sei pregato di modificare il carrello</li>
             <%for (String s : incompatibiliStr){%>
@@ -44,8 +46,6 @@
         </ul>
     </h3>
 <%}}%>
-
-<div id="container-forms" class="center">
 
 <form action="completa-ordine" method="post">
 <div>

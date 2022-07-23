@@ -16,9 +16,11 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<h3 class="success center">Ordine completato, torna alla <a href="<%=request.getContextPath() + "/home"%>">home</a></h3>
-</body>
+<div class="full-height center">
+    <h3 class="success">Ordine completato, torna alla <a href="<%=request.getContextPath() + "/home"%>">home</a></h3>
+</div>
 
+</body>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
 

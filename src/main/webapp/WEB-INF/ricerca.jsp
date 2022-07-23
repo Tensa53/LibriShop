@@ -90,23 +90,25 @@
     </div>
 
     <div id="container-catalogo">
-        <%
+        <%if(libri.size() > 0) {
             for (Libro l:libri) { %>
         <div class="catalogo-item">
-        <figure>
-            <form action="page-libro">
-                <input type="image" src="<%=l.getFoto()%>">
-                <figcaption><input type="submit" title="<%=l.getTitolo()%>" value="<%=l.getTitolo()%>"></figcaption>
-                <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
-                <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
-                <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
-                <%}else {%>
-                <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
-                <%}%>
-            </form>
-        </figure>
+            <figure>
+                <form action="page-libro">
+                    <input type="image" src="<%=l.getFoto()%>">
+                    <figcaption><input type="submit" title="<%=l.getTitolo()%>" value="<%=l.getTitolo()%>"></figcaption>
+                    <input type="hidden" name="isbn" value="<%=l.getISBN()%>">
+                    <%if(l.getSconto().compareTo(new BigDecimal(0.00)) == 1){%>
+                    <figcaption><span class="barrato"><%=l.getPrezzo().toString()%>€</span><span><%=l.getPrezzoScontato().toString()%>€</span></figcaption>
+                    <%}else {%>
+                    <figcaption><%=l.getPrezzo().toString()%>€</figcaption>
+                    <%}%>
+                </form>
+            </figure>
         </div>
-        <% } %>
+        <% }} else { %>
+            <h3 class="center">Nessun libro rispetta i filtri selezionati</h3>
+        <%}%>
     </div>
 
 </div>

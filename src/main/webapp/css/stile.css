@@ -7,6 +7,10 @@ html,body {
     height: 100%;
 }
 
+.full-height {
+    min-height: 100%;
+}
+
 .left{
     float: left; /*fissa l'elemento a sinistra*/
 }

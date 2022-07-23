@@ -5,6 +5,7 @@
 #container-body-ricerca {
     max-width: 1800px;
     margin: auto;
+    min-height: 100%;
 }
 
 div.catalogo-item {
