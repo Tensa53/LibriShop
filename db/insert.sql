@@ -25,6 +25,7 @@ INSERT INTO Genere VALUES
                        ('Thriller'),
                        ('Autoaiuto'),
                        ('Fantasy'),
+                       ('Mistero'),
                        ('Satira'),
                        ('Distopico'),
                        ('Rosa');
@@ -49,6 +50,7 @@ INSERT INTO Appartenenza VALUES
                              ('9788807901379','Dramma'),
                              ('9788807901379','Narrativa'),
                              ('9788804665298','Distopico'),
+                             ('9788834610572','Mistero'),
                              ('9788845930959','Narrativa');
 
 INSERT INTO Autore VALUES
@@ -63,6 +65,7 @@ INSERT INTO Autore VALUES
                        ('WLMSHKWPR28FH8SN','William Shakespeare'),
                        ('RAYBRDBR27SFH8SN','Ray Bradbury'),
                        ('LCNDRLR27HF72SBC','Lucinda Riley'),
+                       ('JLDCKR327HFG21BC','Joël Dicker'),
                        ('SHNSNT80A01F839I','Samantha Shannon');
 
 
@@ -80,6 +83,7 @@ INSERT INTO Scrittura VALUES
                           ('9788807901379','WLMSHKWPR28FH8SN'),
                           ('9788804665298','RAYBRDBR27SFH8SN'),
                           ('9788809873475','LCNDRLR27HF72SBC'),
+                          ('9788834610572','JLDCKR327HFG21BC'),
                           ('9781408883433','SHNSNT80A01F839I');
 
 INSERT INTO Utente VALUES
