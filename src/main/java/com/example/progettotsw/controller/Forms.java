@@ -271,10 +271,20 @@ public class Forms {
     public static boolean validateFormAutore(String cf, String nome, Autore autoredb, HttpServletRequest request) {
         int c = 0;
 
+
+
         if (cf != null) {
 
-            if (cf.length() != 16) {
-                request.setAttribute("msgCFP","Il CF dell'autore deve essere di 16 cifre");
+            Pattern pattern = Pattern.compile("^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$");
+            Matcher matcher = pattern.matcher(cf);
+
+            if (matcher.matches()){
+                if (cf.length() != 16) {
+                    request.setAttribute("msgCFP","Il CF dell'autore deve essere di 16 cifre");
+                    c++;
+                }
+            } else {
+                request.setAttribute("msgCFP","Inserisci un CF dal formato valido");
                 c++;
             }
 

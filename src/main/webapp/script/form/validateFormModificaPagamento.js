@@ -25,7 +25,7 @@ function validateFormModificaPagamento(){
             c++;
         }
     } else {
-        document.getElementById("ccvP").innerText = "Il ccv deve essere formato solamente da cifre";
+        document.getElementById("ccvP").innerText = "Il ccv deve essere formato solamente da cifre.";
         c++;
     }
 

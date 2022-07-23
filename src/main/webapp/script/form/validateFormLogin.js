@@ -12,7 +12,7 @@ function validateFormLogin(){
     }
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!mail.match(mailformat)){ c++;
-        document.getElementById("mailP").innerText = "Il formato dell'email deve essere del tipo nomecasella@tuodominio.it";
+        document.getElementById("mailP").innerText = "Il formato dell'email deve essere del tipo nomecasella@tuodominio.it.";
     }
 
     if (password.length > 40){ c++;

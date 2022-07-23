@@ -32,7 +32,7 @@ function validateFormInsUtente(){
     //formato
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!mail.match(mailformat)){ c++;
-        document.getElementById("controllomail").innerText = "Il formato dell'email deve essere del tipo nomecasella@tuodominio.it";
+        document.getElementById("controllomail").innerText = "Il formato dell'email deve essere del tipo nomecasella@tuodominio.it.";
     }
 
     // password

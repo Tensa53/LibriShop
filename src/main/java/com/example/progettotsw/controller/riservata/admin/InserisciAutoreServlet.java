@@ -38,7 +38,7 @@ public class InserisciAutoreServlet extends HttpServlet {
                         Autore autore = new Autore(cf, nome);
 
                         if (autoreDAO.doSave(autore) == 1)
-                            request.setAttribute("msg","Inserimento effettuato con successo !!! Torna alla <a href = \\\"\" + request.getContextPath() + \"/area-riservata\\\"> dashboard </a>\";");
+                            request.setAttribute("msgsuccess","Inserimento effettuato con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>");
                     }
 
                     request.setAttribute("autori", autoreDAO.doRetrieveAll());

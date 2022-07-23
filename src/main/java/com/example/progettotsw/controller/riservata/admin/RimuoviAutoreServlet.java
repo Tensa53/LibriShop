@@ -50,7 +50,7 @@ public class RimuoviAutoreServlet extends HttpServlet {
                         msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata\"> dashboard </a>";
                     }
 
-                    request.setAttribute("msg", msg);
+                    request.setAttribute("msgsuccess", msg);
 
                     request.setAttribute("autoriIncancellabili",autoriIncancellabili);
 

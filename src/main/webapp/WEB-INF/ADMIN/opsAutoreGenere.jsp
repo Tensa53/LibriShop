@@ -22,7 +22,7 @@
         List<String> autoriIncancellabili = (List<String>) request.getAttribute("autoriIncancellabili");
         List<String> generiIncancellabili = (List<String>) request.getAttribute("generiIncancellabili");
         Autore autoreMod = (Autore) request.getAttribute("autore");
-        String msg = (String) request.getAttribute("msg");
+        String msgsuccess = (String) request.getAttribute("msgsuccess");
         String genereP = (String) request.getAttribute("msggenereP");
         String controllogenere = (String) request.getAttribute("msgcontrollogenere");
         String nomeP = (String) request.getAttribute("msgnomeP");
@@ -38,8 +38,8 @@
 
 <div class="center" id="container-forms">
 
-    <%if(msg != null){%>
-    <p>${msg}</p>
+    <%if(msgsuccess != null){%>
+    <h3 class="success">${msgsuccess}</h3>
     <%}%>
 
 
@@ -103,18 +103,18 @@
     <%if(autoreMod == null){%>
     <label for="CF">CF : <span class="error"><%if(controlloCF != null){%><%=controlloCF%><%}%></span></label><br>
     <p class="error" id="cfP"><%if(cfP != null){%><%=cfP%><%}%></p>
-    <input type="text" id="CF" name="CF"><br>
+    <input type="text" id="CF" name="CF" required><br>
     <p class="error" id="CFP"></p>
     <label for="nome">Nome Autore : </label><br>
     <p class="error" id="nomeP"> <%if(nomeP != null){%><%=nomeP%><%}%></p>
-    <input type="text" name="nome" id="nome"><br><br>
+    <input type="text" name="nome" id="nome" required><br><br>
     <button onclick="return validateInserisciNuovoAutore()" formaction="inserisci-autore">Inserisci Autore</button>
     <%} else {%>
     <label for="CF">CF : <%=autoreMod.getCF()%></label><br>
     <input type="hidden" name="CF" id="CF" value="<%=autoreMod.getCF()%>">
     <p class="error" id="nomeP"></p>
     <label for="nome">Nome Autore : </label><br>
-    <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>"><br><br>
+    <input type="text" name="nome" id="nome" value="<%=autoreMod.getNome()%>" required><br><br>
     <button onclick="return validateModificaNomeAutore()" formaction="conferma-modifiche-autore">Conferma Modifiche</button>
     <%}%>
 </form>

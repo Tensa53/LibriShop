@@ -21,12 +21,12 @@ function validateFormInsLibro(){
     document.getElementById("altroP").innerText = "";
 
     if (!flag) {
-        document.getElementById("controllogenere").innerText = "seleziona un genere";
+        document.getElementById("controllogenere").innerText = "seleziona un genere.";
         c++;
     }
 
     if (isbnL.length != 13 || !isbnL.match(numerionly)){
-            document.getElementById("isbnP").innerText = "Il codice ISBN deve essere di 13 cifre";
+            document.getElementById("isbnP").innerText = "Il codice ISBN deve essere di 13 cifre.";
             c++;
     }
 
