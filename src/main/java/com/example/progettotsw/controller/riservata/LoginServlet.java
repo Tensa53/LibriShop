@@ -40,17 +40,23 @@ public class LoginServlet extends HttpServlet {
 
                 //un carrello può considerarsi vuoto quando il totale è azzerato,se si verifica un errore di prezzo sul totale si controlla anche che non ci sia nessun dettaglio al suo interno
 
-                boolean statoCarrelloDB = carrelloDB.getTotale().compareTo(zero) == 0 || carrelloDB.getDettagli().size() == 0;//true = vuoto ; false = pieno
+                if (carrelloSession != null) {
+                    boolean statoCarrelloDB = carrelloDB.getTotale().compareTo(zero) == 0 || carrelloDB.getDettagli().size() == 0;//true = vuoto ; false = pieno
 
-                boolean statoCarrelloSession = carrelloSession.getTotale().compareTo(zero) == 0 || carrelloSession.getDettagli().size() == 0;
+                    boolean statoCarrelloSession = carrelloSession.getTotale().compareTo(zero) == 0 || carrelloSession.getDettagli().size() == 0;
 
-                if(!statoCarrelloDB && !statoCarrelloSession) {
-                    request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
-                    request.getSession().setAttribute("carrello",mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
-                } else if (!statoCarrelloDB && statoCarrelloSession) {
-                    request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
-                    request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
+
+                    if(!statoCarrelloDB && !statoCarrelloSession) {
+                        request.getSession().removeAttribute("carrello");//rimuoviamo il vecchio carrello dalla session
+                        request.getSession().setAttribute("carrello",mergeCarrelli(carrelloDB,carrelloSession));//aggiungiamo il carrello risultato della merge
+                    } else if (!statoCarrelloDB && statoCarrelloSession) {
+                        request.getSession().removeAttribute("carrello");//rimuoviamo il carrello vuoto dalla session
+                        request.getSession().setAttribute("carrello",carrelloDB);//aggiungiamo il carrello dal db alla session
+                    }
+                } else {
+                    request.getSession().setAttribute("carrello",carrelloDB);
                 }
+
             }
 
             request.getSession().setAttribute("utente",utente);
