@@ -2,6 +2,8 @@
 <%@ page import="com.example.progettotsw.model.Autore" %>
 <%@ page import="com.example.progettotsw.model.Genere" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Operazioni Autore e Genere</title>

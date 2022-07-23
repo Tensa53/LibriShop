@@ -1,5 +1,7 @@
 <%@ page import="com.example.progettotsw.model.Pagamento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Modifica Pagamento</title>

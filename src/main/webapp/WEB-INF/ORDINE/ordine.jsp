@@ -4,7 +4,8 @@
 <%@ page import="com.example.progettotsw.model.Indirizzo" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" type="text/css" href="./css/stile.css">
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Ordine</title>

@@ -2,6 +2,8 @@
 <%@ page import="com.example.progettotsw.model.Genere" %>
 <%@ page import="com.example.progettotsw.model.Autore" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Inserisci Libro</title>
