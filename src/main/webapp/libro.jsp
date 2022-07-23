@@ -66,7 +66,7 @@
                 <%}else{%>
                     <input type="submit" value="Aggiungi al carrello" onclick="checkUtente(<%=utente.isAmministratore()%>)">
         <%}}else{
-                if(l.getDataPubblicazione().after(oggi)){%>
+                if(l.getDataPubblicazione().after(oggi) || l.getDisponibilita() == 0){%>
                     <input type="submit" value="Aggiungi al carrello" disabled>
                 <%}else{%>
                     <input type="submit" value="Aggiungi al carrello">
