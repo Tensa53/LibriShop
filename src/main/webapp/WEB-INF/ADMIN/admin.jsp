@@ -11,12 +11,12 @@
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/stile.css">
 </head>
-<div>
+
 <jsp:include page="../INCLUDE/header.jsp"></jsp:include>
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div id="container-forms" class="center">
+<div class="center full-height">
     <form action="admin-forward-redirect" method="post">
         <h4>Operazioni Libro</h4>
         <input name="insLibro" type="submit" value="Inserisci Libro">
@@ -35,5 +35,6 @@
 </div>
 
 <jsp:include page="../INCLUDE/footer.jsp"></jsp:include>
+
 </body>
 </html>
