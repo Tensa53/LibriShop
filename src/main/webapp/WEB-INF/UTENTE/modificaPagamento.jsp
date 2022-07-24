@@ -27,11 +27,11 @@
         <input type="hidden" value="<%=pagamento.getCCV()%>" name="CCVF">
         <label for="numeroCarta">Numero Carta : </label><br>
         <p class="error" id="cartaP2"></p>
-        <input type="number" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" required><br>
+        <input type="number" value="<%=pagamento.getNumeroCarta()%>" name="numeroCarta" id="numeroCarta" min="1" required><br>
         <label for="scadenza">Scadenza : </label><br>
         <input type="date" value="<%=pagamento.getScadenzaReversedString()%>" name="scadenza" id="scadenza"  required><br>
         <label for="CCV">CCV </label><br>
-        <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" required><br><br>
+        <input type="number" value="<%=pagamento.getCCV()%>" name="ccv" id="ccv" min="1" required><br><br>
         <button onclick="return validateFormModificaPagamento()" formaction="conferma-modifiche-pagamento">Conferma Modifiche</button>
         <button formaction="area-riservata">Annulla</button>
     </form>

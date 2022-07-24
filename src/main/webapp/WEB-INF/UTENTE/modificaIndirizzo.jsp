@@ -38,7 +38,7 @@
         <input type="text" name="via" id="via" value="<%=indirizzo.getVia()%>" required><br>
         <label for="civico">Civico : </label><br>
         <p class="error" id="civicoP"></p>
-        <input type="number" name="civico" id="civico" value="<%=indirizzo.getCivico()%>" required><br>
+        <input type="number" name="civico" id="civico" min="1" value="<%=indirizzo.getCivico()%>" required><br>
         <label for="provincia">Provincia : </label><br>
         <select name="provincia" id="provincia" oninput="comuni(this.value)">
             <option value="<%=provincia.getId()%>"><%=provincia.getNome()%></option>

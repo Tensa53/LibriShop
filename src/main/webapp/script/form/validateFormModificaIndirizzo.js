@@ -19,11 +19,6 @@ function validateFormModificaIndirizzo(){
             document.getElementById("civicoP").innerText = "Il numero civico ha massimo 5 cifre.";
             c++;
         }
-
-        if (civico.length < 1){
-            document.getElementById("civicoP").innerText = "Il numero civico deve essere maggiore di 1.";
-            c++;
-        }
     } else {
         document.getElementById("civicoP").innerText = "Il numero civico deve essere formato solamente da cifre.";
     }
