@@ -6,6 +6,7 @@ function validateFormModificaUtente(){
     let c = 0;
     let passwordformat = /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}/;
 
+
     document.getElementById("nomeP").innerText = "";
     document.getElementById("cognomeP").innerText = "";
     document.getElementById("passwordP").innerText = "";
@@ -22,9 +23,11 @@ function validateFormModificaUtente(){
         document.getElementById("nomeP").innerText = "Il campo password non può superare i 40 caratteri.";
     }
 
-    if (!password.match(passwordformat)){
-        document.getElementById("controllopassword").innerText = "Rispetta il formato richiesto.";
-        c++;
+    if (password.length > 0) {
+        if (!password.match(passwordformat)){
+            document.getElementById("controllopassword").innerText = "Rispetta il formato richiesto.";
+            c++;
+        }
     }
 
     if (c>0){

@@ -4,6 +4,7 @@ function validateFormModUtente(){
     let cognome = document.forms["ModUtente"]["cognome"].value;
     let password = document.forms["ModUtente"]["password"].value;
     let c = 0;
+
     let passwordformat = /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[A-Z]).{8,}/;
 
     document.getElementById("nomeP").innerText = "";
@@ -29,9 +30,11 @@ function validateFormModUtente(){
     }
 
     //formato
-    if (!password.match(passwordformat)) {
-        document.getElementById("controllopassword").innerText = "Rispetta il formato richiesto.";
-        c++;
+    if (password.length > 0){
+        if (!password.match(passwordformat)) {
+            document.getElementById("controllopassword").innerText = "Rispetta il formato richiesto.";
+            c++;
+        }
     }
 
     if (c>0){

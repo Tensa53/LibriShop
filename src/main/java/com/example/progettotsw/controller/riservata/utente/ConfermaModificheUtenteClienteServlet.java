@@ -61,8 +61,7 @@ public class ConfermaModificheUtenteClienteServlet extends HttpServlet {
                         request.getSession().removeAttribute("utente");
 
                         request.getSession().setAttribute("utente",utenteDAO.doRetrieveByMail(mail));
-                    } else
-                        request.setAttribute("msgerrmod","Errore nella compilazione del form di modifica dei Miei Dati");
+                    }
 
                     String address = "/WEB-INF/UTENTE/iMieiDati.jsp";
 

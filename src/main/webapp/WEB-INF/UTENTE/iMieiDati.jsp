@@ -30,7 +30,7 @@
 <div id="container-forms" class="center">
 
     <%if(msg != null){%>
-        <p>${msg}</p>
+        <h3 class="success">${msg}</h3>
     <%}%>
 
     <form action="conferma-modifiche-utente-cliente" method="post" name="modifica-utente" onsubmit="return validateFormModificaUtente()" >
