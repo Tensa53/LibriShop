@@ -72,7 +72,7 @@
     <input type="text" name="viar" id="viar" required><br>
     <label for="civicor">Civico : </label><br>
     <p class="error" id="civicoP"><%if(civicoP != null){%><%=civicoP%><%}%></p>
-    <input type="number" name="civicor" id="civicor" min="1" required><br>
+    <input type="number" name="civicor" id="civicor" min="1" step="1" required><br>
     <label for="provinciar">Provincia : </label><br>
     <select name="provinciar" id="provinciar" onchange="comuni(this.value)">
     <option value="0">Selezionare...</option>
@@ -86,7 +86,7 @@
     </select><br>
     <label for="capr">CAP : </label><br>
     <p class="error" id="capP"><%if(capP != null){%><%=capP%><%}%></p>
-    <input type="number" name="capr" id="capr" required><br><br>
+    <input type="number" name="capr" id="capr" min="1" step="1" required><br><br>
     <input type="submit" value="Inserisci un nuovo Indirizzo">
 </form>
 </fieldset>
