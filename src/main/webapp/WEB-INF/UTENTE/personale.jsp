@@ -16,7 +16,7 @@
 
 <jsp:include page="../INCLUDE/nav.jsp"></jsp:include>
 
-<div zclass="center full-height">
+<div class="center full-height">
     <h3>Area riservata</h3>
 
     <form action="user-forward-redirect" method="post">
