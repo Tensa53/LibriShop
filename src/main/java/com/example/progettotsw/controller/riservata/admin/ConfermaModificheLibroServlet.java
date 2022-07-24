@@ -33,15 +33,20 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
                 String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
                 String prezzoString = request.getParameter("prezzo");
+                String scontoString = request.getParameter("sconto");
                 String disponibilitaString = request.getParameter("disponibilita");
                 String data = request.getParameter("dataPubblicazione");
                 String editore = request.getParameter("editore");
 
                 log(String.valueOf(editore.length()));
 
+                log(prezzoString);
+
+                log(scontoString);
+
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && descrizione != null && prezzoString != null && scontoString != null && disponibilitaString != null && data != null && editore != null;
 
                 LibroDAO libroDAO = new LibroDAO();
 
@@ -53,11 +58,11 @@ public class ConfermaModificheLibroServlet extends HttpServlet {
 
                     Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
-                    boolean validazioneForm = Forms.validateFormLibro(null, titolo, genere,altro,descrizione,editore, null, generedbaltro, request);
+                    boolean validazioneForm = Forms.validateFormLibro(null, titolo, genere,altro,descrizione,prezzoString,disponibilitaString,scontoString,editore, null, generedbaltro, request);
 
                     if (validazioneForm) {
                         BigDecimal prezzo = new BigDecimal(prezzoString);
-                        BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
+                        BigDecimal sconto = new BigDecimal(scontoString);
                         int disponibilita = Integer.parseInt(disponibilitaString);
 
                         ArrayList<String> generi = new ArrayList<>();

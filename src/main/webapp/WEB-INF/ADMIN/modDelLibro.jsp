@@ -31,6 +31,9 @@
         String controllogenerealtro = (String) request.getAttribute("controllogenerealtro");
         String descrizioneP = (String) request.getAttribute("msgdescrizioneP");
         String editoreP = (String) request.getAttribute("msgeditoreP");
+        String prezzoP = (String) request.getAttribute("msgprezzoP");
+        String scontoP = (String) request.getAttribute("msgscontoP");
+        String disponibilitaP = (String) request.getAttribute("msgdisponibilitaP");
     %>
 </head>
 <body>
@@ -141,11 +144,14 @@
     <p class="error" id="descrizioneP"></p>
     <textarea required name="descrizione" id="descrizione" rows="12"><%=libro.getDescrizione()%></textarea><br>
     <label for = "prezzo">Prezzo (€) : </label> <br>
-    <input type="number" step="0.1" min="0" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
+    <p class="error" id="prezzoP"><%if(prezzoP !=null){%><%=prezzoP%><%}%></p>
+    <input type="number" step="0.01" min="1" name="prezzo" id="prezzo" required value="<%=libro.getPrezzo()%>"><br>
     <label for = "sconto">Sconto (%) : </label> <br>
-    <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" value="<%=libro.getSconto().toString()%>"><br>
+    <p class="error" id="scontoP"><%if(scontoP !=null){%><%=scontoP%><%}%></p>
+    <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" value="<%=libro.getSconto().toString()%>" required><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
-    <input type="number" name="disponibilita" id="disponibilita" required value="<%=libro.getDisponibilita()%>"><br>
+    <p class="error" id="disponibilitaP"><%if(disponibilitaP !=null){%><%=disponibilitaP%><%}%></p>
+    <input type="number" name="disponibilita" id="disponibilita" min="1" step="1" required value="<%=libro.getDisponibilita()%>"><br>
     <label for = "foto">Foto : </label> <br>
     <input type="file" name="foto" id="foto" accept="image/*"><br><br>
     <input type="submit" value="Conferma Modifiche"><br>

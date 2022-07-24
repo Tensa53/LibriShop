@@ -35,12 +35,13 @@ public class InserisciLibroServlet extends HttpServlet {
                 String altro = request.getParameter("altro");
                 String descrizione = request.getParameter("descrizione");
                 String prezzoString = request.getParameter("prezzo");
+                String scontoString = request.getParameter("sconto");
                 String disponibilitaString = request.getParameter("disponibilita");
                 String data = request.getParameter("dataPubblicazione");
                 String editore = request.getParameter("editore");
                 Part foto = request.getPart("foto");
 
-                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && descrizione != null && prezzoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
+                boolean compilazioneForm = isbn != null && titolo != null && autoreCF != null && descrizione != null && prezzoString != null && scontoString != null && disponibilitaString != null && data != null && editore != null && foto != null;
 
                 if (compilazioneForm) {
                     GenereDAO genereDAO = new GenereDAO();
@@ -55,11 +56,11 @@ public class InserisciLibroServlet extends HttpServlet {
 
                     Genere generedbaltro = genereDAO.doRetrievebyNome(altro);
 
-                    boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,genere,altro,descrizione,editore,librodb,generedbaltro,request);
+                    boolean validazioneForm = Forms.validateFormLibro(isbn,titolo,genere,altro,descrizione,prezzoString,disponibilitaString,scontoString,editore,librodb,generedbaltro,request);
 
                     if (validazioneForm) {
                         BigDecimal prezzo = new BigDecimal(prezzoString);
-                        BigDecimal sconto = new BigDecimal(request.getParameter("sconto"));
+                        BigDecimal sconto = new BigDecimal(scontoString);
                         int disponibilita = Integer.parseInt(disponibilitaString);
 
                         ArrayList<String> generi = new ArrayList<>();

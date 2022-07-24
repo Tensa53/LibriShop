@@ -4,7 +4,12 @@ function validateFormInsLibro(){
     let altroL = document.forms["inseriscilibro"]["altro"].value;
     let descrizioneL = document.forms["inseriscilibro"]["descrizione"].value;
     let editoreL = document.forms["inseriscilibro"]["editore"].value;
+    let prezzoL = document.forms["inseriscilibro"]["prezzo"].value;
+    let disponibilitaL = document.forms["inseriscilibro"]["disponibilita"].value;
+    let scontoL = document.forms["inseriscilibro"]["sconto"].value;
+
     let numerionly = /^[0-9]+$/;
+    let prezzionly = /(\d+\.\d{1,2})/;
 
     let c = 0;
 
@@ -47,6 +52,21 @@ function validateFormInsLibro(){
 
     if (editoreL.length > 20){
         document.getElementById("editoreP").innerText = "Il nome dell'editore non deve superare i 20 caratteri.";
+        c++;
+    }
+
+    if (!prezzoL.match(prezzionly)) {
+        document.getElementById("prezzoP").innerText = "Il prezzo deve essere un valore numerico del tipo (22.40).";
+        c++;
+    }
+
+    if (!disponibilitaL.match(numerionly)) {
+        document.getElementById("disponibilitaP").innerText = "La disponibilità deve essere formata solamente da cifre.";
+        c++;
+    }
+
+    if (!scontoL.match(numerionly)) {
+        document.getElementById("scontoP").innerText = "Lo sconto deve essere formato solamente da cifre.";
         c++;
     }
 

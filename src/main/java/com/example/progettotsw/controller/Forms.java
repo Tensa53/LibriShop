@@ -196,11 +196,12 @@ public class Forms {
 
     }
 
-    public static boolean validateFormLibro(String isbn, String titolo, String[] genere, String altro, String descrizione, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
+    public static boolean validateFormLibro(String isbn, String titolo, String[] genere, String altro, String descrizione, String prezzo, String disponibilita, String sconto, String editore, Libro librodb, Genere generedbaltro, HttpServletRequest request) {
         int c = 0;
 
         Pattern pattern = Pattern.compile("^[0-9]+$");
 
+        Pattern pattern1 = pattern.compile("(\\d+\\.\\d{1,2})");
 
         if(isbn != null) {
             Matcher matcher = pattern.matcher(isbn);
@@ -245,6 +246,28 @@ public class Forms {
 
         if (editore.length() > 20) {
             request.setAttribute("msgeditoreP","Il nome dell'editore non deve superare i 20 caratteri");
+            c++;
+        }
+
+        Matcher matcher = pattern1.matcher(prezzo);
+
+        if (!matcher.matches()){
+            request.setAttribute("msgprezzoP", "Il prezzo deve essere un valore numerico del tipo (22.40)");
+            c++;
+        }
+
+        matcher = pattern.matcher(disponibilita);
+
+        if (!matcher.matches()){
+            request.setAttribute("msgdisponibilitaP","La disponibilità deve essere formata solamente da cifre");
+            c++;
+        }
+
+        matcher = pattern.matcher(sconto);
+
+        if (!matcher.matches()){
+            request.setAttribute("msgscontoP","Lo sconto deve essere formata solamente da cifre");
+            c++;
         }
 
         return !(c > 0);
