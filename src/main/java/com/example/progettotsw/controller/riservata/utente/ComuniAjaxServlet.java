@@ -10,11 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 
 @WebServlet("/comuni")
-public class ComuniServlet extends HttpServlet {
+public class ComuniAjaxServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
 

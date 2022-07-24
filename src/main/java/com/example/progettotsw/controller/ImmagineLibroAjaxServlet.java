@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet("/immaginelibro")
 
-public class ImmagineLibroServlet extends HttpServlet {
+public class ImmagineLibroAjaxServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
