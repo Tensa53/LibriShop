@@ -48,6 +48,10 @@ public class UpdateQuantitaLibroCarrelloServlet extends HttpServlet {
 
                     log(carrelloTotale.toString());
 
+                    request.getSession().removeAttribute("carrello");
+
+                    request.getSession().setAttribute("carrello",carrello);
+
                     response.setContentType("text/xml;charset=UTF-8");
                     response.getWriter().append("<carrello>");
                     response.getWriter().append("<libro><prezzoDettaglio>" + d.getPrezzo() + "</prezzoDettaglio><prezzoTotale>" + carrello.getTotale() + "</prezzoTotale></libro>");

@@ -53,6 +53,11 @@ public class AddLibroCarrelloServlet extends HttpServlet {
                 carrello.setTotale(totaleCarrello);//aggiorno il totale del carrello
             }
 
+
+            request.getSession().removeAttribute("carrello");
+
+            request.getSession().setAttribute("carrello",carrello);
+
         }
 
         response.sendRedirect(request.getContextPath() + "/home");//col sendRedirect la request non sarà condivisa ma ricreata dalla servlet/jsp richiamata

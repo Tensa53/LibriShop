@@ -30,6 +30,10 @@ public class RimuoviLibroCarrelloServlet extends HttpServlet {
                 totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
 
                 carrello.setTotale(totaleCarrello);
+
+                request.getSession().removeAttribute("carrello");
+
+                request.getSession().setAttribute("carrello",carrello);
             }
 
             response.sendRedirect(request.getContextPath() + "/carrello");

@@ -22,25 +22,23 @@ public class VerificaCarrelloServlet extends HttpServlet {
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
         if (carrello != null) {
-            ArrayList<Dettaglio> dettagli = (ArrayList<Dettaglio>) carrello.getDettagli();
+            ArrayList<Dettaglio> dettagli = new ArrayList<>(carrello.getDettagli());//clono la lista dei dettagli
 
             ArrayList<Libro> indisponibili = new ArrayList<>();
 
             LibroDAO libroDAO = new LibroDAO();
 
             if (dettagli.size() > 0) {
-                for (int i = 0; i < dettagli.size(); i++) {
-                    Dettaglio d = dettagli.get(i);
-
-                    Libro libro = libroDAO.doRetrieveById(d.getLibro().getISBN());
+                  for (Dettaglio d : carrello.getDettagli()){ //itero dalla lista di dettagli presente nel carrello (non quella clonata)
+                    Libro libro = libroDAO.doRetrieveById(d.getLibro().getISBN()); //estraggo il libro dal dettaglio, interrogando il db (valori aggiornati)
 
                     if (libro != null) {
-                        if (libro.getDisponibilita() == -1 || libro.getDisponibilita() == 0) {
+                        if (libro.getDisponibilita() == -1 || libro.getDisponibilita() == 0) { //un libro non è aggiungibile al carrello se ha disponibilità 0 (esaurito) o -1 (non più in vendita e rimosso dal db)
                             BigDecimal totaleCarrello = carrello.getTotale();
 
                             totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
 
-                            carrello.removeDettaglio(d);
+                            dettagli.remove(d);
 
                             carrello.setTotale(totaleCarrello);
 
@@ -51,7 +49,7 @@ public class VerificaCarrelloServlet extends HttpServlet {
 
                         totaleCarrello = totaleCarrello.subtract(d.getPrezzo());
 
-                        carrello.removeDettaglio(d);
+                        dettagli.remove(d);
 
                         carrello.setTotale(totaleCarrello);
 
@@ -59,6 +57,12 @@ public class VerificaCarrelloServlet extends HttpServlet {
                     }
                 }
             }
+
+            carrello.setDettagli(dettagli); //aggiorno la lista di dettalgi del carrello
+
+            request.getSession().removeAttribute("carrello");
+
+            request.getSession().setAttribute("carrello",carrello);
 
             request.setAttribute("indisponibili", indisponibili);
 

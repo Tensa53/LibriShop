@@ -28,7 +28,7 @@ public class RimuoviLibroCatalogoServlet extends HttpServlet {
 
                     int row = libroDAO.doDeleteLibrobyID(isbn);
                     if (row == 1)
-                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata" + "\"> dashboard </a> oppure effettua altre rimozioni";
+                        msg = "Rimozione effettuata con successo !!! Torna alla <a href = \"" + request.getContextPath() + "/area-riservata" + "\"> dashboard </a>";
 
                     request.setAttribute("msg", msg);
 
