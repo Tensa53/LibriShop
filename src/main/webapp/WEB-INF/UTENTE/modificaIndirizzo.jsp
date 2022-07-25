@@ -47,8 +47,8 @@
             <option value="<%=p.getId()%>"><%=p.getNome()%></option>
             <%}%>
         </select><br>
-        <label for="citta">Citta : </label><br>
-        <select name="citta" id="citta">
+        <label for="cittar">Citta : </label><br>
+        <select name="cittar" id="cittar">
             <option value="<%=indirizzo.getCitta()%>"><%=indirizzo.getCitta()%></option>
         </select><br>
         <label for="cap">CAP : </label><br>

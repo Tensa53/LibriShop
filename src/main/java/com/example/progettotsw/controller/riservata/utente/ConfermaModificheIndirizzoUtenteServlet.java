@@ -27,7 +27,7 @@ public class ConfermaModificheIndirizzoUtenteServlet extends HttpServlet {
                 String via = request.getParameter("via");
                 String civico = request.getParameter("civico");
                 String provincia = request.getParameter("provincia");
-                String citta = request.getParameter("citta");
+                String citta = request.getParameter("cittar");
                 String CAP = request.getParameter("cap");
                 String mail = utente.getMail();
                 String viaF = request.getParameter("viaF");
