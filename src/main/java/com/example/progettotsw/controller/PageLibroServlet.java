@@ -15,16 +15,12 @@ import java.io.IOException;
 public class PageLibroServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String isbn = (String) request.getParameter("isbn");
+        String isbn = request.getParameter("isbn");
 
         if (isbn != null) {
             LibroDAO libroDAO = new LibroDAO();
 
             Libro libro = libroDAO.doRetrieveById(isbn);
-
-            if (libro != null) {
-
-            }
 
             String address = "/libro.jsp";
 
