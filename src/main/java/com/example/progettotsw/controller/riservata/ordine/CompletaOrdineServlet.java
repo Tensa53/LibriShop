@@ -40,18 +40,26 @@ public class CompletaOrdineServlet extends HttpServlet {
                 for (Dettaglio d : carrello.getDettagli()) {
                     Libro l = d.getLibro();
 
-                    l.setDisponibilita((libroDAO.doRetrieveById(l.getISBN())).getDisponibilita()); //nel frattempo altri utenti potrebbero aver ordinato lo stesso libro ed occorre aggiornare la disponibilità
+                    Libro librodb = libroDAO.doRetrieveById(l.getISBN());
 
-                    int indisponibile = l.getDisponibilita() - d.getQuantita();
+                    if (librodb != null) {
+                        l.setDisponibilita((libroDAO.doRetrieveById(l.getISBN())).getDisponibilita()); //nel frattempo altri utenti potrebbero aver ordinato lo stesso libro ed occorre aggiornare la disponibilità
 
-                    if (indisponibile < 0) {
-                        incompatibili.add(d);
-                        String incompatibile = "Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - quantità in eccesso : " + indisponibile * -1;
-                        incompatibiliStr.add(incompatibile);
+                        int indisponibile = l.getDisponibilita() - d.getQuantita();
+
+                        if (indisponibile < 0) {
+                            incompatibili.add(d);
+                            String incompatibile = "Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - quantità in eccesso : " + indisponibile * -1;
+                            incompatibiliStr.add(incompatibile);
+                        } else {
+                            l.setDisponibilita(l.getDisponibilita() - d.getQuantita());
+                            libri.add(l);
+                        }
                     } else {
-                        l.setDisponibilita(l.getDisponibilita() - d.getQuantita());
-                        libri.add(l);
+                        String incompatibile = "Titolo : " + d.getLibro().getTitolo() + " - ISBN : " + d.getLibro().getISBN() + " - non più in vendita ";
+                        incompatibiliStr.add(incompatibile);
                     }
+
                 }
 
                 if (pagamento == null || indirizzo == null) {

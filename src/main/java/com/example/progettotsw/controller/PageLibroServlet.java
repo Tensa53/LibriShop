@@ -22,6 +22,10 @@ public class PageLibroServlet extends HttpServlet {
 
             Libro libro = libroDAO.doRetrieveById(isbn);
 
+            if (libro != null) {
+
+            }
+
             String address = "/libro.jsp";
 
             RequestDispatcher rd = request.getRequestDispatcher(address);

@@ -91,7 +91,7 @@
     <input type="number" name="sconto" id="sconto" min="0" max="99" step="1" required><br>
     <label for = "disponibilita">Disponibilita : </label> <br>
     <p class="error" id="disponibilitaP"><%if(disponibilitaP !=null){%><%=disponibilitaP%><%}%></p>
-    <input type="number" name="disponibilita" id="disponibilita" min="1" step="1" required><br>
+    <input type="number" name="disponibilita" id="disponibilita" min="0" step="1" required><br>
     <label for = "foto">Foto : </label> <br>
     <input type="file" name="foto" id="foto" accept="image/*" required><br><br>
     <input type="submit" value="inserisci">

@@ -39,7 +39,7 @@
     if (incompatibiliStr.size()>0){%>
     <h3 class="error">
         <ul class="nobullet">
-            <li>I seguenti libri sforano la quantità acquistabile. Sei pregato di modificare il carrello</li>
+            <li>I seguenti libri non sono attualmente acquistabili. Sei pregato di modificare il carrello</li>
             <%for (String s : incompatibiliStr){%>
                 <li><%=s%></li>
             <%}%>
