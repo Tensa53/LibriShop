@@ -48,7 +48,7 @@
     <div id="container-filtri-ordine" class="sidenav">
         <div id="container-ordina-libri">
             Ordina per prezzo :
-            <form action="filtra-libri">
+            <form action="filtra-libri" method="post">
                 <select name="prezzo">
                     <option value="crescente">crescente</option>
                     <option value="decrescente">decrescente</option>
@@ -64,7 +64,7 @@
             <p>Filtra per : </p>
 
 
-            <form action="filtra-libri">
+            <form action="filtra-libri" method="post">
                 <%for(Autore a : autori){%>
                 <input type="radio" name="autore" value="<%=a.getCF()%>"><%=a.getNome()%><br>
                 <%}%>
@@ -76,7 +76,7 @@
 
             <br>
 
-            <form action="filtra-libri">
+            <form action="filtra-libri" method="post">
                 <%for(Genere g : generi){%>
                 <input type="radio" name="genere" value="<%=g.getNome()%>"><%=g.getNome()%><br>
                 <%}%>
