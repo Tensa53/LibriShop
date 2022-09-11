@@ -4,7 +4,7 @@
 ## *Corso di laurea in Informatica*
 * * *
 ## **PROGRAMMAZIONE WEB** -Website Design- : **Uno Shop Online di libri**
-- **Docente :** COSTAGLIOLA Gennaro e DE ROSA Mattia
+- **Docenti :** COSTAGLIOLA Gennaro e DE ROSA Mattia
 - **Studenti :** FABIANO Daniele e MASELLI Mariantonietta
 
 1. ### Obiettivo del progetto :
