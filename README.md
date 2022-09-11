@@ -4,8 +4,8 @@
 ## *Corso di laurea in Informatica*
 * * *
 ## **PROGRAMMAZIONE WEB** -Website Design- : **Uno Shop Online di libri**
-Docente : COSTAGLIOLA Gennaro
-Studenti : FABIANO Daniele (0512110373) e MASELLI Mariantonietta (0512109995)
+- **Docente :** COSTAGLIOLA Gennaro e DE ROSA Mattia
+- **Studenti :** FABIANO Daniele e MASELLI Mariantonietta
 
 1. ### Obiettivo del progetto :
     1. L’obiettivo del progetto è quello di realizzare un sito web che si occcupi della vendita online di libri.
