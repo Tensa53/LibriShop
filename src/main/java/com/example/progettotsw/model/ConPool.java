@@ -44,7 +44,11 @@ public class ConPool {
 	public static Connection getConnection() throws SQLException {
 		if (datasource == null) {
 			PoolProperties p = new PoolProperties();
-			p.setUrl("jdbc:mysql://localhost:3306/base?serverTimezone=" + TimeZone.getDefault().getID());
+			String dbHost = System.getenv("DB_HOST");
+			if (dbHost == null || dbHost.isEmpty()) {
+				dbHost = "localhost";
+			}
+			p.setUrl("jdbc:mysql://" + dbHost + ":3306/base?serverTimezone=" + TimeZone.getDefault().getID());
 			p.setDriverClassName("com.mysql.cj.jdbc.Driver");
 			p.setUsername("tsw");
 			p.setPassword("biscotto");

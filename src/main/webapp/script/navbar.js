@@ -1,5 +1,6 @@
 function navbar() {
-    var link = location.pathname.split("/")[2]; //preleva dalla path il nome della pagina
+    var pathParts = location.pathname.split("/").filter(part => part !== ""); //rimuove elementi vuoti
+    var link = pathParts[pathParts.length - 1]; //preleva l'ultimo elemento della path (nome della pagina)
     console.log(link);
 
     if(link.includes("."))
